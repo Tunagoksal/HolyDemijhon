@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="18">
+ <editorsettings>
+  <export target="Tilemap.tmx" format="tmx"/>
+ </editorsettings>
+ <tileset firstgid="1" name="Tileset" tilewidth="16" tileheight="16" tilecount="64" columns="8">
+  <image source="../../asprite/TileSet.png" width="128" height="128"/>
+ </tileset>
+ <objectgroup id="6" name="ground ">
+  <object id="5" x="16" y="192" width="176" height="48"/>
+  <object id="6" x="176" y="176" width="16" height="16"/>
+  <object id="10" x="160" y="192">
+   <polyline points="0,0 16,-16 16,0 0,0"/>
+  </object>
+  <object id="12" x="224" y="144" width="128" height="48"/>
+  <object id="13" x="64" y="64" width="144" height="16"/>
+ </objectgroup>
+ <layer id="1" name="Desen Katmanı 1" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFgwWYArEZje0QBmJRIBYBYmYoLYIkJkBj+xmg9g4EGLV34O0FpT/0NEettIfPXjUgVsCC1YFYg0J7mZDY/Ayo/pDDg4m1FxZmyOEFY8OwOBBLIOlRw2GnAgn2yiBhWRxsGTTzQPbK4/EzMQBkhjoRGGSvEhArE9BDafyOglFALgAAjv4LOQ==
+  </data>
+ </layer>
+ <objectgroup id="3" name="ladders">
+  <object id="17" x="112" y="64" width="16" height="128"/>
+ </objectgroup>
+ <objectgroup id="4" name="Chest">
+  <object id="15" x="144" y="48" width="32" height="16"/>
+ </objectgroup>
+ <objectgroup id="5" name="Spikes">
+  <object id="14" x="192" y="224" width="32" height="16"/>
+ </objectgroup>
+</map>

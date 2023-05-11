@@ -1,0 +1,230 @@
+
+characterAnimations.png
+size: 1024, 256
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+attack1
+  rotate: false
+  xy: 1, 3
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 1
+attack1
+  rotate: false
+  xy: 83, 3
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 2
+attack1
+  rotate: false
+  xy: 165, 3
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 3
+attack1
+  rotate: false
+  xy: 247, 3
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 4
+attack2
+  rotate: false
+  xy: 329, 3
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 1
+attack2
+  rotate: false
+  xy: 411, 3
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 2
+attack2
+  rotate: false
+  xy: 493, 3
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 3
+attack3
+  rotate: false
+  xy: 575, 3
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 1
+attack3
+  rotate: false
+  xy: 657, 3
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 2
+attack3
+  rotate: false
+  xy: 739, 3
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 3
+attack3
+  rotate: false
+  xy: 821, 3
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 4
+attack4
+  rotate: false
+  xy: 903, 3
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 1
+attack4
+  rotate: false
+  xy: 1, 69
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 2
+attack4
+  rotate: false
+  xy: 83, 69
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 3
+attack4
+  rotate: false
+  xy: 165, 69
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 4
+heavyattack
+  rotate: false
+  xy: 247, 69
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 1
+heavyattack
+  rotate: false
+  xy: 329, 69
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 2
+heavyattack
+  rotate: false
+  xy: 411, 69
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 3
+heavyattack
+  rotate: false
+  xy: 493, 69
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 4
+idle
+  rotate: false
+  xy: 575, 69
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 1
+attack2
+  rotate: false
+  xy: 575, 69
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 4
+idle
+  rotate: false
+  xy: 657, 69
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 2
+idle
+  rotate: false
+  xy: 739, 69
+  size: 79, 64
+  orig: 79, 64
+  offset: 0, 0
+  index: 3
+idle
+  rotate: false
+  xy: 821, 69
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 4
+primary
+  rotate: false
+  xy: 903, 69
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 1
+primary
+  rotate: false
+  xy: 1, 135
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 2
+primary
+  rotate: false
+  xy: 83, 135
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 3
+primary
+  rotate: false
+  xy: 165, 135
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 4
+running
+  rotate: false
+  xy: 247, 135
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 1
+running
+  rotate: false
+  xy: 329, 135
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 2
+running
+  rotate: false
+  xy: 411, 135
+  size: 79, 64
+  orig: 79, 64
+  offset: 0, 0
+  index: 3
+running
+  rotate: false
+  xy: 493, 135
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 4

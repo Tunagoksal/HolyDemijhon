@@ -34,13 +34,16 @@ public class LevelScene implements Screen {
         this.game = game;
         cam = new OrthographicCamera();
         viewport = new FitViewport(HolyDemijhon.WIDTH,HolyDemijhon.HEIGHT,cam);
+        viewport.setScreenSize(640,360);
+        viewport.setWorldSize(1280,720);
+
         hud = new HUD(game.batch);
         player = new Player();
 
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("Tilemap.tmx");
+        map = mapLoader.load("Tileset.tmx");
         mapRenderer = new OrthogonalTiledMapRenderer(map);
-        cam.position.set(viewport.getScreenWidth()/2,viewport.getScreenHeight()/2,0);
+        cam.position.set(viewport.getScreenWidth()/4,viewport.getScreenHeight()/4,0);
     }
     @Override
     public void show() {
@@ -55,10 +58,13 @@ public class LevelScene implements Screen {
     }
 
     private void handleInput(float dt) {
-        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
-            cam.position.x += 100*dt;
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+            int x = 10;
+            cam.translate(viewport.getScreenWidth()/2 + x,viewport.getScreenHeight()/2+x);
         }
     }
+
+
 
     @Override
     public void render(float delta) {
@@ -67,6 +73,7 @@ public class LevelScene implements Screen {
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
+        mapRenderer.setView(cam);
         mapRenderer.render();
 
         /*

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="11">
+ <tileset firstgid="1" name="TileSet" tilewidth="16" tileheight="16" tilecount="64" columns="8">
+  <image source="TileSet.png" width="128" height="128"/>
+ </tileset>
+ <layer id="1" name="Desen Katmanı 1" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFgx2YArEZHewRxYHpCZjpbN9gtpeWcTFY/KsExMpUNF+ERDwKRsEoGAW0AgAP2QKX
+  </data>
+ </layer>
+ <objectgroup id="2" name="Spikes">
+  <object id="8" x="288" y="144" width="32" height="16"/>
+ </objectgroup>
+ <objectgroup id="3" name="ground">
+  <object id="5" x="176" y="64" width="96" height="16"/>
+  <object id="6" x="336" y="112" width="80" height="16"/>
+  <object id="7" x="128" y="160" width="192" height="16"/>
+ </objectgroup>
+ <objectgroup id="4" name="chest">
+  <object id="4" x="240" y="48" width="33.3333" height="14.6667"/>
+ </objectgroup>
+ <objectgroup id="5" name="Ladder">
+  <object id="1" x="224" y="80" width="16" height="80"/>
+ </objectgroup>
+</map>

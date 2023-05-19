@@ -12,12 +12,11 @@ import javax.xml.transform.sax.SAXTransformerFactory;
 
 public class HolyDemijhon extends Game {
 
+	// bu constantları da ayrı bir class'a taşıyabiliriz belki
 	public static final int MAIN_MENU_SCREEN = 0;
 	public static final int LEVEL_SCREEN = 1;
 	public static final int END_GAME_SCREEN = 2;
 	public static final int LEADER_BOARD = 3;
-
-	//private MainMenuScreen mainMenu = new MainMenuScreen(this);
 
 	public static final int WIDTH = 640;
 	public static final int HEIGHT = 360;

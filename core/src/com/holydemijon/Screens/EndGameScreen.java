@@ -27,6 +27,9 @@ public class EndGameScreen extends ScreenAdapter {
 
     public EndGameScreen(HolyDemijhon game){
 
+        // Enes screenleri paylaşalım dediğimiz için biraz sana ithafen yazıyorum backgroundı eklerken scalelemede gariplik oluyor
+        // çözmeye uğraşmadım sen çözersen onu halledebilirsin
+
         this.game= game;
         cam = new OrthographicCamera();
         viewport = new FitViewport(HolyDemijhon.WIDTH,HolyDemijhon.HEIGHT,cam);

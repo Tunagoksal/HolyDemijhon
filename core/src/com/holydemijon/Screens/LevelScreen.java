@@ -28,7 +28,8 @@ public class LevelScreen implements Screen {
     private OrthographicCamera cam;
     private Viewport viewport;
 
-    int health = 1;
+    int health = 1; // daha karakter olmadığı için canı alabileceğim bir yer yoktu geçici olarak koydum
+    // manuel olarak 0 yapıp çalıştırsan direk endgame ekranına geçiyor
 
     public LevelScreen(HolyDemijhon game){
 
@@ -59,10 +60,14 @@ public class LevelScreen implements Screen {
     }
 
     private void handleInput(float dt) {
+        int x = 1;
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            int x = 10;
             System.out.println("sdasd");
-            cam.translate(viewport.getScreenWidth()/2 + x,viewport.getScreenHeight()/2+x);
+            cam.translate(x,0);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+            System.out.println("sdasd");
+            cam.translate(-x,0);
         }
     }
 
@@ -70,6 +75,12 @@ public class LevelScreen implements Screen {
 
     @Override
     public void render(float delta) {
+
+        // genel olarak burası da değişebilir ileride sadece geçişler çalışsın tüm screenler birbirine bağlansın diye koydum
+        if(Gdx.input.isKeyPressed(Input.Keys.P)){
+            game.setScreens(HolyDemijhon.MAIN_MENU_SCREEN);// Şimdilik ana menüye döndürüyor daha pause menüyü oluşturmadım
+        }
+
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
@@ -78,6 +89,9 @@ public class LevelScreen implements Screen {
         mapRenderer.setView(cam);
         mapRenderer.render();
 
+        update(delta);
+
+        // endgame geçiş bunun da yeri düzenlenebilir ileride
         if(health == 0){
             game.setScreens(HolyDemijhon.END_GAME_SCREEN);
         }

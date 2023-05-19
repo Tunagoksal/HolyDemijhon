@@ -1,8 +1,8 @@
 package com.holydemijon;
 
 import com.badlogic.gdx.*;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.holydemijon.Screens.LevelScene;
 
 public class HolyDemijhon extends Game {
 

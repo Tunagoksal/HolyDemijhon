@@ -1,4 +1,4 @@
-package com.holydemijon;
+package com.holydemijon.Database;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;

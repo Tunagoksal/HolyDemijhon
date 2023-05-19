@@ -1,6 +1,7 @@
-package com.holydemijon;
+package com.holydemijon.Tools;
 
 import com.badlogic.gdx.InputProcessor;
+import com.holydemijon.HolyDemijhon;
 
 public class KeyboardInputs implements InputProcessor {
 

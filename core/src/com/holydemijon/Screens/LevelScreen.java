@@ -10,11 +10,19 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+<<<<<<<< HEAD:core/src/com/holydemijon/Screens/LevelScene.java
 import com.holydemijon.HolyDemijhon;
 import com.holydemijon.Sprites.Player;
 import com.holydemijon.Scenes.HUD;
 
 public class LevelScene implements Screen {
+========
+import com.holydemijon.HUD;
+import com.holydemijon.HolyDemijhon;
+import com.holydemijon.Player;
+
+public class LevelScreen implements Screen {
+>>>>>>>> BranchTuna:core/src/com/holydemijon/Screens/LevelScreen.java
 
     private Player player;
     private HolyDemijhon game;
@@ -27,12 +35,15 @@ public class LevelScene implements Screen {
     private OrthographicCamera cam;
     private Viewport viewport;
 
-    public LevelScene(HolyDemijhon game){
+    int health = 1;
+
+    public LevelScreen(HolyDemijhon game){
+
         this.game = game;
         cam = new OrthographicCamera();
         viewport = new FitViewport(HolyDemijhon.WIDTH,HolyDemijhon.HEIGHT,cam);
-        viewport.setScreenSize(640,360);
-        viewport.setWorldSize(1280,720);
+        //viewport.setScreenSize(360,360);
+        viewport.setWorldSize(360,360);
 
         hud = new HUD(game.batch);
         player = new Player();
@@ -40,7 +51,7 @@ public class LevelScene implements Screen {
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("Tileset.tmx");
         mapRenderer = new OrthogonalTiledMapRenderer(map);
-        cam.position.set(viewport.getScreenWidth()/4,viewport.getScreenHeight()/4,0);
+        cam.position.set(viewport.getWorldWidth()/2,viewport.getWorldHeight()/2,0);
     }
     @Override
     public void show() {
@@ -57,6 +68,7 @@ public class LevelScene implements Screen {
     private void handleInput(float dt) {
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
             int x = 10;
+            System.out.println("sdasd");
             cam.translate(viewport.getScreenWidth()/2 + x,viewport.getScreenHeight()/2+x);
         }
     }
@@ -72,6 +84,10 @@ public class LevelScene implements Screen {
 
         mapRenderer.setView(cam);
         mapRenderer.render();
+
+        if(health == 0){
+            game.setScreens(HolyDemijhon.END_GAME_SCREEN);
+        }
 
         /*
         game.batch.setProjectionMatrix(cam.combined);

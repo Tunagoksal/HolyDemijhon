@@ -10,19 +10,12 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-<<<<<<<< HEAD:core/src/com/holydemijon/Screens/LevelScene.java
 import com.holydemijon.HolyDemijhon;
 import com.holydemijon.Sprites.Player;
 import com.holydemijon.Scenes.HUD;
 
-public class LevelScene implements Screen {
-========
-import com.holydemijon.HUD;
-import com.holydemijon.HolyDemijhon;
-import com.holydemijon.Player;
-
 public class LevelScreen implements Screen {
->>>>>>>> BranchTuna:core/src/com/holydemijon/Screens/LevelScreen.java
+
 
     private Player player;
     private HolyDemijhon game;

@@ -7,16 +7,16 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
 public class Database {
-    public void addScore(int score) {
+    public static void main(String[] args) {
+        MongoClient mongoClient = MongoClients.create("mongodb+srv://borayetkin:Bo1234ra@cluster0.p8gn1ac.mongodb.net/?retryWrites=true&w=majority");
+        MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
 
-        MongoClient mongoClient = MongoClients.create("mongodb+srv://UnknownUser:Demijhon321@cluster0.ubmtxtw.mongodb.net/?retryWrites=true&w=majority");
-        MongoDatabase database = mongoClient.getDatabase("HolyDemijhonDB");
-
-        MongoCollection collection = database.getCollection("GameCollection");
+        MongoCollection collection = database.getCollection("gameCollection");
 
         System.out.println("working fine pls :)");
 
-        //Document doc = new Document("score", "123456");
-        //collection.insertOne(doc);
+        Document sampleDoc = new Document("score", "123456");
+        collection.insertOne(sampleDoc);
+
     }
 }

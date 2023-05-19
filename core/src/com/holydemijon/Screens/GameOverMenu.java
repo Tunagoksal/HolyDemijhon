@@ -2,7 +2,7 @@ package com.holydemijon.Screens;
 
 import com.badlogic.gdx.Screen;
 
-public class GameScreen implements Screen {
+public class GameOverMenu implements Screen {
     @Override
     public void show() {
 

@@ -1,4 +1,4 @@
-package com.holydemijon;
+package com.holydemijon.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -9,13 +9,10 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-
-import javax.sound.sampled.Port;
-import javax.swing.*;
-import java.security.Key;
+import com.holydemijon.HolyDemijhon;
+import com.holydemijon.Sprites.Player;
+import com.holydemijon.Scenes.HUD;
 
 public class LevelScene implements Screen {
 

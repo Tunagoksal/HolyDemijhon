@@ -8,5 +8,11 @@ public class Ladder extends InteractiveTileObject {
 
     public Ladder(World world, TiledMap tiledMap, Rectangle bounds) {
         super(world, tiledMap, bounds);
+        fixture.setUserData(this);
+    }
+
+    @Override
+    public void collision() {
+
     }
 }

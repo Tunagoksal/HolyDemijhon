@@ -13,6 +13,8 @@ public abstract class InteractiveTileObject {
     protected Rectangle bounds;
     protected Body body;
 
+    protected Fixture fixture;
+
     public InteractiveTileObject(World world, TiledMap tiledMap, Rectangle bounds) {
         this.world = world;
         this.tiledMap = tiledMap;
@@ -28,6 +30,8 @@ public abstract class InteractiveTileObject {
         body = world.createBody(bodyDef);
         shape.setAsBox(bounds.getWidth() / 2 / HolyDemijhon.PPM, bounds.getHeight() / 2 / HolyDemijhon.PPM);
         fixtureDef.shape = shape;
-        body.createFixture(fixtureDef);
+        fixture = body.createFixture(fixtureDef);
     }
+
+    public abstract void collision();
 }

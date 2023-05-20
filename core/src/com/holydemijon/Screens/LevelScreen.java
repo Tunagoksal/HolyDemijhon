@@ -21,6 +21,7 @@ import com.holydemijon.Sprites.John;
 import com.holydemijon.Sprites.Player;
 import com.holydemijon.Scenes.HUD;
 import com.holydemijon.Tools.Box2DWorldCreator;
+import com.holydemijon.Tools.WorldContactListener;
 
 public class LevelScreen implements Screen {
 
@@ -45,7 +46,7 @@ public class LevelScreen implements Screen {
     private World world;
     private Box2DDebugRenderer b2dbr;
 
-    int health = 1;
+    public static int health = 3;
 
     public LevelScreen(HolyDemijhon game){
         this.game = game;
@@ -65,6 +66,8 @@ public class LevelScreen implements Screen {
         b2dbr = new Box2DDebugRenderer();
         new Box2DWorldCreator(world, map);
         player = new John(world);
+
+        world.setContactListener(new WorldContactListener());
     }
     @Override
     public void show() {

@@ -1,13 +1,15 @@
 package com.holydemijon.Sprites;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import com.holydemijon.HolyDemijhon;
 import sun.security.provider.SHA;
 
 public class John extends Sprite {
 
-    public static final int SHAPE_RADIUS = 5;
+    public static final float JOHN_WIDTH = 4;
+    public static final float JOHN_HEIGHT = 7;
 
     public World level;
     public Body b2dbody;
@@ -24,10 +26,10 @@ public class John extends Sprite {
         b2dbody = level.createBody(bodydef);
 
         FixtureDef fixDef = new FixtureDef();
-        CircleShape shape = new CircleShape();
-        shape.setRadius(SHAPE_RADIUS / HolyDemijhon.PPM);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(JOHN_WIDTH / HolyDemijhon.PPM, JOHN_HEIGHT / HolyDemijhon.PPM);
 
         fixDef.shape = shape;
-        b2dbody.createFixture(fixDef);
+        b2dbody.createFixture(fixDef).setUserData("player");
     }
 }

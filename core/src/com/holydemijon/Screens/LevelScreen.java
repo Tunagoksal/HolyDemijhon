@@ -61,11 +61,11 @@ public class LevelScreen implements Screen {
 
     private void handleInput(float dt) {
         int x = 1;
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
             System.out.println("sdasd");
             cam.translate(x,0);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
             System.out.println("sdasd");
             cam.translate(-x,0);
         }

@@ -1,9 +1,6 @@
 package com.holydemijon.Screens;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -18,7 +15,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijhon;
 
-public class MainMenuScreen extends ScreenAdapter {
+public class MainMenuScreen extends ScreenAdapter{
 
     private Viewport viewport;
     private Stage stage;
@@ -26,6 +23,7 @@ public class MainMenuScreen extends ScreenAdapter {
     private OrthographicCamera cam;
 
     public MainMenuScreen(final HolyDemijhon game){
+
         this.game = game;
         cam = new OrthographicCamera();
         viewport = new FitViewport(HolyDemijhon.WIDTH,HolyDemijhon.HEIGHT,cam);
@@ -73,6 +71,7 @@ public class MainMenuScreen extends ScreenAdapter {
             public void changed(ChangeEvent event, Actor actor) {
                 System.out.println(x++);
                 //game.setScreen(new LevelScreen(game));
+                stage.dispose();
                 game.setScreens(HolyDemijhon.FIRST_LEVEL);
             }
         });
@@ -80,6 +79,7 @@ public class MainMenuScreen extends ScreenAdapter {
         leaderBoardButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                stage.dispose();
                 game.setScreens(HolyDemijhon.LEADER_BOARD);
             }
         });
@@ -93,10 +93,6 @@ public class MainMenuScreen extends ScreenAdapter {
         table.add(leaderBoardButton);
         stage.addActor(table);
     }
-    @Override
-    public void show() {
-
-    }
 
     @Override
     public void render(float delta) {
@@ -105,28 +101,4 @@ public class MainMenuScreen extends ScreenAdapter {
         stage.draw();
     }
 
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-
-    }
 }

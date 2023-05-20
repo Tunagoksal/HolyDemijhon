@@ -48,10 +48,13 @@ public class HolyDemijhon extends Game {
 				break;
 			case LEADER_BOARD:
 				setScreen(new leaderBoardScreen(this));
+				break;
 			case FIRST_LEVEL:
 				setScreen(new FirstLevel(this));
+				break;
 			case SECOND_LEVEL:
 				setScreen(new SecondLevel(this));
+				break;
 		}
 
 	}

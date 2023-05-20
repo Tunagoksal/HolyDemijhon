@@ -32,7 +32,7 @@ public class LevelScreen implements Screen {
     private static final float PLAYER_ACCELERATION = 0.1f;
 
     //private Player player;
-    private John player;
+    private static John player;
     private HolyDemijhon game;
     private HUD hud;
 
@@ -72,6 +72,10 @@ public class LevelScreen implements Screen {
     @Override
     public void show() {
 
+    }
+
+    public static void setHealth(int health) {
+        player.setHealth(health);
     }
 
     public void update(float dt){
@@ -117,7 +121,7 @@ public class LevelScreen implements Screen {
         b2dbr.render(world, cam.combined);
 
         // endgame geçiş bunun da yeri düzenlenebilir ileride
-        if(health == 0){
+        if(player.getHealth() == 0){
             game.setScreens(HolyDemijhon.END_GAME_SCREEN);
         }
 

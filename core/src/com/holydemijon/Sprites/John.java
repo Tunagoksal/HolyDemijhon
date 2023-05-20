@@ -14,6 +14,8 @@ public class John extends Sprite {
     public World level;
     public Body b2dbody;
 
+    private int Health = 100;
+
     public John(World level) {
         this.level = level;
         defJohn();
@@ -31,5 +33,13 @@ public class John extends Sprite {
 
         fixDef.shape = shape;
         b2dbody.createFixture(fixDef).setUserData("player");
+    }
+
+    public void setHealth(int health) {
+        Health += health;
+    }
+
+    public int getHealth() {
+        return Health;
     }
 }

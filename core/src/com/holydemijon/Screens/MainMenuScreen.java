@@ -73,7 +73,7 @@ public class MainMenuScreen extends ScreenAdapter {
             public void changed(ChangeEvent event, Actor actor) {
                 System.out.println(x++);
                 //game.setScreen(new LevelScreen(game));
-                game.setScreens(HolyDemijhon.LEVEL_SCREEN);
+                game.setScreens(HolyDemijhon.FIRST_LEVEL);
             }
         });
 

@@ -5,8 +5,10 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import com.holydemijon.HolyDemijhon;
+import com.holydemijon.Screens.LevelScreen;
 
 public abstract class InteractiveTileObject {
+    protected LevelScreen screen;
     protected World world;
     protected TiledMap tiledMap;
     protected TiledMapTile tile;
@@ -15,9 +17,9 @@ public abstract class InteractiveTileObject {
 
     protected Fixture fixture;
 
-    public InteractiveTileObject(World world, TiledMap tiledMap, Rectangle bounds) {
-        this.world = world;
-        this.tiledMap = tiledMap;
+    public InteractiveTileObject(LevelScreen screen, Rectangle bounds) {
+        this.world = screen.getWorld();
+        this.tiledMap = screen.getMap();
         this.bounds = bounds;
 
         BodyDef bodyDef = new BodyDef();

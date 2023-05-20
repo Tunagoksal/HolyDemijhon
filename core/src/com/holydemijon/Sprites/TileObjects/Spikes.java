@@ -10,8 +10,9 @@ import com.holydemijon.Sprites.John;
 
 public class Spikes extends InteractiveTileObject {
 
-    public Spikes(World world, TiledMap tiledMap, Rectangle bounds) {
-        super(world, tiledMap, bounds);
+    public Spikes(LevelScreen screen, Rectangle bounds) {
+
+        super(screen, bounds);
         fixture.setUserData(this);
     }
 

@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -64,10 +65,17 @@ public class LevelScreen implements Screen {
 
         world = new World(new Vector2(0, GRAVITY), true);
         b2dbr = new Box2DDebugRenderer();
-        new Box2DWorldCreator(world, map);
+        new Box2DWorldCreator(this);
         player = new John(world);
 
         world.setContactListener(new WorldContactListener());
+    }
+
+    public World getWorld() {
+        return this.world;
+    }
+    public TiledMap getMap() {
+        return this.map;
     }
     @Override
     public void show() {

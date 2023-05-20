@@ -50,6 +50,7 @@ public class LevelScreen implements Screen {
     public static int health = 3;
 
     public LevelScreen(HolyDemijhon game){
+
         this.game = game;
         cam = new OrthographicCamera();
         viewport = new FitViewport(HolyDemijhon.WIDTH / HolyDemijhon.PPM, HolyDemijhon.HEIGHT / HolyDemijhon.PPM, cam);
@@ -82,8 +83,8 @@ public class LevelScreen implements Screen {
 
     }
 
-    public static void setHealth(int health) {
-        player.setHealth(health);
+    public static John getPlayer() {
+        return player;
     }
 
     public void update(float dt){

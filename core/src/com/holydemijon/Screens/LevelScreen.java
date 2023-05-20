@@ -20,6 +20,7 @@ import com.holydemijon.HolyDemijhon;
 import com.holydemijon.Sprites.John;
 import com.holydemijon.Sprites.Player;
 import com.holydemijon.Scenes.HUD;
+import com.holydemijon.Tools.Box2DWorldCreator;
 
 public class LevelScreen implements Screen {
 
@@ -55,8 +56,6 @@ public class LevelScreen implements Screen {
 
         hud = new HUD(game.batch);
 
-        //player = new Player();
-
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("Tileset.tmx");
         mapRenderer = new OrthogonalTiledMapRenderer(map, 1 / HolyDemijhon.PPM);
@@ -64,47 +63,8 @@ public class LevelScreen implements Screen {
 
         world = new World(new Vector2(0, GRAVITY), true);
         b2dbr = new Box2DDebugRenderer();
+        new Box2DWorldCreator(world, map);
         player = new John(world);
-
-        //Bu kod bloğu, dünyayı oluşturur. Tile lar için ayrı classlar oluştuğunda silinecek
-        BodyDef bodyDef = new BodyDef();
-        PolygonShape shape = new PolygonShape();
-        FixtureDef fixtureDef = new FixtureDef();
-        Body body;
-        for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-            bodyDef.type = BodyDef.BodyType.StaticBody;
-            bodyDef.position.set((rect.getX() + rect.getWidth() / 2) / HolyDemijhon.PPM, (rect.getY() + rect.getHeight() / 2) / HolyDemijhon.PPM);
-
-            body = world.createBody(bodyDef);
-            shape.setAsBox(rect.getWidth() / 2 / HolyDemijhon.PPM, rect.getHeight() / 2 / HolyDemijhon.PPM);
-            fixtureDef.shape = shape;
-            body.createFixture(fixtureDef);
-        }
-        for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-            bodyDef.type = BodyDef.BodyType.StaticBody;
-            bodyDef.position.set((rect.getX() + rect.getWidth() / 2) / HolyDemijhon.PPM, (rect.getY() + rect.getHeight() / 2) / HolyDemijhon.PPM);
-
-            body = world.createBody(bodyDef);
-            shape.setAsBox(rect.getWidth() / 2 / HolyDemijhon.PPM, rect.getHeight() / 2 / HolyDemijhon.PPM);
-            fixtureDef.shape = shape;
-            body.createFixture(fixtureDef);
-        }
-        for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-            bodyDef.type = BodyDef.BodyType.StaticBody;
-            bodyDef.position.set((rect.getX() + rect.getWidth() / 2) / HolyDemijhon.PPM, (rect.getY() + rect.getHeight() / 2) / HolyDemijhon.PPM);
-
-            body = world.createBody(bodyDef);
-            shape.setAsBox(rect.getWidth() / 2 / HolyDemijhon.PPM, rect.getHeight() / 2 / HolyDemijhon.PPM);
-            fixtureDef.shape = shape;
-            body.createFixture(fixtureDef);
-        }
-
     }
     @Override
     public void show() {
@@ -193,6 +153,10 @@ public class LevelScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        map.dispose();
+        mapRenderer.dispose();
+        world.dispose();
+        b2dbr.dispose();
+        hud.dispose();
     }
 }

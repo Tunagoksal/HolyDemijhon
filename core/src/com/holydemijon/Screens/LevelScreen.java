@@ -29,7 +29,7 @@ public class LevelScreen implements Screen {
 
     public static final float FPS = 1/60f;
     public static final float GRAVITY = -10;
-    private static final float JUMP_HEIGHT = 4f;
+    private static final float JUMP_HEIGHT = 4;
     private static final float MAX_LINEAR_VELOCITY = 1;
     private static final float PLAYER_ACCELERATION = 0.1f;
 
@@ -110,6 +110,10 @@ public class LevelScreen implements Screen {
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
             player.b2dbody.applyLinearImpulse(new Vector2(0, JUMP_HEIGHT), player.b2dbody.getWorldCenter(), true);
+        }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
+            player.simpleAttack();
         }
     }
 

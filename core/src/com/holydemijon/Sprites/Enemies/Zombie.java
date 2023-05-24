@@ -6,16 +6,17 @@ import com.holydemijon.Screens.LevelScreen;
 
 public class Zombie extends Enemy {
 
-    private static final float ZOMBIE_WIDTH = 4;
-    private static final float ZOMBIE_HEIGHT = 7;
+    private static final float ZOMBIE_WIDTH = 6;
+    private static final float ZOMBIE_HEIGHT = 9;
     public Zombie(LevelScreen screen, float x, float y) {
         super(screen, x, y);
+        health = 200;
     }
 
     @Override
     protected void defEnemy() {
         BodyDef bodydef = new BodyDef();
-        bodydef.position.set(45 / HolyDemijhon.PPM, 150 / HolyDemijhon.PPM);
+        bodydef.position.set(this.getX(), this.getY());
         bodydef.type = BodyDef.BodyType.DynamicBody;
         b2dbody = world.createBody(bodydef);
 
@@ -31,6 +32,11 @@ public class Zombie extends Enemy {
                 HolyDemijhon.JOHN_BIT;
 
         fixDef.shape = shape;
-        b2dbody.createFixture(fixDef).setUserData("zombie");
+        b2dbody.createFixture(fixDef).setUserData(this);
+    }
+
+    @Override
+    public void kill() {
+        setToDestroy = true;
     }
 }

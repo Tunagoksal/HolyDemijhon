@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijhon;
 import com.holydemijon.Scenes.HUD;
-import com.holydemijon.Sprites.Player;
+import com.holydemijon.Entities.Player;
 
 public class BaseLevel extends ScreenAdapter {
 

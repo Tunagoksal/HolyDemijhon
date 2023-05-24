@@ -1,7 +1,9 @@
 package com.holydemijon;
 
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.holydemijon.Entities.John;
 import com.holydemijon.Levels.FirstLevel;
 import com.holydemijon.Levels.SecondLevel;
 import com.holydemijon.Screens.EndGameScreen;
@@ -13,6 +15,8 @@ import javax.xml.transform.sax.SAXTransformerFactory;
 
 
 public class HolyDemijhon extends Game {
+
+	MainMenuScreen mainMenu;
 
 	// bu constantları da ayrı bir class'a taşıyabiliriz belki
 	public static final int MAIN_MENU_SCREEN = 0;
@@ -27,18 +31,37 @@ public class HolyDemijhon extends Game {
 	public static final int HEIGHT = 360;
 	public static final float PPM = 100;
 
+	private John player;
+
 	public SpriteBatch batch;
+
+	//private FileHandle file;
+
+	private Preferences prefs;
 
 	@Override
 	public void create() {
+
+		mainMenu = new MainMenuScreen(this);
+
+		//file = Gdx.files.local("saveFile.txt");
+		//file.writeString("5",false);
+
+		prefs = Gdx.app.getPreferences("savePreference");
+
 		batch = new SpriteBatch();
 		setScreen(new MainMenuScreen(this));
 	}
 
+	public Preferences getPrefs() {
+		return prefs;
+	}
+
+
 	public void setScreens(int screen){
         switch (screen){
 			case MAIN_MENU_SCREEN:
-				setScreen(new MainMenuScreen(this));
+				setScreen(mainMenu);
 				break;
 			case LEVEL_SCREEN:
 				setScreen(new LevelScreen(this));
@@ -62,6 +85,7 @@ public class HolyDemijhon extends Game {
 	@Override
 	public void render () {
 		super.render();
+
 	}
 
 	@Override

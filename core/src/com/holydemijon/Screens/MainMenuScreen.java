@@ -27,7 +27,7 @@ public class MainMenuScreen extends ScreenAdapter{
         this.game = game;
         cam = new OrthographicCamera();
         viewport = new FitViewport(HolyDemijhon.WIDTH,HolyDemijhon.HEIGHT,cam);
-        stage = new Stage(viewport, (game).batch);
+        stage = new Stage(viewport);
 
         Table table = new Table();
         table.center();
@@ -45,6 +45,10 @@ public class MainMenuScreen extends ScreenAdapter{
         TextureRegion exitGameRegion = new TextureRegion(exitGameTexture);
         TextureRegionDrawable exitGameDrawable = new TextureRegionDrawable(exitGameRegion);
 
+        Texture continueTexture = new Texture(Gdx.files.internal("Buttons/continue.png"));
+        TextureRegion continueRegion = new TextureRegion(continueTexture);
+        TextureRegionDrawable continueDrawable = new TextureRegionDrawable(continueRegion);
+
         Texture newGameTexture = new Texture(Gdx.files.internal("Buttons/newGame.png"));
         TextureRegion newGameRegion = new TextureRegion(newGameTexture);
         TextureRegionDrawable newGameDrawable = new TextureRegionDrawable(newGameRegion);
@@ -54,6 +58,7 @@ public class MainMenuScreen extends ScreenAdapter{
         TextureRegionDrawable leaderBoardDrawable = new TextureRegionDrawable(leaderBoardRegion);
 
         ImageButton leaderBoardButton = new ImageButton(leaderBoardDrawable);
+        ImageButton continueButton = new ImageButton(continueDrawable);
         ImageButton newGameButton = new ImageButton(newGameDrawable);
         ImageButton exitGameButton = new ImageButton(exitGameDrawable);
 
@@ -72,7 +77,17 @@ public class MainMenuScreen extends ScreenAdapter{
                 System.out.println(x++);
                 //game.setScreen(new LevelScreen(game));
                 stage.dispose();
-                game.setScreens(HolyDemijhon.FIRST_LEVEL);
+                game.setScreens(HolyDemijhon.LEVEL_SCREEN);
+            }
+        });
+
+        continueButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                //String x = game.getFile().readString();
+                //game.setScreens(Integer.valueOf(x));
+
+                game.setScreens(game.getPrefs().getInteger("Level"));
             }
         });
 
@@ -87,6 +102,8 @@ public class MainMenuScreen extends ScreenAdapter{
         newGameButton.setSize(newGameTexture.getWidth(),newGameTexture.getHeight());
 
         table.add(newGameButton);
+        table.row();
+        table.add(continueButton);
         table.row();
         table.add(exitGameButton);
         table.row();

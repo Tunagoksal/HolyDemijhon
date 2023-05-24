@@ -5,11 +5,9 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
-import com.holydemijon.HolyDemijhon;
-import com.holydemijon.Sprites.TileObjects.Chest;
-import com.holydemijon.Sprites.TileObjects.Ground;
-import com.holydemijon.Sprites.TileObjects.Ladder;
-import com.holydemijon.Sprites.TileObjects.Spikes;
+import com.holydemijon.Entities.TileObjects.Chest;
+import com.holydemijon.Entities.TileObjects.Ground;
+import com.holydemijon.Entities.TileObjects.Spikes;
 
 public class Box2DWorldCreator {
     public Box2DWorldCreator(World world, TiledMap map) {

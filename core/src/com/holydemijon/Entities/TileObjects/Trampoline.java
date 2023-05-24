@@ -1,4 +1,4 @@
-package com.holydemijon.Sprites.TileObjects;
+package com.holydemijon.Entities.TileObjects;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;

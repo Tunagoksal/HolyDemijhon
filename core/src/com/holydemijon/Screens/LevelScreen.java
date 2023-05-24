@@ -5,20 +5,15 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Polygon;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijhon;
-import com.holydemijon.Sprites.John;
-import com.holydemijon.Sprites.Player;
+import com.holydemijon.Entities.John;
 import com.holydemijon.Scenes.HUD;
 import com.holydemijon.Tools.Box2DWorldCreator;
 import com.holydemijon.Tools.WorldContactListener;
@@ -74,6 +69,10 @@ public class LevelScreen implements Screen {
 
     }
 
+    public World getWorld() {
+        return world;
+    }
+
     public void update(float dt){
         handleInput(dt);
 
@@ -95,7 +94,14 @@ public class LevelScreen implements Screen {
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            player.b2dbody.applyLinearImpulse(new Vector2(0, JUMP_HEIGHT), player.b2dbody.getWorldCenter(), true);
+            player.jump();
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.N)){
+            game.getPrefs().putInteger("Level",HolyDemijhon.SECOND_LEVEL);
+            game.getPrefs().flush();
+            game.setScreens(HolyDemijhon.SECOND_LEVEL);
+
         }
     }
 

@@ -1,12 +1,13 @@
-package com.holydemijon.Sprites.TileObjects;
+package com.holydemijon.Entities.TileObjects;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 
-public class Ladder extends InteractiveTileObject {
+public class BearTrap extends InteractiveTileObject {
 
-    public Ladder(World world, TiledMap tiledMap, Rectangle bounds) {
+    public BearTrap(World world, TiledMap tiledMap, Rectangle bounds) {
+
         super(world, tiledMap, bounds);
         fixture.setUserData(this);
     }

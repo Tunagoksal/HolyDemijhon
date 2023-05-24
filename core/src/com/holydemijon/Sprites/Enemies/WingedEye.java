@@ -12,4 +12,9 @@ public class WingedEye extends Enemy {
     protected void defEnemy() {
 
     }
+
+    @Override
+    public void kill() {
+
+    }
 }

@@ -3,6 +3,7 @@ package com.holydemijon.Tools;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import com.holydemijon.HolyDemijhon;
@@ -39,9 +40,9 @@ public class Box2DWorldCreator {
         }
         for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            //Intersector.overlapConvexPolygons()
 
-            //Collision ayarlanana kadar pasif
-            //new Ladder(screen, rect);
+            new Ladder(screen, rect);
         }
     }
 }

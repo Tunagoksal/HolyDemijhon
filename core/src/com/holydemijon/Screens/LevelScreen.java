@@ -18,6 +18,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijhon;
+import com.holydemijon.Sprites.Enemies.Zombie;
 import com.holydemijon.Sprites.John;
 import com.holydemijon.Sprites.Player;
 import com.holydemijon.Scenes.HUD;
@@ -33,7 +34,8 @@ public class LevelScreen implements Screen {
     private static final float PLAYER_ACCELERATION = 0.1f;
 
     //private Player player;
-    private static John player;
+    public static John player;
+    private Zombie zombie;
     private HolyDemijhon game;
     private HUD hud;
 
@@ -69,6 +71,8 @@ public class LevelScreen implements Screen {
         new Box2DWorldCreator(this);
         player = new John(world);
 
+        zombie = new Zombie(this, 40f / HolyDemijhon.PPM, 150f / HolyDemijhon.PPM);
+
         world.setContactListener(new WorldContactListener());
     }
 
@@ -100,13 +104,10 @@ public class LevelScreen implements Screen {
     private void handleInput(float dt) {
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2dbody.getLinearVelocity().x >= -MAX_LINEAR_VELOCITY){
             player.b2dbody.applyLinearImpulse(new Vector2(-PLAYER_ACCELERATION, 0), player.b2dbody.getWorldCenter(), true);
-            //cam.translate(-100 * dt,0);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2dbody.getLinearVelocity().x <= MAX_LINEAR_VELOCITY){
             player.b2dbody.applyLinearImpulse(new Vector2(PLAYER_ACCELERATION, 0), player.b2dbody.getWorldCenter(), true);
-            //cam.translate(100 * dt,0);
         }
-
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
             player.b2dbody.applyLinearImpulse(new Vector2(0, JUMP_HEIGHT), player.b2dbody.getWorldCenter(), true);
         }

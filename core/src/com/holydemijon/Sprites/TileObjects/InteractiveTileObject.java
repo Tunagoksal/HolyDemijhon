@@ -36,4 +36,9 @@ public abstract class InteractiveTileObject {
     }
 
     public abstract void collision();
+    public void setCategoryFilter(short filterBit) {
+        Filter filter = new Filter();
+        filter.categoryBits = filterBit;
+        fixture.setFilterData(filter);
+    }
 }

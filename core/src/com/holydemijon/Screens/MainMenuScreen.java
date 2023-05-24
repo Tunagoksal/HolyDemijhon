@@ -1,19 +1,19 @@
 package com.holydemijon.Screens;
 
 import com.badlogic.gdx.*;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijhon;
+
+import javax.swing.text.Style;
 
 public class MainMenuScreen extends ScreenAdapter{
 
@@ -40,6 +40,16 @@ public class MainMenuScreen extends ScreenAdapter{
         table.setBackground(menuDrawable);*/
 
         Gdx.input.setInputProcessor(stage);
+
+
+        Texture sliderTexture = new Texture(Gdx.files.internal("Buttons/soundSlider.png"));
+        TextureRegion sliderRegion = new TextureRegion(sliderTexture);
+        TextureRegionDrawable sliderDrawable = new TextureRegionDrawable(sliderRegion);
+        Texture knob = new Texture(Gdx.files.internal("Buttons/knob.png"));
+        TextureRegion knobr = new TextureRegion(knob);
+        TextureRegionDrawable knobd = new TextureRegionDrawable(knobr);
+        Slider.SliderStyle style = new Slider.SliderStyle(sliderDrawable,knobd);
+        Slider soundSlider = new Slider(0,100,10,false,style);
 
         Texture exitGameTexture = new Texture(Gdx.files.internal("Buttons/exitGame.png"));
         TextureRegion exitGameRegion = new TextureRegion(exitGameTexture);
@@ -76,7 +86,7 @@ public class MainMenuScreen extends ScreenAdapter{
             public void changed(ChangeEvent event, Actor actor) {
                 System.out.println(x++);
                 //game.setScreen(new LevelScreen(game));
-                stage.dispose();
+                Gdx.input.setInputProcessor(null);
                 game.setScreens(HolyDemijhon.LEVEL_SCREEN);
             }
         });
@@ -94,7 +104,7 @@ public class MainMenuScreen extends ScreenAdapter{
         leaderBoardButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                stage.dispose();
+                Gdx.input.setInputProcessor(null);
                 game.setScreens(HolyDemijhon.LEADER_BOARD);
             }
         });
@@ -108,7 +118,13 @@ public class MainMenuScreen extends ScreenAdapter{
         table.add(exitGameButton);
         table.row();
         table.add(leaderBoardButton);
+        table.row();
+        table.add(soundSlider);
         stage.addActor(table);
+    }
+
+    public Stage getStage() {
+        return stage;
     }
 
     @Override

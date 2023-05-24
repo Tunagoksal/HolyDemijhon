@@ -16,8 +16,6 @@ import javax.xml.transform.sax.SAXTransformerFactory;
 
 public class HolyDemijhon extends Game {
 
-	MainMenuScreen mainMenu;
-
 	// bu constantları da ayrı bir class'a taşıyabiliriz belki
 	public static final int MAIN_MENU_SCREEN = 0;
 	public static final int LEVEL_SCREEN = 1;
@@ -31,7 +29,6 @@ public class HolyDemijhon extends Game {
 	public static final int HEIGHT = 360;
 	public static final float PPM = 100;
 
-	private John player;
 
 	public SpriteBatch batch;
 
@@ -39,10 +36,11 @@ public class HolyDemijhon extends Game {
 
 	private Preferences prefs;
 
+	private MainMenuScreen mainMenu;
+	private LevelScreen levelScreen;
+
 	@Override
 	public void create() {
-
-		mainMenu = new MainMenuScreen(this);
 
 		//file = Gdx.files.local("saveFile.txt");
 		//file.writeString("5",false);
@@ -50,6 +48,10 @@ public class HolyDemijhon extends Game {
 		prefs = Gdx.app.getPreferences("savePreference");
 
 		batch = new SpriteBatch();
+
+		mainMenu = new MainMenuScreen(this);
+		levelScreen = new LevelScreen(this);
+
 		setScreen(new MainMenuScreen(this));
 	}
 
@@ -57,6 +59,9 @@ public class HolyDemijhon extends Game {
 		return prefs;
 	}
 
+	public MainMenuScreen getMainMenu() {
+		return mainMenu;
+	}
 
 	public void setScreens(int screen){
         switch (screen){
@@ -64,7 +69,7 @@ public class HolyDemijhon extends Game {
 				setScreen(mainMenu);
 				break;
 			case LEVEL_SCREEN:
-				setScreen(new LevelScreen(this));
+				setScreen(levelScreen);
 				break;
 			case END_GAME_SCREEN:
 				setScreen(new EndGameScreen(this));

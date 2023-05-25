@@ -6,14 +6,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.maps.Map;
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Polygon;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -21,7 +16,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijhon;
 import com.holydemijon.Sprites.Enemies.Zombie;
 import com.holydemijon.Sprites.John;
-import com.holydemijon.Sprites.Player;
 import com.holydemijon.Scenes.HUD;
 import com.holydemijon.Tools.Box2DWorldCreator;
 import com.holydemijon.Tools.WorldContactListener;
@@ -157,10 +151,8 @@ public class LevelScreen implements Screen {
 
         game.batch.setProjectionMatrix(cam.combined);
         game.batch.begin();
-        player.draw(game.batch);
+        player.getJohnAnimation().draw(game.batch);
         game.batch.end();
-
-
     }
 
     @Override

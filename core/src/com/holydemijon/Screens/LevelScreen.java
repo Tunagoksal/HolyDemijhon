@@ -34,8 +34,6 @@ public class LevelScreen implements Screen {
     private HolyDemijhon game;
     private HUD hud;
 
-    private TextureAtlas atlas;
-
     private TmxMapLoader mapLoader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
@@ -51,7 +49,6 @@ public class LevelScreen implements Screen {
     public LevelScreen(HolyDemijhon game){
 
         this.game = game;
-        atlas = new TextureAtlas("animations/characterAnimations.atlas");
 
         cam = new OrthographicCamera();
         viewport = new FitViewport(HolyDemijhon.WIDTH / HolyDemijhon.PPM, HolyDemijhon.HEIGHT / HolyDemijhon.PPM, cam);
@@ -73,10 +70,6 @@ public class LevelScreen implements Screen {
         zombie = new Zombie(this, 40f / HolyDemijhon.PPM, 150f / HolyDemijhon.PPM);
 
         world.setContactListener(new WorldContactListener());
-    }
-
-    public TextureAtlas getAtlas() {
-        return atlas;
     }
 
     public World getWorld() {

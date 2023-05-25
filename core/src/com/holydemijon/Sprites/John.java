@@ -24,7 +24,7 @@ public class John extends Sprite {
     public Body b2dbody;
     public LevelScreen screen;
 
-    //private TextureAtlas atlas;
+    private TextureAtlas atlas;
     private JohnAnimation johnAnimation;
 
     public static Enemy attackableEnemy;
@@ -32,12 +32,12 @@ public class John extends Sprite {
     private int Health = 100;
 
     public John(World world, LevelScreen screen) {
-        //atlas = new TextureAtlas("animations/characterAnimations.atlas");
+        atlas = new TextureAtlas("animations/characterAnimations.atlas");
         this.world = world;
         this.screen = screen;
         defJohn();
 
-        johnAnimation = new JohnAnimation(screen.getAtlas(), b2dbody);
+        johnAnimation = new JohnAnimation(atlas, b2dbody);
         attackableEnemy = null;
     }
 

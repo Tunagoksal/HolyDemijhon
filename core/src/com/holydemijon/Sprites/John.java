@@ -25,7 +25,7 @@ public class John extends Sprite {
     public World world;
     public Body b2dbody;
 
-    private TextureRegion johnStand;
+    private Animation<TextureRegion> johnStand;
     private Animation<TextureRegion> johnRun;
     private Animation<TextureRegion> johnJump;
     private float stateTimer;
@@ -45,21 +45,19 @@ public class John extends Sprite {
         runningRight = true;
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
-        for (int i = 0; i < 4; i++) {
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("running"), i * 80, 0, 80, 64));
-        }
-        johnRun = new Animation<TextureRegion>(0.1f, frames);
-        frames.clear();
-
         for (int i = 0; i < 2; i++) {
             frames.add(new TextureRegion(getTexture(), i * 80, 0, 80, 64));
         }
         johnJump = new Animation<TextureRegion>(0.1f, frames);
-        defJohn();
-        johnStand = new TextureRegion(screen.getAtlas().findRegion("idle"));
-        setBounds(0, 0, 80 / HolyDemijhon.PPM, 64 / HolyDemijhon.PPM);
-        setRegion(johnStand);
+        frames.clear();
 
+
+        johnRun = new Animation<TextureRegion>(0.1f, screen.getAtlas().findRegions("running"), Animation.PlayMode.LOOP);
+
+        johnStand = new Animation<TextureRegion>(0.2f, screen.getAtlas().findRegions("idle"), Animation.PlayMode.LOOP);
+        setBounds(0, 0, 80 / HolyDemijhon.PPM, 64 / HolyDemijhon.PPM);
+
+        defJohn();
         attackableEnemy = null;
     }
 
@@ -75,7 +73,32 @@ public class John extends Sprite {
         if (currentState == State.JUMPING) {
             region = johnJump.getKeyFrame(stateTimer);
         }
-        else if (currentState)
+        else if (currentState == State.RUNNING) {
+            region = johnRun.getKeyFrame(stateTimer);
+        }
+        else {
+            region = johnStand.getKeyFrame(stateTimer);
+        }
+
+        if ((b2dbody.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()) {
+            region.flip(true, false);
+            runningRight = false;
+        }
+        else if ((b2dbody.getLinearVelocity().x > 0 || runningRight) && region.isFlipX()) {
+            region.flip(true, false);
+            runningRight = true;
+        }
+
+        if (currentState == previousState) {
+            stateTimer = stateTimer + dt;
+        }
+        else {
+            stateTimer = 0;
+        }
+
+        previousState = currentState;
+
+        return region;
     }
 
     public State getState() {

@@ -28,7 +28,9 @@ public class LevelScreen implements Screen {
     private static final float MAX_LINEAR_VELOCITY = 1;
     private static final float PLAYER_ACCELERATION = 0.1f;
 
-    //private Player player;
+    private static final int ZOMBIE_IDLE = 0;
+    private static final int ZOMBIE_RUN = 1;
+
     public static John player;
     private Zombie zombie;
     private HolyDemijhon game;
@@ -67,7 +69,7 @@ public class LevelScreen implements Screen {
         new Box2DWorldCreator(this);
         player = new John(world, this);
 
-        zombie = new Zombie(this, 40f / HolyDemijhon.PPM, 150f / HolyDemijhon.PPM);
+        zombie = new Zombie(this, 40f / HolyDemijhon.PPM, 150f / HolyDemijhon.PPM, ZOMBIE_IDLE);
 
         world.setContactListener(new WorldContactListener());
     }
@@ -93,6 +95,7 @@ public class LevelScreen implements Screen {
         world.step(FPS, 6, 2);
 
         player.update(dt);
+        zombie.update(dt);
 
         cam.position.x = player.b2dbody.getPosition().x;
         cam.update();
@@ -102,9 +105,11 @@ public class LevelScreen implements Screen {
     private void handleInput(float dt) {
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2dbody.getLinearVelocity().x >= -MAX_LINEAR_VELOCITY){
             player.b2dbody.applyLinearImpulse(new Vector2(-PLAYER_ACCELERATION, 0), player.b2dbody.getWorldCenter(), true);
+            John.lookingRight = false;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2dbody.getLinearVelocity().x <= MAX_LINEAR_VELOCITY){
             player.b2dbody.applyLinearImpulse(new Vector2(PLAYER_ACCELERATION, 0), player.b2dbody.getWorldCenter(), true);
+            John.lookingRight = true;
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
             player.b2dbody.applyLinearImpulse(new Vector2(0, JUMP_HEIGHT), player.b2dbody.getWorldCenter(), true);
@@ -112,6 +117,9 @@ public class LevelScreen implements Screen {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
             player.simpleAttack();
+        }
+        if ( Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+            player.heavyAttack();
         }
     }
 
@@ -145,6 +153,7 @@ public class LevelScreen implements Screen {
         game.batch.setProjectionMatrix(cam.combined);
         game.batch.begin();
         player.getJohnAnimation().draw(game.batch);
+        zombie.getZombieAnimation().draw(game.batch);
         game.batch.end();
     }
 

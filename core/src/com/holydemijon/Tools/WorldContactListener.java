@@ -3,6 +3,7 @@ package com.holydemijon.Tools;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.physics.box2d.*;
+import com.holydemijon.Sprites.Animations.JohnAnimation;
 import com.holydemijon.Sprites.Enemies.Enemy;
 import com.holydemijon.Sprites.John;
 import com.holydemijon.Sprites.TileObjects.InteractiveTileObject;
@@ -33,7 +34,7 @@ public class WorldContactListener implements ContactListener {
             }
         }
 
-        if (true) {
+        if (John.lookingRight) {
             if ((fixtureA.getUserData().equals("attack range right") || fixtureB.getUserData().equals("attack range right")) &&
                     fixtureA.getUserData() instanceof Enemy || fixtureB.getUserData() instanceof Enemy) {
 

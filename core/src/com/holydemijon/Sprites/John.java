@@ -15,7 +15,7 @@ import com.holydemijon.Sprites.Animations.JohnAnimation;
 import com.holydemijon.Sprites.Enemies.Enemy;
 import sun.security.provider.SHA;
 
-public class John extends Sprite {
+public class John {
 
     public static final float JOHN_WIDTH = 4;
     public static final float JOHN_HEIGHT = 7;
@@ -27,18 +27,21 @@ public class John extends Sprite {
     private TextureAtlas atlas;
     private JohnAnimation johnAnimation;
 
+    public static boolean lookingRight;
+
     public static Enemy attackableEnemy;
 
     private int Health = 100;
 
     public John(World world, LevelScreen screen) {
-        atlas = new TextureAtlas("animations/characterAnimations.atlas");
         this.world = world;
         this.screen = screen;
         defJohn();
 
+        atlas = new TextureAtlas("animations/characterAnimations.atlas");
         johnAnimation = new JohnAnimation(atlas, b2dbody);
         attackableEnemy = null;
+        lookingRight = true;
     }
 
     public void update(float dt) {
@@ -67,12 +70,12 @@ public class John extends Sprite {
 
         fixDef.isSensor = true;
         PolygonShape attackRangeRight = new PolygonShape();
-        attackRangeRight.setAsBox(JOHN_WIDTH * 1.2f / HolyDemijhon.PPM, JOHN_HEIGHT / HolyDemijhon.PPM, new Vector2(JOHN_WIDTH * 2 / HolyDemijhon.PPM, 0), 0);
+        attackRangeRight.setAsBox(JOHN_WIDTH * 1.4f / HolyDemijhon.PPM, JOHN_HEIGHT / HolyDemijhon.PPM, new Vector2(JOHN_WIDTH * 2 / HolyDemijhon.PPM, 0), 0);
         fixDef.shape = attackRangeRight;
         b2dbody.createFixture(fixDef).setUserData("attack range right");
 
         PolygonShape attackRangeLeft = new PolygonShape();
-        attackRangeLeft.setAsBox(JOHN_WIDTH * 1.2f / HolyDemijhon.PPM, JOHN_HEIGHT / HolyDemijhon.PPM, new Vector2(-JOHN_WIDTH * 2 / HolyDemijhon.PPM, 0), 0);
+        attackRangeLeft.setAsBox(JOHN_WIDTH * 1.4f / HolyDemijhon.PPM, JOHN_HEIGHT / HolyDemijhon.PPM, new Vector2(-JOHN_WIDTH * 2 / HolyDemijhon.PPM, 0), 0);
         fixDef.shape = attackRangeLeft;
         b2dbody.createFixture(fixDef).setUserData("attack range left");
     }
@@ -82,6 +85,15 @@ public class John extends Sprite {
     }
 
     public void simpleAttack() {
+        JohnAnimation.performSimpleAttack = true;
+        if (attackableEnemy != null) {
+            attackableEnemy.receiveSimpleAttack();
+            Gdx.app.log("Attack", "Enemy health:" + attackableEnemy.getHealth());
+        }
+    }
+
+    public void heavyAttack() {
+        JohnAnimation.performHeavyAttack = true;
         if (attackableEnemy != null) {
             attackableEnemy.receiveSimpleAttack();
             Gdx.app.log("Attack", "Enemy health:" + attackableEnemy.getHealth());

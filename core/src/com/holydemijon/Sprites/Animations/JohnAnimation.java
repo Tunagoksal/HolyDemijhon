@@ -13,16 +13,23 @@ import com.holydemijon.Sprites.John;
 public class JohnAnimation extends Sprite {
     TextureAtlas atlas;
     Body johnBody;
-    public enum State { FALLING, JUMPING, STANDING, RUNNING, SIMPLEATTACK, HEAVYATTACK }
+    public enum State { FALLING, JUMPING, STANDING, RUNNING, SIMPLE_ATTACK, HEAVY_ATTACK, DASH }
 
     private Animation<TextureRegion> johnStand;
     private Animation<TextureRegion> johnRun;
     private Animation<TextureRegion> johnJump;
+    private Animation<TextureRegion> simpleAttack;
+    private Animation<TextureRegion> heavyAttack;
+    private Animation<TextureRegion> dash;
 
     public State currentState;
     public State previousState;
     private float stateTimer;
-    private boolean runningRight;
+    public static boolean runningRight;
+
+    public static boolean performSimpleAttack;
+    public static boolean performHeavyAttack;
+    public static boolean performDash;
 
     public JohnAnimation(TextureAtlas atlas, Body johnBody) {
         super(atlas.findRegion("idle"));
@@ -34,6 +41,10 @@ public class JohnAnimation extends Sprite {
         stateTimer = 0;
         runningRight = true;
 
+        performSimpleAttack = false;
+        performHeavyAttack = false;
+        performDash = false;
+
         Array<TextureRegion> frames = new Array<TextureRegion>();
         for (int i = 0; i < 2; i++) {
             frames.add(new TextureRegion(getTexture(), i * 82 + 2, 0, 80, 64));
@@ -41,6 +52,10 @@ public class JohnAnimation extends Sprite {
         johnJump = new Animation<TextureRegion>(0.1f, frames);
         johnRun = new Animation<TextureRegion>(0.1f, atlas.findRegions("running"), Animation.PlayMode.LOOP);
         johnStand = new Animation<TextureRegion>(0.2f, atlas.findRegions("idle"), Animation.PlayMode.LOOP);
+        simpleAttack = new Animation<TextureRegion>(0.1f, atlas.findRegions("attack1"));
+        heavyAttack = new Animation<TextureRegion>(0.1f, atlas.findRegions("attack4"));
+        dash = new Animation<TextureRegion>(0.1f, atlas.findRegions("jump"));
+
         setBounds(0, 0, 80 / HolyDemijhon.PPM, 64 / HolyDemijhon.PPM);
     }
 
@@ -51,6 +66,9 @@ public class JohnAnimation extends Sprite {
 
     public TextureRegion getFrame(float dt) {
         currentState = getState();
+        if (simpleAttack.isAnimationFinished(stateTimer)) {performSimpleAttack = false;}
+        if (heavyAttack.isAnimationFinished(stateTimer)) {performHeavyAttack = false;}
+        if (dash.isAnimationFinished(stateTimer)) {performDash = false;}
 
         TextureRegion region;
         if (currentState == State.JUMPING) {
@@ -58,6 +76,15 @@ public class JohnAnimation extends Sprite {
         }
         else if (currentState == State.RUNNING) {
             region = johnRun.getKeyFrame(stateTimer);
+        }
+        else if (currentState == State.SIMPLE_ATTACK) {
+            region = simpleAttack.getKeyFrame(stateTimer);
+        }
+        else if (currentState == State.HEAVY_ATTACK) {
+            region = heavyAttack.getKeyFrame(stateTimer);
+        }
+        else if (currentState == State.DASH) {
+            region = dash.getKeyFrame(stateTimer);
         }
         else {
             region = johnStand.getKeyFrame(stateTimer);
@@ -85,7 +112,16 @@ public class JohnAnimation extends Sprite {
     }
 
     public State getState() {
-        if (johnBody.getLinearVelocity().y > 0 ||
+        if (performSimpleAttack) {
+            return State.SIMPLE_ATTACK;
+        }
+        else if (performHeavyAttack) {
+            return State.HEAVY_ATTACK;
+        }
+        else if (performDash) {
+            return State.DASH;
+        }
+        else if (johnBody.getLinearVelocity().y > 0 ||
                 (johnBody.getLinearVelocity().y < 0 && previousState == State.JUMPING)) {return State.JUMPING;}
         else if (johnBody.getLinearVelocity().y < 0) {return State.FALLING;}
         else if (johnBody.getLinearVelocity().x != 0) {return State.RUNNING;}

@@ -1,0 +1,223 @@
+
+wizardAnimations.png
+size: 4096, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+attack
+  rotate: false
+  xy: 2, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 1
+attack
+  rotate: false
+  xy: 68, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 2
+attack
+  rotate: false
+  xy: 134, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 3
+attack
+  rotate: false
+  xy: 200, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 4
+attack
+  rotate: false
+  xy: 266, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 5
+attack
+  rotate: false
+  xy: 332, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 6
+attack
+  rotate: false
+  xy: 398, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 7
+attack
+  rotate: false
+  xy: 464, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 8
+attack
+  rotate: false
+  xy: 530, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 9
+attack
+  rotate: false
+  xy: 596, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 10
+attack
+  rotate: false
+  xy: 662, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 11
+death
+  rotate: false
+  xy: 728, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 1
+death
+  rotate: false
+  xy: 794, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 2
+death
+  rotate: false
+  xy: 860, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 3
+death
+  rotate: false
+  xy: 926, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 4
+fireball
+  rotate: false
+  xy: 992, 4
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: 1
+fireball
+  rotate: false
+  xy: 1058, 4
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: 2
+fireball
+  rotate: false
+  xy: 1124, 4
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: 3
+fireball
+  rotate: false
+  xy: 1190, 4
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: 4
+idle
+  rotate: false
+  xy: 1256, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 1
+idle
+  rotate: false
+  xy: 1322, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 2
+idle
+  rotate: false
+  xy: 1388, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 3
+idle
+  rotate: false
+  xy: 1454, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 4
+run
+  rotate: false
+  xy: 1520, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 1
+run
+  rotate: false
+  xy: 1586, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 2
+run
+  rotate: false
+  xy: 1652, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 3
+run
+  rotate: false
+  xy: 1718, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 4
+run
+  rotate: false
+  xy: 1784, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 5
+run
+  rotate: false
+  xy: 1850, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 6
+run
+  rotate: false
+  xy: 1916, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 7
+run
+  rotate: false
+  xy: 1982, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 8

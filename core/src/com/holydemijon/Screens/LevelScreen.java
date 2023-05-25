@@ -48,7 +48,7 @@ public class LevelScreen implements Screen {
         cam = new OrthographicCamera();
         viewport = new FitViewport(HolyDemijhon.WIDTH / HolyDemijhon.PPM, HolyDemijhon.HEIGHT / HolyDemijhon.PPM, cam);
         //viewport.setScreenSize(360,360);
-        viewport.setWorldSize(360 / HolyDemijhon.PPM,360 / HolyDemijhon.PPM);
+        viewport.setWorldSize(640 / HolyDemijhon.PPM,360 / HolyDemijhon.PPM);
 
         hud = new HUD(game.batch);
 
@@ -128,6 +128,7 @@ public class LevelScreen implements Screen {
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.P)){
+            Gdx.input.setInputProcessor(game.getMainMenu().getStage());
             game.setScreens(HolyDemijhon.MAIN_MENU_SCREEN);
         }
 

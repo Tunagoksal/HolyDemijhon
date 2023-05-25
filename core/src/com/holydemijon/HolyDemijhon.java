@@ -38,6 +38,7 @@ public class HolyDemijhon extends Game {
 
 	private MainMenuScreen mainMenu;
 	private LevelScreen levelScreen;
+	private EndGameScreen endGameScreen;
 
 	@Override
 	public void create() {
@@ -51,6 +52,7 @@ public class HolyDemijhon extends Game {
 
 		mainMenu = new MainMenuScreen(this);
 		levelScreen = new LevelScreen(this);
+		endGameScreen = new EndGameScreen(this);
 
 		setScreen(new MainMenuScreen(this));
 	}
@@ -72,7 +74,7 @@ public class HolyDemijhon extends Game {
 				setScreen(levelScreen);
 				break;
 			case END_GAME_SCREEN:
-				setScreen(new EndGameScreen(this));
+				setScreen(endGameScreen);
 				break;
 			case LEADER_BOARD:
 				setScreen(new leaderBoardScreen(this));

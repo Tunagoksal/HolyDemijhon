@@ -62,8 +62,6 @@ public class HUD implements Disposable {
         table.add(countDownLabel).expandX();
 
         stage.addActor(table);
-
-
     }
 
     @Override

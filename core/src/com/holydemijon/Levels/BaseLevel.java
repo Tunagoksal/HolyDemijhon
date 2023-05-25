@@ -50,6 +50,7 @@ public class BaseLevel extends ScreenAdapter {
     public void render(float delta) {
 
         // genel olarak burası da değişebilir ileride sadece geçişler çalışsın tüm screenler birbirine bağlansın diye koydum
+
         if(Gdx.input.isKeyPressed(Input.Keys.P)){
             game.setScreens(HolyDemijhon.MAIN_MENU_SCREEN);// Şimdilik ana menüye döndürüyor daha pause menüyü oluşturmadım
         }
@@ -74,6 +75,12 @@ public class BaseLevel extends ScreenAdapter {
         //player.render();
         game.batch.end();
          */
+
+    }
+
+    public void isLevelOver(){
+
+
 
     }
 

@@ -17,6 +17,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.holydemijon.Database.Database;
 import com.holydemijon.HolyDemijhon;
 import com.holydemijon.Sprites.Enemies.Zombie;
 import com.holydemijon.Sprites.John;
@@ -38,6 +39,7 @@ public class LevelScreen implements Screen {
     private Zombie zombie;
     private HolyDemijhon game;
     private HUD hud;
+    private static Database database;
 
     private TmxMapLoader mapLoader;
     private TiledMap map;
@@ -83,9 +85,7 @@ public class LevelScreen implements Screen {
         return this.map;
     }
     @Override
-    public void show() {
-
-    }
+    public void show() {}
 
     public static John getPlayer() {
         return player;
@@ -138,6 +138,7 @@ public class LevelScreen implements Screen {
 
         // endgame geçiş bunun da yeri düzenlenebilir ileride
         if(player.getHealth() == 0){
+            //addToDatabase(hud.getTime());
             game.setScreens(HolyDemijhon.END_GAME_SCREEN);
         }
 

@@ -68,6 +68,10 @@ public class HUD implements Disposable {
         }
     }
 
+    public int getTime(){
+        return this.worldTimer;
+    }
+
     @Override
     public void dispose() {
         stage.dispose();

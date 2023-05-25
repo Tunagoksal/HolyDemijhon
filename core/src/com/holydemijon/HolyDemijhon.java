@@ -34,9 +34,9 @@ public class HolyDemijhon extends Game {
 
 	public SpriteBatch batch;
 
-	private long start;
-	private long end;
-	private long time;
+	private int start;
+	private int end;
+	private int time;
 
 	@Override
 	public void create() {
@@ -51,14 +51,14 @@ public class HolyDemijhon extends Game {
 				break;
 			case LEVEL_SCREEN:
 				System.out.println("Start of game.");
-				this.start = TimeUtils.millis();
+				this.start = (int) TimeUtils.millis();
 				setScreen(new LevelScreen(this));
 				break;
 			case END_GAME_SCREEN:
-				this.end = TimeUtils.millis();
+				this.end = (int) TimeUtils.millis();
 				this.time = (this.end - this.start) / 1000;
 				System.out.println("time: " + time);
-				setScreen(new EndGameScreen(this));
+				setScreen(new EndGameScreen(this, this.time));
 				break;
 			case LEADER_BOARD:
 				setScreen(new leaderBoardScreen(this));

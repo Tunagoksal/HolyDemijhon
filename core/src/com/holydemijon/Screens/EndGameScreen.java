@@ -13,7 +13,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijhon;
-
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
 import java.awt.*;
 
 
@@ -25,7 +29,7 @@ public class EndGameScreen extends ScreenAdapter {
     private OrthographicCamera cam;
     private Table table;
 
-    public EndGameScreen(HolyDemijhon game){
+    public EndGameScreen(HolyDemijhon game, int time){
 
         // Enes screenleri paylaşalım dediğimiz için biraz sana ithafen yazıyorum backgroundı eklerken scalelemede gariplik oluyor
         // çözmeye uğraşmadım sen çözersen onu halledebilirsin
@@ -43,11 +47,27 @@ public class EndGameScreen extends ScreenAdapter {
         TextureRegion menuRegion = new TextureRegion(menuTexture);
         TextureRegionDrawable menuDrawable = new TextureRegionDrawable(menuRegion);
         table.setBackground(menuDrawable);
-
         stage.addActor(table);
+
+        addToDatabase("endgameismi", time);
+
         System.out.println("in end game menu");
 
     }
+
+    public static void addToDatabase(String name, int time){
+        MongoClient mongoClient = MongoClients.create("mongodb+srv://boraytkn:1234mdb@cluster0.ris0uvf.mongodb.net/?retryWrites=true&w=majority");
+        MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
+        MongoCollection collection = database.getCollection("ScoreCollection");
+
+        Document doc = new Document("name", name);
+        doc.append("score", time);
+        collection.insertOne(doc);
+
+        System.out.println("working fine pls :)");
+    }
+
+
 
     @Override
     public void render(float delta) {

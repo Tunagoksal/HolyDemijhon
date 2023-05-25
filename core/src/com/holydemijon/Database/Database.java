@@ -5,6 +5,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
+import java.util.logging.Logger;
+
 public class Database {
     private String name;
     private double score;
@@ -26,7 +28,7 @@ public class Database {
 
     public static void main(String[] args) {
 
-        MongoClient mongoClient = MongoClients.create("mongodb+srv://boraytkn:<password>@cluster0.h6zakeh.mongodb.net/?retryWrites=true&w=majority");
+        MongoClient mongoClient = MongoClients.create("mongodb+srv://boraytkn:<1234mdb>@cluster0.h6zakeh.mongodb.net/?retryWrites=true&w=majority");
         MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
         MongoCollection collection = database.getCollection("Scores");
 

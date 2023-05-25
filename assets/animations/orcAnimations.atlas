@@ -1,0 +1,167 @@
+
+orcAnimations.png
+size: 2048, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+attack
+  rotate: false
+  xy: 2, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 1
+attack
+  rotate: false
+  xy: 52, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 2
+attack
+  rotate: false
+  xy: 102, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 3
+attack
+  rotate: false
+  xy: 152, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 4
+attack
+  rotate: false
+  xy: 202, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 5
+attack
+  rotate: false
+  xy: 252, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 6
+attack
+  rotate: false
+  xy: 302, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 7
+death
+  rotate: false
+  xy: 352, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 1
+death
+  rotate: false
+  xy: 402, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 2
+death
+  rotate: false
+  xy: 452, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 3
+death
+  rotate: false
+  xy: 502, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 4
+idle
+  rotate: false
+  xy: 552, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 1
+idle
+  rotate: false
+  xy: 602, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 2
+idle
+  rotate: false
+  xy: 652, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 3
+idle
+  rotate: false
+  xy: 702, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 4
+run
+  rotate: false
+  xy: 752, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 1
+run
+  rotate: false
+  xy: 802, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 2
+run
+  rotate: false
+  xy: 852, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 3
+run
+  rotate: false
+  xy: 902, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 4
+run
+  rotate: false
+  xy: 952, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 5
+run
+  rotate: false
+  xy: 1002, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 6
+run
+  rotate: false
+  xy: 1052, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 7
+run
+  rotate: false
+  xy: 1102, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 8

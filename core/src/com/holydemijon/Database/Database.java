@@ -25,17 +25,14 @@ public class Database {
     }
 
     public static void main(String[] args) {
-        Database db = new Database();
-        db.setName("Bora");
-        db.setScore(3000);
 
-        MongoClient mongoClient = MongoClients.create("mongodb+srv://borayetkin:Bo1234ra@cluster0.p8gn1ac.mongodb.net/?retryWrites=true&w=majority");
+        MongoClient mongoClient = MongoClients.create("mongodb+srv://boraytkn:<password>@cluster0.h6zakeh.mongodb.net/?retryWrites=true&w=majority");
         MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
-        MongoCollection collection = database.getCollection("gameCollection");
+        MongoCollection collection = database.getCollection("Scores");
 
         System.out.println("working fine pls :)");
 
-        Document sampleDoc = new Document(db.getName(), db.getScore());
+        Document sampleDoc = new Document("name", "score");
         collection.insertOne(sampleDoc);
     }
 }

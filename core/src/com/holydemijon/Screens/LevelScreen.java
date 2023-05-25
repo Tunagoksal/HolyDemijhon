@@ -96,6 +96,8 @@ public class LevelScreen implements Screen {
 
         world.step(FPS, 6, 2);
 
+        hud.update(dt);
+
         cam.position.x = player.b2dbody.getPosition().x;
         cam.update();
         mapRenderer.setView(cam);

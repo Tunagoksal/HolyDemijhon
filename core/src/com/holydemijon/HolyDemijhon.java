@@ -2,6 +2,7 @@ package com.holydemijon;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.holydemijon.Screens.EndGameScreen;
 import com.holydemijon.Screens.LevelScreen;
 import com.holydemijon.Screens.MainMenuScreen;
@@ -33,6 +34,10 @@ public class HolyDemijhon extends Game {
 
 	public SpriteBatch batch;
 
+	private long start;
+	private long end;
+	private long time;
+
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
@@ -45,9 +50,14 @@ public class HolyDemijhon extends Game {
 				setScreen(new MainMenuScreen(this));
 				break;
 			case LEVEL_SCREEN:
+				System.out.println("Start of game.");
+				this.start = TimeUtils.millis();
 				setScreen(new LevelScreen(this));
 				break;
 			case END_GAME_SCREEN:
+				this.end = TimeUtils.millis();
+				this.time = (this.end - this.start) / 1000;
+				System.out.println("time: " + time);
 				setScreen(new EndGameScreen(this));
 				break;
 			case LEADER_BOARD:

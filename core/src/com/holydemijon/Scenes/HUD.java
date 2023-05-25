@@ -23,15 +23,13 @@ public class HUD implements Disposable {
     private Integer score;
 
     Label countDownLabel;
-    Label scoreLabel;
     Label timeLabel;
     Label levelLabel;
     Label worldLabel;
-    Label herolabel;
 
     public HUD(SpriteBatch batch){
 
-        worldTimer = 300;
+        worldTimer = 0;
         timeCount = 0;
         score = 0;
 
@@ -45,25 +43,29 @@ public class HUD implements Disposable {
         Label.LabelStyle style = new Label.LabelStyle(new BitmapFont(),Color.WHITE);
 
         countDownLabel = new Label(String.format("%03d", worldTimer),style);
-        scoreLabel =new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         timeLabel = new Label("TIME", style);
-        levelLabel = new Label("1-1", style);
-        worldLabel = new Label("WORLD", style);
-        herolabel = new Label("HERO", style);
+        levelLabel = new Label("1", style);
+        worldLabel = new Label("Level", style);
 
         //add our labels to our table, padding the top, and giving them all equal width with expandX
-        table.add(herolabel).expandX().padTop(10);
         table.add(worldLabel).expandX().padTop(10);
         table.add(timeLabel).expandX().padTop(10);
         //add a second row to our table
         table.row();
-        table.add(scoreLabel).expandX();
         table.add(levelLabel).expandX();
         table.add(countDownLabel).expandX();
 
         stage.addActor(table);
 
 
+    }
+    public void update(float dt){
+        timeCount += dt;
+        if(timeCount >= 1){
+            worldTimer++;
+            countDownLabel.setText(String.format("%03d",worldTimer));
+            timeCount = 0;
+        }
     }
 
     @Override

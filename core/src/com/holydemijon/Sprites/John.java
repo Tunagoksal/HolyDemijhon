@@ -1,15 +1,23 @@
 package com.holydemijon.Sprites;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.utils.Array;
 import com.holydemijon.HolyDemijhon;
+import com.holydemijon.Screens.LevelScreen;
 import com.holydemijon.Sprites.Enemies.Enemy;
 import sun.security.provider.SHA;
 
 public class John extends Sprite {
+
+    public enum State { FALLING, JUMPING, STANDING, RUNNING, SIMPLEATTACK, HEAVYATTACK }
+    public State currentState;
+    public State previousState;
 
     public static final float JOHN_WIDTH = 4;
     public static final float JOHN_HEIGHT = 7;
@@ -17,17 +25,65 @@ public class John extends Sprite {
     public World world;
     public Body b2dbody;
 
+    private TextureRegion johnStand;
+    private Animation<TextureRegion> johnRun;
+    private Animation<TextureRegion> johnJump;
+    private float stateTimer;
+    private boolean runningRight;
+
+
     public static Enemy attackableEnemy;
 
     private int Health = 100;
 
-    public static boolean runningRight = true; //Animasyonları yaparken düzenlenecek, şimdilik idareten
-
-    public John(World world) {
+    public John(World world, LevelScreen screen) {
+        super(screen.getAtlas().findRegion("idle"));
         this.world = world;
+        currentState = State.STANDING;
+        previousState = State.STANDING;
+        stateTimer = 0;
+        runningRight = true;
+
+        Array<TextureRegion> frames = new Array<TextureRegion>();
+        for (int i = 0; i < 4; i++) {
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("running"), i * 80, 0, 80, 64));
+        }
+        johnRun = new Animation<TextureRegion>(0.1f, frames);
+        frames.clear();
+
+        for (int i = 0; i < 2; i++) {
+            frames.add(new TextureRegion(getTexture(), i * 80, 0, 80, 64));
+        }
+        johnJump = new Animation<TextureRegion>(0.1f, frames);
         defJohn();
+        johnStand = new TextureRegion(screen.getAtlas().findRegion("idle"));
+        setBounds(0, 0, 80 / HolyDemijhon.PPM, 64 / HolyDemijhon.PPM);
+        setRegion(johnStand);
 
         attackableEnemy = null;
+    }
+
+    public void update(float dt) {
+        setPosition(b2dbody.getPosition().x - getWidth() / 2, b2dbody.getPosition().y - getHeight() / 2);
+        setRegion(getFrame(dt));
+    }
+
+    public TextureRegion getFrame(float dt) {
+        currentState = getState();
+
+        TextureRegion region;
+        if (currentState == State.JUMPING) {
+            region = johnJump.getKeyFrame(stateTimer);
+        }
+        else if (currentState)
+    }
+
+    public State getState() {
+        if (b2dbody.getLinearVelocity().y > 0 ||
+                (b2dbody.getLinearVelocity().y < 0 && previousState == State.JUMPING)) {return State.JUMPING;}
+        else if (b2dbody.getLinearVelocity().y < 0) {return State.FALLING;}
+        else if (b2dbody.getLinearVelocity().x != 0) {return State.RUNNING;}
+        else {return State.STANDING;}
     }
 
     private void defJohn() {

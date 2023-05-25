@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -39,6 +40,8 @@ public class LevelScreen implements Screen {
     private HolyDemijhon game;
     private HUD hud;
 
+    private TextureAtlas atlas;
+
     private TmxMapLoader mapLoader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
@@ -54,6 +57,8 @@ public class LevelScreen implements Screen {
     public LevelScreen(HolyDemijhon game){
 
         this.game = game;
+        atlas = new TextureAtlas("animations/characterAnimations.atlas");
+
         cam = new OrthographicCamera();
         viewport = new FitViewport(HolyDemijhon.WIDTH / HolyDemijhon.PPM, HolyDemijhon.HEIGHT / HolyDemijhon.PPM, cam);
         //viewport.setScreenSize(360,360);
@@ -69,11 +74,15 @@ public class LevelScreen implements Screen {
         world = new World(new Vector2(0, GRAVITY), true);
         b2dbr = new Box2DDebugRenderer();
         new Box2DWorldCreator(this);
-        player = new John(world);
+        player = new John(world, this);
 
         zombie = new Zombie(this, 40f / HolyDemijhon.PPM, 150f / HolyDemijhon.PPM);
 
         world.setContactListener(new WorldContactListener());
+    }
+
+    public TextureAtlas getAtlas() {
+        return atlas;
     }
 
     public World getWorld() {
@@ -95,6 +104,8 @@ public class LevelScreen implements Screen {
         handleInput(dt);
 
         world.step(FPS, 6, 2);
+
+        player.update(dt);
 
         cam.position.x = player.b2dbody.getPosition().x;
         cam.update();
@@ -143,12 +154,12 @@ public class LevelScreen implements Screen {
             game.setScreens(HolyDemijhon.MAIN_MENU_SCREEN);
         }
 
-        /*
+
         game.batch.setProjectionMatrix(cam.combined);
         game.batch.begin();
-        //player.render();
+        player.draw(game.batch);
         game.batch.end();
-         */
+
 
     }
 

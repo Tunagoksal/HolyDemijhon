@@ -33,7 +33,7 @@ public class WorldContactListener implements ContactListener {
             }
         }
 
-        if (John.runningRight) {
+        if (true) {
             if ((fixtureA.getUserData().equals("attack range right") || fixtureB.getUserData().equals("attack range right")) &&
                     fixtureA.getUserData() instanceof Enemy || fixtureB.getUserData() instanceof Enemy) {
 

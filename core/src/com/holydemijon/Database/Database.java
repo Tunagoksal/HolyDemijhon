@@ -5,13 +5,9 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
-import java.util.logging.Logger;
-
 public class Database {
     private String name;
     private double score;
-
-    public Database(){}
 
     public void setName(String name){
         this.name = name;
@@ -28,13 +24,16 @@ public class Database {
 
     public static void main(String[] args) {
 
-        MongoClient mongoClient = MongoClients.create("mongodb+srv://boraytkn:<1234mdb>@cluster0.h6zakeh.mongodb.net/?retryWrites=true&w=majority");
+        MongoClient mongoClient = MongoClients.create("mongodb+srv://boraytkn:1234mdb@cluster0.ris0uvf.mongodb.net/?retryWrites=true&w=majority");
         MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
-        MongoCollection collection = database.getCollection("Scores");
+
+        MongoCollection collection = database.getCollection("ScoreCollection");
+
+        Document doc = new Document("name", "joohn");
+        doc.append("score", 92);
+        collection.insertOne(doc);
 
         System.out.println("working fine pls :)");
-
-        Document sampleDoc = new Document("name", "score");
-        collection.insertOne(sampleDoc);
     }
+
 }

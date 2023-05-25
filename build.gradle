@@ -62,10 +62,7 @@ project(":core") {
         api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
         implementation 'org.mongodb:mongodb-driver-sync:4.9.1'
-        implementation 'org.slf4j:slf4j-log4j12:2.0.7'
-        implementation 'ch.qos.logback:logback-classic:1.2.3'
 
-        
     }
 
 }

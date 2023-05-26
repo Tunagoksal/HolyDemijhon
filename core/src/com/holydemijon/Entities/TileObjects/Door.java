@@ -11,6 +11,11 @@ import com.holydemijon.Screens.LevelScreen;
 public class Door extends InteractiveTileObject {
 
     Timer timer;
+    // bu kapının bir obje gibi fiizksel bir colliderının olmasından ziyade sensör  niteliği görmesi
+    // ve alanını içine girildikten bir süre sonra veya bir tuşa basılması ile yeni bölüme geçmesini asıl planlıyorum
+    // ama nasıl oalcağı konusnda emin değilim halilin ksıımlarını da bozmka istemediğim için sonraya erteledim
+    // şimdilik kapıya değdikten 1 saniye sonra yeni bölümü yüklüyor
+
 
     public Door(World world, TiledMap map, Rectangle rect) {
         super(world, map, rect);

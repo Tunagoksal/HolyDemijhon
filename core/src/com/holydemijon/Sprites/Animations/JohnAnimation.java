@@ -25,7 +25,7 @@ public class JohnAnimation extends Sprite {
     public State currentState;
     public State previousState;
     private float stateTimer;
-    public static boolean runningRight;
+    private boolean runningRight;
 
     public static boolean performSimpleAttack;
     public static boolean performHeavyAttack;

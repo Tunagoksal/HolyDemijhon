@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Timer;
+import com.holydemijon.Levels.BaseLevel;
 import com.holydemijon.Screens.LevelScreen;
 
 
@@ -29,7 +30,7 @@ public class Door extends InteractiveTileObject {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                LevelScreen.isDoorOpened = true;
+                BaseLevel.isDoorOpened = true;
             }
         },1);
 

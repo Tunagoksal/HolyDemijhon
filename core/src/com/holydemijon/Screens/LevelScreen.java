@@ -1,9 +1,6 @@
 package com.holydemijon.Screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -14,46 +11,38 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijhon;
 import com.holydemijon.Entities.John;
-import com.holydemijon.Scenes.HUD;
+import com.holydemijon.Levels.BaseLevel;
 import com.holydemijon.Tools.Box2DWorldCreator;
+import com.holydemijon.Tools.KeyboardInputs;
 import com.holydemijon.Tools.WorldContactListener;
 
-public class LevelScreen implements Screen {
+public class LevelScreen extends BaseLevel {
 
-    public static final float FPS = 1/60f;
-    public static final float GRAVITY = -10;
-    private static final float JUMP_HEIGHT = 4f;
-    private static final float MAX_LINEAR_VELOCITY = 1;
-    private static final float PLAYER_ACCELERATION = 0.1f;
-
-    public static boolean isDoorOpened = false;
-
-    //private Player player;
     private John player;
-    private HolyDemijhon game;
-    private HUD hud;
-
     private TmxMapLoader mapLoader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
+
+    private WorldContactListener listener;
 
     private OrthographicCamera cam;
     private Viewport viewport;
 
     private World world;
     private Box2DDebugRenderer b2dbr;
-    Box2DWorldCreator b2dwc;
-
-    public static int health = 3;
+    private Box2DWorldCreator b2dwc;
 
     public LevelScreen(HolyDemijhon game){
-        this.game = game;
+
+        super(game);
+
         cam = new OrthographicCamera();
         viewport = new FitViewport(HolyDemijhon.WIDTH / HolyDemijhon.PPM, HolyDemijhon.HEIGHT / HolyDemijhon.PPM, cam);
         //viewport.setScreenSize(360,360);
         viewport.setWorldSize(640 / HolyDemijhon.PPM,360 / HolyDemijhon.PPM);
 
-        hud = new HUD(game.batch);
+        listener = new WorldContactListener();
+        //inputs = new KeyboardInputs(this);
 
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("level1.tmx");
@@ -63,11 +52,12 @@ public class LevelScreen implements Screen {
         world = new World(new Vector2(0, GRAVITY), true);
         b2dbr = new Box2DDebugRenderer();
         b2dwc = new Box2DWorldCreator(world, map);
+
         b2dwc.setColliers(2,4,6,3);
         b2dwc.colliderCreation();
         player = new John(world);
 
-        world.setContactListener(new WorldContactListener());
+        world.setContactListener(listener);
     }
     @Override
     public void show() {
@@ -78,71 +68,76 @@ public class LevelScreen implements Screen {
         return world;
     }
 
+    public John getPlayer() {
+        return player;
+    }
+
+    public WorldContactListener getListener() {
+        return listener;
+    }
+
     public void update(float dt){
-        handleInput(dt);
+
+        player.getInputs().update(dt);
 
         world.step(FPS, 6, 2);
-
         cam.position.x = player.b2dbody.getPosition().x;
+        cam.position.y = player.b2dbody.getPosition().y;
         cam.update();
         mapRenderer.setView(cam);
     }
 
+    /*
     private void handleInput(float dt) {
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2dbody.getLinearVelocity().x >= -MAX_LINEAR_VELOCITY){
-            player.b2dbody.applyLinearImpulse(new Vector2(-PLAYER_ACCELERATION, 0), player.b2dbody.getWorldCenter(), true);
+
+            player.move(-1);
             //cam.translate(-100 * dt,0);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2dbody.getLinearVelocity().x <= MAX_LINEAR_VELOCITY){
-            player.b2dbody.applyLinearImpulse(new Vector2(PLAYER_ACCELERATION, 0), player.b2dbody.getWorldCenter(), true);
+
+            player.move(1);
             //cam.translate(100 * dt,0);
         }
+
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
             player.jump();
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.N)){
-
-            game.getPrefs().putInteger("Level",HolyDemijhon.SECOND_LEVEL);
-            game.getPrefs().flush();
-            game.setScreens(HolyDemijhon.SECOND_LEVEL);
-
-        }
-
-    }
-
-    public void islevelComplete(){
-        if(isDoorOpened){
-            game.setScreens(HolyDemijhon.SECOND_LEVEL);
-        }
-    }
+    }*/
 
     @Override
     public void render(float delta) {
-        update(delta);
-        islevelComplete();
 
+        super.render(delta);
+
+        update(delta);
+        levelOver(HolyDemijhon.FIRST_LEVEL);
+        isDoorOpened = false;
+
+        /*
         Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        hud.stage.draw();
+        super.getGame().batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        hud.stage.draw();*/
 
         mapRenderer.setView(cam);
         mapRenderer.render();
 
         b2dbr.render(world, cam.combined);
 
+        /*
         // endgame geçiş bunun da yeri düzenlenebilir ileride
         if(health == 0){
-            game.setScreens(HolyDemijhon.END_GAME_SCREEN);
+            super.getGame().setScreens(HolyDemijhon.END_GAME_SCREEN);
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.P)){
-            Gdx.input.setInputProcessor(game.getMainMenu().getStage());
-            game.setScreens(HolyDemijhon.MAIN_MENU_SCREEN);
-        }
+            Gdx.input.setInputProcessor(super.getGame().getMainMenu().getStage());
+            super.getGame().setScreens(HolyDemijhon.MAIN_MENU_SCREEN);
+        }*/
 
         /*
         game.batch.setProjectionMatrix(cam.combined);
@@ -170,15 +165,15 @@ public class LevelScreen implements Screen {
 
     @Override
     public void hide() {
-
     }
 
     @Override
     public void dispose() {
+        super.dispose();
         map.dispose();
         mapRenderer.dispose();
         world.dispose();
-        b2dbr.dispose();
-        hud.dispose();
+        player.getLevel().dispose();
+        //b2dbr.dispose();
     }
 }

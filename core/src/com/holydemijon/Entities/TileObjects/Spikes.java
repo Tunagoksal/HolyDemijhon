@@ -16,6 +16,6 @@ public class Spikes extends InteractiveTileObject {
     @Override
     public void collision() {
         Gdx.app.log("Spikes", "Collision");
-        LevelScreen.health -= 1;
+        //LevelScreen.health -= 1;
     }
 }

@@ -14,6 +14,7 @@ public abstract class InteractiveTileObject {
     protected Body body;
 
     protected Fixture fixture;
+    protected FixtureDef fixtureDef;
 
     public InteractiveTileObject(World world, TiledMap tiledMap, Rectangle bounds) {
         this.world = world;
@@ -22,7 +23,7 @@ public abstract class InteractiveTileObject {
 
         BodyDef bodyDef = new BodyDef();
         PolygonShape shape = new PolygonShape();
-        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef = new FixtureDef();
 
         bodyDef.type = BodyDef.BodyType.StaticBody;
         bodyDef.position.set((bounds.getX() + bounds.getWidth() / 2) / HolyDemijhon.PPM, (bounds.getY() + bounds.getHeight() / 2) / HolyDemijhon.PPM);

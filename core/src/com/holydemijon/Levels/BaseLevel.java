@@ -8,15 +8,19 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.holydemijon.Entities.John;
 import com.holydemijon.HolyDemijhon;
 import com.holydemijon.Scenes.HUD;
-import com.holydemijon.Entities.Player;
+import com.holydemijon.Tools.Box2DWorldCreator;
+import com.holydemijon.Tools.WorldContactListener;
 
 public class BaseLevel extends ScreenAdapter {
 
-    private Player player;
     private HolyDemijhon game;
     private HUD hud;
 
@@ -27,6 +31,14 @@ public class BaseLevel extends ScreenAdapter {
     private OrthographicCamera cam;
     private Viewport viewport;
 
+    private World world;
+    private Box2DDebugRenderer b2dbr;
+    private Box2DWorldCreator b2dwc;
+
+    public static final float GRAVITY = -10;
+
+    private John player;
+
     public BaseLevel(HolyDemijhon game,String mapfile){
 
         this.game = game;
@@ -36,12 +48,18 @@ public class BaseLevel extends ScreenAdapter {
         viewport.setWorldSize(360,360);
 
         hud = new HUD(game.batch);
-        player = new Player();
 
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(mapfile);
         mapRenderer = new OrthogonalTiledMapRenderer(map);
         cam.position.set(viewport.getWorldWidth()/2,viewport.getWorldHeight()/2,0);
+
+        world = new World(new Vector2(0, GRAVITY), true);
+        b2dbr = new Box2DDebugRenderer();
+        b2dwc = new Box2DWorldCreator(world, map);
+        player = new John(world);
+
+        world.setContactListener(new WorldContactListener());
 
 
     }
@@ -82,6 +100,10 @@ public class BaseLevel extends ScreenAdapter {
 
 
 
+    }
+
+    public Box2DWorldCreator getB2dwc() {
+        return b2dwc;
     }
 
     @Override

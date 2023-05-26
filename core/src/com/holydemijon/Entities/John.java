@@ -27,7 +27,7 @@ public class John extends Sprite {
 
     private void defJohn() {
         BodyDef bodydef = new BodyDef();
-        bodydef.position.set(32 / HolyDemijhon.PPM, 150 / HolyDemijhon.PPM);
+        bodydef.position.set(100 / HolyDemijhon.PPM, 150 / HolyDemijhon.PPM);
         bodydef.type = BodyDef.BodyType.DynamicBody;
         b2dbody = level.createBody(bodydef);
 

@@ -26,6 +26,8 @@ public class LevelScreen implements Screen {
     private static final float MAX_LINEAR_VELOCITY = 1;
     private static final float PLAYER_ACCELERATION = 0.1f;
 
+    public static boolean isDoorOpened = false;
+
     //private Player player;
     private John player;
     private HolyDemijhon game;
@@ -40,6 +42,7 @@ public class LevelScreen implements Screen {
 
     private World world;
     private Box2DDebugRenderer b2dbr;
+    Box2DWorldCreator b2dwc;
 
     public static int health = 3;
 
@@ -53,13 +56,15 @@ public class LevelScreen implements Screen {
         hud = new HUD(game.batch);
 
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("Tileset.tmx");
+        map = mapLoader.load("level1.tmx");
         mapRenderer = new OrthogonalTiledMapRenderer(map, 1 / HolyDemijhon.PPM);
         cam.position.set(viewport.getWorldWidth()/2,viewport.getWorldHeight()/2,0);
 
         world = new World(new Vector2(0, GRAVITY), true);
         b2dbr = new Box2DDebugRenderer();
-        new Box2DWorldCreator(world, map);
+        b2dwc = new Box2DWorldCreator(world, map);
+        b2dwc.setColliers(2,4,6,3);
+        b2dwc.colliderCreation();
         player = new John(world);
 
         world.setContactListener(new WorldContactListener());
@@ -98,20 +103,27 @@ public class LevelScreen implements Screen {
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.N)){
+
             game.getPrefs().putInteger("Level",HolyDemijhon.SECOND_LEVEL);
             game.getPrefs().flush();
             game.setScreens(HolyDemijhon.SECOND_LEVEL);
 
         }
+
     }
 
-
+    public void islevelComplete(){
+        if(isDoorOpened){
+            game.setScreens(HolyDemijhon.SECOND_LEVEL);
+        }
+    }
 
     @Override
     public void render(float delta) {
         update(delta);
+        islevelComplete();
 
-        Gdx.gl.glClearColor(135/255f, 206/255f, 235/255f, 1);
+        Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);

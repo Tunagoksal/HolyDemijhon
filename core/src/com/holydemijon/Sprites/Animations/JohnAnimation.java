@@ -62,13 +62,13 @@ public class JohnAnimation extends Sprite {
     public void update(float dt) {
         setPosition(johnBody.getPosition().x - getWidth() / 2, johnBody.getPosition().y - getHeight() / 2);
         setRegion(getFrame(dt));
+        if (simpleAttack.isAnimationFinished(stateTimer)) { performSimpleAttack = false; }
+        if (heavyAttack.isAnimationFinished(stateTimer)) { performHeavyAttack = false; }
+        if (dash.isAnimationFinished(stateTimer)) { performDash = false; }
     }
 
     public TextureRegion getFrame(float dt) {
         currentState = getState();
-        if (simpleAttack.isAnimationFinished(stateTimer)) {performSimpleAttack = false;}
-        if (heavyAttack.isAnimationFinished(stateTimer)) {performHeavyAttack = false;}
-        if (dash.isAnimationFinished(stateTimer)) {performDash = false;}
 
         TextureRegion region;
         if (currentState == State.JUMPING) {
@@ -112,16 +112,18 @@ public class JohnAnimation extends Sprite {
     }
 
     public State getState() {
+
         if (performSimpleAttack) {
             return State.SIMPLE_ATTACK;
         }
-        else if (performHeavyAttack) {
+        if (performHeavyAttack) {
             return State.HEAVY_ATTACK;
         }
-        else if (performDash) {
+        if (performDash) {
             return State.DASH;
         }
-        else if (johnBody.getLinearVelocity().y > 0 ||
+
+        if (johnBody.getLinearVelocity().y > 0 ||
                 (johnBody.getLinearVelocity().y < 0 && previousState == State.JUMPING)) {return State.JUMPING;}
         else if (johnBody.getLinearVelocity().y < 0) {return State.FALLING;}
         else if (johnBody.getLinearVelocity().x != 0) {return State.RUNNING;}

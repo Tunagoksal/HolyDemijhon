@@ -43,6 +43,7 @@ public class HolyDemijhon extends Game {
 	private MainMenuScreen mainMenu;
 	private LevelScreen levelScreen;
 	private FirstLevel level1;
+	private SecondLevel level2;
 	private EndGameScreen endGameScreen;
 
 	@Override
@@ -59,6 +60,7 @@ public class HolyDemijhon extends Game {
 		levelScreen = new LevelScreen(this);
 		endGameScreen = new EndGameScreen(this);
 		level1 = new FirstLevel(this);
+		level2 = new SecondLevel(this);
 
 		setScreen(new MainMenuScreen(this));
 	}
@@ -93,7 +95,7 @@ public class HolyDemijhon extends Game {
 				setScreen(level1);
 				break;
 			case SECOND_LEVEL:
-				setScreen(new SecondLevel(this));
+				setScreen(level2);
 				break;
 		}
 

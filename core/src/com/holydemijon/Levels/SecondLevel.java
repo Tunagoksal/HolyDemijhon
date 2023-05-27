@@ -29,8 +29,6 @@ public class SecondLevel extends BaseLevel{
     private World world;
     private Box2DDebugRenderer b2dbr;
     private Box2DWorldCreator b2dwc;
-
-    HolyDemijhon game;
     public SecondLevel(HolyDemijhon game){
 
         super(game);
@@ -62,6 +60,7 @@ public class SecondLevel extends BaseLevel{
     public void update(float dt){
 
         player.getInputs().update(dt);
+        player.update(dt);
 
         world.step(FPS, 6, 2);
         cam.position.x = player.b2dbody.getPosition().x;
@@ -83,6 +82,12 @@ public class SecondLevel extends BaseLevel{
 
         b2dbr.render(world, cam.combined);
 
+        game.batch.setProjectionMatrix(cam.combined);
+        game.batch.begin();
+        player.getJohnAnimation().draw(game.batch);
+        //zombie.getZombieAnimation().draw(game.batch);
+        game.batch.end();
+
     }
     @Override
     public void resize(int width, int height) {
@@ -95,5 +100,6 @@ public class SecondLevel extends BaseLevel{
         mapRenderer.dispose();
         world.dispose();
         b2dbr.dispose();
+        player.getLevel().dispose();
     }
 }

@@ -1,0 +1,104 @@
+
+player_death.png
+size: 2048, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+damage
+  rotate: false
+  xy: 2, 4
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 1
+damage
+  rotate: false
+  xy: 84, 4
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 2
+damage
+  rotate: false
+  xy: 166, 4
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 3
+damage
+  rotate: false
+  xy: 248, 4
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 4
+death
+  rotate: false
+  xy: 330, 4
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 1
+death
+  rotate: false
+  xy: 412, 4
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 2
+death
+  rotate: false
+  xy: 494, 4
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 3
+death
+  rotate: false
+  xy: 576, 4
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 4
+death
+  rotate: false
+  xy: 658, 4
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 5
+death
+  rotate: false
+  xy: 740, 4
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 6
+death
+  rotate: false
+  xy: 822, 4
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 7
+death
+  rotate: false
+  xy: 904, 4
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 8
+death
+  rotate: false
+  xy: 986, 4
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 9
+death
+  rotate: false
+  xy: 1068, 4
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 10

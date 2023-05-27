@@ -1,8 +1,17 @@
 package com.holydemijon.Tools;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.physics.box2d.*;
+import com.holydemijon.Sprites.Animations.JohnAnimation;
+import com.holydemijon.Sprites.Animations.ZombieAnimation;
+import com.holydemijon.Sprites.Enemies.Enemy;
+import com.holydemijon.Sprites.Enemies.Zombie;
+import com.holydemijon.Sprites.Items.Door;
+import com.holydemijon.Sprites.John;
 import com.holydemijon.Sprites.TileObjects.InteractiveTileObject;
+
+import static com.badlogic.gdx.Gdx.input;
 
 public class WorldContactListener implements ContactListener {
     @Override
@@ -10,14 +19,15 @@ public class WorldContactListener implements ContactListener {
         Fixture fixtureA = contact.getFixtureA();
         Fixture fixtureB = contact.getFixtureB();
 
-        if (fixtureA.getUserData().equals("player") || fixtureB.getUserData().equals("player")) {
+        if (fixtureA.getUserData() instanceof John || fixtureB.getUserData() instanceof John) {
             Fixture player = null;
             Fixture object = null;
 
-            if (fixtureA.getUserData().equals("player")) {
+            if (fixtureA.getUserData() instanceof John) {
                 player = fixtureA;
                 object = fixtureB;
-            } else {
+            }
+            else {
                 player = fixtureB;
                 object = fixtureA;
             }
@@ -25,12 +35,45 @@ public class WorldContactListener implements ContactListener {
             if (object.getUserData() != null && object.getUserData() instanceof InteractiveTileObject) {
                 ((InteractiveTileObject) object.getUserData()).collision();
             }
+
+            if (object.getUserData() != null && object.getUserData() instanceof Door) {
+                ((Door) object.getUserData()).collision();
+            }
+
+            if (object.getUserData() != null && object.getUserData() instanceof Enemy) {
+                if (object.getUserData() instanceof Zombie) {
+                    ((John) player.getUserData()).takeDamage(Zombie.ZOMBIE_DAMAGE);
+                }
+            }
         }
+
+        if ((fixtureA.getUserData().equals("attack range") || fixtureB.getUserData().equals("attack range")) &&
+                fixtureA.getUserData() instanceof Enemy || fixtureB.getUserData() instanceof Enemy) {
+
+            Fixture enemy = null;
+
+            if (fixtureA.getUserData().equals("attack range")) {enemy = fixtureB;}
+            else {enemy = fixtureA;}
+
+            if (enemy.getUserData() != null && enemy.getUserData() instanceof Enemy) {
+                John.attackableEnemy = (Enemy) enemy.getUserData();
+                Gdx.app.log("Begin Contact", "Enemy is in range");
+            }
+        }
+
     }
 
     @Override
     public void endContact(Contact contact) {
+        Fixture fixtureA = contact.getFixtureA();
+        Fixture fixtureB = contact.getFixtureB();
 
+        if ((fixtureA.getUserData().equals("attack range") || fixtureB.getUserData().equals("attack range")) &&
+                (fixtureA.getUserData() instanceof Enemy || fixtureB.getUserData() instanceof Enemy)) {
+
+            John.attackableEnemy = null;
+            Gdx.app.log("End Contact", "Enemy is not in range anymore");
+        }
     }
 
     @Override

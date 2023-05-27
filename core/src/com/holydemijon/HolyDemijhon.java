@@ -2,14 +2,12 @@ package com.holydemijon;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.g2d.*;
-import com.holydemijon.Levels.FirstLevel;
-import com.holydemijon.Levels.SecondLevel;
+import com.holydemijon.Screens.Levels.SecondLevel;
+import com.holydemijon.Screens.Levels.ThirdLevel;
 import com.holydemijon.Screens.EndGameScreen;
-import com.holydemijon.Screens.LevelScreen;
+import com.holydemijon.Screens.Levels.FirstLevel;
 import com.holydemijon.Screens.MainMenuScreen;
 import com.holydemijon.Screens.leaderBoardScreen;
-
-import javax.xml.transform.sax.SAXTransformerFactory;
 
 
 public class HolyDemijhon extends Game {
@@ -27,33 +25,72 @@ public class HolyDemijhon extends Game {
 	public static final int HEIGHT = 360;
 	public static final float PPM = 100;
 
+	public static final short OBJECT_BIT = 1;
+	public static final short JOHN_BIT = 2;
+	public static final short ENEMY_BIT = 4;
+
 	public SpriteBatch batch;
+
+	//private FileHandle file;
+
+	private Preferences prefs;
+
+	private MainMenuScreen mainMenu;
+	private FirstLevel level1;
+	private SecondLevel level2;
+	private ThirdLevel level3;
+	private EndGameScreen endGameScreen;
 
 	@Override
 	public void create() {
+
+		//file = Gdx.files.local("saveFile.txt");
+		//file.writeString("5",false);
+
+		prefs = Gdx.app.getPreferences("savePreference");
+
 		batch = new SpriteBatch();
+
+		mainMenu = new MainMenuScreen(this);
+		endGameScreen = new EndGameScreen(this);
+		level1 = new FirstLevel(this);
+		level2 = new SecondLevel(this);
+		level3 = new ThirdLevel(this);
+
 		setScreen(new MainMenuScreen(this));
+	}
+
+	public Preferences getPrefs() {
+		return prefs;
+	}
+
+	public MainMenuScreen getMainMenu() {
+		return mainMenu;
+	}
+
+	public FirstLevel getLevelScreen() {
+		return level1;
 	}
 
 	public void setScreens(int screen){
         switch (screen){
 			case MAIN_MENU_SCREEN:
-				setScreen(new MainMenuScreen(this));
+				setScreen(mainMenu);
 				break;
 			case LEVEL_SCREEN:
-				setScreen(new LevelScreen(this));
+				setScreen(level1);
 				break;
 			case END_GAME_SCREEN:
-				setScreen(new EndGameScreen(this));
+				setScreen(endGameScreen);
 				break;
 			case LEADER_BOARD:
 				setScreen(new leaderBoardScreen(this));
 				break;
 			case FIRST_LEVEL:
-				setScreen(new FirstLevel(this));
+				setScreen(level2);
 				break;
 			case SECOND_LEVEL:
-				setScreen(new SecondLevel(this));
+				setScreen(level3);
 				break;
 		}
 
@@ -62,6 +99,7 @@ public class HolyDemijhon extends Game {
 	@Override
 	public void render () {
 		super.render();
+
 	}
 
 	@Override

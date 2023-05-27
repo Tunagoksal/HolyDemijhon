@@ -1,0 +1,97 @@
+
+zombieAnimations.png
+size: 512, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+attack
+  rotate: false
+  xy: 2, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
+attack
+  rotate: false
+  xy: 36, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
+attack
+  rotate: false
+  xy: 70, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
+attack
+  rotate: false
+  xy: 104, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 4
+idle
+  rotate: false
+  xy: 138, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
+idle
+  rotate: false
+  xy: 172, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
+idle
+  rotate: false
+  xy: 206, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
+idle
+  rotate: false
+  xy: 240, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 4
+run
+  rotate: false
+  xy: 274, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
+run
+  rotate: false
+  xy: 308, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
+run
+  rotate: false
+  xy: 342, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
+run
+  rotate: false
+  xy: 376, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 4
+run
+  rotate: false
+  xy: 410, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 5

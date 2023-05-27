@@ -47,8 +47,8 @@ public abstract class Level extends ScreenAdapter {
     public void levelOver(int screen){
         if(isDoorOpened){
             isDoorOpened = false;
-            //game.getPrefs().putInteger("Level",HolyDemijhon.SECOND_LEVEL);
-            //game.getPrefs().flush();
+            game.getPrefs().putInteger("Level",screen);
+            game.getPrefs().flush();
             game.setScreens(screen);
         }
     }

@@ -1,4 +1,4 @@
-package com.holydemijon.Entities;
+package com.holydemijon.Sprites;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;

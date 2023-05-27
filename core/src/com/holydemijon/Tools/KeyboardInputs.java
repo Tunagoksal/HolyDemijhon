@@ -3,7 +3,7 @@ package com.holydemijon.Tools;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.holydemijon.Entities.John;
+import com.holydemijon.Sprites.John;
 import com.holydemijon.HolyDemijhon;
 import com.holydemijon.Levels.BaseLevel;
 import com.holydemijon.Screens.LevelScreen;

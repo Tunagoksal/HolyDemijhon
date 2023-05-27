@@ -2,16 +2,12 @@ package com.holydemijon.Levels;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 
-import com.badlogic.gdx.physics.box2d.World;
-import com.holydemijon.Entities.John;
+import com.holydemijon.Sprites.John;
 import com.holydemijon.HolyDemijhon;
 import com.holydemijon.Scenes.HUD;
-import com.holydemijon.Screens.LevelScreen;
-import com.holydemijon.Tools.WorldContactListener;
 
 
 public class BaseLevel extends ScreenAdapter {

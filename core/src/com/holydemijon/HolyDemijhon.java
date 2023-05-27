@@ -1,17 +1,13 @@
 package com.holydemijon;
 
 import com.badlogic.gdx.*;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.*;
-import com.holydemijon.Entities.John;
 import com.holydemijon.Levels.FirstLevel;
 import com.holydemijon.Levels.SecondLevel;
 import com.holydemijon.Screens.EndGameScreen;
 import com.holydemijon.Screens.LevelScreen;
 import com.holydemijon.Screens.MainMenuScreen;
 import com.holydemijon.Screens.leaderBoardScreen;
-
-import javax.xml.transform.sax.SAXTransformerFactory;
 
 
 public class HolyDemijhon extends Game {

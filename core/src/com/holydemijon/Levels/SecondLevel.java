@@ -9,7 +9,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.holydemijon.Entities.John;
+import com.holydemijon.Sprites.John;
 import com.holydemijon.HolyDemijhon;
 import com.holydemijon.Tools.Box2DWorldCreator;
 import com.holydemijon.Tools.WorldContactListener;

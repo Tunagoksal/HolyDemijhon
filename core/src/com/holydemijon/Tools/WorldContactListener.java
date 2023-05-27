@@ -1,7 +1,7 @@
 package com.holydemijon.Tools;
 
 import com.badlogic.gdx.physics.box2d.*;
-import com.holydemijon.Entities.TileObjects.InteractiveTileObject;
+import com.holydemijon.Sprites.TileObjects.InteractiveTileObject;
 
 public class WorldContactListener implements ContactListener {
     @Override

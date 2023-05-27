@@ -53,7 +53,7 @@ public class FirstLevel extends BaseLevel{
         b2dbr = new Box2DDebugRenderer();
         b2dwc = new Box2DWorldCreator(world, map);
 
-        b2dwc.setColliers(1,6,5,3);
+        b2dwc.setColliers(1,5,4,2);
         b2dwc.colliderCreation();
         player = new John(world);
 
@@ -77,7 +77,7 @@ public class FirstLevel extends BaseLevel{
         super.render(delta);
 
         update(delta);
-        super.levelOver(HolyDemijhon.END_GAME_SCREEN);
+        super.levelOver(HolyDemijhon.SECOND_LEVEL);
 
         mapRenderer.setView(cam);
         mapRenderer.render();

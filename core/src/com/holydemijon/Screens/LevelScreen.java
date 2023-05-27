@@ -114,7 +114,6 @@ public class LevelScreen extends BaseLevel {
 
         update(delta);
         levelOver(HolyDemijhon.FIRST_LEVEL);
-        isDoorOpened = false;
 
         /*
         Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);

@@ -1,26 +1,22 @@
-package com.holydemijon.Screens;
+package com.holydemijon.Levels;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.holydemijon.HolyDemijhon;
-import com.holydemijon.Sprites.Enemies.Zombie;
 import com.holydemijon.Sprites.John;
-import com.holydemijon.Scenes.HUD;
-import com.holydemijon.Levels.BaseLevel;
+import com.holydemijon.HolyDemijhon;
 import com.holydemijon.Tools.Box2DWorldCreator;
 import com.holydemijon.Tools.WorldContactListener;
 
-public class LevelScreen extends BaseLevel {
+public class FirstLevel extends BaseLevel{
 
     private John player;
-    private Zombie zombie;
     private TmxMapLoader mapLoader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
@@ -34,7 +30,7 @@ public class LevelScreen extends BaseLevel {
     private Box2DDebugRenderer b2dbr;
     private Box2DWorldCreator b2dwc;
 
-    public LevelScreen(HolyDemijhon game){
+    public FirstLevel(HolyDemijhon game){
 
         super(game);
 
@@ -47,42 +43,19 @@ public class LevelScreen extends BaseLevel {
         //inputs = new KeyboardInputs(this);
 
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("level1.tmx");
+        map = mapLoader.load("level2.tmx");
         mapRenderer = new OrthogonalTiledMapRenderer(map, 1 / HolyDemijhon.PPM);
         cam.position.set(viewport.getWorldWidth()/2,viewport.getWorldHeight()/2,0);
 
         world = new World(new Vector2(0, GRAVITY), true);
         b2dbr = new Box2DDebugRenderer();
-        new Box2DWorldCreator(this);
-        player = new John(world, this);
-
-        zombie = new Zombie(this, 40f / HolyDemijhon.PPM, 150f / HolyDemijhon.PPM, ZOMBIE_IDLE);
         b2dwc = new Box2DWorldCreator(world, map);
 
-        b2dwc.setColliers(2,4,6,3);
+        b2dwc.setColliers(1,5,4,2);
         b2dwc.colliderCreation();
         player = new John(world);
 
         world.setContactListener(listener);
-    }
-
-    public World getWorld() {
-        return this.world;
-    }
-    public TiledMap getMap() {
-        return this.map;
-    }
-    @Override
-    public void show() {
-
-    }
-
-    public John getPlayer() {
-        return player;
-    }
-
-    public WorldContactListener getListener() {
-        return listener;
     }
 
     public void update(float dt){
@@ -90,18 +63,11 @@ public class LevelScreen extends BaseLevel {
         player.getInputs().update(dt);
 
         world.step(FPS, 6, 2);
-
-        player.update(dt);
-        zombie.update(dt);
-
         cam.position.x = player.b2dbody.getPosition().x;
         cam.position.y = player.b2dbody.getPosition().y;
         cam.update();
         mapRenderer.setView(cam);
     }
-
-
-
 
     @Override
     public void render(float delta) {
@@ -109,67 +75,24 @@ public class LevelScreen extends BaseLevel {
         super.render(delta);
 
         update(delta);
-        levelOver(HolyDemijhon.FIRST_LEVEL);
-
-        /*
-        Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        super.getGame().batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        hud.stage.draw();*/
+        super.levelOver(HolyDemijhon.SECOND_LEVEL);
 
         mapRenderer.setView(cam);
         mapRenderer.render();
 
         b2dbr.render(world, cam.combined);
 
-        /*
-        // endgame geçiş bunun da yeri düzenlenebilir ileride
-        if(player.getHealth() == 0){
-            game.setScreens(HolyDemijhon.END_GAME_SCREEN);
-        }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.P)){
-            game.setScreens(HolyDemijhon.MAIN_MENU_SCREEN);
-        }*/
-
-
-        game.batch.setProjectionMatrix(cam.combined);
-        game.batch.begin();
-        player.getJohnAnimation().draw(game.batch);
-        zombie.getZombieAnimation().draw(game.batch);
-        game.batch.end();
-
-
     }
-
     @Override
     public void resize(int width, int height) {
         viewport.update(width,height);
     }
 
     @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
     public void dispose() {
-        super.dispose();
         map.dispose();
         mapRenderer.dispose();
         world.dispose();
-        player.getLevel().dispose();
-        //b2dbr.dispose();
+        b2dbr.dispose();
     }
 }

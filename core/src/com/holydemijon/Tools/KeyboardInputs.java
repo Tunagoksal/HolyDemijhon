@@ -1,15 +1,33 @@
 package com.holydemijon.Tools;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.holydemijon.Sprites.John;
 import com.holydemijon.HolyDemijhon;
+import com.holydemijon.Levels.BaseLevel;
+import com.holydemijon.Screens.LevelScreen;
 
 public class KeyboardInputs implements InputProcessor {
 
     public HolyDemijhon game = new HolyDemijhon();
+    private John player;
+    private BaseLevel level;
+
+    private LevelScreen demolevel;
+
+    public KeyboardInputs(John player){
+        this.player = player;
+        System.out.println("in keyboardInputs");
+    }
 
     @Override
     public boolean keyDown(int keycode) {
 
+        /*
+        if(keycode == Input.Keys.UP){
+            level.getPlayer().jump(1);
+        }*/
         return false;
     }
 
@@ -47,5 +65,23 @@ public class KeyboardInputs implements InputProcessor {
     @Override
     public boolean scrolled(float amountX, float amountY) {
         return false;
+    }
+
+    public void processInput(){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
+            player.jump(4f);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT ) && player.b2dbody.getLinearVelocity().x >= -John.MAX_LINEAR_VELOCITY){
+            player.move(-1);
+            System.out.println("left");
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT ) && player.b2dbody.getLinearVelocity().x <= John.MAX_LINEAR_VELOCITY){
+            player.move(1);
+            System.out.println("right");
+        }
+    }
+
+    public void update(float dt) {
+        processInput();
     }
 }

@@ -9,40 +9,72 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.holydemijon.HolyDemijhon;
 import com.holydemijon.Screens.LevelScreen;
 import com.holydemijon.Sprites.TileObjects.Chest;
+import com.holydemijon.Sprites.TileObjects.Door;
 import com.holydemijon.Sprites.TileObjects.Ground;
-import com.holydemijon.Sprites.TileObjects.Ladder;
 import com.holydemijon.Sprites.TileObjects.Spikes;
 
 public class Box2DWorldCreator {
 
-    private LevelScreen screen;
-    private TiledMap map;
-    private World world;
-    public Box2DWorldCreator(LevelScreen screen) {
-        this.screen = screen;
-        this.map = screen.getMap();
-        this.world = screen.getWorld();
+    private int ground;
+    private int spike;
+    private int door;
+    private int chest;
 
-        for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)) {
+
+    World world;
+    TiledMap map;
+
+    public Box2DWorldCreator(World world, TiledMap map) {
+
+        this.world = world;
+        this.map = map;
+
+    }
+
+    public void colliderCreation(){
+        //Creates World
+        for (MapObject object : map.getLayers().get(spike).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-            new Spikes(screen, rect);
+            new Spikes(world, map, rect);
         }
-        for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(door).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-            new Ground(screen, rect);
+            new Door(world, map, rect);
         }
-        for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(ground).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-            new Chest(screen, rect);
+            new Ground(world, map, rect);
         }
-        for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(chest).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            //Intersector.overlapConvexPolygons()
 
-            new Ladder(screen, rect);
+            new Chest(world, map, rect);
         }
+    }
+
+    public void setColliers(int ground,int chest,int door,int spike){
+        this.ground = ground;
+        this.chest = chest;
+        this.door = door;
+        this.spike = spike;
+    }
+
+    public void setGround(int ground) {
+        this.ground = ground;
+    }
+
+    public void setChest(int chest) {
+        this.chest = chest;
+    }
+
+    public void setDoor(int door) {
+        this.door = door;
+    }
+
+    public void setSpike(int spike) {
+        this.spike = spike;
     }
 }

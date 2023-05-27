@@ -1,4 +1,4 @@
-package com.holydemijon.Levels;
+package com.holydemijon.Screens.Levels;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -14,7 +14,7 @@ import com.holydemijon.HolyDemijhon;
 import com.holydemijon.Tools.Box2DWorldCreator;
 import com.holydemijon.Tools.WorldContactListener;
 
-public class FirstLevel extends BaseLevel{
+public class SecondLevel extends Level {
 
     private John player;
     private TmxMapLoader mapLoader;
@@ -30,7 +30,7 @@ public class FirstLevel extends BaseLevel{
     private Box2DDebugRenderer b2dbr;
     private Box2DWorldCreator b2dwc;
 
-    public FirstLevel(HolyDemijhon game){
+    public SecondLevel(HolyDemijhon game){
 
         super(game);
 
@@ -51,7 +51,7 @@ public class FirstLevel extends BaseLevel{
         b2dbr = new Box2DDebugRenderer();
         b2dwc = new Box2DWorldCreator(world, map);
 
-        b2dwc.setColliers(1,5,4,2);
+        b2dwc.setColliders(1,5,4,2);
         b2dwc.colliderCreation();
         player = new John(world);
 
@@ -60,7 +60,6 @@ public class FirstLevel extends BaseLevel{
 
     public void update(float dt){
 
-        player.getInputs().update(dt);
         player.update(dt);
 
         world.step(FPS, 6, 2);

@@ -1,10 +1,10 @@
 package com.holydemijon.Sprites.Enemies;
 
-import com.holydemijon.Screens.LevelScreen;
+import com.holydemijon.Screens.Levels.FirstLevel;
 
 public class Slime extends Enemy {
 
-    public Slime(LevelScreen screen, float x, float y) {
+    public Slime(FirstLevel screen, float x, float y) {
         super(screen, x, y);
     }
 

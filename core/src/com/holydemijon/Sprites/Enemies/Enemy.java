@@ -4,20 +4,20 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
-import com.holydemijon.Screens.LevelScreen;
+import com.holydemijon.Screens.Levels.FirstLevel;
 
 public abstract class Enemy extends Sprite {
 
-    protected LevelScreen screen;
+    protected FirstLevel screen;
     protected World world;
     protected Body b2dbody;
 
     public boolean setToDestroy;
     public boolean destroyed;
 
-    public static int health;
+    public int health;
 
-    public Enemy(LevelScreen screen, float x, float y) {
+    public Enemy(FirstLevel screen, float x, float y) {
         this.world = screen.getWorld();
         this.screen = screen;
         setPosition(x, y);

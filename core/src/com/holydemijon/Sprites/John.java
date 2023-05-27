@@ -33,7 +33,7 @@ public class John extends Sprite {
 
     private BodyDef bodydef;
 
-    private int Health = 100;
+    private int health = 100;
 
     public John(World level) {
         this.level = level;
@@ -50,6 +50,7 @@ public class John extends Sprite {
     }
 
     public void update(float dt) {
+        inputs.update(dt);
         johnAnimation.update(dt);
     }
 
@@ -64,24 +65,17 @@ public class John extends Sprite {
         shape.setAsBox(JOHN_WIDTH / HolyDemijhon.PPM, JOHN_HEIGHT / HolyDemijhon.PPM);
 
         fixDef.filter.categoryBits = HolyDemijhon.JOHN_BIT;
-        fixDef.filter.maskBits = HolyDemijhon.GROUND_BIT |
-                HolyDemijhon.CHEST_BIT |
-                HolyDemijhon.OBJECT_BIT |
+        fixDef.filter.maskBits = HolyDemijhon.OBJECT_BIT |
                 HolyDemijhon.ENEMY_BIT;
 
         fixDef.shape = shape;
         b2dbody.createFixture(fixDef).setUserData("player");
 
         fixDef.isSensor = true;
-        PolygonShape attackRangeRight = new PolygonShape();
-        attackRangeRight.setAsBox(JOHN_WIDTH * 1.4f / HolyDemijhon.PPM, JOHN_HEIGHT / HolyDemijhon.PPM, new Vector2(JOHN_WIDTH * 2 / HolyDemijhon.PPM, 0), 0);
-        fixDef.shape = attackRangeRight;
-        b2dbody.createFixture(fixDef).setUserData("attack range right");
-
-        PolygonShape attackRangeLeft = new PolygonShape();
-        attackRangeLeft.setAsBox(JOHN_WIDTH * 1.4f / HolyDemijhon.PPM, JOHN_HEIGHT / HolyDemijhon.PPM, new Vector2(-JOHN_WIDTH * 2 / HolyDemijhon.PPM, 0), 0);
-        fixDef.shape = attackRangeLeft;
-        b2dbody.createFixture(fixDef).setUserData("attack range left");
+        PolygonShape attackRange = new PolygonShape();
+        attackRange.setAsBox(JOHN_WIDTH * 5 / HolyDemijhon.PPM, JOHN_HEIGHT / HolyDemijhon.PPM, new Vector2(JOHN_WIDTH / 2 / HolyDemijhon.PPM, 0), 0);
+        fixDef.shape = attackRange;
+        b2dbody.createFixture(fixDef).setUserData("attack range");
     }
 
     public void simpleAttack() {
@@ -104,23 +98,19 @@ public class John extends Sprite {
     }
 
     public void move(int direction){
-        b2dbody.applyLinearImpulse(new Vector2(PLAYER_ACCELERATION*direction, 0), b2dbody.getWorldCenter(), true);
+        b2dbody.applyLinearImpulse(new Vector2(PLAYER_ACCELERATION * direction, 0), b2dbody.getWorldCenter(), true);
     }
 
-    public void setHealth(int health) {
-        Health += health;
+    public void changeHealth(int health) {
+        this.health += health;
     }
 
     public int getHealth() {
-        return Health;
+        return health;
     }
 
     public JohnAnimation getJohnAnimation() {
         return johnAnimation;
-    }
-
-    public KeyboardInputs getInputs() {
-        return inputs;
     }
 
     public World getLevel() {

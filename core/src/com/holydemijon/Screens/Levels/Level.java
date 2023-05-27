@@ -1,4 +1,4 @@
-package com.holydemijon.Levels;
+package com.holydemijon.Screens.Levels;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -10,7 +10,7 @@ import com.holydemijon.HolyDemijhon;
 import com.holydemijon.Scenes.HUD;
 
 
-public class BaseLevel extends ScreenAdapter {
+public abstract class Level extends ScreenAdapter {
 
     protected HolyDemijhon game;
     private HUD hud;
@@ -22,7 +22,7 @@ public class BaseLevel extends ScreenAdapter {
 
     private John player;
 
-    public BaseLevel(HolyDemijhon game){
+    public Level(HolyDemijhon game){
 
         this.game = game;
         hud = new HUD(game.batch);
@@ -31,8 +31,6 @@ public class BaseLevel extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
-
-        // genel olarak burası da değişebilir ileride sadece geçişler çalışsın tüm screenler birbirine bağlansın diye koydum
 
         if(Gdx.input.isKeyPressed(Input.Keys.P)){
             game.setScreens(HolyDemijhon.MAIN_MENU_SCREEN);// Şimdilik ana menüye döndürüyor daha pause menüyü oluşturmadım
@@ -43,19 +41,6 @@ public class BaseLevel extends ScreenAdapter {
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
-
-        // endgame geçiş bunun da yeri düzenlenebilir ileride
-        //if(health == 0){
-            //game.setScreens(HolyDemijhon.END_GAME_SCREEN);
-        //}
-
-        /*
-        game.batch.setProjectionMatrix(cam.combined);
-        game.batch.begin();
-        //player.render();
-        game.batch.end();
-         */
-
     }
 
 

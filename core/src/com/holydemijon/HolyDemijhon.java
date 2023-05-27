@@ -2,10 +2,10 @@ package com.holydemijon;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.g2d.*;
-import com.holydemijon.Levels.FirstLevel;
-import com.holydemijon.Levels.SecondLevel;
+import com.holydemijon.Screens.Levels.SecondLevel;
+import com.holydemijon.Screens.Levels.ThirdLevel;
 import com.holydemijon.Screens.EndGameScreen;
-import com.holydemijon.Screens.LevelScreen;
+import com.holydemijon.Screens.Levels.FirstLevel;
 import com.holydemijon.Screens.MainMenuScreen;
 import com.holydemijon.Screens.leaderBoardScreen;
 
@@ -25,14 +25,9 @@ public class HolyDemijhon extends Game {
 	public static final int HEIGHT = 360;
 	public static final float PPM = 100;
 
-	public static final short GROUND_BIT = 1;
+	public static final short OBJECT_BIT = 1;
 	public static final short JOHN_BIT = 2;
-	public static final short LADDER_BIT = 4;
-	public static final short CHEST_BIT = 8;
-	public static final short BEAR_TRAP_BIT = 16;
-	public static final short OBJECT_BIT = 32;
-	public static final short ENEMY_BIT = 64;
-	public static final short DESTROYED_BIT = 128;
+	public static final short ENEMY_BIT = 4;
 
 	public SpriteBatch batch;
 
@@ -41,9 +36,9 @@ public class HolyDemijhon extends Game {
 	private Preferences prefs;
 
 	private MainMenuScreen mainMenu;
-	private LevelScreen levelScreen;
-	private FirstLevel level1;
-	private SecondLevel level2;
+	private FirstLevel firstLevel;
+	private SecondLevel level1;
+	private ThirdLevel level2;
 	private EndGameScreen endGameScreen;
 
 	@Override
@@ -57,10 +52,10 @@ public class HolyDemijhon extends Game {
 		batch = new SpriteBatch();
 
 		mainMenu = new MainMenuScreen(this);
-		levelScreen = new LevelScreen(this);
+		firstLevel = new FirstLevel(this);
 		endGameScreen = new EndGameScreen(this);
-		level1 = new FirstLevel(this);
-		level2 = new SecondLevel(this);
+		level1 = new SecondLevel(this);
+		level2 = new ThirdLevel(this);
 
 		setScreen(new MainMenuScreen(this));
 	}
@@ -73,8 +68,8 @@ public class HolyDemijhon extends Game {
 		return mainMenu;
 	}
 
-	public LevelScreen getLevelScreen() {
-		return levelScreen;
+	public FirstLevel getLevelScreen() {
+		return firstLevel;
 	}
 
 	public void setScreens(int screen){
@@ -83,7 +78,7 @@ public class HolyDemijhon extends Game {
 				setScreen(mainMenu);
 				break;
 			case LEVEL_SCREEN:
-				setScreen(levelScreen);
+				setScreen(firstLevel);
 				break;
 			case END_GAME_SCREEN:
 				setScreen(endGameScreen);

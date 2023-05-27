@@ -18,6 +18,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijhon;
+import com.mongodb.client.*;
+import com.mongodb.client.model.Sorts;
+import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import java.awt.*;
 
@@ -33,7 +37,7 @@ public class EndGameScreen extends ScreenAdapter implements Input.TextInputListe
     private TextField text;
     private TextField.TextFieldStyle textstyle;
 
-    public EndGameScreen(HolyDemijhon game){
+    public EndGameScreen(HolyDemijhon game, int time){
 
         // Enes screenleri paylaşalım dediğimiz için biraz sana ithafen yazıyorum backgroundı eklerken scalelemede gariplik oluyor
         // çözmeye uğraşmadım sen çözersen onu halledebilirsin
@@ -66,8 +70,42 @@ public class EndGameScreen extends ScreenAdapter implements Input.TextInputListe
         table.add(menu);
 
         stage.addActor(table);
+        addToDatabase("bora3000", time);
+
         System.out.println("in end game menu");
 
+    }
+
+    public static void addToDatabase(String name, int time){
+        MongoClient mongoClient = MongoClients.create("mongodb+srv://boraytkn:1234mdb@cluster0.ris0uvf.mongodb.net/?retryWrites=true&w=majority");
+        MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
+        MongoCollection collection = database.getCollection("ScoreCollection");
+
+        Document doc = new Document("name", name);
+        doc.append("score", time);
+        collection.insertOne(doc);
+
+        System.out.println("addToDatabase working fine pls :)");
+
+        getTopScores();
+    }
+
+    public static void getTopScores(){
+        MongoClient mongoClient = MongoClients.create("mongodb+srv://boraytkn:1234mdb@cluster0.ris0uvf.mongodb.net/?retryWrites=true&w=majority");
+        MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
+        MongoCollection<Document> collection = database.getCollection("ScoreCollection");
+
+        Bson sort = Sorts.descending("score");
+
+        FindIterable<Document> iterDoc = collection.find().sort(sort).limit(5);
+        MongoCursor<Document> it = iterDoc.iterator();
+
+        while(it.hasNext()){
+            Document doc = it.next();
+            System.out.println("Name: " + doc.getString("name") + ", Score: " + doc.getInteger("score"));
+        }
+
+        System.out.println("getTopScores working fine pls :)");
     }
 
     @Override

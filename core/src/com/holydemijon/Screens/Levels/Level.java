@@ -44,6 +44,7 @@ public abstract class Level extends ScreenAdapter {
         listener = new WorldContactListener();
     }
 
+
     @Override
     public void render(float delta) {
 

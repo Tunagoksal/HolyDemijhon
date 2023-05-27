@@ -2,6 +2,7 @@ package com.holydemijon;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.holydemijon.Screens.Levels.SecondLevel;
 import com.holydemijon.Screens.Levels.ThirdLevel;
 import com.holydemijon.Screens.EndGameScreen;
@@ -39,7 +40,11 @@ public class HolyDemijhon extends Game {
 	private FirstLevel level1;
 	private SecondLevel level2;
 	private ThirdLevel level3;
-	private EndGameScreen endGameScreen;
+
+	private int start;
+	private int end;
+	private int time;
+
 
 	@Override
 	public void create() {
@@ -52,7 +57,6 @@ public class HolyDemijhon extends Game {
 		batch = new SpriteBatch();
 
 		mainMenu = new MainMenuScreen(this);
-		endGameScreen = new EndGameScreen(this);
 		level1 = new FirstLevel(this);
 		level2 = new SecondLevel(this);
 		level3 = new ThirdLevel(this);
@@ -78,10 +82,15 @@ public class HolyDemijhon extends Game {
 				setScreen(mainMenu);
 				break;
 			case LEVEL_SCREEN:
+				System.out.println("Start of game.");
+				this.start = (int) TimeUtils.millis();
 				setScreen(level1);
 				break;
 			case END_GAME_SCREEN:
-				setScreen(endGameScreen);
+				this.end = (int) TimeUtils.millis();
+				this.time = (this.end - this.start) / 1000;
+				System.out.println("time: " + time);
+				setScreen(new EndGameScreen(this, this.time));
 				break;
 			case LEADER_BOARD:
 				setScreen(new leaderBoardScreen(this));

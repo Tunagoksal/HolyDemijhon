@@ -17,6 +17,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijhon;
+import com.mongodb.client.*;
+import com.mongodb.client.model.Sorts;
+import org.bson.Document;
+import org.bson.conversions.Bson;
 
 public class leaderBoardScreen extends ScreenAdapter{
 
@@ -56,6 +60,27 @@ public class leaderBoardScreen extends ScreenAdapter{
         table.add(text);
 
         stage.addActor(table);
+
+        getTopScores();
+
+    }
+
+    public static void getTopScores(){
+        MongoClient mongoClient = MongoClients.create("mongodb+srv://boraytkn:1234mdb@cluster0.ris0uvf.mongodb.net/?retryWrites=true&w=majority");
+        MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
+        MongoCollection<Document> collection = database.getCollection("ScoreCollection");
+
+        Bson sort = Sorts.descending("score");
+
+        FindIterable<Document> iterDoc = collection.find().sort(sort).limit(5);
+        MongoCursor<Document> it = iterDoc.iterator();
+
+        while(it.hasNext()){
+            Document doc = it.next();
+            System.out.println("Name: " + doc.getString("name") + ", Score: " + doc.getInteger("score"));
+        }
+
+        System.out.println("getTopScores working fine pls :)");
     }
 
     @Override

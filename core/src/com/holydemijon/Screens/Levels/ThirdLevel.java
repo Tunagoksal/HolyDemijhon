@@ -48,6 +48,9 @@ public class ThirdLevel extends Level {
 
     public void update(float dt){
 
+        hud.update(dt);
+        hud.setLevel(2);
+
         player.update(dt);
 
         world.step(FPS, 6, 2);

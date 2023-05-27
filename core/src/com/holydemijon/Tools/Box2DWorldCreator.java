@@ -6,7 +6,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import com.holydemijon.Sprites.TileObjects.Chest;
-import com.holydemijon.Sprites.TileObjects.Door;
+import com.holydemijon.Sprites.Items.Door;
 import com.holydemijon.Sprites.TileObjects.Ground;
 import com.holydemijon.Sprites.TileObjects.Spikes;
 
@@ -52,26 +52,10 @@ public class Box2DWorldCreator {
         }
     }
 
-    public void setColliers(int ground,int chest,int door,int spike){
+    public void setColliders(int ground, int chest, int door, int spike){
         this.ground = ground;
         this.chest = chest;
         this.door = door;
-        this.spike = spike;
-    }
-
-    public void setGround(int ground) {
-        this.ground = ground;
-    }
-
-    public void setChest(int chest) {
-        this.chest = chest;
-    }
-
-    public void setDoor(int door) {
-        this.door = door;
-    }
-
-    public void setSpike(int spike) {
         this.spike = spike;
     }
 }

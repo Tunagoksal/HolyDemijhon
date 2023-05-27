@@ -4,13 +4,13 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.holydemijon.HolyDemijhon;
-import com.holydemijon.Screens.LevelScreen;
+import com.holydemijon.Screens.Levels.FirstLevel;
 
 public class Wizard extends Enemy {
 
     private static final float WIZARD_WIDTH = 4;
     private static final float WIZARD_HEIGHT = 7;
-    public Wizard(LevelScreen screen, float x, float y) {
+    public Wizard(FirstLevel screen, float x, float y) {
         super(screen, x, y);
         health = 100;
     }
@@ -27,9 +27,7 @@ public class Wizard extends Enemy {
         shape.setAsBox(WIZARD_WIDTH / HolyDemijhon.PPM, WIZARD_HEIGHT / HolyDemijhon.PPM);
 
         fixDef.filter.categoryBits = HolyDemijhon.ENEMY_BIT;
-        fixDef.filter.maskBits = HolyDemijhon.GROUND_BIT |
-                HolyDemijhon.CHEST_BIT |
-                HolyDemijhon.OBJECT_BIT |
+        fixDef.filter.maskBits = HolyDemijhon.OBJECT_BIT |
                 HolyDemijhon.ENEMY_BIT |
                 HolyDemijhon.JOHN_BIT;
 

@@ -7,15 +7,13 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
 import com.holydemijon.HolyDemijhon;
-import com.holydemijon.Screens.LevelScreen;
-import com.holydemijon.Sprites.John;
 
 public class JohnAnimation extends Sprite {
     TextureAtlas atlas;
     Body johnBody;
     public enum State { FALLING, JUMPING, STANDING, RUNNING, SIMPLE_ATTACK, HEAVY_ATTACK, DASH }
 
-    private Animation<TextureRegion> johnStand;
+    private Animation<TextureRegion> johnIdle;
     private Animation<TextureRegion> johnRun;
     private Animation<TextureRegion> johnJump;
     private Animation<TextureRegion> simpleAttack;
@@ -51,7 +49,7 @@ public class JohnAnimation extends Sprite {
         }
         johnJump = new Animation<TextureRegion>(0.1f, frames);
         johnRun = new Animation<TextureRegion>(0.1f, atlas.findRegions("running"), Animation.PlayMode.LOOP);
-        johnStand = new Animation<TextureRegion>(0.2f, atlas.findRegions("idle"), Animation.PlayMode.LOOP);
+        johnIdle = new Animation<TextureRegion>(0.2f, atlas.findRegions("idle"), Animation.PlayMode.LOOP);
         simpleAttack = new Animation<TextureRegion>(0.1f, atlas.findRegions("attack1"));
         heavyAttack = new Animation<TextureRegion>(0.1f, atlas.findRegions("attack4"));
         dash = new Animation<TextureRegion>(0.1f, atlas.findRegions("jump"));
@@ -87,7 +85,7 @@ public class JohnAnimation extends Sprite {
             region = dash.getKeyFrame(stateTimer);
         }
         else {
-            region = johnStand.getKeyFrame(stateTimer);
+            region = johnIdle.getKeyFrame(stateTimer);
         }
 
         if ((johnBody.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()) {

@@ -12,7 +12,7 @@ import com.holydemijon.Scenes.HUD;
 
 public class BaseLevel extends ScreenAdapter {
 
-    private HolyDemijhon game;
+    protected HolyDemijhon game;
     private HUD hud;
 
     public static boolean isDoorOpened = false;

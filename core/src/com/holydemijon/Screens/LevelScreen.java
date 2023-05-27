@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijhon;
+import com.holydemijon.Sprites.Enemies.Zombie;
 import com.holydemijon.Sprites.John;
 import com.holydemijon.Levels.BaseLevel;
 import com.holydemijon.Tools.Box2DWorldCreator;
@@ -16,7 +17,10 @@ import com.holydemijon.Tools.WorldContactListener;
 
 public class LevelScreen extends BaseLevel {
 
+
+    private Zombie zombie;
     private John player;
+
     private TmxMapLoader mapLoader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
@@ -53,6 +57,8 @@ public class LevelScreen extends BaseLevel {
 
         b2dwc.setColliers(2,4,6,3);
         b2dwc.colliderCreation();
+
+        zombie = new Zombie(this, 200f / HolyDemijhon.PPM, 150f / HolyDemijhon.PPM, 0);
         player = new John(world);
 
         world.setContactListener(listener);
@@ -77,6 +83,8 @@ public class LevelScreen extends BaseLevel {
     public void update(float dt){
 
         player.getInputs().update(dt);
+        zombie.update(dt);
+        player.update(dt);
 
         world.step(FPS, 6, 2);
         cam.position.x = player.b2dbody.getPosition().x;
@@ -136,12 +144,13 @@ public class LevelScreen extends BaseLevel {
             super.getGame().setScreens(HolyDemijhon.MAIN_MENU_SCREEN);
         }*/
 
-        /*
+
         game.batch.setProjectionMatrix(cam.combined);
         game.batch.begin();
-        //player.render();
+        player.getJohnAnimation().draw(game.batch);
+        zombie.getZombieAnimation().draw(game.batch);
         game.batch.end();
-         */
+
 
     }
 

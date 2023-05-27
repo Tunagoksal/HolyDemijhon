@@ -2,9 +2,12 @@ package com.holydemijon.Sprites;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.holydemijon.HolyDemijhon;
+import com.holydemijon.Sprites.Animations.JohnAnimation;
+import com.holydemijon.Sprites.Enemies.Enemy;
 import com.holydemijon.Tools.KeyboardInputs;
 
 public class John extends Sprite {
@@ -21,17 +24,34 @@ public class John extends Sprite {
 
     public World level;
     public Body b2dbody;
+    private TextureAtlas atlas;
+    private JohnAnimation johnAnimation;
+
+    public static boolean lookingRight;
+
+    public static Enemy attackableEnemy;
 
     private BodyDef bodydef;
+
+    private int Health = 100;
 
     public John(World level) {
         this.level = level;
         defJohn();
+
+        atlas = new TextureAtlas("animations/characterAnimations.atlas");
+        johnAnimation = new JohnAnimation(atlas, b2dbody);
+        attackableEnemy = null;
+        lookingRight = true;
+
         inputs = new KeyboardInputs(this);
         Gdx.input.setInputProcessor(inputs);
 
     }
 
+    public void update(float dt) {
+        johnAnimation.update(dt);
+    }
 
     private void defJohn() {
         bodydef = new BodyDef();
@@ -43,8 +63,41 @@ public class John extends Sprite {
         shape = new PolygonShape();
         shape.setAsBox(JOHN_WIDTH / HolyDemijhon.PPM, JOHN_HEIGHT / HolyDemijhon.PPM);
 
+        fixDef.filter.categoryBits = HolyDemijhon.JOHN_BIT;
+        fixDef.filter.maskBits = HolyDemijhon.GROUND_BIT |
+                HolyDemijhon.CHEST_BIT |
+                HolyDemijhon.OBJECT_BIT |
+                HolyDemijhon.ENEMY_BIT;
+
         fixDef.shape = shape;
         b2dbody.createFixture(fixDef).setUserData("player");
+
+        fixDef.isSensor = true;
+        PolygonShape attackRangeRight = new PolygonShape();
+        attackRangeRight.setAsBox(JOHN_WIDTH * 1.4f / HolyDemijhon.PPM, JOHN_HEIGHT / HolyDemijhon.PPM, new Vector2(JOHN_WIDTH * 2 / HolyDemijhon.PPM, 0), 0);
+        fixDef.shape = attackRangeRight;
+        b2dbody.createFixture(fixDef).setUserData("attack range right");
+
+        PolygonShape attackRangeLeft = new PolygonShape();
+        attackRangeLeft.setAsBox(JOHN_WIDTH * 1.4f / HolyDemijhon.PPM, JOHN_HEIGHT / HolyDemijhon.PPM, new Vector2(-JOHN_WIDTH * 2 / HolyDemijhon.PPM, 0), 0);
+        fixDef.shape = attackRangeLeft;
+        b2dbody.createFixture(fixDef).setUserData("attack range left");
+    }
+
+    public void simpleAttack() {
+        JohnAnimation.performSimpleAttack = true;
+        if (attackableEnemy != null) {
+            attackableEnemy.receiveSimpleAttack();
+            Gdx.app.log("Attack", "Enemy health:" + attackableEnemy.getHealth());
+        }
+    }
+
+    public void heavyAttack() {
+        JohnAnimation.performHeavyAttack = true;
+        if (attackableEnemy != null) {
+            attackableEnemy.receiveSimpleAttack();
+            Gdx.app.log("Attack", "Enemy health:" + attackableEnemy.getHealth());
+        }
     }
     public void jump(float jumpforce){
             b2dbody.applyLinearImpulse(new Vector2(0, jumpforce), b2dbody.getWorldCenter(), true);
@@ -52,6 +105,18 @@ public class John extends Sprite {
 
     public void move(int direction){
         b2dbody.applyLinearImpulse(new Vector2(PLAYER_ACCELERATION*direction, 0), b2dbody.getWorldCenter(), true);
+    }
+
+    public void setHealth(int health) {
+        Health += health;
+    }
+
+    public int getHealth() {
+        return Health;
+    }
+
+    public JohnAnimation getJohnAnimation() {
+        return johnAnimation;
     }
 
     public KeyboardInputs getInputs() {

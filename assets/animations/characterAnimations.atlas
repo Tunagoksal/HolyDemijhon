@@ -1,229 +1,271 @@
 
 characterAnimations.png
-size: 1024, 256
+size: 2048, 256
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
 attack1
   rotate: false
-  xy: 1, 3
+  xy: 2, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 1
 attack1
   rotate: false
-  xy: 83, 3
+  xy: 84, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 2
 attack1
   rotate: false
-  xy: 165, 3
+  xy: 166, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 3
 attack1
   rotate: false
-  xy: 247, 3
+  xy: 248, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 4
 attack2
   rotate: false
-  xy: 329, 3
+  xy: 330, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 1
 attack2
   rotate: false
-  xy: 411, 3
+  xy: 412, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 2
 attack2
   rotate: false
-  xy: 493, 3
+  xy: 494, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 3
 attack3
   rotate: false
-  xy: 575, 3
+  xy: 576, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 1
 attack3
   rotate: false
-  xy: 657, 3
+  xy: 658, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 2
 attack3
   rotate: false
-  xy: 739, 3
+  xy: 740, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 3
 attack3
   rotate: false
-  xy: 821, 3
+  xy: 822, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 4
 attack4
   rotate: false
-  xy: 903, 3
+  xy: 904, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 1
 attack4
   rotate: false
-  xy: 1, 69
+  xy: 986, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 2
 attack4
   rotate: false
-  xy: 83, 69
+  xy: 1068, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 3
 attack4
   rotate: false
-  xy: 165, 69
+  xy: 1150, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 4
 heavyattack
   rotate: false
-  xy: 247, 69
+  xy: 1232, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 1
 heavyattack
   rotate: false
-  xy: 329, 69
+  xy: 1314, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 2
 heavyattack
   rotate: false
-  xy: 411, 69
+  xy: 1396, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 3
 heavyattack
   rotate: false
-  xy: 493, 69
+  xy: 1478, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 4
 idle
   rotate: false
-  xy: 575, 69
+  xy: 1560, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 1
 attack2
   rotate: false
-  xy: 575, 69
+  xy: 1560, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 4
 idle
   rotate: false
-  xy: 657, 69
+  xy: 1642, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 2
 idle
   rotate: false
-  xy: 739, 69
+  xy: 1724, 4
   size: 79, 64
   orig: 79, 64
   offset: 0, 0
   index: 3
 idle
   rotate: false
-  xy: 821, 69
+  xy: 1806, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 4
-primary
+jump
   rotate: false
-  xy: 903, 69
+  xy: 1888, 4
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 1
-primary
+jump
   rotate: false
-  xy: 1, 135
+  xy: 2, 70
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 2
 primary
   rotate: false
-  xy: 83, 135
+  xy: 84, 70
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 1
+primary
+  rotate: false
+  xy: 166, 70
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 2
+primary
+  rotate: false
+  xy: 248, 70
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 3
 primary
   rotate: false
-  xy: 165, 135
+  xy: 330, 70
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 4
+roll
+  rotate: false
+  xy: 412, 70
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 1
+roll
+  rotate: false
+  xy: 494, 70
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 2
+roll
+  rotate: false
+  xy: 576, 70
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: 3
+roll
+  rotate: false
+  xy: 658, 70
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 4
 running
   rotate: false
-  xy: 247, 135
+  xy: 740, 70
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 1
 running
   rotate: false
-  xy: 329, 135
+  xy: 822, 70
   size: 80, 64
   orig: 80, 64
   offset: 0, 0
   index: 2
 running
   rotate: false
-  xy: 411, 135
+  xy: 904, 70
   size: 79, 64
   orig: 79, 64
   offset: 0, 0
   index: 3
 running
   rotate: false
-  xy: 493, 135
+  xy: 986, 70
   size: 80, 64
   orig: 80, 64
   offset: 0, 0

@@ -12,11 +12,8 @@ public class KeyboardInputs implements InputProcessor {
 
     public HolyDemijhon game = new HolyDemijhon();
     private John player;
-    private BaseLevel level;
 
-    private LevelScreen demolevel;
-
-    public KeyboardInputs(John player){
+    public KeyboardInputs(John player) {
         this.player = player;
         System.out.println("in keyboardInputs");
     }
@@ -67,21 +64,29 @@ public class KeyboardInputs implements InputProcessor {
         return false;
     }
 
-    public void processInput(){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
+    public void processInput() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
             player.jump(4f);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT ) && player.b2dbody.getLinearVelocity().x >= -John.MAX_LINEAR_VELOCITY){
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2dbody.getLinearVelocity().x >= -John.MAX_LINEAR_VELOCITY) {
             player.move(-1);
             System.out.println("left");
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT ) && player.b2dbody.getLinearVelocity().x <= John.MAX_LINEAR_VELOCITY){
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2dbody.getLinearVelocity().x <= John.MAX_LINEAR_VELOCITY) {
             player.move(1);
             System.out.println("right");
         }
-    }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
+            System.out.println("simple attack");
+            player.simpleAttack();
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+            System.out.println("heavy attack");
+            player.heavyAttack();
+        }
 
-    public void update(float dt) {
+    }
+    public void update(float dt){
         processInput();
     }
 }

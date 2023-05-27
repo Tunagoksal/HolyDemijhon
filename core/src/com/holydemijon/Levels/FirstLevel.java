@@ -61,6 +61,7 @@ public class FirstLevel extends BaseLevel{
     public void update(float dt){
 
         player.getInputs().update(dt);
+        player.update(dt);
 
         world.step(FPS, 6, 2);
         cam.position.x = player.b2dbody.getPosition().x;
@@ -82,6 +83,12 @@ public class FirstLevel extends BaseLevel{
 
         b2dbr.render(world, cam.combined);
 
+        game.batch.setProjectionMatrix(cam.combined);
+        game.batch.begin();
+        player.getJohnAnimation().draw(game.batch);
+        //zombie.getZombieAnimation().draw(game.batch);
+        game.batch.end();
+
     }
     @Override
     public void resize(int width, int height) {
@@ -94,5 +101,6 @@ public class FirstLevel extends BaseLevel{
         mapRenderer.dispose();
         world.dispose();
         b2dbr.dispose();
+        player.getLevel().dispose();
     }
 }

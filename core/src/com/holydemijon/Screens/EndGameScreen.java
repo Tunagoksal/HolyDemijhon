@@ -13,11 +13,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijhon;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
+import com.mongodb.client.model.Sorts;
 import org.bson.Document;
+import org.bson.conversions.Bson;
+
+import static com.mongodb.client.model.Sorts.ascending;
+
 import java.awt.*;
 
 
@@ -64,7 +66,25 @@ public class EndGameScreen extends ScreenAdapter {
         doc.append("score", time);
         collection.insertOne(doc);
 
+        getTopScores();
+
         System.out.println("working fine pls :)");
+    }
+
+    public static void getTopScores() {
+        MongoClient mongoClient = MongoClients.create("mongodb+srv://boraytkn:1234mdb@cluster0.ris0uvf.mongodb.net/?retryWrites=true&w=majority");
+        MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
+        MongoCollection<Document> collection = database.getCollection("ScoreCollection");
+
+        Bson sort = Sorts.descending("score");
+
+        FindIterable<Document> iterDoc = collection.find().sort(sort).limit(5);
+        MongoCursor<Document> it = iterDoc.iterator();
+
+        while(it.hasNext()) {
+            Document doc = it.next();
+            System.out.println("Name: " + doc.getString("name") + ", Score: " + doc.getInteger("score"));
+        }
     }
 
 

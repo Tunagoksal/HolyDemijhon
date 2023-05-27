@@ -51,7 +51,7 @@ public class Door {
             public void run() {
                 Level.isDoorOpened = true;
             }
-        },1);
+        },0.5f);
 
     }
 }

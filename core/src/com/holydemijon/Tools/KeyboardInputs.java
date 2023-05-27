@@ -3,6 +3,8 @@ package com.holydemijon.Tools;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.utils.Timer;
+import com.holydemijon.Sprites.Animations.JohnAnimation;
 import com.holydemijon.Sprites.John;
 import com.holydemijon.HolyDemijhon;
 
@@ -21,7 +23,7 @@ public class KeyboardInputs implements InputProcessor {
 
     public void processInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            player.jump();
+            player.jump(John.JUMP_HEIGHT);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2dbody.getLinearVelocity().x >= -John.MAX_LINEAR_VELOCITY) {
             player.move(-1);
@@ -30,10 +32,24 @@ public class KeyboardInputs implements InputProcessor {
             player.move(1);
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
-            player.simpleAttack();
+            JohnAnimation.performSimpleAttack = true;
+            Timer timer = new Timer();
+            timer.scheduleTask(new Timer.Task() {
+                @Override
+                public void run() {
+                    player.simpleAttack();
+                }
+            },0.25f);
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
-            player.heavyAttack();
+            JohnAnimation.performHeavyAttack = true;
+            Timer timer = new Timer();
+            timer.scheduleTask(new Timer.Task() {
+                @Override
+                public void run() {
+                    player.heavyAttack();
+                }
+            },0.25f);
         }
     }
     @Override

@@ -59,7 +59,7 @@ public class JohnAnimation extends Sprite {
         johnRun = new Animation<TextureRegion>(0.1f, atlas.findRegions("running"), Animation.PlayMode.LOOP);
         johnIdle = new Animation<TextureRegion>(0.2f, atlas.findRegions("idle"), Animation.PlayMode.LOOP);
         simpleAttack = new Animation<TextureRegion>(0.1f, atlas.findRegions("attack1"));
-        heavyAttack = new Animation<TextureRegion>(0.2f, atlas.findRegions("attack4"));
+        heavyAttack = new Animation<TextureRegion>(0.1f, atlas.findRegions("attack4"));
         dash = new Animation<TextureRegion>(0.1f, atlas.findRegions("jump"));
         takeDamage = new Animation<TextureRegion>(0.1f, atlas2.findRegions("damage"));
         die = new Animation<TextureRegion>(0.1f, atlas2.findRegions("death"));

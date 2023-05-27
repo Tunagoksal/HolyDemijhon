@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.holydemijon.Screens.Levels.FirstLevel;
+import com.holydemijon.Sprites.John;
 
 public abstract class Enemy extends Sprite {
 
@@ -31,11 +32,17 @@ public abstract class Enemy extends Sprite {
     public int getHealth() {
         return health;
     }
-    public void receiveSimpleAttack() {
-        health -= 100;
-        this.b2dbody.applyLinearImpulse(new Vector2(0, 3), this.b2dbody.getWorldCenter(), true);
+    public void receiveDamage(int damage) {
+        health -= damage;
+
+        if (John.johnPositionX < b2dbody.getPosition().x) {
+            b2dbody.applyLinearImpulse(new Vector2(1f, 2), this.b2dbody.getWorldCenter(), true);
+        }
+        else {
+            b2dbody.applyLinearImpulse(new Vector2(-1f, 2), this.b2dbody.getWorldCenter(), true);
+        }
+
     }
-    public void receiveHeavyAttack() {}
-    public void receiveFireballAttack() {}
+
     public abstract void kill();
 }

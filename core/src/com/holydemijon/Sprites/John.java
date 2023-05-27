@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.utils.Timer;
 import com.holydemijon.HolyDemijhon;
 import com.holydemijon.Sprites.Animations.JohnAnimation;
 import com.holydemijon.Sprites.Enemies.Enemy;
@@ -34,6 +35,8 @@ public class John extends Sprite {
 
     private BodyDef bodydef;
 
+    public static float johnPositionX;
+
     private int health = 100;
 
     public John(World level) {
@@ -49,11 +52,13 @@ public class John extends Sprite {
         inputs = new KeyboardInputs(this);
         Gdx.input.setInputProcessor(inputs);
 
+        johnPositionX = b2dbody.getPosition().x;
     }
 
     public void update(float dt) {
         inputs.update(dt);
         johnAnimation.update(dt);
+        johnPositionX = b2dbody.getPosition().x;
     }
 
     private void defJohn() {
@@ -75,23 +80,23 @@ public class John extends Sprite {
 
         fixDef.isSensor = true;
         PolygonShape attackRange = new PolygonShape();
-        attackRange.setAsBox(JOHN_WIDTH * 5 / HolyDemijhon.PPM, JOHN_HEIGHT / HolyDemijhon.PPM, new Vector2(JOHN_WIDTH / 2 / HolyDemijhon.PPM, 0), 0);
+        attackRange.setAsBox(JOHN_WIDTH * 6.5f / HolyDemijhon.PPM, JOHN_HEIGHT / HolyDemijhon.PPM, new Vector2(0, 0), 0);
         fixDef.shape = attackRange;
         b2dbody.createFixture(fixDef).setUserData("attack range");
     }
 
     public void simpleAttack() {
-        JohnAnimation.performSimpleAttack = true;
+
         if (attackableEnemy != null) {
-            attackableEnemy.receiveSimpleAttack();
+            attackableEnemy.receiveDamage(50);
             Gdx.app.log("Attack", "Enemy health:" + attackableEnemy.getHealth());
         }
     }
 
     public void heavyAttack() {
-        JohnAnimation.performHeavyAttack = true;
+
         if (attackableEnemy != null) {
-            attackableEnemy.receiveSimpleAttack();
+            attackableEnemy.receiveDamage(150);
             Gdx.app.log("Attack", "Enemy health:" + attackableEnemy.getHealth());
         }
     }
@@ -104,14 +109,15 @@ public class John extends Sprite {
             killJohn();
         }
         else {
-            jump();
+            jump(5f);
         }
     }
     public void killJohn() {
         JohnAnimation.performDeath = true;
+        jump(5f);
     }
-    public void jump(){
-            b2dbody.applyLinearImpulse(new Vector2(0, JUMP_HEIGHT), b2dbody.getWorldCenter(), true);
+    public void jump(float jumpingPower){
+            b2dbody.applyLinearImpulse(new Vector2(0, jumpingPower), b2dbody.getWorldCenter(), true);
     }
 
     public void move(int direction){

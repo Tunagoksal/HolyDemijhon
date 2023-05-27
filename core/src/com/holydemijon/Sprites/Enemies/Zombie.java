@@ -8,8 +8,10 @@ import com.holydemijon.Sprites.Animations.ZombieAnimation;
 
 public class Zombie extends Enemy {
 
-    private static final float ZOMBIE_WIDTH = 6;
-    private static final float ZOMBIE_HEIGHT = 10;
+    public static final float ZOMBIE_WIDTH = 6;
+    public static final float ZOMBIE_HEIGHT = 10;
+    public static final int ZOMBIE_DAMAGE = 50;
+
 
     TextureAtlas atlas;
     private ZombieAnimation zombieAnimation;

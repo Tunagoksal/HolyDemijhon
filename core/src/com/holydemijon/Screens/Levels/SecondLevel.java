@@ -17,18 +17,10 @@ import com.holydemijon.Tools.WorldContactListener;
 public class SecondLevel extends Level {
 
     private John player;
+
     private TmxMapLoader mapLoader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
-
-    private WorldContactListener listener;
-
-    private OrthographicCamera cam;
-    private Viewport viewport;
-
-    private World world;
-    private Box2DDebugRenderer b2dbr;
-    private Box2DWorldCreator b2dwc;
 
     public SecondLevel(HolyDemijhon game){
 
@@ -36,11 +28,7 @@ public class SecondLevel extends Level {
 
         cam = new OrthographicCamera();
         viewport = new FitViewport(HolyDemijhon.WIDTH / HolyDemijhon.PPM, HolyDemijhon.HEIGHT / HolyDemijhon.PPM, cam);
-        //viewport.setScreenSize(360,360);
         viewport.setWorldSize(640 / HolyDemijhon.PPM,360 / HolyDemijhon.PPM);
-
-        listener = new WorldContactListener();
-        //inputs = new KeyboardInputs(this);
 
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("level2.tmx");

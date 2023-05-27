@@ -5,15 +5,30 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.Sprites.John;
 import com.holydemijon.HolyDemijhon;
 import com.holydemijon.Scenes.HUD;
+import com.holydemijon.Tools.Box2DWorldCreator;
+import com.holydemijon.Tools.WorldContactListener;
 
 
 public abstract class Level extends ScreenAdapter {
 
     protected HolyDemijhon game;
-    private HUD hud;
+    protected HUD hud;
+
+    protected WorldContactListener listener;
+    protected OrthographicCamera cam;
+    protected Viewport viewport;
+
+    protected World world;
+    protected Box2DDebugRenderer b2dbr;
+    protected Box2DWorldCreator b2dwc;
 
     public static boolean isDoorOpened = false;
 
@@ -23,10 +38,10 @@ public abstract class Level extends ScreenAdapter {
     private John player;
 
     public Level(HolyDemijhon game){
-
         this.game = game;
         hud = new HUD(game.batch);
 
+        listener = new WorldContactListener();
     }
 
     @Override

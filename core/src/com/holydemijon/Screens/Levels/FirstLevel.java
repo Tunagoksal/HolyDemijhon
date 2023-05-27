@@ -16,7 +16,6 @@ import com.holydemijon.Tools.WorldContactListener;
 
 public class FirstLevel extends Level {
 
-
     private Zombie zombie;
     private John player;
 
@@ -24,26 +23,13 @@ public class FirstLevel extends Level {
     private TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
 
-    private WorldContactListener listener;
-
-    private OrthographicCamera cam;
-    private Viewport viewport;
-
-    private World world;
-    private Box2DDebugRenderer b2dbr;
-    private Box2DWorldCreator b2dwc;
-
     public FirstLevel(HolyDemijhon game){
 
         super(game);
 
         cam = new OrthographicCamera();
         viewport = new FitViewport(HolyDemijhon.WIDTH / HolyDemijhon.PPM, HolyDemijhon.HEIGHT / HolyDemijhon.PPM, cam);
-        //viewport.setScreenSize(360,360);
         viewport.setWorldSize(640 / HolyDemijhon.PPM,360 / HolyDemijhon.PPM);
-
-        listener = new WorldContactListener();
-        //inputs = new KeyboardInputs(this);
 
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("level1.tmx");
@@ -63,9 +49,7 @@ public class FirstLevel extends Level {
         world.setContactListener(listener);
     }
     @Override
-    public void show() {
-
-    }
+    public void show() {}
 
     public World getWorld() {
         return world;
@@ -73,10 +57,6 @@ public class FirstLevel extends Level {
 
     public John getPlayer() {
         return player;
-    }
-
-    public WorldContactListener getListener() {
-        return listener;
     }
 
     public void update(float dt){
@@ -91,26 +71,6 @@ public class FirstLevel extends Level {
         mapRenderer.setView(cam);
     }
 
-    /*
-    private void handleInput(float dt) {
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2dbody.getLinearVelocity().x >= -MAX_LINEAR_VELOCITY){
-
-            player.move(-1);
-            //cam.translate(-100 * dt,0);
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2dbody.getLinearVelocity().x <= MAX_LINEAR_VELOCITY){
-
-            player.move(1);
-            //cam.translate(100 * dt,0);
-        }
-
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            player.jump();
-        }
-
-    }*/
-
     @Override
     public void render(float delta) {
 
@@ -119,56 +79,27 @@ public class FirstLevel extends Level {
         update(delta);
         levelOver(HolyDemijhon.FIRST_LEVEL);
 
-        /*
-        Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        super.getGame().batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        hud.stage.draw();*/
-
         mapRenderer.setView(cam);
         mapRenderer.render();
 
         b2dbr.render(world, cam.combined);
 
         /*
-        // endgame geçiş bunun da yeri düzenlenebilir ileride
         if(health == 0){
-            super.getGame().setScreens(HolyDemijhon.END_GAME_SCREEN);
+            super.getGame().setScreens(HolyDemijhon.(GAME OVER MENU GELECEK));
         }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.P)){
-            Gdx.input.setInputProcessor(super.getGame().getMainMenu().getStage());
-            super.getGame().setScreens(HolyDemijhon.MAIN_MENU_SCREEN);
-        }*/
-
+        */
 
         game.batch.setProjectionMatrix(cam.combined);
         game.batch.begin();
         player.getJohnAnimation().draw(game.batch);
         zombie.getZombieAnimation().draw(game.batch);
         game.batch.end();
-
-
     }
 
     @Override
     public void resize(int width, int height) {
         viewport.update(width,height);
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
     }
 
     @Override

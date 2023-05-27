@@ -4,7 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.physics.box2d.*;
 import com.holydemijon.Sprites.Animations.JohnAnimation;
+import com.holydemijon.Sprites.Animations.ZombieAnimation;
 import com.holydemijon.Sprites.Enemies.Enemy;
+import com.holydemijon.Sprites.Enemies.Zombie;
 import com.holydemijon.Sprites.Items.Door;
 import com.holydemijon.Sprites.John;
 import com.holydemijon.Sprites.TileObjects.InteractiveTileObject;
@@ -17,11 +19,11 @@ public class WorldContactListener implements ContactListener {
         Fixture fixtureA = contact.getFixtureA();
         Fixture fixtureB = contact.getFixtureB();
 
-        if (fixtureA.getUserData().equals("player") || fixtureB.getUserData().equals("player")) {
+        if (fixtureA.getUserData() instanceof John || fixtureB.getUserData() instanceof John) {
             Fixture player = null;
             Fixture object = null;
 
-            if (fixtureA.getUserData().equals("player")) {
+            if (fixtureA.getUserData() instanceof John) {
                 player = fixtureA;
                 object = fixtureB;
             }
@@ -36,6 +38,12 @@ public class WorldContactListener implements ContactListener {
 
             if (object.getUserData() != null && object.getUserData() instanceof Door) {
                 ((Door) object.getUserData()).collision();
+            }
+
+            if (object.getUserData() != null && object.getUserData() instanceof Enemy) {
+                if (object.getUserData() instanceof Zombie) {
+                    ((John) player.getUserData()).takeDamage(Zombie.ZOMBIE_DAMAGE);
+                }
             }
         }
 

@@ -25,6 +25,7 @@ public class John extends Sprite {
     public World level;
     public Body b2dbody;
     private TextureAtlas atlas;
+    private TextureAtlas atlas2;
     private JohnAnimation johnAnimation;
 
     public static boolean lookingRight;
@@ -40,7 +41,8 @@ public class John extends Sprite {
         defJohn();
 
         atlas = new TextureAtlas("animations/characterAnimations.atlas");
-        johnAnimation = new JohnAnimation(atlas, b2dbody);
+        atlas2 = new TextureAtlas("animations/player_death.atlas");
+        johnAnimation = new JohnAnimation(atlas, atlas2, b2dbody);
         attackableEnemy = null;
         lookingRight = true;
 
@@ -69,7 +71,7 @@ public class John extends Sprite {
                 HolyDemijhon.ENEMY_BIT;
 
         fixDef.shape = shape;
-        b2dbody.createFixture(fixDef).setUserData("player");
+        b2dbody.createFixture(fixDef).setUserData(this);
 
         fixDef.isSensor = true;
         PolygonShape attackRange = new PolygonShape();
@@ -93,21 +95,30 @@ public class John extends Sprite {
             Gdx.app.log("Attack", "Enemy health:" + attackableEnemy.getHealth());
         }
     }
-    public void jump(float jumpforce){
-            b2dbody.applyLinearImpulse(new Vector2(0, jumpforce), b2dbody.getWorldCenter(), true);
+
+    public void takeDamage(int damage) {
+        JohnAnimation.performTakingDamage = true;
+        health -= damage;
+
+        if (health <= 0) {
+            killJohn();
+        }
+        else {
+            jump();
+        }
+    }
+    public void killJohn() {
+        JohnAnimation.performDeath = true;
+    }
+    public void jump(){
+            b2dbody.applyLinearImpulse(new Vector2(0, JUMP_HEIGHT), b2dbody.getWorldCenter(), true);
     }
 
     public void move(int direction){
         b2dbody.applyLinearImpulse(new Vector2(PLAYER_ACCELERATION * direction, 0), b2dbody.getWorldCenter(), true);
     }
 
-    public void changeHealth(int health) {
-        this.health += health;
-    }
-
-    public int getHealth() {
-        return health;
-    }
+    public int getHealth() { return health; }
 
     public JohnAnimation getJohnAnimation() {
         return johnAnimation;
@@ -115,9 +126,5 @@ public class John extends Sprite {
 
     public World getLevel() {
         return level;
-    }
-
-    public BodyDef getBodydef() {
-        return bodydef;
     }
 }

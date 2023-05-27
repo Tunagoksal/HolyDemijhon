@@ -21,7 +21,7 @@ public class KeyboardInputs implements InputProcessor {
 
     public void processInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            player.jump(4f);
+            player.jump();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2dbody.getLinearVelocity().x >= -John.MAX_LINEAR_VELOCITY) {
             player.move(-1);

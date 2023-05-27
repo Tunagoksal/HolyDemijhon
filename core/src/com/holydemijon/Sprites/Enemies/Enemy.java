@@ -28,6 +28,8 @@ public abstract class Enemy extends Sprite {
         destroyed = false;
     }
 
+    public abstract void update(float dt);
+
     protected abstract void defEnemy();
     public int getHealth() {
         return health;
@@ -42,7 +44,9 @@ public abstract class Enemy extends Sprite {
             b2dbody.applyLinearImpulse(new Vector2(-1f, 2), this.b2dbody.getWorldCenter(), true);
         }
 
+        if (health <= 0) {
+            die();
+        }
     }
-
-    public abstract void kill();
+    public abstract void die();
 }

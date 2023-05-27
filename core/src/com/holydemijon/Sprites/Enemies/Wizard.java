@@ -16,6 +16,11 @@ public class Wizard extends Enemy {
     }
 
     @Override
+    public void update(float dt) {
+
+    }
+
+    @Override
     protected void defEnemy() {
         BodyDef bodydef = new BodyDef();
         bodydef.position.set(this.getX(), this.getY());
@@ -36,7 +41,7 @@ public class Wizard extends Enemy {
     }
 
     @Override
-    public void kill() {
+    public void die() {
 
     }
 }

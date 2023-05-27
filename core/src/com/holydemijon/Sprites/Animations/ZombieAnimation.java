@@ -1,16 +1,15 @@
 package com.holydemijon.Sprites.Animations;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.holydemijon.HolyDemijhon;
+import com.holydemijon.Sprites.Enemies.Zombie;
 
 public class ZombieAnimation extends Sprite {
 
     Body body;
-    public enum State {ATTACK, IDLE, RUN}
+    Zombie zombie;
+    public enum State {ATTACK, IDLE, RUN, DIE}
 
     private Animation<TextureRegion> zombieAttack;
     private Animation<TextureRegion> zombieIdle;
@@ -21,13 +20,16 @@ public class ZombieAnimation extends Sprite {
     private State currentState;
     private State previousState;
     private boolean isAttacking;
+    private boolean isDead;
 
-    public ZombieAnimation(TextureAtlas atlas, Body body, int state) {
+    public ZombieAnimation(Zombie zombie, TextureAtlas atlas, Body body, int state) {
         super(atlas.findRegion("idle"));
         this.body = body;
+        this.zombie = zombie;
 
         stateTimer = 0;
         runningRight = true;
+        isDead = false;
 
         if (state == 0) {
             currentState = State.RUN;
@@ -54,15 +56,19 @@ public class ZombieAnimation extends Sprite {
     public TextureRegion getFrame(float dt) {
         currentState = getState();
 
-        TextureRegion region;
-        if (currentState == State.RUN) {
-            region = zombieRun.getKeyFrame(stateTimer);
-        }
-        else if (currentState == State.ATTACK) {
-            region = zombieAttack.getKeyFrame(stateTimer);
-        }
-        else {
-            region = zombieIdle.getKeyFrame(stateTimer);
+        TextureRegion region = null;
+        switch (currentState) {
+            case DIE:
+                //region = zombieDie.getKeyFrame(stateTimer);
+                break;
+            case ATTACK:
+                region = zombieAttack.getKeyFrame(stateTimer);
+                break;
+            case RUN:
+                region = zombieRun.getKeyFrame(stateTimer);
+                break;
+            default:
+                region = zombieIdle.getKeyFrame(stateTimer);
         }
 
         if ((body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()) {
@@ -87,8 +93,15 @@ public class ZombieAnimation extends Sprite {
     }
 
     public State getState() {
-        if (isAttacking) {return State.ATTACK;}
-        else if (body.getLinearVelocity().x != 0) {return State.RUN;}
-        else {return State.IDLE;}
+        if (isDead) { return State.DIE; }
+        else if (isAttacking) { return State.ATTACK; }
+        else if (body.getLinearVelocity().x != 0) { return State.RUN; }
+        else { return State.IDLE; }
+    }
+
+    public void draw(Batch batch) {
+        if (!zombie.destroyed || stateTimer < 1) {
+            super.draw(batch);
+        }
     }
 }

@@ -9,12 +9,17 @@ public class Slime extends Enemy {
     }
 
     @Override
+    public void update(float dt) {
+
+    }
+
+    @Override
     protected void defEnemy() {
 
     }
 
     @Override
-    public void kill() {
+    public void die() {
 
     }
 }

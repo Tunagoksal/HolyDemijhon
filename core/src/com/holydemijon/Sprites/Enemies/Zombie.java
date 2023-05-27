@@ -19,11 +19,16 @@ public class Zombie extends Enemy {
         super(screen, x, y);
 
         atlas = new TextureAtlas("animations/zombieAnimations.atlas");
-        zombieAnimation = new ZombieAnimation(atlas, b2dbody, zombieState);
+        zombieAnimation = new ZombieAnimation(this, atlas, b2dbody, zombieState);
         health = 200;
     }
-
+    @Override
     public void update(float dt) {
+        if (setToDestroy && !destroyed) {
+            world.destroyBody(b2dbody);
+            destroyed = true;
+            //zombieAnimation.kil
+        }
         zombieAnimation.update(dt);
     }
 
@@ -52,7 +57,7 @@ public class Zombie extends Enemy {
     }
 
     @Override
-    public void kill() {
+    public void die() {
         setToDestroy = true;
     }
 }

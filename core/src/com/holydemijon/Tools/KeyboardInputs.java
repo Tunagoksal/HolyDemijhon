@@ -49,6 +49,14 @@ public class KeyboardInputs implements InputProcessor {
                 }
             },0.25f);
         }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+                player.johnDash(1);
+            }
+            else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+                player.johnDash(-1);
+            }
+        }
     }
     @Override
     public boolean keyDown(int keycode) {return false;}

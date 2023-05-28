@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.utils.Timer;
 import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Sprites.Animations.JohnAnimation;
 import com.holydemijon.Sprites.Enemies.Enemy;
@@ -20,6 +21,7 @@ public class John extends Sprite {
     public static final float JOHN_HEIGHT = 7;
 
     public static final int JOHN_HEALTH = 100;
+    private static final float DASH_POWER = 2;
 
     private KeyboardInputs inputs;
 
@@ -99,6 +101,31 @@ public class John extends Sprite {
         if (attackableEnemy != null) {
             attackableEnemy.receiveDamage(150);
             Gdx.app.log("Attack", "Enemy health:" + attackableEnemy.getHealth());
+        }
+    }
+
+    public void johnDash(int dashDirection) {
+        JohnAnimation.performDash = true;
+
+        if (dashDirection > 0) {
+            b2dbody.applyLinearImpulse(new Vector2(DASH_POWER, 0), b2dbody.getWorldCenter(), true);
+            Timer timer = new Timer();
+            timer.scheduleTask(new Timer.Task() {
+                @Override
+                public void run() {
+                    b2dbody.applyLinearImpulse(new Vector2(-DASH_POWER / 2, 0), b2dbody.getWorldCenter(), true);
+                }
+            },0.4f);
+        }
+        else {
+            b2dbody.applyLinearImpulse(new Vector2(-DASH_POWER, 0), b2dbody.getWorldCenter(), true);
+            Timer timer = new Timer();
+            timer.scheduleTask(new Timer.Task() {
+                @Override
+                public void run() {
+                    b2dbody.applyLinearImpulse(new Vector2(DASH_POWER / 2, 0), b2dbody.getWorldCenter(), true);
+                }
+            },0.4f);
         }
     }
 

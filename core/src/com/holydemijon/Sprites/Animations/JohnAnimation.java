@@ -51,16 +51,12 @@ public class JohnAnimation extends Sprite {
         performTakingDamage = false;
         performDeath = false;
 
-        Array<TextureRegion> frames = new Array<TextureRegion>();
-        for (int i = 0; i < 2; i++) {
-            frames.add(new TextureRegion(getTexture(), i * 82 + 2, 0, 80, 64));
-        }
-        johnJump = new Animation<TextureRegion>(0.1f, frames);
+        johnJump = new Animation<TextureRegion>(0.1f, atlas.findRegions("jump"));
         johnRun = new Animation<TextureRegion>(0.1f, atlas.findRegions("running"), Animation.PlayMode.LOOP);
         johnIdle = new Animation<TextureRegion>(0.2f, atlas.findRegions("idle"), Animation.PlayMode.LOOP);
         simpleAttack = new Animation<TextureRegion>(0.1f, atlas.findRegions("attack1"));
         heavyAttack = new Animation<TextureRegion>(0.1f, atlas.findRegions("attack4"));
-        dash = new Animation<TextureRegion>(0.1f, atlas.findRegions("jump"));
+        dash = new Animation<TextureRegion>(0.1f, atlas.findRegions("roll"));
         takeDamage = new Animation<TextureRegion>(0.1f, atlas2.findRegions("damage"));
         die = new Animation<TextureRegion>(0.15f, atlas2.findRegions("death"));
 

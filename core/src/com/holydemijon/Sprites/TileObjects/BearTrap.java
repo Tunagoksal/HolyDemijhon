@@ -21,9 +21,6 @@ public class BearTrap extends InteractiveTileObject {
     @Override
     public void johnCollision() {
         John.steppedOnTrap = true;
-        Filter filter = new Filter();
-        filter.maskBits = HolyDemijohn.OBJECT_BIT;
-        fixture.setFilterData(filter);
     }
 
     @Override

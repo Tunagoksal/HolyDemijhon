@@ -20,7 +20,7 @@ public class John extends Sprite {
     public static final float JOHN_WIDTH = 4;
     public static final float JOHN_HEIGHT = 7;
 
-    public static final int JOHN_HEALTH = 100;
+    public static final int JOHN_HEALTH = 500;
     private static final float DASH_POWER = 2;
 
     private KeyboardInputs inputs;
@@ -144,10 +144,16 @@ public class John extends Sprite {
         JohnAnimation.performDeath = true;
         johnIsDead = true;
     }
+    //Applies linear impulse in the direction of positive y-axis
     public void jump(float jumpingPower){
             b2dbody.applyLinearImpulse(new Vector2(0, jumpingPower), b2dbody.getWorldCenter(), true);
     }
 
+    //Resets the linear velocity and gives the player a bounce with bounceForce
+    public void bounce(float bounceForceX, float bounceForceY) {
+
+        b2dbody.setLinearVelocity(bounceForceX, bounceForceY);
+    }
     public void move(int direction){
         b2dbody.applyLinearImpulse(new Vector2(PLAYER_ACCELERATION * direction, 0), b2dbody.getWorldCenter(), true);
     }

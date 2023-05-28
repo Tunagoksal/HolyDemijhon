@@ -40,10 +40,10 @@ public class WorldContactListener implements ContactListener {
 
                 if (object.getUserData() instanceof Spikes) {
                     ((John) player.getUserData()).takeDamage(Spikes.SPIKE_DAMAGE);
-                    ((John) player.getUserData()).jump(8f);
+                    ((John) player.getUserData()).bounce(0, 6);
                 }
                 else if (object.getUserData() instanceof Trampoline) {
-                    ((John) player.getUserData()).jump(Trampoline.JUMPING_HEIGHT);
+                    ((John) player.getUserData()).bounce(0, Trampoline.JUMPING_HEIGHT);
                 }
 
             }
@@ -55,10 +55,10 @@ public class WorldContactListener implements ContactListener {
             if (object.getUserData() != null && object.getUserData() instanceof Enemy) {
 
                 if (John.johnPositionX < ((Enemy) object.getUserData()).getPositionX()) {
-                    ((John) player.getUserData()).b2dbody.applyLinearImpulse(new Vector2(-2, 2), ((John) player.getUserData()).b2dbody.getWorldCenter(), true);
+                    ((John) player.getUserData()).bounce(-2, 2);
                 }
                 else {
-                    ((John) player.getUserData()).b2dbody.applyLinearImpulse(new Vector2(2, 2), ((John) player.getUserData()).b2dbody.getWorldCenter(), true);
+                    ((John) player.getUserData()).bounce(2, 2);
                 }
 
                 if (object.getUserData() instanceof Zombie) {

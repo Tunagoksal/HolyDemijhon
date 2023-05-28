@@ -2,6 +2,8 @@ package com.holydemijon.Tools;
 
 import com.badlogic.gdx.physics.box2d.*;
 import com.holydemijon.Sprites.Enemies.Enemy;
+import com.holydemijon.Sprites.Enemies.Orc;
+import com.holydemijon.Sprites.Enemies.Wizard;
 import com.holydemijon.Sprites.Enemies.Zombie;
 import com.holydemijon.Sprites.Items.Door;
 import com.holydemijon.Sprites.John;
@@ -45,6 +47,12 @@ public class WorldContactListener implements ContactListener {
 
                 if (object.getUserData() instanceof Zombie) {
                     ((John) player.getUserData()).takeDamage(Zombie.ZOMBIE_DAMAGE);
+                }
+                else if (object.getUserData() instanceof Orc) {
+                    ((John) player.getUserData()).takeDamage(Orc.ORC_DAMAGE);
+                }
+                else if (object.getUserData() instanceof Wizard) {
+                    ((John) player.getUserData()).takeDamage(Wizard.WIZARD_DAMAGE);
                 }
             }
         }

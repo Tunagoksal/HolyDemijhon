@@ -8,7 +8,10 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Timer;
 import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Sprites.Animations.JohnAnimation;
+import com.holydemijon.Sprites.Animations.WizardAnimation;
 import com.holydemijon.Sprites.Enemies.Enemy;
+import com.holydemijon.Sprites.Enemies.Orc;
+import com.holydemijon.Sprites.Enemies.Wizard;
 import com.holydemijon.Sprites.Enemies.Zombie;
 import com.holydemijon.Sprites.TileObjects.Spikes;
 import com.holydemijon.Sprites.TileObjects.Trampoline;
@@ -226,10 +229,12 @@ public class John extends Sprite {
             if (enemyStepped instanceof Zombie) {
                 takeDamage(Zombie.ZOMBIE_DAMAGE);
             }
-            /*
             else if (enemyStepped instanceof Orc) {
                 takeDamage(Orc.ORC_DAMAGE);
-            }*/
+            }
+            else if (enemyStepped instanceof Wizard) {
+                takeDamage(Wizard.WIZARD_DAMAGE);
+            }
 
             steppedOnEnemy = false;
             enemyStepped = null;

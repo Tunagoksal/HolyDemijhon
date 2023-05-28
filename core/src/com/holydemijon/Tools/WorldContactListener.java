@@ -179,7 +179,7 @@ public class WorldContactListener implements ContactListener {
                 John.attackableEnemy1 = null;
         }
 
-        if ((fixtureA.getUserData().equals("border") || fixtureB.getUserData().equals("border")) &&
+        if ((fixtureA.getUserData() instanceof Border || fixtureB.getUserData() instanceof Border) &&
                 (fixtureA.getUserData() instanceof John || fixtureB.getUserData() instanceof John)) {
 
             Fixture player = null;

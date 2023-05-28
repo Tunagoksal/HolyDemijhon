@@ -30,9 +30,8 @@ public class Border {
 
         fixtureDef.isSensor = true;
         fixtureDef.shape = shape;
-        fixture = body.createFixture(fixtureDef);
+        body.createFixture(fixtureDef).setUserData(this);
 
-        fixture.setUserData(this);
     }
 
     public void collision() {

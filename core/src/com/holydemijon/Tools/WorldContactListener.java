@@ -5,9 +5,12 @@ import com.holydemijon.Sprites.Enemies.Enemy;
 import com.holydemijon.Sprites.Enemies.Orc;
 import com.holydemijon.Sprites.Enemies.Wizard;
 import com.holydemijon.Sprites.Enemies.Zombie;
+import com.holydemijon.Sprites.Items.Border;
 import com.holydemijon.Sprites.Items.Door;
 import com.holydemijon.Sprites.John;
 import com.holydemijon.Sprites.TileObjects.*;
+
+import javax.imageio.metadata.IIOMetadataNode;
 
 public class WorldContactListener implements ContactListener {
     @Override
@@ -174,6 +177,21 @@ public class WorldContactListener implements ContactListener {
                 John.attackableEnemy2 = null;
             else
                 John.attackableEnemy1 = null;
+        }
+
+        if ((fixtureA.getUserData().equals("border") || fixtureB.getUserData().equals("border")) &&
+                (fixtureA.getUserData() instanceof John || fixtureB.getUserData() instanceof John)) {
+
+            Fixture player = null;
+
+            if (fixtureA.getUserData() instanceof John) {
+                player = fixtureA;
+            }
+            else {
+                player = fixtureB;
+            }
+            ((John) player.getUserData()).takeDamage(10000);
+
         }
 
 

@@ -1,0 +1,195 @@
+
+zombie_animations.png
+size: 1024, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+attack
+  rotate: false
+  xy: 2, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
+attack
+  rotate: false
+  xy: 36, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
+attack
+  rotate: false
+  xy: 70, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
+attack
+  rotate: false
+  xy: 104, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 4
+damage
+  rotate: false
+  xy: 138, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
+damage
+  rotate: false
+  xy: 172, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
+damage
+  rotate: false
+  xy: 206, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
+damage
+  rotate: false
+  xy: 240, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 4
+death
+  rotate: false
+  xy: 138, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
+death
+  rotate: false
+  xy: 172, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
+death
+  rotate: false
+  xy: 206, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
+death
+  rotate: false
+  xy: 240, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 4
+death
+  rotate: false
+  xy: 274, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 5
+death
+  rotate: false
+  xy: 308, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 6
+death
+  rotate: false
+  xy: 342, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 7
+death
+  rotate: false
+  xy: 376, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 8
+death
+  rotate: false
+  xy: 410, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 9
+death
+  rotate: false
+  xy: 444, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 10
+idle
+  rotate: false
+  xy: 478, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
+idle
+  rotate: false
+  xy: 512, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
+idle
+  rotate: false
+  xy: 546, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
+idle
+  rotate: false
+  xy: 580, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 4
+run
+  rotate: false
+  xy: 614, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
+run
+  rotate: false
+  xy: 648, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
+run
+  rotate: false
+  xy: 682, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
+run
+  rotate: false
+  xy: 716, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 4
+run
+  rotate: false
+  xy: 750, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 5

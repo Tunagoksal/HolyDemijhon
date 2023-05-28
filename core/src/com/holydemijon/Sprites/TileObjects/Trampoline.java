@@ -2,6 +2,7 @@ package com.holydemijon.Sprites.TileObjects;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.holydemijon.Screens.Levels.Level;
+import com.holydemijon.Sprites.Enemies.Enemy;
 import com.holydemijon.Sprites.John;
 
 public class Trampoline extends InteractiveTileObject {
@@ -15,7 +16,12 @@ public class Trampoline extends InteractiveTileObject {
     }
 
     @Override
-    public void collision() {
+    public void johnCollision() {
         John.steppedOnTrampoline = true;
+    }
+
+    @Override
+    public void enemyCollision(Enemy enemy) {
+        enemy.b2dbody.setLinearVelocity(enemy.b2dbody.getLinearVelocity().x, 8);
     }
 }

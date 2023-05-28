@@ -1,24 +1,43 @@
 package com.holydemijon.Sprites.Enemies;
 
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Screens.Levels.FirstLevel;
+import com.holydemijon.Screens.Levels.Level;
+import com.holydemijon.Sprites.Animations.WizardAnimation;
+import com.holydemijon.Sprites.Animations.ZombieAnimation;
 
 public class Wizard extends Enemy {
 
-    private static final float WIZARD_WIDTH = 4;
-    private static final float WIZARD_HEIGHT = 7;
-    public Wizard(FirstLevel screen, float x, float y) {
-        super(screen, x, y);
-        health = 100;
+    public static final float WIZARD_WIDTH = 5;
+    public static final float WIZARD_HEIGHT = 8;
+    public static final int WIZARD_HEALTH = 200;
+    public static final int WIZARD_DAMAGE = 25;
+
+
+    TextureAtlas atlas;
+    private WizardAnimation wizardAnimation;
+    public Wizard(Level level, float x, float y, int wizardState) {
+        super(level, x, y);
+
+        atlas = new TextureAtlas("animations/wizard_animations.atlas");
+        wizardAnimation = new WizardAnimation(this, atlas, b2dbody, wizardState);
+        health = WIZARD_HEALTH;
     }
 
     @Override
     public void update(float dt) {
-
+        if (setToDestroy && !destroyed) {
+            world.destroyBody(b2dbody);
+            destroyed = true;
+        }
+        wizardAnimation.update(dt);
     }
+
+    public WizardAnimation getWizardAnimation() { return wizardAnimation; }
 
     @Override
     protected void defEnemy() {
@@ -41,7 +60,13 @@ public class Wizard extends Enemy {
     }
 
     @Override
-    public void die() {
+    public void receiveDamage(int damage) {
+        super.receiveDamage(damage);
+        WizardAnimation.performTakingDamage = true;
 
+        if (health <= 0) {
+            WizardAnimation.performDeath = true;
+            setToDestroy = true;
+        }
     }
 }

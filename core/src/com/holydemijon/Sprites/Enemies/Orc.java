@@ -1,28 +1,30 @@
 package com.holydemijon.Sprites.Enemies;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.holydemijon.HolyDemijohn;
-import com.holydemijon.Screens.Levels.FirstLevel;
 import com.holydemijon.Screens.Levels.Level;
+import com.holydemijon.Sprites.Animations.OrcAnimation;
 import com.holydemijon.Sprites.Animations.ZombieAnimation;
 
-public class Zombie extends Enemy {
+public class Orc extends Enemy {
 
-    public static final float ZOMBIE_WIDTH = 8;
-    public static final float ZOMBIE_HEIGHT = 11;
-    public static final int ZOMBIE_DAMAGE = 50;
-    public static final int ZOMBIE_HEALTH = 500;
+    public static final float ORC_WIDTH = 9;
+    public static final float ORC_HEIGHT = 13;
+    public static final int ORC_DAMAGE = 50;
+    public static final int ORC_HEALTH = 500;
 
 
     TextureAtlas atlas;
-    private ZombieAnimation zombieAnimation;
-    public Zombie(Level level, float x, float y, int zombieState) {
+    private OrcAnimation orcAnimation;
+    public Orc(Level level, float x, float y, int orcState) {
         super(level, x, y);
 
-        atlas = new TextureAtlas("animations/zombie_animations.atlas");
-        zombieAnimation = new ZombieAnimation(this, atlas, b2dbody, zombieState);
-        health = ZOMBIE_HEALTH;
+        atlas = new TextureAtlas("animations/orc_animations.atlas");
+        orcAnimation = new OrcAnimation(this, atlas, b2dbody, orcState);
+        health = ORC_HEALTH;
     }
     @Override
     public void update(float dt) {
@@ -30,11 +32,11 @@ public class Zombie extends Enemy {
             world.destroyBody(b2dbody);
             destroyed = true;
         }
-        zombieAnimation.update(dt);
+        orcAnimation.update(dt);
     }
 
-    public ZombieAnimation getZombieAnimation() {
-        return zombieAnimation;
+    public OrcAnimation getOrcAnimation() {
+        return orcAnimation;
     }
 
     @Override
@@ -46,7 +48,7 @@ public class Zombie extends Enemy {
 
         FixtureDef fixDef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(ZOMBIE_WIDTH / HolyDemijohn.PPM, ZOMBIE_HEIGHT / HolyDemijohn.PPM);
+        shape.setAsBox(ORC_WIDTH / HolyDemijohn.PPM, ORC_HEIGHT / HolyDemijohn.PPM);
 
         fixDef.filter.categoryBits = HolyDemijohn.ENEMY_BIT;
         fixDef.filter.maskBits = HolyDemijohn.OBJECT_BIT |
@@ -60,12 +62,11 @@ public class Zombie extends Enemy {
     @Override
     public void receiveDamage(int damage) {
         super.receiveDamage(damage);
-        ZombieAnimation.performTakingDamage = true;
+        OrcAnimation.performTakingDamage = true;
 
         if (health <= 0) {
-            ZombieAnimation.performDeath = true;
+            OrcAnimation.performDeath = true;
             setToDestroy = true;
         }
     }
-
 }

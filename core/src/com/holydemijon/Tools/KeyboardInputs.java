@@ -22,6 +22,7 @@ public class KeyboardInputs implements InputProcessor {
     public void processInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && John.remainingJumps > 0) {
             if (!John.isTouchingGround) {
+                JohnAnimation.performDash = true;
                 player.jump(John.JUMP_HEIGHT / 1.5f);
                 John.remainingJumps = 0;
             }
@@ -62,9 +63,11 @@ public class KeyboardInputs implements InputProcessor {
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && John.dashIsActive) {
             if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
                 player.johnDash(1);
+                John.dashUsed();
             }
             else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
                 player.johnDash(-1);
+                John.dashUsed();
             }
         }
     }

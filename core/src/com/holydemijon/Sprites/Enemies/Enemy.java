@@ -5,22 +5,23 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.holydemijon.Screens.Levels.FirstLevel;
+import com.holydemijon.Screens.Levels.Level;
 import com.holydemijon.Sprites.John;
 
 public abstract class Enemy extends Sprite {
 
-    protected FirstLevel screen;
+    protected Level level;
     protected World world;
-    protected Body b2dbody;
+    public Body b2dbody;
 
     public boolean setToDestroy;
     public boolean destroyed;
 
     public int health;
 
-    public Enemy(FirstLevel screen, float x, float y) {
-        this.world = screen.getWorld();
-        this.screen = screen;
+    public Enemy(Level level, float x, float y) {
+        this.world = level.getWorld();
+        this.level = level;
         setPosition(x, y);
         defEnemy();
 
@@ -44,10 +45,5 @@ public abstract class Enemy extends Sprite {
         else {
             b2dbody.applyLinearImpulse(new Vector2(-1f, 2), this.b2dbody.getWorldCenter(), true);
         }
-
-        if (health <= 0) {
-            die();
-        }
     }
-    public abstract void die();
 }

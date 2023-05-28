@@ -1,5 +1,5 @@
 
-orcAnimations.png
+orc_animations.png
 size: 2048, 64
 format: RGBA8888
 filter: Nearest, Nearest
@@ -55,112 +55,182 @@ attack
   index: 7
 death
   rotate: false
-  xy: 352, 4
+  xy: 652, 4
   size: 48, 32
   orig: 48, 32
   offset: 0, 0
   index: 1
+death
+  rotate: false
+  xy: 702, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 2
+death
+  rotate: false
+  xy: 752, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 3
+death
+  rotate: false
+  xy: 802, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 4
+death
+  rotate: false
+  xy: 352, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 5
 death
   rotate: false
   xy: 402, 4
   size: 48, 32
   orig: 48, 32
   offset: 0, 0
-  index: 2
+  index: 6
 death
   rotate: false
   xy: 452, 4
   size: 48, 32
   orig: 48, 32
   offset: 0, 0
-  index: 3
+  index: 7
 death
   rotate: false
   xy: 502, 4
   size: 48, 32
   orig: 48, 32
   offset: 0, 0
-  index: 4
-idle
+  index: 8
+death
   rotate: false
   xy: 552, 4
   size: 48, 32
   orig: 48, 32
   offset: 0, 0
-  index: 1
-idle
+  index: 9
+death
   rotate: false
   xy: 602, 4
   size: 48, 32
   orig: 48, 32
   offset: 0, 0
-  index: 2
-idle
+  index: 10
+damage
   rotate: false
   xy: 652, 4
   size: 48, 32
   orig: 48, 32
   offset: 0, 0
-  index: 3
-idle
+  index: 1
+damage
   rotate: false
   xy: 702, 4
   size: 48, 32
   orig: 48, 32
   offset: 0, 0
-  index: 4
-run
+  index: 2
+damage
   rotate: false
   xy: 752, 4
   size: 48, 32
   orig: 48, 32
   offset: 0, 0
-  index: 1
-run
+  index: 3
+damage
   rotate: false
   xy: 802, 4
   size: 48, 32
   orig: 48, 32
   offset: 0, 0
-  index: 2
-run
+  index: 4
+idle
   rotate: false
   xy: 852, 4
   size: 48, 32
   orig: 48, 32
   offset: 0, 0
-  index: 3
-run
+  index: 1
+idle
   rotate: false
   xy: 902, 4
   size: 48, 32
   orig: 48, 32
   offset: 0, 0
-  index: 4
-run
+  index: 2
+idle
   rotate: false
   xy: 952, 4
   size: 48, 32
   orig: 48, 32
   offset: 0, 0
-  index: 5
-run
+  index: 3
+idle
   rotate: false
   xy: 1002, 4
   size: 48, 32
   orig: 48, 32
   offset: 0, 0
-  index: 6
+  index: 4
 run
   rotate: false
   xy: 1052, 4
   size: 48, 32
   orig: 48, 32
   offset: 0, 0
-  index: 7
+  index: 1
 run
   rotate: false
   xy: 1102, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 2
+run
+  rotate: false
+  xy: 1152, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 3
+run
+  rotate: false
+  xy: 1202, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 4
+run
+  rotate: false
+  xy: 1252, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 5
+run
+  rotate: false
+  xy: 1302, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 6
+run
+  rotate: false
+  xy: 1352, 4
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: 7
+run
+  rotate: false
+  xy: 1402, 4
   size: 48, 32
   orig: 48, 32
   offset: 0, 0

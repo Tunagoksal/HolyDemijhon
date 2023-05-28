@@ -3,19 +3,19 @@ package com.holydemijon.Sprites.Animations;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.holydemijon.HolyDemijohn;
+import com.holydemijon.Sprites.Enemies.Orc;
 import com.holydemijon.Sprites.Enemies.Zombie;
 
-public class ZombieAnimation extends Sprite {
-
+public class OrcAnimation extends Sprite {
     Body body;
-    Zombie zombie;
+    Orc orc;
     public enum State {ATTACK, IDLE, RUN, DAMAGE, DEATH}
 
-    private Animation<TextureRegion> zombieAttack;
-    private Animation<TextureRegion> zombieIdle;
-    private Animation<TextureRegion> zombieRun;
-    private Animation<TextureRegion> zombieDamage;
-    private Animation<TextureRegion> zombieDeath;
+    private Animation<TextureRegion> orcAttack;
+    private Animation<TextureRegion> orcIdle;
+    private Animation<TextureRegion> orcRun;
+    private Animation<TextureRegion> orcDamage;
+    private Animation<TextureRegion> orcDeath;
 
     private float stateTimer;
     private boolean runningRight;
@@ -26,10 +26,10 @@ public class ZombieAnimation extends Sprite {
     public static boolean performTakingDamage;
     public static boolean performDeath;
 
-    public ZombieAnimation(Zombie zombie, TextureAtlas atlas, Body body, int state) {
+    public OrcAnimation(Orc orc, TextureAtlas atlas, Body body, int state) {
         super(atlas.findRegion("idle"));
         this.body = body;
-        this.zombie = zombie;
+        this.orc = orc;
 
         stateTimer = 0;
         runningRight = true;
@@ -47,21 +47,21 @@ public class ZombieAnimation extends Sprite {
             previousState = State.IDLE;
         }
 
-        zombieAttack = new Animation<TextureRegion>(0.1f, atlas.findRegions("attack"), Animation.PlayMode.LOOP);
-        zombieIdle = new Animation<TextureRegion>(0.2f, atlas.findRegions("idle"), Animation.PlayMode.LOOP);
-        zombieRun = new Animation<TextureRegion>(0.1f, atlas.findRegions("run"), Animation.PlayMode.LOOP);
-        zombieDamage = new Animation<TextureRegion>(0.1f, atlas.findRegions("damage"));
-        zombieDeath = new Animation<TextureRegion>(0.1f, atlas.findRegions("death"));
+        orcAttack = new Animation<TextureRegion>(0.1f, atlas.findRegions("attack"), Animation.PlayMode.LOOP);
+        orcIdle = new Animation<TextureRegion>(0.2f, atlas.findRegions("idle"), Animation.PlayMode.LOOP);
+        orcRun = new Animation<TextureRegion>(0.1f, atlas.findRegions("run"), Animation.PlayMode.LOOP);
+        orcDamage = new Animation<TextureRegion>(0.1f, atlas.findRegions("damage"));
+        orcDeath = new Animation<TextureRegion>(0.1f, atlas.findRegions("death"));
 
-        setBounds(getX(), getY(), 40 / HolyDemijohn.PPM, 40 / HolyDemijohn.PPM);
+        setBounds(getX(), getY(), 78 / HolyDemijohn.PPM, 64 / HolyDemijohn.PPM);
     }
 
     public void update(float dt) {
         stateTimer += dt;
-        setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 3f);
+        setPosition(body.getPosition().x - getWidth() / 3, body.getPosition().y - getHeight() / 4);
         setRegion(getFrame(dt));
 
-        if (zombieDamage.isAnimationFinished(stateTimer)) { performTakingDamage = false; }
+        if (orcDamage.isAnimationFinished(stateTimer)) { performTakingDamage = false; }
     }
 
     public TextureRegion getFrame(float dt) {
@@ -70,19 +70,19 @@ public class ZombieAnimation extends Sprite {
         TextureRegion region = null;
         switch (currentState) {
             case DEATH:
-                region = zombieDeath.getKeyFrame(stateTimer);
+                region = orcDeath.getKeyFrame(stateTimer);
                 break;
             case DAMAGE:
-                region = zombieDamage.getKeyFrame(stateTimer);
+                region = orcDamage.getKeyFrame(stateTimer);
                 break;
             case ATTACK:
-                region = zombieAttack.getKeyFrame(stateTimer);
+                region = orcAttack.getKeyFrame(stateTimer);
                 break;
             case RUN:
-                region = zombieRun.getKeyFrame(stateTimer);
+                region = orcRun.getKeyFrame(stateTimer);
                 break;
             default:
-                region = zombieIdle.getKeyFrame(stateTimer);
+                region = orcIdle.getKeyFrame(stateTimer);
         }
 
         if ((body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()) {
@@ -115,7 +115,7 @@ public class ZombieAnimation extends Sprite {
     }
 
     public void draw(Batch batch) {
-        if (!zombie.destroyed || stateTimer < 1) {
+        if (!orc.destroyed || stateTimer < 1) {
             super.draw(batch);
         }
     }

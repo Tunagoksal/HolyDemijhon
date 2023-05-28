@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.Timer;
 import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Sprites.Animations.JohnAnimation;
 import com.holydemijon.Sprites.Enemies.Enemy;
+import com.holydemijon.Sprites.Enemies.Zombie;
 import com.holydemijon.Sprites.TileObjects.Spikes;
 import com.holydemijon.Sprites.TileObjects.Trampoline;
 import com.holydemijon.Tools.KeyboardInputs;
@@ -36,7 +37,8 @@ public class John extends Sprite {
     private JohnAnimation johnAnimation;
     public static boolean lookingRight;
 
-    public static Enemy attackableEnemy;
+    public static Enemy attackableEnemy1;
+    public static Enemy attackableEnemy2;
     public static float johnPositionX;
 
     private int johnHealth;
@@ -50,9 +52,11 @@ public class John extends Sprite {
     public static boolean doubleJumpIsActive;
     public static boolean heavyAttackIsActive;
 
-    //Interactive Tile Object effects
+    //Interactive Tile Object and Enemy effects
     public static boolean steppedOnSpike;
     public static boolean steppedOnTrampoline;
+    public static boolean steppedOnEnemy;
+    public static Enemy enemyStepped;
 
     public John(World world) {
         this.world = world;
@@ -61,7 +65,8 @@ public class John extends Sprite {
         atlas = new TextureAtlas("animations/characterAnimations.atlas");
         atlas2 = new TextureAtlas("animations/player_death.atlas");
         johnAnimation = new JohnAnimation(this, atlas, atlas2);
-        attackableEnemy = null;
+        attackableEnemy1 = null;
+        attackableEnemy2 = null;
         lookingRight = true;
 
         inputs = new KeyboardInputs(this);
@@ -80,13 +85,15 @@ public class John extends Sprite {
 
         steppedOnSpike = false;
         steppedOnTrampoline = false;
+        steppedOnEnemy = false;
+        enemyStepped = null;
     }
 
     public void update(float dt) {
         if (!johnIsDead) { inputs.update(dt); }
         johnAnimation.update(dt);
         johnPositionX = b2dbody.getPosition().x;
-        johnSteppedOnObject();
+        didStepOnObject();
     }
 
     private void defJohn() {
@@ -121,17 +128,23 @@ public class John extends Sprite {
 
     public void simpleAttack() {
 
-        if (attackableEnemy != null) {
-            attackableEnemy.receiveDamage(50);
-            Gdx.app.log("Attack", "Enemy health:" + attackableEnemy.getHealth());
+        if (attackableEnemy1 != null) {
+            attackableEnemy1.receiveDamage(50);
+        }
+
+        if (attackableEnemy2 != null) {
+            attackableEnemy2.receiveDamage(50);
         }
     }
 
     public void heavyAttack() {
 
-        if (attackableEnemy != null) {
-            attackableEnemy.receiveDamage(150);
-            Gdx.app.log("Attack", "Enemy health:" + attackableEnemy.getHealth());
+        if (attackableEnemy1 != null) {
+            attackableEnemy1.receiveDamage(150);
+        }
+
+        if (attackableEnemy2 != null) {
+            attackableEnemy2.receiveDamage(150);
         }
     }
 
@@ -185,11 +198,12 @@ public class John extends Sprite {
         johnHealth -= damage;
 
         if (johnHealth <= 0) {
-            johnDied();
+            JohnAnimation.performDeath = true;
+            johnIsDead = true;
         }
     }
 
-    public void johnSteppedOnObject() {
+    public void didStepOnObject() {
         if (steppedOnSpike) {
             takeDamage(Spikes.SPIKE_DAMAGE);
             bounce(0, 4);
@@ -200,12 +214,28 @@ public class John extends Sprite {
             bounce(0, Trampoline.JUMPING_HEIGHT);
             steppedOnTrampoline = false;
         }
+
+        if (steppedOnEnemy) {
+            if (johnPositionX < enemyStepped.getPositionX()) {
+                bounce(-2, 2);
+            }
+            else {
+                bounce(2, 2);
+            }
+
+            if (enemyStepped instanceof Zombie) {
+                takeDamage(Zombie.ZOMBIE_DAMAGE);
+            }
+            /*
+            else if (enemyStepped instanceof Orc) {
+                takeDamage(Orc.ORC_DAMAGE);
+            }*/
+
+            steppedOnEnemy = false;
+            enemyStepped = null;
+        }
     }
 
-    public void johnDied() {
-        JohnAnimation.performDeath = true;
-        johnIsDead = true;
-    }
     //Applies linear impulse in the direction of positive y-axis
     public void jump(float jumpingPower){
         if (b2dbody.getLinearVelocity().y >= -1)
@@ -223,6 +253,17 @@ public class John extends Sprite {
     }
     public void move(int direction){
         b2dbody.applyLinearImpulse(new Vector2(PLAYER_ACCELERATION * direction, 0), b2dbody.getWorldCenter(), true);
+    }
+
+    public static void dashUsed() {
+        John.dashIsActive = false;
+        Timer timer = new Timer();
+        timer.scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                John.dashIsActive = true;
+            }
+        },0.5f);
     }
 
     public JohnAnimation getJohnAnimation() {

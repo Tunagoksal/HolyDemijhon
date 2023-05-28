@@ -8,6 +8,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.holydemijon.HolyDemijohn;
+import com.holydemijon.Sprites.Enemies.Orc;
+import com.holydemijon.Sprites.Enemies.Wizard;
 import com.holydemijon.Sprites.Enemies.Zombie;
 import com.holydemijon.Sprites.John;
 import com.holydemijon.Tools.Box2DWorldCreator;
@@ -15,6 +17,8 @@ import com.holydemijon.Tools.Box2DWorldCreator;
 public class FirstLevel extends Level {
 
     private Zombie zombie;
+    private Wizard wizard;
+    private Orc orc;
     public FirstLevel(HolyDemijohn game){
 
         super(game);
@@ -35,7 +39,9 @@ public class FirstLevel extends Level {
         b2dwc.setColliders(2,4,6,3);
         b2dwc.colliderCreation();
 
-        zombie = new Zombie(this, 200f / HolyDemijohn.PPM, 150f / HolyDemijohn.PPM, 0);
+        orc = new Orc(this, 300 / HolyDemijohn.PPM, 150 / HolyDemijohn.PPM, 0);
+        wizard = new Wizard(this, 250 / HolyDemijohn.PPM, 150 / HolyDemijohn.PPM, 0);
+        zombie = new Zombie(this, 200 / HolyDemijohn.PPM, 150 / HolyDemijohn.PPM, 0);
         player = new John(world);
 
         world.setContactListener(listener);
@@ -58,6 +64,8 @@ public class FirstLevel extends Level {
 
         zombie.update(dt);
         player.update(dt);
+        wizard.update(dt);
+        orc.update(dt);
 
         world.step(FPS, 6, 2);
         if (!player.johnIsDead) {
@@ -85,6 +93,8 @@ public class FirstLevel extends Level {
         game.batch.begin();
         player.getJohnAnimation().draw(game.batch);
         zombie.getZombieAnimation().draw(game.batch);
+        wizard.getWizardAnimation().draw(game.batch);
+        orc.getOrcAnimation().draw(game.batch);
         game.batch.end();
     }
 

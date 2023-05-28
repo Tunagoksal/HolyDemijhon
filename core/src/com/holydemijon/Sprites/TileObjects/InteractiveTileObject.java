@@ -1,11 +1,11 @@
 package com.holydemijon.Sprites.TileObjects;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Screens.Levels.Level;
+import com.holydemijon.Sprites.Enemies.Enemy;
 import com.holydemijon.Sprites.John;
 
 public abstract class InteractiveTileObject {
@@ -39,5 +39,8 @@ public abstract class InteractiveTileObject {
         fixture = body.createFixture(fixtureDef);
     }
 
-    public abstract void collision();
+    public abstract void johnCollision();
+
+    public abstract void enemyCollision(Enemy enemy);
 }
+

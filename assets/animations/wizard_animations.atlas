@@ -1,6 +1,6 @@
 
-wizardAnimations.png
-size: 4096, 64
+wizard_animations.png
+size: 4096, 128
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
@@ -83,140 +83,245 @@ attack
   index: 11
 death
   rotate: false
-  xy: 728, 4
+  xy: 1454, 4
   size: 64, 48
   orig: 64, 48
   offset: 0, 0
   index: 1
+death
+  rotate: false
+  xy: 1520, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 2
+death
+  rotate: false
+  xy: 1586, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 3
+death
+  rotate: false
+  xy: 1652, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 4
+death
+  rotate: false
+  xy: 728, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 5
 death
   rotate: false
   xy: 794, 4
   size: 64, 48
   orig: 64, 48
   offset: 0, 0
-  index: 2
+  index: 6
 death
   rotate: false
   xy: 860, 4
   size: 64, 48
   orig: 64, 48
   offset: 0, 0
-  index: 3
+  index: 7
 death
   rotate: false
   xy: 926, 4
   size: 64, 48
   orig: 64, 48
   offset: 0, 0
-  index: 4
-fireball
+  index: 8
+death
   rotate: false
   xy: 992, 4
-  size: 32, 16
-  orig: 32, 16
+  size: 64, 48
+  orig: 64, 48
   offset: 0, 0
-  index: 1
-fireball
+  index: 9
+death
   rotate: false
   xy: 1058, 4
-  size: 32, 16
-  orig: 32, 16
+  size: 64, 48
+  orig: 64, 48
   offset: 0, 0
-  index: 2
-fireball
+  index: 10
+death
   rotate: false
   xy: 1124, 4
-  size: 32, 16
-  orig: 32, 16
+  size: 64, 48
+  orig: 64, 48
   offset: 0, 0
-  index: 3
-fireball
+  index: 11
+death
   rotate: false
   xy: 1190, 4
-  size: 32, 16
-  orig: 32, 16
+  size: 64, 48
+  orig: 64, 48
   offset: 0, 0
-  index: 4
-idle
+  index: 12
+death
   rotate: false
   xy: 1256, 4
   size: 64, 48
   orig: 64, 48
   offset: 0, 0
-  index: 1
-idle
+  index: 13
+death
   rotate: false
   xy: 1322, 4
   size: 64, 48
   orig: 64, 48
   offset: 0, 0
+  index: 14
+death
+  rotate: false
+  xy: 1388, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 15
+damage
+  rotate: false
+  xy: 1454, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 1
+damage
+  rotate: false
+  xy: 1520, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 2
+damage
+  rotate: false
+  xy: 1586, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 3
+damage
+  rotate: false
+  xy: 1652, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 4
+fireball
+  rotate: false
+  xy: 1718, 4
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: 1
+fireball
+  rotate: false
+  xy: 1784, 4
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: 2
+fireball
+  rotate: false
+  xy: 1850, 4
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: 3
+fireball
+  rotate: false
+  xy: 1916, 4
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: 4
+idle
+  rotate: false
+  xy: 1982, 4
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: 1
+idle
+  rotate: false
+  xy: 2, 54
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
   index: 2
 idle
   rotate: false
-  xy: 1388, 4
+  xy: 68, 54
   size: 64, 48
   orig: 64, 48
   offset: 0, 0
   index: 3
 idle
   rotate: false
-  xy: 1454, 4
+  xy: 134, 54
   size: 64, 48
   orig: 64, 48
   offset: 0, 0
   index: 4
 run
   rotate: false
-  xy: 1520, 4
+  xy: 200, 54
   size: 64, 48
   orig: 64, 48
   offset: 0, 0
   index: 1
 run
   rotate: false
-  xy: 1586, 4
+  xy: 266, 54
   size: 64, 48
   orig: 64, 48
   offset: 0, 0
   index: 2
 run
   rotate: false
-  xy: 1652, 4
+  xy: 332, 54
   size: 64, 48
   orig: 64, 48
   offset: 0, 0
   index: 3
 run
   rotate: false
-  xy: 1718, 4
+  xy: 398, 54
   size: 64, 48
   orig: 64, 48
   offset: 0, 0
   index: 4
 run
   rotate: false
-  xy: 1784, 4
+  xy: 464, 54
   size: 64, 48
   orig: 64, 48
   offset: 0, 0
   index: 5
 run
   rotate: false
-  xy: 1850, 4
+  xy: 530, 54
   size: 64, 48
   orig: 64, 48
   offset: 0, 0
   index: 6
 run
   rotate: false
-  xy: 1916, 4
+  xy: 596, 54
   size: 64, 48
   orig: 64, 48
   offset: 0, 0
   index: 7
 run
   rotate: false
-  xy: 1982, 4
+  xy: 662, 54
   size: 64, 48
   orig: 64, 48
   offset: 0, 0

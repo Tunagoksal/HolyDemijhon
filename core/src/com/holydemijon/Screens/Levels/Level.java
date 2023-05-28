@@ -70,16 +70,6 @@ public abstract class Level extends ScreenAdapter {
             Gdx.input.setInputProcessor(game.getGameOverMenu().getStage());
             game.setScreens(HolyDemijohn.GAME_OVER_MENU);
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.K))
-        {
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            Gdx.input.setInputProcessor(game.getEndGameScreen().getStage());
-            game.setScreens(HolyDemijohn.END_GAME_SCREEN);
-        }
         Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 

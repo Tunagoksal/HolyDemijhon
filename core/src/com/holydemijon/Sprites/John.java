@@ -138,14 +138,26 @@ public class John extends Sprite {
     public void johnDash(int dashDirection) {
         JohnAnimation.performDash = true;
 
+        Filter ghostFilter = new Filter();
+        ghostFilter.maskBits = HolyDemijohn.OBJECT_BIT;
+        for (Fixture fixture : b2dbody.getFixtureList())
+            fixture.setFilterData(ghostFilter);
+
         if (dashDirection > 0) {
             b2dbody.applyLinearImpulse(new Vector2(DASH_POWER, 0), b2dbody.getWorldCenter(), true);
+
             Timer timer = new Timer();
             timer.scheduleTask(new Timer.Task() {
                 @Override
                 public void run() {
-                    if (b2dbody.getLinearVelocity().x > 0)
+                    if (b2dbody.getLinearVelocity().x > 0) {
                         b2dbody.applyLinearImpulse(new Vector2(-DASH_POWER / 2, 0), b2dbody.getWorldCenter(), true);
+
+                        Filter normalFilter = new Filter();
+                        normalFilter.maskBits = HolyDemijohn.OBJECT_BIT | HolyDemijohn.ENEMY_BIT;
+                        for (Fixture fixture : b2dbody.getFixtureList())
+                            fixture.setFilterData(normalFilter);
+                    }
                 }
             },0.4f);
         }
@@ -155,8 +167,14 @@ public class John extends Sprite {
             timer.scheduleTask(new Timer.Task() {
                 @Override
                 public void run() {
-                    if (b2dbody.getLinearVelocity().x < 0)
+                    if (b2dbody.getLinearVelocity().x < 0) {
                         b2dbody.applyLinearImpulse(new Vector2(DASH_POWER / 2, 0), b2dbody.getWorldCenter(), true);
+
+                        Filter normalFilter = new Filter();
+                        normalFilter.maskBits = HolyDemijohn.OBJECT_BIT | HolyDemijohn.ENEMY_BIT;
+                        for (Fixture fixture : b2dbody.getFixtureList())
+                            fixture.setFilterData(normalFilter);
+                    }
                 }
             },0.4f);
         }

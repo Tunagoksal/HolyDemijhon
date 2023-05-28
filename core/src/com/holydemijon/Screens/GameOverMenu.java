@@ -21,6 +21,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Sprites.Animations.JohnAnimation;
+import com.holydemijon.Sprites.John;
 
 public class GameOverMenu extends ScreenAdapter {
     private Viewport viewport;
@@ -56,8 +57,8 @@ public class GameOverMenu extends ScreenAdapter {
         restartButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Gdx.input.setInputProcessor(null);
                 JohnAnimation.performDeath = false;
+                Gdx.input.setInputProcessor(null);
                 game.setScreens(HolyDemijohn.FIRST_LEVEL);
             }
         });

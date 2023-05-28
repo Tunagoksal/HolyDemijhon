@@ -1,9 +1,8 @@
 package com.holydemijon.Sprites.TileObjects;
 
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.physics.box2d.World;
 import com.holydemijon.Screens.Levels.Level;
+import com.holydemijon.Sprites.John;
 
 public class Trampoline extends InteractiveTileObject {
 
@@ -17,5 +16,6 @@ public class Trampoline extends InteractiveTileObject {
 
     @Override
     public void collision() {
+        John.steppedOnTrampoline = true;
     }
 }

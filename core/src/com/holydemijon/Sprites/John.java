@@ -9,6 +9,8 @@ import com.badlogic.gdx.utils.Timer;
 import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Sprites.Animations.JohnAnimation;
 import com.holydemijon.Sprites.Enemies.Enemy;
+import com.holydemijon.Sprites.TileObjects.Spikes;
+import com.holydemijon.Sprites.TileObjects.Trampoline;
 import com.holydemijon.Tools.KeyboardInputs;
 
 public class John extends Sprite {
@@ -40,6 +42,18 @@ public class John extends Sprite {
     private int johnHealth;
     public boolean johnIsDead;
 
+    public static boolean isTouchingGround;
+    public static int remainingJumps;
+
+    //PowerUps
+    public static boolean dashIsActive;
+    public static boolean doubleJumpIsActive;
+    public static boolean heavyAttackIsActive;
+
+    //Interactive Tile Object effects
+    public static boolean steppedOnSpike;
+    public static boolean steppedOnTrampoline;
+
     public John(World world) {
         this.world = world;
         defJohn();
@@ -56,12 +70,23 @@ public class John extends Sprite {
         johnPositionX = b2dbody.getPosition().x;
         johnHealth = JOHN_HEALTH;
         johnIsDead = false;
+
+        isTouchingGround = false;
+        remainingJumps = 0;
+
+        dashIsActive = true;
+        doubleJumpIsActive = true;
+        heavyAttackIsActive = true;
+
+        steppedOnSpike = false;
+        steppedOnTrampoline = false;
     }
 
     public void update(float dt) {
         if (!johnIsDead) { inputs.update(dt); }
         johnAnimation.update(dt);
         johnPositionX = b2dbody.getPosition().x;
+        johnSteppedOnObject();
     }
 
     private void defJohn() {
@@ -71,6 +96,7 @@ public class John extends Sprite {
         b2dbody = world.createBody(bodydef);
 
         FixtureDef fixDef = new FixtureDef();
+
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(JOHN_WIDTH / HolyDemijohn.PPM, JOHN_HEIGHT / HolyDemijohn.PPM);
 
@@ -80,6 +106,11 @@ public class John extends Sprite {
 
         fixDef.shape = shape;
         b2dbody.createFixture(fixDef).setUserData(this);
+
+        EdgeShape feet = new EdgeShape();
+        feet.set(new Vector2(-4 / HolyDemijohn.PPM, -8 / HolyDemijohn.PPM), new Vector2(4 / HolyDemijohn.PPM, -8 / HolyDemijohn.PPM));
+        fixDef.shape = feet;
+        b2dbody.createFixture(fixDef).setUserData("feet");
 
         fixDef.isSensor = true;
         PolygonShape attackRange = new PolygonShape();
@@ -140,19 +171,37 @@ public class John extends Sprite {
         }
     }
 
+    public void johnSteppedOnObject() {
+        if (steppedOnSpike) {
+            takeDamage(Spikes.SPIKE_DAMAGE);
+            bounce(0, 4);
+            steppedOnSpike = false;
+        }
+
+        if (steppedOnTrampoline) {
+            bounce(0, Trampoline.JUMPING_HEIGHT);
+            steppedOnTrampoline = false;
+        }
+    }
+
     public void johnDied() {
         JohnAnimation.performDeath = true;
         johnIsDead = true;
     }
     //Applies linear impulse in the direction of positive y-axis
     public void jump(float jumpingPower){
+        if (b2dbody.getLinearVelocity().y >= -1)
             b2dbody.applyLinearImpulse(new Vector2(0, jumpingPower), b2dbody.getWorldCenter(), true);
+        else
+            bounce(0, JUMP_HEIGHT / 1.5f);
     }
 
     //Resets the linear velocity and gives the player a bounce with bounceForce
     public void bounce(float bounceForceX, float bounceForceY) {
-
-        b2dbody.setLinearVelocity(bounceForceX, bounceForceY);
+        if (bounceForceX == 0)
+            b2dbody.setLinearVelocity(b2dbody.getLinearVelocity().x, bounceForceY);
+        else
+            b2dbody.setLinearVelocity(bounceForceX, bounceForceY);
     }
     public void move(int direction){
         b2dbody.applyLinearImpulse(new Vector2(PLAYER_ACCELERATION * direction, 0), b2dbody.getWorldCenter(), true);

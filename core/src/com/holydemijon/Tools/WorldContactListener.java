@@ -10,9 +10,7 @@ import com.holydemijon.Sprites.Enemies.Enemy;
 import com.holydemijon.Sprites.Enemies.Zombie;
 import com.holydemijon.Sprites.Items.Door;
 import com.holydemijon.Sprites.John;
-import com.holydemijon.Sprites.TileObjects.InteractiveTileObject;
-import com.holydemijon.Sprites.TileObjects.Spikes;
-import com.holydemijon.Sprites.TileObjects.Trampoline;
+import com.holydemijon.Sprites.TileObjects.*;
 
 import static com.badlogic.gdx.Gdx.input;
 
@@ -37,15 +35,6 @@ public class WorldContactListener implements ContactListener {
 
             if (object.getUserData() != null && object.getUserData() instanceof InteractiveTileObject) {
                 ((InteractiveTileObject) object.getUserData()).collision();
-
-                if (object.getUserData() instanceof Spikes) {
-                    ((John) player.getUserData()).takeDamage(Spikes.SPIKE_DAMAGE);
-                    ((John) player.getUserData()).bounce(0, 6);
-                }
-                else if (object.getUserData() instanceof Trampoline) {
-                    ((John) player.getUserData()).bounce(0, Trampoline.JUMPING_HEIGHT);
-                }
-
             }
 
             if (object.getUserData() != null && object.getUserData() instanceof Door) {
@@ -81,6 +70,31 @@ public class WorldContactListener implements ContactListener {
             }
         }
 
+        if (fixtureA.getUserData().equals("feet") || fixtureB.getUserData().equals("feet")) {
+            Fixture object = null;
+
+            if (fixtureA.getUserData().equals("feet")) {
+                object = fixtureB;
+            }
+            else {
+                object = fixtureA;
+            }
+
+            if (object.getUserData() instanceof InteractiveTileObject) {
+                ((InteractiveTileObject) object.getUserData()).collision();
+
+                if (object.getUserData() instanceof Ground || object.getUserData() instanceof Chest) {
+                    John.isTouchingGround = true;
+
+                    if (John.doubleJumpIsActive) {
+                        John.remainingJumps = 2;
+                    } else {
+                        John.remainingJumps = 1;
+                    }
+                }
+            }
+        }
+
     }
 
     @Override
@@ -88,12 +102,28 @@ public class WorldContactListener implements ContactListener {
         Fixture fixtureA = contact.getFixtureA();
         Fixture fixtureB = contact.getFixtureB();
 
+        if (fixtureA.getUserData().equals("feet") || fixtureB.getUserData().equals("feet")) {
+            Fixture object = null;
+
+            if (fixtureA.getUserData().equals("feet")) {
+                object = fixtureB;
+            } else {
+                object = fixtureA;
+            }
+
+            if (object.getUserData() instanceof Ground || object.getUserData() instanceof Chest) {
+                John.isTouchingGround = false;
+            }
+        }
+
         if ((fixtureA.getUserData().equals("attack range") || fixtureB.getUserData().equals("attack range")) &&
                 (fixtureA.getUserData() instanceof Enemy || fixtureB.getUserData() instanceof Enemy)) {
 
             John.attackableEnemy = null;
             Gdx.app.log("End Contact", "Enemy is not in range anymore");
         }
+
+
     }
 
     @Override

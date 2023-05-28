@@ -20,15 +20,25 @@ public class KeyboardInputs implements InputProcessor {
     public void update(float dt){ processInput(); }
 
     public void processInput() {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            player.jump(John.JUMP_HEIGHT);
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && John.remainingJumps > 0) {
+            if (!John.isTouchingGround) {
+                player.jump(John.JUMP_HEIGHT / 1.5f);
+                John.remainingJumps = 0;
+            }
+            else {
+                player.jump(John.JUMP_HEIGHT);
+                John.remainingJumps -= 1;
+            }
         }
+
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2dbody.getLinearVelocity().x >= -John.MAX_LINEAR_VELOCITY) {
             player.move(-1);
         }
+
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2dbody.getLinearVelocity().x <= John.MAX_LINEAR_VELOCITY) {
             player.move(1);
         }
+
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
             JohnAnimation.performSimpleAttack = true;
             Timer timer = new Timer();
@@ -39,7 +49,7 @@ public class KeyboardInputs implements InputProcessor {
                 }
             },0.25f);
         }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.E) && John.heavyAttackIsActive) {
             JohnAnimation.performHeavyAttack = true;
             Timer timer = new Timer();
             timer.scheduleTask(new Timer.Task() {
@@ -49,7 +59,7 @@ public class KeyboardInputs implements InputProcessor {
                 }
             },0.25f);
         }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && John.dashIsActive) {
             if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
                 player.johnDash(1);
             }

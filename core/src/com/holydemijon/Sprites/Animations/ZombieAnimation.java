@@ -49,7 +49,7 @@ public class ZombieAnimation extends Sprite {
 
     public void update(float dt) {
         stateTimer += dt;
-        setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 4f);
+        setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 3f);
         setRegion(getFrame(dt));
     }
 

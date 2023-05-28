@@ -2,6 +2,7 @@ package com.holydemijon.Screens.Levels;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 
@@ -13,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.holydemijon.Sprites.Animations.JohnAnimation;
 import com.holydemijon.Sprites.John;
 import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Scenes.HUD;
@@ -39,6 +41,7 @@ public abstract class Level extends ScreenAdapter {
     protected OrthogonalTiledMapRenderer mapRenderer;
 
     public static boolean isDoorOpened = false;
+    public static Screen currentScreen;
 
     public static final float FPS = 1/60f;
     public static final float GRAVITY = -10;
@@ -53,22 +56,30 @@ public abstract class Level extends ScreenAdapter {
     @Override
     public void render(float delta) {
 
-        if(Gdx.input.isKeyPressed(Input.Keys.P)){
-            game.setScreens(HolyDemijohn.MAIN_MENU_SCREEN);// Şimdilik ana menüye döndürüyor daha pause menüyü oluşturmadım
+        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
+            Gdx.input.setInputProcessor(game.getPauseMenuScreen().getStage());
+            currentScreen = game.getScreen();
+            game.setScreens(HolyDemijohn.PAUSE_MENU_SCREEN);// Şimdilik ana menüye döndürüyor daha pause menüyü oluşturmadım
         }
-
-        /* (SILMEYIN KULLANILACAK)
-        Timer timer = new Timer();
-        if(player.johnIsDead){
-            timer.scheduleTask(new Timer.Task() {
-                @Override
-                public void run() {
-                    super.getGame().setScreens(HolyDemijohn.(GAME OVER MENU GELECEK));
-                }
-            }, 2f);
+        if (JohnAnimation.performDeath){
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            Gdx.input.setInputProcessor(game.getGameOverMenu().getStage());
+            game.setScreens(HolyDemijohn.GAME_OVER_MENU);
         }
-        */
-
+        if (Gdx.input.isKeyPressed(Input.Keys.K))
+        {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            Gdx.input.setInputProcessor(game.getEndGameScreen().getStage());
+            game.setScreens(HolyDemijohn.END_GAME_SCREEN);
+        }
         Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 

@@ -97,7 +97,7 @@ public class MainMenuScreen extends ScreenAdapter{
                 System.out.println(x++);
                 //game.setScreen(new LevelScreen(game));
                 Gdx.input.setInputProcessor(null);
-                game.setScreens(HolyDemijohn.LEVEL_SCREEN);
+                game.setScreens(HolyDemijohn.FIRST_LEVEL);
             }
         });
 

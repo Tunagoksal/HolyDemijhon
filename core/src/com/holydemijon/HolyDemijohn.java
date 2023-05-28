@@ -2,23 +2,22 @@ package com.holydemijon;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.holydemijon.Screens.*;
 import com.holydemijon.Screens.Levels.SecondLevel;
 import com.holydemijon.Screens.Levels.ThirdLevel;
-import com.holydemijon.Screens.EndGameScreen;
 import com.holydemijon.Screens.Levels.FirstLevel;
-import com.holydemijon.Screens.MainMenuScreen;
-import com.holydemijon.Screens.leaderBoardScreen;
 
 
 public class HolyDemijohn extends Game {
 
 	public static final int MAIN_MENU_SCREEN = 0;
-	public static final int LEVEL_SCREEN = 1;
-	public static final int END_GAME_SCREEN = 2;
-	public static final int LEADER_BOARD = 3;
-	public static final int FIRST_LEVEL = 4;
-	public static final int SECOND_LEVEL = 5;
-
+	public static final int FIRST_LEVEL = 1;
+	public static final int SECOND_LEVEL = 2;
+	public static final int THIRD_LEVEL = 3;
+	public static final int END_GAME_SCREEN = 4;
+	public static final int LEADER_BOARD = 5;
+	public static final int PAUSE_MENU_SCREEN = 6;
+	public static final int GAME_OVER_MENU = 7;
 
 	public static final int WIDTH = 640;
 	public static final int HEIGHT = 360;
@@ -37,6 +36,8 @@ public class HolyDemijohn extends Game {
 	private SecondLevel level2;
 	private ThirdLevel level3;
 	private EndGameScreen endGameScreen;
+	private PauseMenuScreen pauseMenuScreen;
+	private GameOverMenu gameOverMenu;
 
 	@Override
 	public void create() {
@@ -53,6 +54,8 @@ public class HolyDemijohn extends Game {
 		level1 = new FirstLevel(this);
 		level2 = new SecondLevel(this);
 		level3 = new ThirdLevel(this);
+		pauseMenuScreen = new PauseMenuScreen(this);
+		gameOverMenu = new GameOverMenu(this);
 
 		setScreen(new MainMenuScreen(this));
 	}
@@ -65,6 +68,8 @@ public class HolyDemijohn extends Game {
 		return mainMenu;
 	}
 
+	public PauseMenuScreen getPauseMenuScreen() { return pauseMenuScreen; }
+
 	public FirstLevel getLevelScreen() {
 		return level1;
 	}
@@ -74,8 +79,14 @@ public class HolyDemijohn extends Game {
 			case MAIN_MENU_SCREEN:
 				setScreen(mainMenu);
 				break;
-			case LEVEL_SCREEN:
+			case FIRST_LEVEL:
 				setScreen(level1);
+				break;
+			case SECOND_LEVEL:
+				setScreen(level2);
+				break;
+			case THIRD_LEVEL:
+				setScreen(level3);
 				break;
 			case END_GAME_SCREEN:
 				setScreen(endGameScreen);
@@ -83,20 +94,18 @@ public class HolyDemijohn extends Game {
 			case LEADER_BOARD:
 				setScreen(new leaderBoardScreen(this));
 				break;
-			case FIRST_LEVEL:
-				setScreen(level2);
+			case PAUSE_MENU_SCREEN:
+				setScreen(pauseMenuScreen);
 				break;
-			case SECOND_LEVEL:
-				setScreen(level3);
+			case GAME_OVER_MENU:
+				setScreen(gameOverMenu);
 				break;
 		}
-
 	}
 
 	@Override
 	public void render () {
 		super.render();
-
 	}
 
 	@Override
@@ -106,4 +115,7 @@ public class HolyDemijohn extends Game {
 	}
 
 
+	public GameOverMenu getGameOverMenu() { return gameOverMenu; }
+
+	public EndGameScreen getEndGameScreen() { return endGameScreen;}
 }

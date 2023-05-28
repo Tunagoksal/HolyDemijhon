@@ -10,9 +10,8 @@ import com.holydemijon.Screens.MainMenuScreen;
 import com.holydemijon.Screens.leaderBoardScreen;
 
 
-public class HolyDemijhon extends Game {
+public class HolyDemijohn extends Game {
 
-	// bu constantları da ayrı bir class'a taşıyabiliriz belki
 	public static final int MAIN_MENU_SCREEN = 0;
 	public static final int LEVEL_SCREEN = 1;
 	public static final int END_GAME_SCREEN = 2;
@@ -30,8 +29,6 @@ public class HolyDemijhon extends Game {
 	public static final short ENEMY_BIT = 4;
 
 	public SpriteBatch batch;
-
-	//private FileHandle file;
 
 	private Preferences prefs;
 

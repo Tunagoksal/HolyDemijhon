@@ -10,9 +10,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.holydemijon.HolyDemijhon;
-
-import java.awt.*;
+import com.holydemijon.HolyDemijohn;
 
 public class HUD implements Disposable {
     public Stage stage;
@@ -35,7 +33,7 @@ public class HUD implements Disposable {
         timeCount = 0;
         score = 0;
 
-        viewport = new FitViewport(HolyDemijhon.WIDTH,HolyDemijhon.HEIGHT,new OrthographicCamera());
+        viewport = new FitViewport(HolyDemijohn.WIDTH, HolyDemijohn.HEIGHT,new OrthographicCamera());
         stage = new Stage(viewport, batch);
 
         Table table= new Table();

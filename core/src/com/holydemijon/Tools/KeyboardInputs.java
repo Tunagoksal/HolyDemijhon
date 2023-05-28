@@ -6,20 +6,18 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.utils.Timer;
 import com.holydemijon.Sprites.Animations.JohnAnimation;
 import com.holydemijon.Sprites.John;
-import com.holydemijon.HolyDemijhon;
+import com.holydemijon.HolyDemijohn;
 
 public class KeyboardInputs implements InputProcessor {
 
-    public HolyDemijhon game = new HolyDemijhon();
+    public HolyDemijohn game = new HolyDemijohn();
     private John player;
 
     public KeyboardInputs(John player) {
         this.player = player;
     }
 
-    public void update(float dt){
-        processInput();
-    }
+    public void update(float dt){ processInput(); }
 
     public void processInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {

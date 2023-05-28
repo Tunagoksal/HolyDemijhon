@@ -2,7 +2,7 @@ package com.holydemijon.Sprites.Animations;
 
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.holydemijon.HolyDemijhon;
+import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Sprites.Enemies.Zombie;
 
 public class ZombieAnimation extends Sprite {
@@ -44,7 +44,7 @@ public class ZombieAnimation extends Sprite {
         zombieAttack = new Animation<TextureRegion>(0.1f, atlas.findRegions("attack"), Animation.PlayMode.LOOP);
         zombieIdle = new Animation<TextureRegion>(0.1f, atlas.findRegions("idle"), Animation.PlayMode.LOOP);
         zombieRun = new Animation<TextureRegion>(0.1f, atlas.findRegions("run"), Animation.PlayMode.LOOP);
-        setBounds(getX(), getY(), 40 / HolyDemijhon.PPM, 40 / HolyDemijhon.PPM);
+        setBounds(getX(), getY(), 40 / HolyDemijohn.PPM, 40 / HolyDemijohn.PPM);
     }
 
     public void update(float dt) {

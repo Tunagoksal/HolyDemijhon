@@ -2,34 +2,28 @@ package com.holydemijon.Screens;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.holydemijon.HolyDemijhon;
-
-import javax.swing.text.Style;
-import java.awt.*;
-import java.security.Key;
+import com.holydemijon.HolyDemijohn;
 
 public class MainMenuScreen extends ScreenAdapter{
 
     private Viewport viewport;
     private Stage stage;
-    private HolyDemijhon game;
+    private HolyDemijohn game;
     private OrthographicCamera cam;
 
-    public MainMenuScreen(final HolyDemijhon game){
+    public MainMenuScreen(final HolyDemijohn game){
 
         this.game = game;
         cam = new OrthographicCamera();
-        viewport = new FitViewport(HolyDemijhon.WIDTH,HolyDemijhon.HEIGHT,cam);
+        viewport = new FitViewport(HolyDemijohn.WIDTH, HolyDemijohn.HEIGHT,cam);
         stage = new Stage(viewport);
 
         Table table = new Table();
@@ -103,7 +97,7 @@ public class MainMenuScreen extends ScreenAdapter{
                 System.out.println(x++);
                 //game.setScreen(new LevelScreen(game));
                 Gdx.input.setInputProcessor(null);
-                game.setScreens(HolyDemijhon.LEVEL_SCREEN);
+                game.setScreens(HolyDemijohn.LEVEL_SCREEN);
             }
         });
 
@@ -121,7 +115,7 @@ public class MainMenuScreen extends ScreenAdapter{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Gdx.input.setInputProcessor(null);
-                game.setScreens(HolyDemijhon.LEADER_BOARD);
+                game.setScreens(HolyDemijohn.LEADER_BOARD);
             }
         });
 
@@ -156,7 +150,7 @@ public class MainMenuScreen extends ScreenAdapter{
     public void render(float delta) {
 
         if(Gdx.input.isKeyPressed(Input.Keys.X)){
-            game.setScreens(HolyDemijhon.END_GAME_SCREEN);
+            game.setScreens(HolyDemijohn.END_GAME_SCREEN);
         }
 
         Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);

@@ -34,6 +34,7 @@ public abstract class Enemy extends Sprite {
     public int getHealth() {
         return health;
     }
+    public float getPositionX() { return b2dbody.getPosition().x; }
     public void receiveDamage(int damage) {
         health -= damage;
 

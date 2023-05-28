@@ -8,36 +8,28 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.Sprites.John;
-import com.holydemijon.HolyDemijhon;
+import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Tools.Box2DWorldCreator;
-import com.holydemijon.Tools.WorldContactListener;
 
 public class ThirdLevel extends Level {
 
-    private John player;
-
-    private TmxMapLoader mapLoader;
-    private TiledMap map;
-    private OrthogonalTiledMapRenderer mapRenderer;
-
-    public ThirdLevel(HolyDemijhon game){
+    public ThirdLevel(HolyDemijohn game){
 
         super(game);
 
         cam = new OrthographicCamera();
-        viewport = new FitViewport(HolyDemijhon.WIDTH / HolyDemijhon.PPM, HolyDemijhon.HEIGHT / HolyDemijhon.PPM, cam);
-        viewport.setWorldSize(640 / HolyDemijhon.PPM,360 / HolyDemijhon.PPM);
+        viewport = new FitViewport(HolyDemijohn.WIDTH / HolyDemijohn.PPM, HolyDemijohn.HEIGHT / HolyDemijohn.PPM, cam);
+        viewport.setWorldSize(640 / HolyDemijohn.PPM,360 / HolyDemijohn.PPM);
 
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("level3.tmx");
-        mapRenderer = new OrthogonalTiledMapRenderer(map, 1 / HolyDemijhon.PPM);
+        mapRenderer = new OrthogonalTiledMapRenderer(map, 1 / HolyDemijohn.PPM);
         cam.position.set(viewport.getWorldWidth()/2,viewport.getWorldHeight()/2,0);
 
         world = new World(new Vector2(0, GRAVITY), true);
         b2dbr = new Box2DDebugRenderer();
-        b2dwc = new Box2DWorldCreator(world, map);
+        b2dwc = new Box2DWorldCreator(this);
 
         b2dwc.setColliders(1,5,6,3);
         b2dwc.colliderCreation();
@@ -51,8 +43,10 @@ public class ThirdLevel extends Level {
         player.update(dt);
 
         world.step(FPS, 6, 2);
-        cam.position.x = player.b2dbody.getPosition().x;
-        cam.position.y = player.b2dbody.getPosition().y;
+        if (!player.johnIsDead) {
+            cam.position.x = player.b2dbody.getPosition().x;
+            cam.position.y = player.b2dbody.getPosition().y;
+        }
         cam.update();
         mapRenderer.setView(cam);
     }
@@ -63,7 +57,7 @@ public class ThirdLevel extends Level {
         super.render(delta);
 
         update(delta);
-        super.levelOver(HolyDemijhon.END_GAME_SCREEN);
+        super.levelOver(HolyDemijohn.END_GAME_SCREEN);
 
         mapRenderer.setView(cam);
         mapRenderer.render();
@@ -88,6 +82,6 @@ public class ThirdLevel extends Level {
         mapRenderer.dispose();
         world.dispose();
         b2dbr.dispose();
-        player.getLevel().dispose();
+        player.getWorld().dispose();
     }
 }

@@ -2,6 +2,7 @@ package com.holydemijon.Tools;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.holydemijon.Sprites.Animations.JohnAnimation;
 import com.holydemijon.Sprites.Animations.ZombieAnimation;
@@ -35,10 +36,6 @@ public class WorldContactListener implements ContactListener {
 
             if (object.getUserData() != null && object.getUserData() instanceof InteractiveTileObject) {
                 ((InteractiveTileObject) object.getUserData()).collision();
-
-                if (object.getUserData() instanceof Trampoline) {
-                    ((John) player.getUserData()).jump(8f);
-                }
             }
 
             if (object.getUserData() != null && object.getUserData() instanceof Door) {
@@ -46,6 +43,14 @@ public class WorldContactListener implements ContactListener {
             }
 
             if (object.getUserData() != null && object.getUserData() instanceof Enemy) {
+
+                if (John.johnPositionX < ((Enemy) object.getUserData()).getPositionX()) {
+                    ((John) player.getUserData()).b2dbody.applyLinearImpulse(new Vector2(-2, 2), ((John) player.getUserData()).b2dbody.getWorldCenter(), true);
+                }
+                else {
+                    ((John) player.getUserData()).b2dbody.applyLinearImpulse(new Vector2(2, 2), ((John) player.getUserData()).b2dbody.getWorldCenter(), true);
+                }
+
                 if (object.getUserData() instanceof Zombie) {
                     ((John) player.getUserData()).takeDamage(Zombie.ZOMBIE_DAMAGE);
                 }

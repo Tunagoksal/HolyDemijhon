@@ -9,6 +9,6 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		config.setTitle("HolyDemijhon");
-		new Lwjgl3Application(new HolyDemijhon(), config);
+		new Lwjgl3Application(new HolyDemijohn(), config);
 	}
 }

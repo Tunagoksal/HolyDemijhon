@@ -2,7 +2,7 @@ package com.holydemijon.Sprites.Enemies;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.physics.box2d.*;
-import com.holydemijon.HolyDemijhon;
+import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Screens.Levels.FirstLevel;
 import com.holydemijon.Sprites.Animations.ZombieAnimation;
 
@@ -20,14 +20,13 @@ public class Zombie extends Enemy {
 
         atlas = new TextureAtlas("animations/zombieAnimations.atlas");
         zombieAnimation = new ZombieAnimation(this, atlas, b2dbody, zombieState);
-        health = 200;
+        health = 1000;
     }
     @Override
     public void update(float dt) {
         if (setToDestroy && !destroyed) {
             world.destroyBody(b2dbody);
             destroyed = true;
-            //zombieAnimation.kil
         }
         zombieAnimation.update(dt);
     }
@@ -45,12 +44,12 @@ public class Zombie extends Enemy {
 
         FixtureDef fixDef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(ZOMBIE_WIDTH / HolyDemijhon.PPM, ZOMBIE_HEIGHT / HolyDemijhon.PPM);
+        shape.setAsBox(ZOMBIE_WIDTH / HolyDemijohn.PPM, ZOMBIE_HEIGHT / HolyDemijohn.PPM);
 
-        fixDef.filter.categoryBits = HolyDemijhon.ENEMY_BIT;
-        fixDef.filter.maskBits = HolyDemijhon.OBJECT_BIT |
-                HolyDemijhon.ENEMY_BIT |
-                HolyDemijhon.JOHN_BIT;
+        fixDef.filter.categoryBits = HolyDemijohn.ENEMY_BIT;
+        fixDef.filter.maskBits = HolyDemijohn.OBJECT_BIT |
+                HolyDemijohn.ENEMY_BIT |
+                HolyDemijohn.JOHN_BIT;
 
         fixDef.shape = shape;
         b2dbody.createFixture(fixDef).setUserData(this);

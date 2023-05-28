@@ -2,7 +2,6 @@ package com.holydemijon.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -16,24 +15,24 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.holydemijon.HolyDemijhon;
+import com.holydemijon.HolyDemijohn;
 
 public class leaderBoardScreen extends ScreenAdapter{
 
     private Viewport viewport;
     private Stage stage;
-    private HolyDemijhon game;
+    private HolyDemijohn game;
     private OrthographicCamera cam;
     private Table table;
 
     private TextField text;
     private TextField.TextFieldStyle textstyle;
 
-    public leaderBoardScreen(HolyDemijhon game) {
+    public leaderBoardScreen(HolyDemijohn game) {
 
         this.game= game;
         cam = new OrthographicCamera();
-        viewport = new FitViewport(HolyDemijhon.WIDTH,HolyDemijhon.HEIGHT,cam);
+        viewport = new FitViewport(HolyDemijohn.WIDTH, HolyDemijohn.HEIGHT,cam);
         stage = new Stage(viewport, (game).batch);
 
         textstyle = new TextField.TextFieldStyle();
@@ -65,7 +64,7 @@ public class leaderBoardScreen extends ScreenAdapter{
 
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
             Gdx.input.setInputProcessor(game.getMainMenu().getStage());
-            game.setScreens(HolyDemijhon.MAIN_MENU_SCREEN);
+            game.setScreens(HolyDemijohn.MAIN_MENU_SCREEN);
         }
 
         Gdx.gl.glClearColor(0,0,0,1);

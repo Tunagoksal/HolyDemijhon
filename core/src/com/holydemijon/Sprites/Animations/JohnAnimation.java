@@ -1,16 +1,15 @@
 package com.holydemijon.Sprites.Animations;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
-import com.holydemijon.HolyDemijhon;
+import com.holydemijon.HolyDemijohn;
+import com.holydemijon.Sprites.John;
 
 public class JohnAnimation extends Sprite {
     TextureAtlas atlas;
     TextureAtlas atlas2;
+    John player;
     Body johnBody;
     public enum State { FALLING, JUMPING, IDLE, RUNNING, SIMPLE_ATTACK, HEAVY_ATTACK, DASH, DAMAGE, DIE }
 
@@ -34,9 +33,10 @@ public class JohnAnimation extends Sprite {
     public static boolean performTakingDamage;
     public static boolean performDeath;
 
-    public JohnAnimation(TextureAtlas atlas, TextureAtlas atlas2, Body johnBody) {
+    public JohnAnimation(John player, TextureAtlas atlas, TextureAtlas atlas2) {
         super(atlas.findRegion("idle"));
-        this.johnBody = johnBody;
+        this.player = player;
+        this.johnBody = player.b2dbody;
         this.atlas = atlas;
         this.atlas2 = atlas2;
 
@@ -62,9 +62,9 @@ public class JohnAnimation extends Sprite {
         heavyAttack = new Animation<TextureRegion>(0.1f, atlas.findRegions("attack4"));
         dash = new Animation<TextureRegion>(0.1f, atlas.findRegions("jump"));
         takeDamage = new Animation<TextureRegion>(0.1f, atlas2.findRegions("damage"));
-        die = new Animation<TextureRegion>(0.1f, atlas2.findRegions("death"));
+        die = new Animation<TextureRegion>(0.15f, atlas2.findRegions("death"));
 
-        setBounds(0, 0, 80 / HolyDemijhon.PPM, 64 / HolyDemijhon.PPM);
+        setBounds(0, 0, 80 / HolyDemijohn.PPM, 64 / HolyDemijohn.PPM);
     }
 
     public void update(float dt) {
@@ -75,7 +75,6 @@ public class JohnAnimation extends Sprite {
         if (heavyAttack.isAnimationFinished(stateTimer)) { performHeavyAttack = false; }
         if (dash.isAnimationFinished(stateTimer)) { performDash = false; }
         if (takeDamage.isAnimationFinished(stateTimer)) { performTakingDamage = false; }
-        if (die.isAnimationFinished(stateTimer)) { performDeath = false; }
     }
 
     public TextureRegion getFrame(float dt) {
@@ -131,16 +130,22 @@ public class JohnAnimation extends Sprite {
 
     public State getState() {
 
-        if (performSimpleAttack) { return State.SIMPLE_ATTACK; }
-        if (performHeavyAttack) { return State.HEAVY_ATTACK; }
-        if (performDash) { return State.DASH; }
-        if (performTakingDamage) { return State.DAMAGE; }
         if (performDeath) { return State.DIE; }
+        if (performTakingDamage) { return State.DAMAGE; }
+        if (performDash) { return State.DASH; }
+        if (performHeavyAttack) { return State.HEAVY_ATTACK; }
+        if (performSimpleAttack) { return State.SIMPLE_ATTACK; }
 
         if (johnBody.getLinearVelocity().y > 0 ||
                 (johnBody.getLinearVelocity().y < 0 && previousState == State.JUMPING)) {return State.JUMPING;}
         else if (johnBody.getLinearVelocity().y < 0) {return State.FALLING;}
         else if (johnBody.getLinearVelocity().x != 0) {return State.RUNNING;}
         else {return State.IDLE;}
+    }
+
+    public void draw(Batch batch) {
+        if (!player.johnIsDead || stateTimer < 1) {
+            super.draw(batch);
+        }
     }
 }

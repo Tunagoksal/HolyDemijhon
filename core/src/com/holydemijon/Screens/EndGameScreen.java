@@ -2,7 +2,6 @@ package com.holydemijon.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -17,30 +16,28 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.holydemijon.HolyDemijhon;
-
-import java.awt.*;
+import com.holydemijon.HolyDemijohn;
 
 
 public class EndGameScreen extends ScreenAdapter implements Input.TextInputListener {
 
     private Viewport viewport;
     private Stage stage;
-    private HolyDemijhon game;
+    private HolyDemijohn game;
     private OrthographicCamera cam;
     private Table table;
 
     private TextField text;
     private TextField.TextFieldStyle textstyle;
 
-    public EndGameScreen(HolyDemijhon game){
+    public EndGameScreen(HolyDemijohn game){
 
         // Enes screenleri paylaşalım dediğimiz için biraz sana ithafen yazıyorum backgroundı eklerken scalelemede gariplik oluyor
         // çözmeye uğraşmadım sen çözersen onu halledebilirsin
 
         this.game= game;
         cam = new OrthographicCamera();
-        viewport = new FitViewport(HolyDemijhon.WIDTH,HolyDemijhon.HEIGHT,cam);
+        viewport = new FitViewport(HolyDemijohn.WIDTH, HolyDemijohn.HEIGHT,cam);
         stage = new Stage(viewport, (game).batch);
 
         textstyle = new TextField.TextFieldStyle();

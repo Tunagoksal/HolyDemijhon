@@ -5,6 +5,7 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
+import com.holydemijon.Screens.Levels.Level;
 import com.holydemijon.Sprites.TileObjects.Chest;
 import com.holydemijon.Sprites.Items.Door;
 import com.holydemijon.Sprites.TileObjects.Ground;
@@ -17,15 +18,14 @@ public class Box2DWorldCreator {
     private int door;
     private int chest;
 
+    private Level level;
+    private World world;
+    private TiledMap map;
 
-    World world;
-    TiledMap map;
-
-    public Box2DWorldCreator(World world, TiledMap map) {
-
-        this.world = world;
-        this.map = map;
-
+    public Box2DWorldCreator(Level level) {
+        this.level = level;
+        this.world = level.getWorld();
+        this.map = level.getMap();
     }
 
     public void colliderCreation(){
@@ -33,22 +33,22 @@ public class Box2DWorldCreator {
         for (MapObject object : map.getLayers().get(spike).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-            new Spikes(world, map, rect);
+            new Spikes(level, rect);
         }
         for (MapObject object : map.getLayers().get(door).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-            new Door(world, map, rect);
+            new Door(level, rect);
         }
         for (MapObject object : map.getLayers().get(ground).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-            new Ground(world, map, rect);
+            new Ground(level, rect);
         }
         for (MapObject object : map.getLayers().get(chest).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-            new Chest(world, map, rect);
+            new Chest(level, rect);
         }
     }
 

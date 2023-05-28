@@ -86,11 +86,8 @@ public abstract class Level extends ScreenAdapter {
         }
     }
 
-    public World getWorld() { return world; }
-    public TiledMap getMap() { return map; }
-
-    public John getPlayer() {
-        return player;
-    }
+    public abstract World getWorld();
+    public abstract TiledMap getMap();
+    public abstract John getPlayer();
 
 }

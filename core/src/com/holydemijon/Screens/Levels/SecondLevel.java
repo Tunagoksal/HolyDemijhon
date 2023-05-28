@@ -70,6 +70,16 @@ public class SecondLevel extends Level {
         game.batch.end();
 
     }
+
+    @Override
+    public World getWorld() { return world; }
+
+    @Override
+    public TiledMap getMap() { return map; }
+
+    @Override
+    public John getPlayer() { return player; }
+
     @Override
     public void resize(int width, int height) {
         viewport.update(width,height);

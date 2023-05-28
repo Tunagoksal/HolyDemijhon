@@ -47,6 +47,9 @@ public class FirstLevel extends Level {
         return world;
     }
 
+    @Override
+    public TiledMap getMap() { return map; }
+
     public John getPlayer() {
         return player;
     }

@@ -8,6 +8,8 @@ import com.holydemijon.Screens.Levels.Level;
 
 public class Spikes extends InteractiveTileObject {
 
+    public static final int SPIKE_DAMAGE = 25;
+
     public Spikes(Level level, Rectangle bounds) {
         super(level, bounds);
         fixture.setUserData(this);
@@ -15,6 +17,5 @@ public class Spikes extends InteractiveTileObject {
 
     @Override
     public void collision() {
-
     }
 }

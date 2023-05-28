@@ -7,6 +7,8 @@ import com.holydemijon.Screens.Levels.Level;
 
 public class Trampoline extends InteractiveTileObject {
 
+    public static final float JUMPING_HEIGHT = 8;
+
     public Trampoline(Level level, Rectangle bounds) {
 
         super(level, bounds);
@@ -15,6 +17,5 @@ public class Trampoline extends InteractiveTileObject {
 
     @Override
     public void collision() {
-        player.jump(8f);
     }
 }

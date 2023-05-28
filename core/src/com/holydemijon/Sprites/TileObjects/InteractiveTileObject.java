@@ -24,7 +24,6 @@ public abstract class InteractiveTileObject {
         this.level = level;
         this.world = level.getWorld();
         this.tiledMap = level.getMap();
-        this.player = level.getPlayer();
         this.bounds = bounds;
 
         BodyDef bodyDef = new BodyDef();

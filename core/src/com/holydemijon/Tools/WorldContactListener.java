@@ -11,6 +11,7 @@ import com.holydemijon.Sprites.Enemies.Zombie;
 import com.holydemijon.Sprites.Items.Door;
 import com.holydemijon.Sprites.John;
 import com.holydemijon.Sprites.TileObjects.InteractiveTileObject;
+import com.holydemijon.Sprites.TileObjects.Spikes;
 import com.holydemijon.Sprites.TileObjects.Trampoline;
 
 import static com.badlogic.gdx.Gdx.input;
@@ -36,6 +37,15 @@ public class WorldContactListener implements ContactListener {
 
             if (object.getUserData() != null && object.getUserData() instanceof InteractiveTileObject) {
                 ((InteractiveTileObject) object.getUserData()).collision();
+
+                if (object.getUserData() instanceof Spikes) {
+                    ((John) player.getUserData()).takeDamage(Spikes.SPIKE_DAMAGE);
+                    ((John) player.getUserData()).jump(8f);
+                }
+                else if (object.getUserData() instanceof Trampoline) {
+                    ((John) player.getUserData()).jump(Trampoline.JUMPING_HEIGHT);
+                }
+
             }
 
             if (object.getUserData() != null && object.getUserData() instanceof Door) {

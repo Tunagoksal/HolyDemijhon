@@ -30,9 +30,13 @@ public class SecondLevel extends Level {
     private Box2DDebugRenderer b2dbr;
     private Box2DWorldCreator b2dwc;
 
+    private FirstLevel firstLevel;
+
     public SecondLevel(HolyDemijhon game){
 
         super(game);
+        firstLevel = game.getLevel1();
+        setHud(firstLevel.getHud());
 
         cam = new OrthographicCamera();
         viewport = new FitViewport(HolyDemijhon.WIDTH / HolyDemijhon.PPM, HolyDemijhon.HEIGHT / HolyDemijhon.PPM, cam);

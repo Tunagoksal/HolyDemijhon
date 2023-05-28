@@ -53,6 +53,14 @@ public abstract class Level extends ScreenAdapter {
         }
     }
 
+    public void setHud(HUD hud) {
+        this.hud = hud;
+    }
+
+    public HUD getHud() {
+        return hud;
+    }
+
     public John getPlayer() {
         return player;
     }

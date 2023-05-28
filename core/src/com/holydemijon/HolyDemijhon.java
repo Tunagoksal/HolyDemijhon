@@ -36,9 +36,9 @@ public class HolyDemijhon extends Game {
 	private Preferences prefs;
 
 	private MainMenuScreen mainMenu;
-	private FirstLevel firstLevel;
-	private SecondLevel level1;
-	private ThirdLevel level2;
+	private FirstLevel level1;
+	private SecondLevel level2;
+	private ThirdLevel level3;
 	private EndGameScreen endGameScreen;
 
 	@Override
@@ -52,12 +52,24 @@ public class HolyDemijhon extends Game {
 		batch = new SpriteBatch();
 
 		mainMenu = new MainMenuScreen(this);
-		firstLevel = new FirstLevel(this);
+		level1 = new FirstLevel(this);
 		endGameScreen = new EndGameScreen(this);
-		level1 = new SecondLevel(this);
-		level2 = new ThirdLevel(this);
+		level2 = new SecondLevel(this);
+		level3 = new ThirdLevel(this);
 
 		setScreen(new MainMenuScreen(this));
+	}
+
+	public FirstLevel getLevel1() {
+		return level1;
+	}
+
+	public SecondLevel getLevel2() {
+		return level2;
+	}
+
+	public ThirdLevel getLevel3() {
+		return level3;
 	}
 
 	public Preferences getPrefs() {
@@ -78,7 +90,7 @@ public class HolyDemijhon extends Game {
 				setScreen(mainMenu);
 				break;
 			case LEVEL_SCREEN:
-				setScreen(firstLevel);
+				setScreen(level1);
 				break;
 			case END_GAME_SCREEN:
 				setScreen(endGameScreen);
@@ -87,10 +99,10 @@ public class HolyDemijhon extends Game {
 				setScreen(new leaderBoardScreen(this));
 				break;
 			case FIRST_LEVEL:
-				setScreen(level1);
+				setScreen(level2);
 				break;
 			case SECOND_LEVEL:
-				setScreen(level2);
+				setScreen(level3);
 				break;
 		}
 

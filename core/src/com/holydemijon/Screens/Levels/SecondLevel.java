@@ -30,7 +30,7 @@ public class SecondLevel extends Level {
         b2dbr = new Box2DDebugRenderer();
         b2dwc = new Box2DWorldCreator(this);
 
-        b2dwc.setColliders(1,5,4,2);
+        b2dwc.setColliders(1,6,4,2,5,3,7);
         b2dwc.colliderCreation();
         player = new John(world);
 

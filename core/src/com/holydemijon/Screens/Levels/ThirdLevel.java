@@ -31,7 +31,7 @@ public class ThirdLevel extends Level {
         b2dbr = new Box2DDebugRenderer();
         b2dwc = new Box2DWorldCreator(this);
 
-        b2dwc.setColliders(1,5,6,3);
+        b2dwc.setColliders(1,5,6,3,2,4,7);
         b2dwc.colliderCreation();
         player = new John(world);
 

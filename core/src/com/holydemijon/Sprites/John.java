@@ -46,7 +46,7 @@ public class John extends Sprite {
     public static float johnPositionX;
 
     private int johnHealth;
-    public boolean johnIsDead;
+    public static boolean johnIsDead;
 
     public static boolean isTouchingGround;
     public static int remainingJumps;

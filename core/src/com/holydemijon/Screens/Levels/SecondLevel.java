@@ -22,9 +22,14 @@ public class SecondLevel extends Level {
     private TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
 
+    private FirstLevel firstLevel;
+
     public SecondLevel(HolyDemijhon game){
 
         super(game);
+
+        firstLevel = game.getLevelScreen();
+        setHud(firstLevel.getHud());
 
         cam = new OrthographicCamera();
         viewport = new FitViewport(HolyDemijhon.WIDTH / HolyDemijhon.PPM, HolyDemijhon.HEIGHT / HolyDemijhon.PPM, cam);

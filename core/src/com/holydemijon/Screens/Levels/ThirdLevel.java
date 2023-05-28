@@ -22,9 +22,14 @@ public class ThirdLevel extends Level {
     private TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
 
+    private SecondLevel secondLevel;
+
     public ThirdLevel(HolyDemijhon game){
 
         super(game);
+
+        secondLevel = game.getLevel2();
+        setHud(secondLevel.getHud());
 
         cam = new OrthographicCamera();
         viewport = new FitViewport(HolyDemijhon.WIDTH / HolyDemijhon.PPM, HolyDemijhon.HEIGHT / HolyDemijhon.PPM, cam);

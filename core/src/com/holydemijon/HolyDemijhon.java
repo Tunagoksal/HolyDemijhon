@@ -76,6 +76,10 @@ public class HolyDemijhon extends Game {
 		return level1;
 	}
 
+	public SecondLevel getLevel2() {
+		return level2;
+	}
+
 	public void setScreens(int screen){
         switch (screen){
 			case MAIN_MENU_SCREEN:

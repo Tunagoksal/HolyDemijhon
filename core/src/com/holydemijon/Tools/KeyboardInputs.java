@@ -20,54 +20,54 @@ public class KeyboardInputs implements InputProcessor {
     public void update(float dt){ processInput(); }
 
     public void processInput() {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && John.remainingJumps > 0) {
-            if (!John.isTouchingGround) {
-                JohnAnimation.performDash = true;
-                player.jump(John.JUMP_HEIGHT / 1.5f);
-                John.remainingJumps = 0;
-            }
-            else {
-                player.jump(John.JUMP_HEIGHT);
-                John.remainingJumps -= 1;
-            }
-        }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2dbody.getLinearVelocity().x >= -John.MAX_LINEAR_VELOCITY) {
-            player.move(-1);
-        }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2dbody.getLinearVelocity().x <= John.MAX_LINEAR_VELOCITY) {
-            player.move(1);
-        }
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
-            JohnAnimation.performSimpleAttack = true;
-            Timer timer = new Timer();
-            timer.scheduleTask(new Timer.Task() {
-                @Override
-                public void run() {
-                    player.simpleAttack();
+        if (!John.disableControls) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && John.remainingJumps > 0) {
+                if (!John.isTouchingGround) {
+                    JohnAnimation.performDash = true;
+                    player.jump(John.JUMP_HEIGHT / 1.5f);
+                    John.remainingJumps = 0;
+                } else {
+                    player.jump(John.JUMP_HEIGHT);
+                    John.remainingJumps -= 1;
                 }
-            },0.25f);
-        }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.E) && John.heavyAttackIsActive) {
-            JohnAnimation.performHeavyAttack = true;
-            Timer timer = new Timer();
-            timer.scheduleTask(new Timer.Task() {
-                @Override
-                public void run() {
-                    player.heavyAttack();
-                }
-            },0.25f);
-        }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && John.dashIsActive) {
-            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-                player.johnDash(1);
-                John.dashUsed();
             }
-            else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-                player.johnDash(-1);
-                John.dashUsed();
+
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2dbody.getLinearVelocity().x >= -John.MAX_LINEAR_VELOCITY) {
+                player.move(-1);
+            }
+
+            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2dbody.getLinearVelocity().x <= John.MAX_LINEAR_VELOCITY) {
+                player.move(1);
+            }
+
+            if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
+                JohnAnimation.performSimpleAttack = true;
+                Timer timer = new Timer();
+                timer.scheduleTask(new Timer.Task() {
+                    @Override
+                    public void run() {
+                        player.simpleAttack();
+                    }
+                }, 0.25f);
+            }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.E) && John.heavyAttackIsActive) {
+                JohnAnimation.performHeavyAttack = true;
+                Timer timer = new Timer();
+                timer.scheduleTask(new Timer.Task() {
+                    @Override
+                    public void run() {
+                        player.heavyAttack();
+                    }
+                }, 0.25f);
+            }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && John.dashIsActive) {
+                if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+                    player.johnDash(1);
+                    John.dashUsed();
+                } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+                    player.johnDash(-1);
+                    John.dashUsed();
+                }
             }
         }
     }

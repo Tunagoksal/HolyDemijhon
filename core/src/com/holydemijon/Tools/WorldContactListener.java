@@ -191,9 +191,8 @@ public class WorldContactListener implements ContactListener {
                 player = fixtureB;
             }
             ((John) player.getUserData()).takeDamage(10000);
-
+            ((John) player.getUserData()).bounce(0, 4);
         }
-
 
     }
 

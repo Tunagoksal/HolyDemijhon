@@ -13,6 +13,7 @@ import com.holydemijon.Sprites.Enemies.Enemy;
 import com.holydemijon.Sprites.Enemies.Orc;
 import com.holydemijon.Sprites.Enemies.Wizard;
 import com.holydemijon.Sprites.Enemies.Zombie;
+import com.holydemijon.Sprites.TileObjects.BearTrap;
 import com.holydemijon.Sprites.TileObjects.Spikes;
 import com.holydemijon.Sprites.TileObjects.Trampoline;
 import com.holydemijon.Tools.KeyboardInputs;
@@ -60,6 +61,8 @@ public class John extends Sprite {
     public static boolean steppedOnSpike;
     public static boolean steppedOnTrampoline;
     public static boolean steppedOnEnemy;
+    public static boolean steppedOnTrap;
+    public static boolean disableControls;
     public static Enemy enemyStepped;
 
     public John(World world) {
@@ -90,6 +93,9 @@ public class John extends Sprite {
         steppedOnSpike = false;
         steppedOnTrampoline = false;
         steppedOnEnemy = false;
+        steppedOnTrap = false;
+        disableControls = false;
+
         enemyStepped = null;
     }
 
@@ -217,6 +223,21 @@ public class John extends Sprite {
         if (steppedOnTrampoline) {
             bounce(0, Trampoline.JUMPING_HEIGHT);
             steppedOnTrampoline = false;
+        }
+
+        if (steppedOnTrap) {
+            steppedOnTrap = false;
+            disableControls = true;
+            takeDamage(BearTrap.BEAR_TRAP_DAMAGE);
+            b2dbody.setLinearVelocity(0, 0);
+
+            Timer timer = new Timer();
+            timer.scheduleTask(new Timer.Task() {
+                @Override
+                public void run() {
+                    disableControls = false;
+                }
+            }, 1);
         }
 
         if (steppedOnEnemy) {

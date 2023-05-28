@@ -6,10 +6,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import com.holydemijon.Screens.Levels.Level;
-import com.holydemijon.Sprites.TileObjects.Chest;
+import com.holydemijon.Sprites.Items.Border;
+import com.holydemijon.Sprites.TileObjects.*;
 import com.holydemijon.Sprites.Items.Door;
-import com.holydemijon.Sprites.TileObjects.Ground;
-import com.holydemijon.Sprites.TileObjects.Spikes;
 
 public class Box2DWorldCreator {
 
@@ -17,6 +16,9 @@ public class Box2DWorldCreator {
     private int spike;
     private int door;
     private int chest;
+    private int tramboline;
+    private int trap;
+    private int border;
 
     private Level level;
     private World world;
@@ -50,12 +52,35 @@ public class Box2DWorldCreator {
 
             new Chest(level, rect);
         }
+        for (MapObject object : map.getLayers().get(door).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new Door(level, rect);
+        }
+        for (MapObject object : map.getLayers().get(tramboline).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new Trampoline(level, rect);
+        }
+        for (MapObject object : map.getLayers().get(trap).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new BearTrap(level, rect);
+        }
+        for (MapObject object : map.getLayers().get(border).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new Border(level, rect);
+        }
     }
 
-    public void setColliders(int ground, int chest, int door, int spike){
+    public void setColliders(int ground, int chest, int door, int spike, int tramboline,int trap,int border){
         this.ground = ground;
         this.chest = chest;
         this.door = door;
         this.spike = spike;
+        this.tramboline = tramboline;
+        this.trap = trap;
+        this.border = border;
     }
 }

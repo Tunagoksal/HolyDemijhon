@@ -36,7 +36,7 @@ public class FirstLevel extends Level {
         b2dbr = new Box2DDebugRenderer();
         b2dwc = new Box2DWorldCreator(this);
 
-        b2dwc.setColliders(2,4,6,3);
+        b2dwc.setColliders(2,4,6,3,7,5,1);
         b2dwc.colliderCreation();
 
         orc = new Orc(this, 300 / HolyDemijohn.PPM, 150 / HolyDemijohn.PPM, 0);

@@ -37,13 +37,14 @@ public abstract class Level extends ScreenAdapter {
 
     private John player;
 
+    private int levelLabel;
+
     public Level(HolyDemijhon game){
         this.game = game;
         hud = new HUD(game.batch);
 
         listener = new WorldContactListener();
     }
-
 
     @Override
     public void render(float delta) {
@@ -59,6 +60,9 @@ public abstract class Level extends ScreenAdapter {
         hud.stage.draw();
     }
 
+    public void setLevelLabel(int levelLabel){
+        hud.setLevel(levelLabel);
+    }
 
     public void levelOver(int screen){
         if(isDoorOpened){

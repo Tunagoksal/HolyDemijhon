@@ -3,6 +3,8 @@ package com.holydemijon;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.holydemijon.Scenes.HUD;
+import com.holydemijon.Screens.Levels.Level;
 import com.holydemijon.Screens.Levels.SecondLevel;
 import com.holydemijon.Screens.Levels.ThirdLevel;
 import com.holydemijon.Screens.EndGameScreen;
@@ -44,7 +46,6 @@ public class HolyDemijhon extends Game {
 	private int start;
 	private int end;
 	private int time;
-
 
 	@Override
 	public void create() {

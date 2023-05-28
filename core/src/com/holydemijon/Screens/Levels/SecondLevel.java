@@ -53,8 +53,8 @@ public class SecondLevel extends Level {
 
     public void update(float dt){
 
-        hud.update(dt);
         hud.setLevel(2);
+        hud.update(dt);
 
         player.update(dt);
 

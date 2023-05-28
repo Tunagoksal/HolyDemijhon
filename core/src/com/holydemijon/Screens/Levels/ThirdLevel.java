@@ -53,8 +53,8 @@ public class ThirdLevel extends Level {
 
     public void update(float dt){
 
+        hud.setLevel(3);
         hud.update(dt);
-        hud.setLevel(2);
 
         player.update(dt);
 

@@ -61,8 +61,8 @@ public class FirstLevel extends Level {
 
     public void update(float dt){
 
-        hud.update(dt);
         hud.setLevel(1);
+        hud.update(dt);
 
         zombie.update(dt);
         player.update(dt);

@@ -21,19 +21,15 @@ public class HUD implements Disposable {
 
     private Integer worldTimer;
     private float timeCount;
-    private Integer score;
 
     Label countDownLabel;
     Label timeLabel;
     Label levelLabel;
     Label worldLabel;
 
-    private int level;
-
-    private static int newLevel = 0;
+    private static int level = 1;
 
     public HUD(SpriteBatch batch){
-        newLevel++;
 
         worldTimer = 0;
         timeCount = 0;
@@ -49,7 +45,7 @@ public class HUD implements Disposable {
 
         countDownLabel = new Label(String.format("%03d", worldTimer),style);
         timeLabel = new Label("TIME", style);
-        levelLabel = new Label("" + newLevel, style);
+        levelLabel = new Label("" + this.level, style);
         worldLabel = new Label("LEVEL", style);
 
 
@@ -68,25 +64,19 @@ public class HUD implements Disposable {
         timeCount += dt;
         if(timeCount >= 1){
             worldTimer++;
+            levelLabel.setText(String.valueOf(this.level));
             countDownLabel.setText(String.format("%03d",worldTimer));
             timeCount = 0;
+
         }
     }
 
-    public int getTime(){
-        return this.worldTimer;
-    }
-
-    public int getLevel(){
-        return this.level;
-    }
     public void setLevel(int level){
         this.level = level;
     }
-
 
     @Override
     public void dispose() {
         stage.dispose();
     }
-}
+    }

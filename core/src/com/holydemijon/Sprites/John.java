@@ -113,7 +113,8 @@ public class John extends Sprite {
             timer.scheduleTask(new Timer.Task() {
                 @Override
                 public void run() {
-                    b2dbody.applyLinearImpulse(new Vector2(-DASH_POWER / 2, 0), b2dbody.getWorldCenter(), true);
+                    if (b2dbody.getLinearVelocity().x > 0)
+                        b2dbody.applyLinearImpulse(new Vector2(-DASH_POWER / 2, 0), b2dbody.getWorldCenter(), true);
                 }
             },0.4f);
         }
@@ -123,7 +124,8 @@ public class John extends Sprite {
             timer.scheduleTask(new Timer.Task() {
                 @Override
                 public void run() {
-                    b2dbody.applyLinearImpulse(new Vector2(DASH_POWER / 2, 0), b2dbody.getWorldCenter(), true);
+                    if (b2dbody.getLinearVelocity().x < 0)
+                        b2dbody.applyLinearImpulse(new Vector2(DASH_POWER / 2, 0), b2dbody.getWorldCenter(), true);
                 }
             },0.4f);
         }

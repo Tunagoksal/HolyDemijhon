@@ -62,13 +62,15 @@ public abstract class Level extends ScreenAdapter {
             game.setScreens(HolyDemijohn.PAUSE_MENU_SCREEN);// Şimdilik ana menüye döndürüyor daha pause menüyü oluşturmadım
         }
         if (JohnAnimation.performDeath){
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            Gdx.input.setInputProcessor(game.getGameOverMenu().getStage());
-            game.setScreens(HolyDemijohn.GAME_OVER_MENU);
+            Timer timer = new Timer();
+
+            timer.scheduleTask(new Timer.Task() {
+                @Override
+                public void run() {
+                    Gdx.input.setInputProcessor(game.getGameOverMenu().getStage());
+                    game.setScreens(HolyDemijohn.GAME_OVER_MENU);
+                }
+            }, 2);
         }
         Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

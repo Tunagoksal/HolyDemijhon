@@ -2,6 +2,7 @@ package com.holydemijon;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.holydemijon.Screens.*;
 import com.holydemijon.Screens.Levels.SecondLevel;
 import com.holydemijon.Screens.Levels.ThirdLevel;
@@ -35,9 +36,12 @@ public class HolyDemijohn extends Game {
 	private FirstLevel level1;
 	private SecondLevel level2;
 	private ThirdLevel level3;
-	private EndGameScreen endGameScreen;
 	private PauseMenuScreen pauseMenuScreen;
 	private GameOverMenu gameOverMenu;
+
+	private int start;
+	private int end;
+	private int time;
 
 	@Override
 	public void create() {
@@ -50,7 +54,6 @@ public class HolyDemijohn extends Game {
 		batch = new SpriteBatch();
 
 		mainMenu = new MainMenuScreen(this);
-		endGameScreen = new EndGameScreen(this);
 		level1 = new FirstLevel(this);
 		level2 = new SecondLevel(this);
 		level3 = new ThirdLevel(this);
@@ -74,12 +77,16 @@ public class HolyDemijohn extends Game {
 		return level1;
 	}
 
+	public SecondLevel getLevel2() { return level2; }
+
 	public void setScreens(int screen){
         switch (screen){
 			case MAIN_MENU_SCREEN:
 				setScreen(mainMenu);
 				break;
 			case FIRST_LEVEL:
+				System.out.println("Start of game.");
+				this.start = (int) TimeUtils.millis();
 				setScreen(level1);
 				break;
 			case SECOND_LEVEL:
@@ -89,7 +96,10 @@ public class HolyDemijohn extends Game {
 				setScreen(level3);
 				break;
 			case END_GAME_SCREEN:
-				setScreen(endGameScreen);
+				this.end = (int) TimeUtils.millis();
+				this.time = (this.end - this.start) / 1000;
+				System.out.println("time: " + time);
+				setScreen(new EndGameScreen(this, this.time));
 				break;
 			case LEADER_BOARD:
 				setScreen(new leaderBoardScreen(this));
@@ -117,7 +127,7 @@ public class HolyDemijohn extends Game {
 
 	public GameOverMenu getGameOverMenu() { return gameOverMenu; }
 
-	public EndGameScreen getEndGameScreen() { return endGameScreen;}
+	public EndGameScreen getEndGameScreen() { return new EndGameScreen(this,time);}
 	public void resetLevels(){
 		level1 = new FirstLevel(this);
 		level2 = new SecondLevel(this);

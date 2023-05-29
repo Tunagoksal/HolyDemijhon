@@ -11,6 +11,9 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.holydemijon.HolyDemijohn;
+import com.holydemijon.Screens.Levels.Level;
+
+import java.awt.*;
 
 public class HUD implements Disposable {
     public Stage stage;
@@ -18,22 +21,20 @@ public class HUD implements Disposable {
 
     private Integer worldTimer;
     private float timeCount;
-    private Integer score;
 
     Label countDownLabel;
-    Label scoreLabel;
     Label timeLabel;
     Label levelLabel;
     Label worldLabel;
-    Label herolabel;
+
+    private static int level = 1;
 
     public HUD(SpriteBatch batch){
 
-        worldTimer = 300;
+        worldTimer = 0;
         timeCount = 0;
-        score = 0;
 
-        viewport = new FitViewport(HolyDemijohn.WIDTH, HolyDemijohn.HEIGHT,new OrthographicCamera());
+        viewport = new FitViewport(HolyDemijohn.WIDTH,HolyDemijohn.HEIGHT,new OrthographicCamera());
         stage = new Stage(viewport, batch);
 
         Table table= new Table();
@@ -43,23 +44,35 @@ public class HUD implements Disposable {
         Label.LabelStyle style = new Label.LabelStyle(new BitmapFont(),Color.WHITE);
 
         countDownLabel = new Label(String.format("%03d", worldTimer),style);
-        scoreLabel =new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         timeLabel = new Label("TIME", style);
-        levelLabel = new Label("1-1", style);
-        worldLabel = new Label("WORLD", style);
-        herolabel = new Label("HERO", style);
+        levelLabel = new Label("" + this.level, style);
+        worldLabel = new Label("LEVEL", style);
+
 
         //add our labels to our table, padding the top, and giving them all equal width with expandX
-        table.add(herolabel).expandX().padTop(10);
-        table.add(worldLabel).expandX().padTop(10);
+        table.add(worldLabel).expandX().padTop(1);
         table.add(timeLabel).expandX().padTop(10);
         //add a second row to our table
         table.row();
-        table.add(scoreLabel).expandX();
         table.add(levelLabel).expandX();
         table.add(countDownLabel).expandX();
 
         stage.addActor(table);
+    }
+
+    public void update(float dt){
+        timeCount += dt;
+        if(timeCount >= 1){
+            worldTimer++;
+            levelLabel.setText(String.valueOf(this.level));
+            countDownLabel.setText(String.format("%03d",worldTimer));
+            timeCount = 0;
+
+        }
+    }
+
+    public void setLevel(int level){
+        this.level = level;
     }
 
     @Override

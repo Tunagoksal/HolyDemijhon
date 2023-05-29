@@ -13,9 +13,15 @@ import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Tools.Box2DWorldCreator;
 
 public class SecondLevel extends Level {
+
+    private FirstLevel firstLevel;
+
     public SecondLevel(HolyDemijohn game){
 
         super(game);
+
+        firstLevel = game.getLevelScreen();
+        setHud(firstLevel.getHud());
 
         cam = new OrthographicCamera();
         viewport = new FitViewport(HolyDemijohn.WIDTH / HolyDemijohn.PPM, HolyDemijohn.HEIGHT / HolyDemijohn.PPM, cam);
@@ -38,6 +44,9 @@ public class SecondLevel extends Level {
     }
 
     public void update(float dt){
+
+        hud.setLevel(2);
+        hud.update(dt);
 
         player.update(dt);
 
@@ -88,6 +97,7 @@ public class SecondLevel extends Level {
         mapRenderer.dispose();
         world.dispose();
         b2dbr.dispose();
+        player.getWorld().dispose();
         player.getWorld().dispose();
     }
 }

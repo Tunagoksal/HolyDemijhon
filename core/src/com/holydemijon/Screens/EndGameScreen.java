@@ -15,6 +15,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijohn;
+import com.mongodb.client.*;
+import com.mongodb.client.model.Sorts;
+import org.bson.Document;
+import org.bson.conversions.Bson;
 
 
 public class EndGameScreen extends ScreenAdapter{
@@ -29,7 +33,9 @@ public class EndGameScreen extends ScreenAdapter{
     private TextField text;
     private TextField.TextFieldStyle textstyle;
 
-    public EndGameScreen(HolyDemijohn game){
+    public EndGameScreen(HolyDemijohn game, int time){
+
+        System.out.println("bug here");
 
         name = "";
         this.game = game;
@@ -59,12 +65,16 @@ public class EndGameScreen extends ScreenAdapter{
         if (Gdx.input.isKeyPressed(Input.Keys.ENTER))
         {
             name = text.getText();
+
+            addToDatabase(name, time);
         }
         table.add(endGameButton);
         table.row();
         table.add(text);
         stage.addActor(table);
         Gdx.input.setInputProcessor(stage);
+
+        System.out.println("in end game menu");
     }
     public Stage getStage(){ return stage; }
 
@@ -84,4 +94,37 @@ public class EndGameScreen extends ScreenAdapter{
     }
     @Override
     public void resize(int x, int y){ viewport.update(x,y); }
+
+    public static void addToDatabase(String name, int time){
+        MongoClient mongoClient = MongoClients.create("mongodb+srv://boraytkn:1234mdb@cluster0.ris0uvf.mongodb.net/?retryWrites=true&w=majority");
+        MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
+        MongoCollection collection = database.getCollection("ScoreCollection");
+
+        Document doc = new Document("name", name);
+        doc.append("score", time);
+        collection.insertOne(doc);
+
+        System.out.println("addToDatabase working fine pls :)");
+
+        getTopScores();
+    }
+
+    public static void getTopScores(){
+        MongoClient mongoClient = MongoClients.create("mongodb+srv://boraytkn:1234mdb@cluster0.ris0uvf.mongodb.net/?retryWrites=true&w=majority");
+        MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
+        MongoCollection<Document> collection = database.getCollection("ScoreCollection");
+
+        Bson sort = Sorts.descending("score");
+
+        FindIterable<Document> iterDoc = collection.find().sort(sort).limit(5);
+        MongoCursor<Document> it = iterDoc.iterator();
+
+        while(it.hasNext()){
+            Document doc = it.next();
+            System.out.println("Name: " + doc.getString("name") + ", Score: " + doc.getInteger("score"));
+        }
+
+        System.out.println("getTopScores working fine pls :)");
+    }
+
 }

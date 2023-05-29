@@ -62,6 +62,9 @@ public class FirstLevel extends Level {
 
     public void update(float dt){
 
+        hud.setLevel(1);
+        hud.update(dt);
+
         zombie.update(dt);
         player.update(dt);
         wizard.update(dt);
@@ -109,6 +112,7 @@ public class FirstLevel extends Level {
         map.dispose();
         mapRenderer.dispose();
         world.dispose();
+        player.getWorld().dispose();
         player.getWorld().dispose();
         //b2dbr.dispose();
     }

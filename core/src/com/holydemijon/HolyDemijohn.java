@@ -118,4 +118,9 @@ public class HolyDemijohn extends Game {
 	public GameOverMenu getGameOverMenu() { return gameOverMenu; }
 
 	public EndGameScreen getEndGameScreen() { return endGameScreen;}
+	public void resetLevels(){
+		level1 = new FirstLevel(this);
+		level2 = new SecondLevel(this);
+		level3 = new ThirdLevel(this);
+	}
 }

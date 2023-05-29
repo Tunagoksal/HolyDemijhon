@@ -59,7 +59,8 @@ public class GameOverMenu extends ScreenAdapter {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Gdx.input.setInputProcessor(null);
-                game.setScreen(new FirstLevel(game));
+                game.resetLevels();
+                game.setScreens(HolyDemijohn.FIRST_LEVEL);
             }
         });
 

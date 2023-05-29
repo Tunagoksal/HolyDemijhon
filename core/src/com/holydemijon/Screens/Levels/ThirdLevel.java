@@ -13,10 +13,13 @@ import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Tools.Box2DWorldCreator;
 
 public class ThirdLevel extends Level {
+    public static boolean isOver;
 
     public ThirdLevel(HolyDemijohn game){
 
         super(game);
+
+        isOver  = false;
 
         cam = new OrthographicCamera();
         viewport = new FitViewport(HolyDemijohn.WIDTH / HolyDemijohn.PPM, HolyDemijohn.HEIGHT / HolyDemijohn.PPM, cam);

@@ -61,13 +61,13 @@ public abstract class Level extends ScreenAdapter {
             currentScreen = game.getScreen();
             game.setScreens(HolyDemijohn.PAUSE_MENU_SCREEN);
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.K)){
+        if (ThirdLevel.isOver){
             Gdx.input.setInputProcessor(game.getEndGameScreen().getStage());
             game.setScreens(HolyDemijohn.END_GAME_SCREEN);
         }
         if (JohnAnimation.performDeath){
             try {
-                Thread.sleep(3000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -88,6 +88,9 @@ public abstract class Level extends ScreenAdapter {
     public void levelOver(int screen){
         if(isDoorOpened){
             isDoorOpened = false;
+            if (screen == HolyDemijohn.END_GAME_SCREEN) {
+                ThirdLevel.isOver  = true;
+            }
             game.getPrefs().putInteger("Level",screen);
             game.getPrefs().flush();
             game.setScreens(screen);

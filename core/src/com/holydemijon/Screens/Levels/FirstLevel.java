@@ -82,7 +82,7 @@ public class FirstLevel extends Level {
         super.render(delta);
 
         update(delta);
-        levelOver(HolyDemijohn.FIRST_LEVEL);
+        levelOver(HolyDemijohn.SECOND_LEVEL);
 
         mapRenderer.setView(cam);
         mapRenderer.render();

@@ -59,18 +59,23 @@ public abstract class Level extends ScreenAdapter {
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
             Gdx.input.setInputProcessor(game.getPauseMenuScreen().getStage());
             currentScreen = game.getScreen();
-            game.setScreens(HolyDemijohn.PAUSE_MENU_SCREEN);// Şimdilik ana menüye döndürüyor daha pause menüyü oluşturmadım
+            game.setScreens(HolyDemijohn.PAUSE_MENU_SCREEN);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.K)){
+            Gdx.input.setInputProcessor(game.getEndGameScreen().getStage());
+            game.setScreens(HolyDemijohn.END_GAME_SCREEN);
         }
         if (JohnAnimation.performDeath){
-            Timer timer = new Timer();
-
-            timer.scheduleTask(new Timer.Task() {
-                @Override
-                public void run() {
-                    Gdx.input.setInputProcessor(game.getGameOverMenu().getStage());
-                    game.setScreens(HolyDemijohn.GAME_OVER_MENU);
-                }
-            }, 2);
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            JohnAnimation.performDeath = false;
+            John.johnIsDead = false;
+            John.johnHealth = 500;
+            Gdx.input.setInputProcessor(game.getGameOverMenu().getStage());
+            game.setScreens(HolyDemijohn.GAME_OVER_MENU);
         }
         Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

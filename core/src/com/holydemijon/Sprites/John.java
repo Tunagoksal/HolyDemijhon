@@ -28,7 +28,6 @@ public class John extends Sprite {
     public static final float JOHN_HEIGHT = 7;
 
     public static final int JOHN_HEALTH = 500;
-    public static String name = "";
     private static final float DASH_POWER = 2;
 
     private KeyboardInputs inputs;
@@ -46,7 +45,7 @@ public class John extends Sprite {
     public static Enemy attackableEnemy2;
     public static float johnPositionX;
 
-    private int johnHealth;
+    public static int johnHealth;
     public static boolean johnIsDead;
 
     public static boolean isTouchingGround;

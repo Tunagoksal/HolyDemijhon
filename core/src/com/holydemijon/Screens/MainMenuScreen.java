@@ -157,5 +157,7 @@ public class MainMenuScreen extends ScreenAdapter{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.draw();
     }
+    @Override
+    public void resize(int x, int y){ viewport.update(x,y); }
 
 }

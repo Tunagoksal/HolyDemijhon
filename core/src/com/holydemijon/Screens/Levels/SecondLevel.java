@@ -56,7 +56,7 @@ public class SecondLevel extends Level {
         super.render(delta);
 
         update(delta);
-        super.levelOver(HolyDemijohn.SECOND_LEVEL);
+        super.levelOver(HolyDemijohn.THIRD_LEVEL);
 
         mapRenderer.setView(cam);
         mapRenderer.render();

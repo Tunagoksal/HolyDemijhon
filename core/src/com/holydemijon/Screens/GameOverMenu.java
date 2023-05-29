@@ -20,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijohn;
+import com.holydemijon.Screens.Levels.FirstLevel;
 import com.holydemijon.Sprites.Animations.JohnAnimation;
 import com.holydemijon.Sprites.John;
 
@@ -57,9 +58,8 @@ public class GameOverMenu extends ScreenAdapter {
         restartButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                JohnAnimation.performDeath = false;
                 Gdx.input.setInputProcessor(null);
-                game.setScreens(HolyDemijohn.FIRST_LEVEL);
+                game.setScreen(new FirstLevel(game));
             }
         });
 
@@ -90,4 +90,6 @@ public class GameOverMenu extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.draw();
     }
+    @Override
+    public void resize(int x, int y){ viewport.update(x,y); }
 }

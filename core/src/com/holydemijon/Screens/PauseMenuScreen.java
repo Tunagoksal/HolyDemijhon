@@ -79,9 +79,9 @@ public class PauseMenuScreen extends ScreenAdapter{
 
         table.add(pauseMenuButton);
         table.row();
-        table.add(resumeButton);
+        table.add(resumeButton).padTop(10);
         table.row();
-        table.add(quitButton);
+        table.add(quitButton).padTop(10);
         table.row();
 
         sliderTable.setPosition(0,-155);

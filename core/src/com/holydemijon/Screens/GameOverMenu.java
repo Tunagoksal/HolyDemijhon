@@ -60,7 +60,10 @@ public class GameOverMenu extends ScreenAdapter {
             public void changed(ChangeEvent event, Actor actor) {
                 Gdx.input.setInputProcessor(null);
                 game.resetLevels();
+                JohnAnimation.performDeath  = false;
+                game.resetLevels();
                 game.setScreens(HolyDemijohn.FIRST_LEVEL);
+                Gdx.input.setInputProcessor(game.getMainMenu().getStage());
             }
         });
 
@@ -74,9 +77,9 @@ public class GameOverMenu extends ScreenAdapter {
         });
         table.add(youDied);
         table.row();
-        table.add(restartButton);
+        table.add(restartButton).padTop(10);
         table.row();
-        table.add(quitButtonTwo);
+        table.add(quitButtonTwo).padTop(10);
         table.row();
 
         stage.addActor(table);

@@ -39,6 +39,7 @@ public abstract class Level extends ScreenAdapter {
     protected TmxMapLoader mapLoader;
     protected TiledMap map;
     protected OrthogonalTiledMapRenderer mapRenderer;
+    protected boolean isOver;
 
     public static boolean isDoorOpened = false;
     public static Screen currentScreen;
@@ -47,9 +48,9 @@ public abstract class Level extends ScreenAdapter {
     public static final float GRAVITY = -10;
 
     public Level(HolyDemijohn game){
+        isOver = false;
         this.game = game;
         hud = new HUD(game.batch);
-
         listener = new WorldContactListener();
     }
 
@@ -61,21 +62,20 @@ public abstract class Level extends ScreenAdapter {
             currentScreen = game.getScreen();
             game.setScreens(HolyDemijohn.PAUSE_MENU_SCREEN);
         }
-        if (ThirdLevel.isOver){
+        if (isOver){
             Gdx.input.setInputProcessor(game.getEndGameScreen().getStage());
             game.setScreens(HolyDemijohn.END_GAME_SCREEN);
         }
         if (JohnAnimation.performDeath){
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            JohnAnimation.performDeath = false;
-            John.johnIsDead = false;
-            John.johnHealth = 500;
-            Gdx.input.setInputProcessor(game.getGameOverMenu().getStage());
-            game.setScreens(HolyDemijohn.GAME_OVER_MENU);
+            Timer timer = new Timer();
+
+            timer.scheduleTask(new Timer.Task() {
+                @Override
+                public void run() {
+                    Gdx.input.setInputProcessor(game.getGameOverMenu().getStage());
+                    game.setScreens(HolyDemijohn.GAME_OVER_MENU);
+                }
+            }, 2);
         }
         Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -89,11 +89,15 @@ public abstract class Level extends ScreenAdapter {
         if(isDoorOpened){
             isDoorOpened = false;
             if (screen == HolyDemijohn.END_GAME_SCREEN) {
-                ThirdLevel.isOver  = true;
+                isOver = true;
             }
-            game.getPrefs().putInteger("Level",screen);
-            game.getPrefs().flush();
-            game.setScreens(screen);
+            else {
+                game.getPrefs().putInteger("Level",screen);
+                if (screen != HolyDemijohn.END_GAME_SCREEN) {
+                    game.getPrefs().flush();
+                }
+                game.setScreens(screen);
+            }
         }
     }
 

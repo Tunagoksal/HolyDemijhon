@@ -40,8 +40,8 @@ public class leaderBoardScreen extends ScreenAdapter{
         textstyle.fontColor = new Color(40,30,150,1);
 
         text = new TextField("Name",textstyle);
-        //textField.setSize(50,100);
-        text.setBounds(100,100,200,50);
+        text.setSize(50,100);
+
 
         table = new Table();
         table.center();
@@ -52,7 +52,7 @@ public class leaderBoardScreen extends ScreenAdapter{
         TextureRegionDrawable menuDrawable = new TextureRegionDrawable(menuRegion);
         table.setBackground(menuDrawable);
 
-        table.add(text);
+        table.add(text).padTop(100);
 
         stage.addActor(table);
     }

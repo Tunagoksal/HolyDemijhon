@@ -75,6 +75,6 @@
   <object id="16" x="771.545" y="126.727" width="24.4545" height="17.0909"/>
  </objectgroup>
  <objectgroup id="8" name="mapBounds">
-  <object id="22" x="0" y="2.27102" width="960" height="630.878"/>
+  <object id="22" x="2.28626" y="-1.15837" width="960" height="552.002"/>
  </objectgroup>
 </map>

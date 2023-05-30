@@ -80,7 +80,7 @@ public class EndGameScreen extends ScreenAdapter{
     public void render(float delta) {
         if (Gdx.input.isKeyPressed(Input.Keys.ENTER))
         {
-            name = text.getText();
+            name = text.getMessageText();
             addToDatabase(name, this.time);
             System.out.println(name + " added.");
             System.out.println(this.time + " time passed.");

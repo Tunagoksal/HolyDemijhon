@@ -80,6 +80,6 @@
   <object id="23" x="816" y="124.909" width="19.7273" height="35.0909"/>
  </objectgroup>
  <objectgroup id="8" name="border">
-  <object id="24" x="32" y="0" width="880" height="640"/>
+  <object id="24" x="15.9962" y="1.14313" width="933.727" height="640"/>
  </objectgroup>
 </map>

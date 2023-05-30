@@ -29,14 +29,15 @@ public class EndGameScreen extends ScreenAdapter{
     private HolyDemijohn game;
     private OrthographicCamera cam;
     private Table table;
+    private int time;
 
     private TextField text;
     private TextField.TextFieldStyle textstyle;
 
     public EndGameScreen(HolyDemijohn game, int time){
 
-        System.out.println("bug here");
 
+        this.time=time;
         name = "";
         this.game = game;
         cam = new OrthographicCamera();
@@ -65,8 +66,6 @@ public class EndGameScreen extends ScreenAdapter{
         if (Gdx.input.isKeyPressed(Input.Keys.ENTER))
         {
             name = text.getText();
-
-            addToDatabase(name, time);
         }
         table.add(endGameButton);
         table.row();
@@ -83,7 +82,9 @@ public class EndGameScreen extends ScreenAdapter{
         if (Gdx.input.isKeyPressed(Input.Keys.ENTER))
         {
             name = text.getText();
-            System.out.println(name);
+            addToDatabase(name, this.time);
+            System.out.println(name + " added.");
+            System.out.println(this.time + " time passed.");
             game.setScreens(HolyDemijohn.LEADER_BOARD);
         }
         Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);

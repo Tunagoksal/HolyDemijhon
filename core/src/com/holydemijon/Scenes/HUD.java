@@ -46,7 +46,7 @@ public class HUD implements Disposable {
         table.top();
         table.setFillParent(true);
 
-        Label.LabelStyle style = new Label.LabelStyle(new BitmapFont(),Color.WHITE);
+        Label.LabelStyle style = new Label.LabelStyle(new BitmapFont(),Color.DARK_GRAY);
 
         countDownLabel = new Label(String.format("%03d", worldTimer),style);
         timeLabel = new Label("TIME", style);
@@ -59,9 +59,9 @@ public class HUD implements Disposable {
 
 
         //add our labels to our table, padding the top, and giving them all equal width with expandX
-        table.add(worldLabel).expandX().padTop(1);
-        table.add(powerLabel).expandX().padTop(5);
-        table.add(timeLabel).expandX().padTop(10);
+        table.add(worldLabel).expandX().padTop(0);
+        table.add(powerLabel).expandX().padTop(0);
+        table.add(timeLabel).expandX().padTop(0);
         //add a second row to our table
         table.row();
         table.add(levelLabel).expandX();
@@ -90,6 +90,7 @@ public class HUD implements Disposable {
         if(John.heavyAttackIsActive){
             heavyAttackLabel.setText("Heavy Attack: +");
         }
+
         timeCount += dt;
         if(timeCount >= 1){
             worldTimer++;
@@ -97,6 +98,10 @@ public class HUD implements Disposable {
             countDownLabel.setText(String.format("%03d",worldTimer));
             timeCount = 0;
         }
+    }
+
+    public int getWorldTimer(){
+        return worldTimer;
     }
 
     public void setLevel(int level){

@@ -140,6 +140,6 @@ public class ThirdLevel extends Level {
         world.dispose();
         b2dbr.dispose();
         player.getWorld().dispose();
-        player.getWorld().dispose();
+        //player.getWorld().dispose();
     }
 }

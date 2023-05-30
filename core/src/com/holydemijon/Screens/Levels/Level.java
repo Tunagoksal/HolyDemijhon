@@ -90,6 +90,7 @@ public abstract class Level extends ScreenAdapter {
             isDoorOpened = false;
             if (screen == HolyDemijohn.END_GAME_SCREEN) {
                 isOver = true;
+                System.out.println("World timer: " + hud.getWorldTimer());
             }
             else {
                 game.getPrefs().putInteger("Level",screen);
@@ -99,10 +100,6 @@ public abstract class Level extends ScreenAdapter {
                 game.setScreens(screen);
             }
         }
-    }
-
-    public void setLevelLabel(int levelLabel){
-        hud.setLevel(levelLabel);
     }
 
     public HUD getHud() {

@@ -34,8 +34,6 @@ public class EndGameScreen extends ScreenAdapter{
     private TextField text;
     private TextField.TextFieldStyle textstyle;
 
-    private int time;
-
     public EndGameScreen(HolyDemijohn game, int time){
 
         this.time = time;
@@ -116,7 +114,7 @@ public class EndGameScreen extends ScreenAdapter{
         MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
         MongoCollection<Document> collection = database.getCollection("ScoreCollection");
 
-        Bson sort = Sorts.descending("score");
+        Bson sort = Sorts.ascending("score");
 
         FindIterable<Document> iterDoc = collection.find().sort(sort).limit(5);
         MongoCursor<Document> it = iterDoc.iterator();

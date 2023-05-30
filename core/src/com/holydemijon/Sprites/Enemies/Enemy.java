@@ -10,6 +10,10 @@ import com.holydemijon.Sprites.John;
 
 public abstract class Enemy extends Sprite {
 
+    public static final int ENEMY_PERFORM_ATTACK = 0;
+    public static final int ENEMY_PERFORM_TAKING_DAMAGE = 1;
+    public static final int ENEMY_PERFORM_DEATH = 2;
+
     protected Level level;
     protected World world;
     public Body b2dbody;

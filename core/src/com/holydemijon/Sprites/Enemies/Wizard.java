@@ -24,7 +24,7 @@ public class Wizard extends Enemy {
         super(level, x, y);
 
         atlas = new TextureAtlas("animations/wizard_animations.atlas");
-        wizardAnimation = new WizardAnimation(this, atlas, b2dbody, wizardState);
+        wizardAnimation = new WizardAnimation(this, atlas, b2dbody);
         health = WIZARD_HEALTH;
     }
 
@@ -62,10 +62,10 @@ public class Wizard extends Enemy {
     @Override
     public void receiveDamage(int damage) {
         super.receiveDamage(damage);
-        WizardAnimation.performTakingDamage = true;
+        wizardAnimation.performAction(ENEMY_PERFORM_TAKING_DAMAGE);
 
         if (health <= 0) {
-            WizardAnimation.performDeath = true;
+            wizardAnimation.performAction(ENEMY_PERFORM_DEATH);
             setToDestroy = true;
         }
     }

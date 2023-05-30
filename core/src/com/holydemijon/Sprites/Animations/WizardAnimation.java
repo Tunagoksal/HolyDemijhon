@@ -22,11 +22,11 @@ public class WizardAnimation extends Sprite {
     private State currentState;
     private State previousState;
 
-    public static boolean performAttack;
-    public static boolean performTakingDamage;
-    public static boolean performDeath;
+    public boolean performAttack;
+    public boolean performTakingDamage;
+    public boolean performDeath;
 
-    public WizardAnimation(Wizard wizard, TextureAtlas atlas, Body body, int state) {
+    public WizardAnimation(Wizard wizard, TextureAtlas atlas, Body body) {
         super(atlas.findRegion("idle"));
         this.body = body;
         this.wizard = wizard;
@@ -37,15 +37,6 @@ public class WizardAnimation extends Sprite {
         performAttack = false;
         performTakingDamage = false;
         performDeath = false;
-
-        if (state == 0) {
-            currentState = State.RUN;
-            previousState = State.RUN;
-        }
-        else {
-            currentState = State.IDLE;
-            previousState = State.IDLE;
-        }
 
         wizardAttack = new Animation<TextureRegion>(0.1f, atlas.findRegions("attack"), Animation.PlayMode.LOOP);
         wizardIdle = new Animation<TextureRegion>(0.2f, atlas.findRegions("idle"), Animation.PlayMode.LOOP);
@@ -112,6 +103,18 @@ public class WizardAnimation extends Sprite {
         else if (performAttack) { return State.ATTACK; }
         else if (body.getLinearVelocity().x != 0) { return State.RUN; }
         else { return State.IDLE; }
+    }
+
+    public void performAction(int action) {
+        if (action == 0) {
+            performAttack = true;
+        }
+        else if (action == 1) {
+            performTakingDamage = true;
+        }
+        else if (action == 2) {
+            performDeath = true;
+        }
     }
 
     public void draw(Batch batch) {

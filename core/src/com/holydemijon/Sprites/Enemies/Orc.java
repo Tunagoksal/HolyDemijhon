@@ -23,7 +23,7 @@ public class Orc extends Enemy {
         super(level, x, y);
 
         atlas = new TextureAtlas("animations/orc_animations.atlas");
-        orcAnimation = new OrcAnimation(this, atlas, b2dbody, orcState);
+        orcAnimation = new OrcAnimation(this, atlas, b2dbody);
         health = ORC_HEALTH;
     }
     @Override
@@ -62,10 +62,10 @@ public class Orc extends Enemy {
     @Override
     public void receiveDamage(int damage) {
         super.receiveDamage(damage);
-        OrcAnimation.performTakingDamage = true;
+        orcAnimation.performAction(ENEMY_PERFORM_TAKING_DAMAGE);
 
         if (health <= 0) {
-            OrcAnimation.performDeath = true;
+            orcAnimation.performAction(ENEMY_PERFORM_DEATH);
             setToDestroy = true;
         }
     }

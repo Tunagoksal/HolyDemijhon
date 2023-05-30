@@ -21,7 +21,7 @@ public class Zombie extends Enemy {
         super(level, x, y);
 
         atlas = new TextureAtlas("animations/zombie_animations.atlas");
-        zombieAnimation = new ZombieAnimation(this, atlas, b2dbody, zombieState);
+        zombieAnimation = new ZombieAnimation(this, atlas, b2dbody);
         health = ZOMBIE_HEALTH;
     }
     @Override
@@ -60,10 +60,10 @@ public class Zombie extends Enemy {
     @Override
     public void receiveDamage(int damage) {
         super.receiveDamage(damage);
-        ZombieAnimation.performTakingDamage = true;
+        zombieAnimation.performAction(ENEMY_PERFORM_TAKING_DAMAGE);
 
         if (health <= 0) {
-            ZombieAnimation.performDeath = true;
+            zombieAnimation.performAction(ENEMY_PERFORM_DEATH);
             setToDestroy = true;
         }
     }

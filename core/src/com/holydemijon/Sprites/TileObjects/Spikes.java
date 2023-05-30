@@ -10,7 +10,7 @@ import com.holydemijon.Sprites.John;
 
 public class Spikes extends InteractiveTileObject {
 
-    public static final int SPIKE_DAMAGE = 25;
+    public static final int SPIKE_DAMAGE = 50;
 
     public Spikes(Level level, Rectangle bounds) {
         super(level, bounds);
@@ -24,7 +24,7 @@ public class Spikes extends InteractiveTileObject {
 
     @Override
     public void enemyCollision(Enemy enemy) {
-        enemy.receiveDamage(25);
+        enemy.receiveDamage(SPIKE_DAMAGE);
         enemy.b2dbody.setLinearVelocity(enemy.b2dbody.getLinearVelocity().x, 4);
     }
 }

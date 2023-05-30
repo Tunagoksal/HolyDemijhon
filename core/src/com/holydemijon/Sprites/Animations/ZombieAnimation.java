@@ -22,9 +22,9 @@ public class ZombieAnimation extends Sprite {
     private State currentState;
     private State previousState;
 
-    public boolean performAttack;
-    public boolean performTakingDamage;
-    public boolean performDeath;
+    private boolean performAttack;
+    private boolean performTakingDamage;
+    private boolean performDeath;
 
     public ZombieAnimation(Zombie zombie, TextureAtlas atlas, Body body) {
         super(atlas.findRegion("idle"));

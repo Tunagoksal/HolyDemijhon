@@ -22,9 +22,9 @@ public class OrcAnimation extends Sprite {
     private State currentState;
     private State previousState;
 
-    public boolean performAttack;
-    public boolean performTakingDamage;
-    public boolean performDeath;
+    private boolean performAttack;
+    private boolean performTakingDamage;
+    private boolean performDeath;
 
     public OrcAnimation(Orc orc, TextureAtlas atlas, Body body) {
         super(atlas.findRegion("idle"));
@@ -49,7 +49,10 @@ public class OrcAnimation extends Sprite {
 
     public void update(float dt) {
         stateTimer += dt;
-        setPosition(body.getPosition().x - getWidth() / 3, body.getPosition().y - getHeight() / 4);
+        if (runningRight)
+            setPosition(body.getPosition().x - getWidth() / 3, body.getPosition().y - getHeight() / 4);
+        else
+            setPosition(body.getPosition().x - getWidth() / 1.5f, body.getPosition().y - getHeight() / 4);
         setRegion(getFrame(dt));
 
         if (orcDamage.isAnimationFinished(stateTimer)) { performTakingDamage = false; }

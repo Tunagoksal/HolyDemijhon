@@ -20,7 +20,6 @@ public class ThirdLevel extends Level {
     private SecondLevel secondLevel;
     private Zombie zombie1;
     private Zombie zombie2;
-    private Zombie zombie3;
 
     private Wizard wizard1;
     private Wizard wizard2;
@@ -29,7 +28,7 @@ public class ThirdLevel extends Level {
     private Orc orc1;
     private Orc orc2;
     private Orc orc3;
-    private Orc orc4;
+
 
     public ThirdLevel(HolyDemijohn game){
 
@@ -61,13 +60,12 @@ public class ThirdLevel extends Level {
 
         orc2 = new Orc(this, 330 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
         wizard2 = new Wizard(this, 720 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
-        zombie2 = new Zombie(this, 550 / HolyDemijohn.PPM, 150 / HolyDemijohn.PPM, 0);
+        zombie2 = new Zombie(this, 580 / HolyDemijohn.PPM, 800 / HolyDemijohn.PPM, 0);
 
-        orc3 = new Orc(this, 630 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
-        wizard3 = new Wizard(this, 460 / HolyDemijohn.PPM, 700 / HolyDemijohn.PPM, 0);
-        zombie3 = new Zombie(this, 540 / HolyDemijohn.PPM, 800 / HolyDemijohn.PPM, 0);
+        orc3 = new Orc(this, 610 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
+        wizard3 = new Wizard(this, 500 / HolyDemijohn.PPM, 700 / HolyDemijohn.PPM, 0);
 
-        orc4 = new Orc(this, 620 / HolyDemijohn.PPM, 800 / HolyDemijohn.PPM, 0);
+
 
         world.setContactListener(listener);
     }
@@ -84,10 +82,8 @@ public class ThirdLevel extends Level {
         zombie2.update(dt);
         wizard2.update(dt);
         orc2.update(dt);
-        zombie3.update(dt);
         wizard3.update(dt);
         orc3.update(dt);
-        orc4.update(dt);
 
         world.step(FPS, 6, 2);
         if (!player.johnIsDead) {
@@ -120,10 +116,8 @@ public class ThirdLevel extends Level {
         zombie2.getZombieAnimation().draw(game.batch);
         wizard2.getWizardAnimation().draw(game.batch);
         orc2.getOrcAnimation().draw(game.batch);
-        zombie3.getZombieAnimation().draw(game.batch);
         wizard3.getWizardAnimation().draw(game.batch);
         orc3.getOrcAnimation().draw(game.batch);
-        orc4.getOrcAnimation().draw(game.batch);
         game.batch.end();
 
     }

@@ -30,7 +30,7 @@ public class John extends Sprite {
     public static final float JOHN_HEIGHT = 7;
     public static final int SIMPLE_DAMAGE = 50;
 
-    public static final int HEAVY_DAMAGE = 150;
+    public static final int HEAVY_DAMAGE = 200;
 
     public static final int JOHN_HEALTH = 500;
     public static final float DASH_POWER = 2;

@@ -28,7 +28,6 @@ public class SecondLevel extends Level {
 
     private Orc orc1;
     private Orc orc2;
-    private Orc orc3;
 
     public SecondLevel(HolyDemijohn game){
 
@@ -50,15 +49,14 @@ public class SecondLevel extends Level {
         b2dbr = new Box2DDebugRenderer();
         b2dwc = new Box2DWorldCreator(this);
 
-        orc1 = new Orc(this, 470 / HolyDemijohn.PPM, 350 / HolyDemijohn.PPM, 0);
-        wizard1 = new Wizard(this, 520 / HolyDemijohn.PPM, 450 / HolyDemijohn.PPM, 0);
+        orc1 = new Orc(this, 390 / HolyDemijohn.PPM, 500 / HolyDemijohn.PPM, 0);
+        wizard1 = new Wizard(this, 490 / HolyDemijohn.PPM, 450 / HolyDemijohn.PPM, 0);
         zombie1 = new Zombie(this, 800 / HolyDemijohn.PPM, 400 / HolyDemijohn.PPM, 0);
 
         orc2 = new Orc(this, 700 / HolyDemijohn.PPM, 400 / HolyDemijohn.PPM, 0);
         wizard2 = new Wizard(this, 750 / HolyDemijohn.PPM, 550 / HolyDemijohn.PPM, 0);
-        zombie2 = new Zombie(this, 570 / HolyDemijohn.PPM, 200 / HolyDemijohn.PPM, 0);
+        zombie2 = new Zombie(this, 530 / HolyDemijohn.PPM, 200 / HolyDemijohn.PPM, 0);
 
-        orc3 = new Orc(this, 420 / HolyDemijohn.PPM, 500 / HolyDemijohn.PPM, 0);
         wizard3 = new Wizard(this, 230 / HolyDemijohn.PPM, 500 / HolyDemijohn.PPM, 0);
 
 
@@ -82,7 +80,6 @@ public class SecondLevel extends Level {
         wizard2.update(dt);
         orc2.update(dt);
         wizard3.update(dt);
-        orc3.update(dt);
 
         world.step(FPS, 6, 2);
         if (!player.johnIsDead) {
@@ -116,7 +113,6 @@ public class SecondLevel extends Level {
         wizard2.getWizardAnimation().draw(game.batch);
         orc2.getOrcAnimation().draw(game.batch);
         wizard3.getWizardAnimation().draw(game.batch);
-        orc3.getOrcAnimation().draw(game.batch);
         game.batch.end();
 
     }

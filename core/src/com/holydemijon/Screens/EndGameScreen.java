@@ -36,8 +36,7 @@ public class EndGameScreen extends ScreenAdapter{
 
     public EndGameScreen(HolyDemijohn game, int time){
 
-
-        this.time=time;
+        this.time = time;
         name = "";
         this.game = game;
         cam = new OrthographicCamera();

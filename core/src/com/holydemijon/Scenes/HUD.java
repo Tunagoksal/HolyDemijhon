@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Screens.Levels.Level;
+import com.holydemijon.Sprites.John;
 
 import java.awt.*;
 
@@ -26,6 +27,10 @@ public class HUD implements Disposable {
     Label timeLabel;
     Label levelLabel;
     Label worldLabel;
+    Label powerLabel;
+    Label dashLabel;
+    Label doubleJumpLabel;
+    Label heavyAttackLabel;
 
     private static int level = 1;
 
@@ -47,27 +52,50 @@ public class HUD implements Disposable {
         timeLabel = new Label("TIME", style);
         levelLabel = new Label("" + this.level, style);
         worldLabel = new Label("LEVEL", style);
+        powerLabel = new Label("POWERS",style);
+        dashLabel= new Label("Dash: -",style);
+        doubleJumpLabel= new Label("Double Jump: -",style);
+        heavyAttackLabel= new Label("Heavy Attack: -",style);
 
 
         //add our labels to our table, padding the top, and giving them all equal width with expandX
         table.add(worldLabel).expandX().padTop(1);
+        table.add(powerLabel).expandX().padTop(5);
         table.add(timeLabel).expandX().padTop(10);
         //add a second row to our table
         table.row();
         table.add(levelLabel).expandX();
+        table.add(dashLabel).expandX();
         table.add(countDownLabel).expandX();
+        table.row();
+        table.add().expandX();
+        table.add(doubleJumpLabel).center();
+        table.add().expandX();
+        table.row();
+        table.add().expandX();
+        table.add(heavyAttackLabel).expandX();
+        table.add().expandX();
 
         stage.addActor(table);
     }
 
     public void update(float dt){
+        if(John.dashIsActive){
+            dashLabel.setText("Dash: +");
+        }
+        if(John.doubleJumpIsActive){
+            doubleJumpLabel.setText("Double Jump: +");
+        }
+
+        if(John.heavyAttackIsActive){
+            heavyAttackLabel.setText("Heavy Attack: +");
+        }
         timeCount += dt;
         if(timeCount >= 1){
             worldTimer++;
             levelLabel.setText(String.valueOf(this.level));
             countDownLabel.setText(String.format("%03d",worldTimer));
             timeCount = 0;
-
         }
     }
 

@@ -48,7 +48,7 @@
 </data>
  </layer>
  <objectgroup id="8" name="mapBounds">
-  <object id="22" x="0" y="64" width="960" height="544"/>
+  <object id="22" x="0" y="1.01292" width="960" height="636.879"/>
  </objectgroup>
  <objectgroup id="2" name="ground">
   <object id="11" x="64" y="544" width="368" height="16"/>

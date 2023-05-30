@@ -46,9 +46,6 @@ public class HolyDemijohn extends Game {
 	@Override
 	public void create() {
 
-		//file = Gdx.files.local("saveFile.txt");
-		//file.writeString("5",false);
-
 		prefs = Gdx.app.getPreferences("savePreference");
 
 		batch = new SpriteBatch();

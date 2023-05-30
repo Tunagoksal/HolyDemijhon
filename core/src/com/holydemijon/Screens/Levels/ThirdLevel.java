@@ -8,6 +8,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.holydemijon.Sprites.Enemies.Orc;
+import com.holydemijon.Sprites.Enemies.Wizard;
+import com.holydemijon.Sprites.Enemies.Zombie;
 import com.holydemijon.Sprites.John;
 import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Tools.Box2DWorldCreator;
@@ -15,6 +18,18 @@ import com.holydemijon.Tools.Box2DWorldCreator;
 public class ThirdLevel extends Level {
 
     private SecondLevel secondLevel;
+    private Zombie zombie1;
+    private Zombie zombie2;
+    private Zombie zombie3;
+
+    private Wizard wizard1;
+    private Wizard wizard2;
+    private Wizard wizard3;
+
+    private Orc orc1;
+    private Orc orc2;
+    private Orc orc3;
+    private Orc orc4;
 
     public ThirdLevel(HolyDemijohn game){
 
@@ -40,6 +55,20 @@ public class ThirdLevel extends Level {
         b2dwc.colliderCreation();
         player = new John(world);
 
+        orc1 = new Orc(this, 200 / HolyDemijohn.PPM, 150 / HolyDemijohn.PPM, 0);
+        wizard1 = new Wizard(this, 400 / HolyDemijohn.PPM, 150 / HolyDemijohn.PPM, 0);
+        zombie1 = new Zombie(this, 250 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
+
+        orc2 = new Orc(this, 330 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
+        wizard2 = new Wizard(this, 720 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
+        zombie2 = new Zombie(this, 550 / HolyDemijohn.PPM, 150 / HolyDemijohn.PPM, 0);
+
+        orc3 = new Orc(this, 630 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
+        wizard3 = new Wizard(this, 460 / HolyDemijohn.PPM, 700 / HolyDemijohn.PPM, 0);
+        zombie3 = new Zombie(this, 540 / HolyDemijohn.PPM, 800 / HolyDemijohn.PPM, 0);
+
+        orc4 = new Orc(this, 620 / HolyDemijohn.PPM, 800 / HolyDemijohn.PPM, 0);
+
         world.setContactListener(listener);
     }
 
@@ -49,6 +78,16 @@ public class ThirdLevel extends Level {
         hud.update(dt);
 
         player.update(dt);
+        zombie1.update(dt);
+        wizard1.update(dt);
+        orc1.update(dt);
+        zombie2.update(dt);
+        wizard2.update(dt);
+        orc2.update(dt);
+        zombie3.update(dt);
+        wizard3.update(dt);
+        orc3.update(dt);
+        orc4.update(dt);
 
         world.step(FPS, 6, 2);
         if (!player.johnIsDead) {
@@ -75,7 +114,16 @@ public class ThirdLevel extends Level {
         game.batch.setProjectionMatrix(cam.combined);
         game.batch.begin();
         player.getJohnAnimation().draw(game.batch);
-        //zombie.getZombieAnimation().draw(game.batch);
+        zombie1.getZombieAnimation().draw(game.batch);
+        wizard1.getWizardAnimation().draw(game.batch);
+        orc1.getOrcAnimation().draw(game.batch);
+        zombie2.getZombieAnimation().draw(game.batch);
+        wizard2.getWizardAnimation().draw(game.batch);
+        orc2.getOrcAnimation().draw(game.batch);
+        zombie3.getZombieAnimation().draw(game.batch);
+        wizard3.getWizardAnimation().draw(game.batch);
+        orc3.getOrcAnimation().draw(game.batch);
+        orc4.getOrcAnimation().draw(game.batch);
         game.batch.end();
 
     }

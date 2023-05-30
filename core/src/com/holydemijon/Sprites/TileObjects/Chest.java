@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 import com.holydemijon.Screens.Levels.Level;
 import com.holydemijon.Sprites.Enemies.Enemy;
+import com.holydemijon.Sprites.John;
 
 public class Chest extends InteractiveTileObject{
     public Chest(Level level, Rectangle bounds) {
@@ -15,7 +16,7 @@ public class Chest extends InteractiveTileObject{
 
     @Override
     public void johnCollision() {
-        Gdx.app.log("Chest", "Collision");
+        John.openedChest=true;
     }
 
     @Override

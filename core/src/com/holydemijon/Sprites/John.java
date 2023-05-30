@@ -18,17 +18,24 @@ import com.holydemijon.Sprites.TileObjects.Spikes;
 import com.holydemijon.Sprites.TileObjects.Trampoline;
 import com.holydemijon.Tools.KeyboardInputs;
 
+import java.util.Random;
+
 public class John extends Sprite {
 
-    public static final float JUMP_HEIGHT = 4f;
+    public static final float JUMP_HEIGHT = 4.8f;
     public static final float MAX_LINEAR_VELOCITY = 1;
     public static final float PLAYER_ACCELERATION = 0.1f;
 
     public static final float JOHN_WIDTH = 4;
     public static final float JOHN_HEIGHT = 7;
+    public static final int SIMPLE_DAMAGE = 50;
+
+    public static final int HEAVY_DAMAGE = 150;
 
     public static final int JOHN_HEALTH = 500;
-    private static final float DASH_POWER = 2;
+    public static final float DASH_POWER = 2;
+
+
 
     private KeyboardInputs inputs;
 
@@ -61,6 +68,7 @@ public class John extends Sprite {
     public static boolean steppedOnTrampoline;
     public static boolean steppedOnEnemy;
     public static boolean steppedOnTrap;
+    public static boolean openedChest;
     public static boolean disableControls;
     public static Enemy enemyStepped;
 
@@ -84,17 +92,15 @@ public class John extends Sprite {
 
         isTouchingGround = false;
         remainingJumps = 0;
-
-        dashIsActive = true;
-        doubleJumpIsActive = true;
-        heavyAttackIsActive = true;
-
+        dashIsActive = false;
+        doubleJumpIsActive = false;
+        heavyAttackIsActive = false;
+        openedChest = false;
         steppedOnSpike = false;
         steppedOnTrampoline = false;
         steppedOnEnemy = false;
         steppedOnTrap = false;
         disableControls = false;
-
         enemyStepped = null;
     }
 
@@ -138,22 +144,22 @@ public class John extends Sprite {
     public void simpleAttack() {
 
         if (attackableEnemy1 != null) {
-            attackableEnemy1.receiveDamage(50);
+            attackableEnemy1.receiveDamage(SIMPLE_DAMAGE);
         }
 
         if (attackableEnemy2 != null) {
-            attackableEnemy2.receiveDamage(50);
+            attackableEnemy2.receiveDamage(SIMPLE_DAMAGE);
         }
     }
 
     public void heavyAttack() {
 
         if (attackableEnemy1 != null) {
-            attackableEnemy1.receiveDamage(150);
+            attackableEnemy1.receiveDamage(HEAVY_DAMAGE);
         }
 
         if (attackableEnemy2 != null) {
-            attackableEnemy2.receiveDamage(150);
+            attackableEnemy2.receiveDamage(HEAVY_DAMAGE);
         }
     }
 
@@ -237,6 +243,24 @@ public class John extends Sprite {
                     disableControls = false;
                 }
             }, 1);
+        }
+
+        if(openedChest){
+            openedChest=false;
+            Random rand= new Random();
+            int luck= rand.nextInt(1,4);
+
+            if(luck==1){
+                dashIsActive=true;
+            }
+
+            else if(luck==2){
+               doubleJumpIsActive=true;
+            }
+            else{
+                heavyAttackIsActive=true;
+            }
+
         }
 
         if (steppedOnEnemy) {

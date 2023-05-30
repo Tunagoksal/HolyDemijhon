@@ -29,6 +29,7 @@ public class EndGameScreen extends ScreenAdapter{
     private HolyDemijohn game;
     private OrthographicCamera cam;
     private Table table;
+    private int time;
 
     private TextField text;
     private TextField.TextFieldStyle textstyle;

@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -28,10 +29,8 @@ public class leaderBoardScreen extends ScreenAdapter{
     private HolyDemijohn game;
     private OrthographicCamera cam;
     private Table table;
-
-    private TextField text1;
-    private TextField text2;
-    private TextField.TextFieldStyle textstyle;
+    private Label label1;
+    private Label label2;
 
     public leaderBoardScreen(HolyDemijohn game) {
 
@@ -40,14 +39,12 @@ public class leaderBoardScreen extends ScreenAdapter{
         viewport = new FitViewport(HolyDemijohn.WIDTH, HolyDemijohn.HEIGHT,cam);
         stage = new Stage(viewport, (game).batch);
 
-        textstyle = new TextField.TextFieldStyle();
-        textstyle.font = new BitmapFont();
-        textstyle.fontColor = new Color(40,30,150,1);
+        Label.LabelStyle style = new Label.LabelStyle(new BitmapFont(),Color.DARK_GRAY);
+        label1 = new Label("Name ", style);
+        label2 = new Label("Name ", style);
 
         getTopScores();
-        text1 = new TextField("Name",textstyle);
-        text2 = new TextField("Name",textstyle);
-        text1.setPosition(200,100);
+
 
         table = new Table();
         table.center();
@@ -58,8 +55,8 @@ public class leaderBoardScreen extends ScreenAdapter{
         TextureRegionDrawable menuDrawable = new TextureRegionDrawable(menuRegion);
         table.setBackground(menuDrawable);
 
-        table.add(text1).padLeft(100);
-        table.add(text2);
+        table.add(label1).expandX().padLeft(200).padBottom(20);
+        table.add(label2).expandX().padRight(220).padBottom(20);
         stage.addActor(table);
     }
 

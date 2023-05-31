@@ -28,9 +28,7 @@ public class Fireball extends Enemy {
 
     @Override
     public void update(float dt) {
-
         b2dbody.setLinearVelocity(-5F,0.5F);
-
         fireballAnimation.update(dt);
     }
 
@@ -52,5 +50,9 @@ public class Fireball extends Enemy {
 
         fixDef.shape = shape;
         b2dbody.createFixture(fixDef).setUserData(this);
+    }
+
+    public FireballAnimation getFireBallAnimation() {
+        return fireballAnimation;
     }
 }

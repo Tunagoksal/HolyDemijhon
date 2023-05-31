@@ -113,7 +113,7 @@ public class John extends Sprite {
 
     private void defJohn() {
         bodydef = new BodyDef();
-        bodydef.position.set(100 / HolyDemijohn.PPM, 150 / HolyDemijohn.PPM);
+        bodydef.position.set(100 / HolyDemijohn.PPM, 200 / HolyDemijohn.PPM);
         bodydef.type = BodyDef.BodyType.DynamicBody;
         b2dbody = world.createBody(bodydef);
 

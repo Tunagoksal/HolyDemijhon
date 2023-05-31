@@ -28,7 +28,7 @@ public class Fireball extends Enemy {
 
     @Override
     public void update(float dt) {
-        b2dbody.setLinearVelocity(-5F,0.5F);
+        b2dbody.setLinearVelocity(-1F,0);
         fireballAnimation.update(dt);
     }
 
@@ -36,7 +36,7 @@ public class Fireball extends Enemy {
     protected void defEnemy() {
         BodyDef bodydef = new BodyDef();
         bodydef.position.set(this.getX(), this.getY());
-        bodydef.type = BodyDef.BodyType.DynamicBody;
+        bodydef.type = BodyDef.BodyType.KinematicBody;
         b2dbody = world.createBody(bodydef);
 
         FixtureDef fixDef = new FixtureDef();

@@ -48,21 +48,23 @@ public class FirstLevel extends Level {
         b2dbr = new Box2DDebugRenderer();
         b2dwc = new Box2DWorldCreator(this);
 
-        b2dwc.setColliders(2,4,6,3,7,5,1);
+        b2dwc.setColliders(1,5,2,3,8,4,7,6);
         b2dwc.colliderCreation();
 
-        fireball= new Fireball(this,270 / HolyDemijohn.PPM, 250 / HolyDemijohn.PPM);
-        orc1 = new Orc(this, 270 / HolyDemijohn.PPM, 350 / HolyDemijohn.PPM, 0);
-        wizard1 = new Wizard(this, 540 / HolyDemijohn.PPM, 350 / HolyDemijohn.PPM, 0);
-        zombie1 = new Zombie(this, 200 / HolyDemijohn.PPM, 150 / HolyDemijohn.PPM, 0);
+        wizard1 = new Wizard(this, 1050 / HolyDemijohn.PPM, 350 / HolyDemijohn.PPM, 0);
+        fireball= new Fireball(this,1048 / HolyDemijohn.PPM, 350 / HolyDemijohn.PPM);
 
-        orc2 = new Orc(this, 330 / HolyDemijohn.PPM, 150 / HolyDemijohn.PPM, 0);
-        wizard2 = new Wizard(this, 250 / HolyDemijohn.PPM, 550 / HolyDemijohn.PPM, 0);
-        zombie2 = new Zombie(this, 400 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
+        orc1 = new Orc(this, 170 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
+        zombie1 = new Zombie(this, 240 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
 
-        orc3 = new Orc(this, 550 / HolyDemijohn.PPM, 200 / HolyDemijohn.PPM, 0);
-        wizard3 = new Wizard(this, 800 / HolyDemijohn.PPM, 750 / HolyDemijohn.PPM, 0);
-        zombie3= new Zombie(this, 320 / HolyDemijohn.PPM, 550 / HolyDemijohn.PPM, 0);
+        orc2 = new Orc(this, 330 / HolyDemijohn.PPM, 600 / HolyDemijohn.PPM, 0);
+        zombie2 = new Zombie(this, 220 / HolyDemijohn.PPM, 600 / HolyDemijohn.PPM, 0);
+
+        wizard2 = new Wizard(this, 550 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
+        orc3 = new Orc(this, 670 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
+
+        wizard3 = new Wizard(this, 1020 / HolyDemijohn.PPM, 250 / HolyDemijohn.PPM, 0);
+        zombie3= new Zombie(this, 1100 / HolyDemijohn.PPM, 250 / HolyDemijohn.PPM, 0);
 
         player = new John(world);
 
@@ -97,6 +99,7 @@ public class FirstLevel extends Level {
         zombie3.update(dt);
         wizard3.update(dt);
         orc3.update(dt);
+        fireball.update(dt);
 
         world.step(FPS, 6, 2);
         if (!player.johnIsDead) {
@@ -132,6 +135,7 @@ public class FirstLevel extends Level {
         zombie3.getZombieAnimation().draw(game.batch);
         wizard3.getWizardAnimation().draw(game.batch);
         orc3.getOrcAnimation().draw(game.batch);
+        fireball.getFireBallAnimation().draw(game.batch);
         game.batch.end();
     }
 

@@ -23,7 +23,7 @@ public class FireballAnimation extends Sprite {
         runningRight = true;
         fireballRun = new Animation<TextureRegion>(0.1f, atlas.findRegions("fireball"));
 
-        setBounds(getX(), getY(), 50 / HolyDemijohn.PPM, 50 / HolyDemijohn.PPM);
+        setBounds(getX(), getY(), 20 / HolyDemijohn.PPM, 15 / HolyDemijohn.PPM);
 
     }
 

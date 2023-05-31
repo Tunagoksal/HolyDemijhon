@@ -80,29 +80,29 @@ public class leaderBoardScreen extends ScreenAdapter{
         table.center();
         table.setFillParent(true);
 
-        Texture menuTexture = new Texture(Gdx.files.internal("menu/HolyLeaderBoard.png"));
+        Texture menuTexture = new Texture(Gdx.files.internal("menu/HolyLeaderboard.png"));
         TextureRegion menuRegion = new TextureRegion(menuTexture);
         TextureRegionDrawable menuDrawable = new TextureRegionDrawable(menuRegion);
         table.setBackground(menuDrawable);
 
-        table.add(labelName1).expandX().padLeft(200).padBottom(-20);
-        table.add(labelScore1).expandX().padRight(220).padBottom(-20);
+        table.add(labelName1).expandX().padLeft(200).padTop(65);
+        table.add(labelScore1).expandX().padRight(220).padTop(65);
         table.row();
-        table.add(labelName2).expandX().padLeft(200).padBottom(-25);
-        table.add(labelScore2).expandX().padRight(220).padBottom(-25);
+        table.add(labelName2).expandX().padLeft(200).padTop(15);
+        table.add(labelScore2).expandX().padRight(220).padTop(15);
         table.row();
-        table.add(labelName3).expandX().padLeft(200).padBottom(-20);
-        table.add(labelScore3).expandX().padRight(220).padBottom(-20);
+        table.add(labelName3).expandX().padLeft(200).padTop(15);
+        table.add(labelScore3).expandX().padRight(220).padTop(15);
         table.row();
-        table.add(labelName4).expandX().padLeft(200).padBottom(-15);
-        table.add(labelScore4).expandX().padRight(220).padBottom(-15);
-        table.row();
-        table.add(labelName5).expandX().padLeft(200).padBottom(-10);
-        table.add(labelScore5).expandX().padRight(220).padBottom(-10);
-        table.row();
-        table.add(labelName6).expandX().padLeft(200).padBottom(-5);
-        table.add(labelScore6).expandX().padRight(220).padBottom(-5);
-        table.row();
+        table.add(labelName4).expandX().padLeft(200).padTop(15);
+        table.add(labelScore4).expandX().padRight(220).padTop(15);
+        //table.row();
+        //table.add(labelName5).expandX().padLeft(200).padTop(-10);
+        //table.add(labelScore5).expandX().padRight(220).padTop(-10);
+        //table.row();
+        //table.add(labelName6).expandX().padLeft(200).padTop(-5);
+        //table.add(labelScore6).expandX().padRight(220).padTop(-5);
+        //table.row();
 
         stage.addActor(table);
     }

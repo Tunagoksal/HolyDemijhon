@@ -60,7 +60,7 @@ public class SecondLevel extends Level {
         wizard3 = new Wizard(this, 230 / HolyDemijohn.PPM, 500 / HolyDemijohn.PPM, 0);
 
 
-        b2dwc.setColliders(3,5,4,5,7,6,8,9);
+        b2dwc.setColliders(2,4,3,5,7,6,9,8);
         b2dwc.colliderCreation();
         player = new John(world);
 

@@ -48,7 +48,7 @@ public class FirstLevel extends Level {
         b2dbr = new Box2DDebugRenderer();
         b2dwc = new Box2DWorldCreator(this);
 
-        b2dwc.setColliders(1,5,2,3,8,4,7,6);
+        b2dwc.setColliders(2,4,3,5,7,6,9,8);
         b2dwc.colliderCreation();
 
         wizard1 = new Wizard(this, 1050 / HolyDemijohn.PPM, 350 / HolyDemijohn.PPM, 0);

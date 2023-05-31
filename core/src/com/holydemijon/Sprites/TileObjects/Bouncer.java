@@ -13,7 +13,6 @@ public class Bouncer extends InteractiveTileObject {
 
         Filter filter = new Filter();
         filter.maskBits = HolyDemijohn.ENEMY_BIT;
-
         fixture.setUserData(this);
         fixture.setFilterData(filter);
     }

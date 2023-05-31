@@ -6,6 +6,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Sprites.Enemies.Fireball;
@@ -23,14 +24,14 @@ public class FirstLevel extends Level {
     private Zombie zombie1;
     private Zombie zombie2;
     private Zombie zombie3;
+    private Zombie zombie4;
 
     private Wizard wizard1;
-    private Wizard wizard2;
-    private Wizard wizard3;
 
     private Orc orc1;
     private Orc orc2;
     private Orc orc3;
+    private Orc orc4;
     public FirstLevel(HolyDemijohn game){
 
         super(game);
@@ -50,21 +51,22 @@ public class FirstLevel extends Level {
 
         b2dwc.setColliders(2,4,3,5,7,6,9,8);
         b2dwc.colliderCreation();
-
-        wizard1 = new Wizard(this, 1050 / HolyDemijohn.PPM, 350 / HolyDemijohn.PPM, 0);
-        fireball= new Fireball(this,1048 / HolyDemijohn.PPM, 350 / HolyDemijohn.PPM);
+        wizard1 = new Wizard(this, 1020 / HolyDemijohn.PPM, 400 / HolyDemijohn.PPM, 0);
+        for(int i=0;i<8;i++){
+            fireballs.add(  new Fireball(this,(1048-100*i) / HolyDemijohn.PPM, 380 / HolyDemijohn.PPM));
+        }
 
         orc1 = new Orc(this, 170 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
         zombie1 = new Zombie(this, 240 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
 
-        orc2 = new Orc(this, 330 / HolyDemijohn.PPM, 600 / HolyDemijohn.PPM, 0);
-        zombie2 = new Zombie(this, 220 / HolyDemijohn.PPM, 600 / HolyDemijohn.PPM, 0);
+        orc2 = new Orc(this, 350 / HolyDemijohn.PPM, 540 / HolyDemijohn.PPM, 0);
+        zombie2 = new Zombie(this, 220 / HolyDemijohn.PPM, 540 / HolyDemijohn.PPM, 0);
 
-        wizard2 = new Wizard(this, 550 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
+        zombie4 = new Zombie(this, 550 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
         orc3 = new Orc(this, 670 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
 
-        wizard3 = new Wizard(this, 1020 / HolyDemijohn.PPM, 250 / HolyDemijohn.PPM, 0);
-        zombie3= new Zombie(this, 1100 / HolyDemijohn.PPM, 250 / HolyDemijohn.PPM, 0);
+        orc4 = new Orc(this, 1020 / HolyDemijohn.PPM, 250 / HolyDemijohn.PPM, 0);
+        zombie3= new Zombie(this, 1130 / HolyDemijohn.PPM, 450 / HolyDemijohn.PPM, 0);
 
         player = new John(world);
 
@@ -94,12 +96,14 @@ public class FirstLevel extends Level {
         wizard1.update(dt);
         orc1.update(dt);
         zombie2.update(dt);
-        wizard2.update(dt);
+        zombie4.update(dt);
         orc2.update(dt);
         zombie3.update(dt);
-        wizard3.update(dt);
+        orc4.update(dt);
         orc3.update(dt);
-        fireball.update(dt);
+        for(int i=0;i<8;i++){
+            fireballs.get(i).update(dt);
+        }
 
         world.step(FPS, 6, 2);
         if (!player.johnIsDead) {
@@ -130,12 +134,15 @@ public class FirstLevel extends Level {
         wizard1.getWizardAnimation().draw(game.batch);
         orc1.getOrcAnimation().draw(game.batch);
         zombie2.getZombieAnimation().draw(game.batch);
-        wizard2.getWizardAnimation().draw(game.batch);
+        zombie4.getZombieAnimation().draw(game.batch);
         orc2.getOrcAnimation().draw(game.batch);
         zombie3.getZombieAnimation().draw(game.batch);
-        wizard3.getWizardAnimation().draw(game.batch);
+        orc4.getOrcAnimation().draw(game.batch);
         orc3.getOrcAnimation().draw(game.batch);
-        fireball.getFireBallAnimation().draw(game.batch);
+        for(int i=0;i<8;i++){
+            fireballs.get(i).getFireBallAnimation().draw(game.batch);
+        }
+
         game.batch.end();
     }
 
@@ -152,6 +159,5 @@ public class FirstLevel extends Level {
         world.dispose();
         player.getWorld().dispose();
         player.getWorld().dispose();
-        //b2dbr.dispose();
     }
 }

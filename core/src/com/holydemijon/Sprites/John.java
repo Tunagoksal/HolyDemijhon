@@ -22,7 +22,7 @@ import java.util.Random;
 
 public class John extends Sprite {
 
-    public static final float JUMP_HEIGHT = 4.8f;
+    public static final float JUMP_HEIGHT = 4f;
     public static final float MAX_LINEAR_VELOCITY = 1;
     public static final float PLAYER_ACCELERATION = 0.1f;
 
@@ -32,7 +32,7 @@ public class John extends Sprite {
 
     public static final int HEAVY_DAMAGE = 200;
 
-    public static final int JOHN_HEALTH = 500000;
+    public static final int JOHN_HEALTH = 500;
     public static final float DASH_POWER = 2;
 
 
@@ -92,9 +92,9 @@ public class John extends Sprite {
 
         isTouchingGround = false;
         remainingJumps = 0;
-        dashIsActive = true;
-        doubleJumpIsActive = true;
-        heavyAttackIsActive = true;
+        dashIsActive = false;
+        doubleJumpIsActive = false;
+        heavyAttackIsActive = false;
         openedChest = false;
         steppedOnSpike = false;
         steppedOnTrampoline = false;

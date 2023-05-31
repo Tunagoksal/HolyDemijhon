@@ -16,7 +16,7 @@ public class Fireball extends Enemy {
 
     public static final float FIREBALL_WIDTH = 4;
     public static final float FIREBALL_HEIGHT = 4;
-    public static final int FIREBALL_DAMAGE = 500000000;
+    public static final int FIREBALL_DAMAGE = 50;
 
     private FireballAnimation fireballAnimation ;
     public Fireball(Level level, float x, float y) {
@@ -28,7 +28,7 @@ public class Fireball extends Enemy {
 
     @Override
     public void update(float dt) {
-        b2dbody.setLinearVelocity(-1F,0);
+        b2dbody.setLinearVelocity(-0.5F,0);
         fireballAnimation.update(dt);
     }
 

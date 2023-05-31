@@ -34,7 +34,7 @@ public abstract class Enemy extends Sprite {
         enemyTouchingGround=true;
         setToDestroy = false;
         destroyed = false;
-        velocity= new Vector2(0.5f,0);
+        velocity= new Vector2(-0.5f,0);
     }
 
     public abstract void update(float dt);

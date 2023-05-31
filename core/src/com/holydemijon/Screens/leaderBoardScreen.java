@@ -29,7 +29,8 @@ public class leaderBoardScreen extends ScreenAdapter{
     private OrthographicCamera cam;
     private Table table;
 
-    private TextField text;
+    private TextField text1;
+    private TextField text2;
     private TextField.TextFieldStyle textstyle;
 
     public leaderBoardScreen(HolyDemijohn game) {
@@ -44,8 +45,9 @@ public class leaderBoardScreen extends ScreenAdapter{
         textstyle.fontColor = new Color(40,30,150,1);
 
         getTopScores();
-        text = new TextField("Name",textstyle);
-        text.setSize(50,100);
+        text1 = new TextField("Name",textstyle);
+        text2 = new TextField("Name",textstyle);
+        text1.setPosition(200,100);
 
         table = new Table();
         table.center();
@@ -56,8 +58,8 @@ public class leaderBoardScreen extends ScreenAdapter{
         TextureRegionDrawable menuDrawable = new TextureRegionDrawable(menuRegion);
         table.setBackground(menuDrawable);
 
-        table.add(text).padTop(100);
-
+        table.add(text1).padLeft(100);
+        table.add(text2);
         stage.addActor(table);
     }
 

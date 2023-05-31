@@ -54,21 +54,17 @@ public class EndGameScreen extends ScreenAdapter{
         textstyle.fontColor = new Color(40,30,150,1);
 
         text = new TextField("Name : ",textstyle);
-        text.setSize(200,200);
-        text.setX(320);
+
+
         text.setTextFieldListener(new TextField.TextFieldListener() {
             @Override
             public void keyTyped(TextField textField, char c) {
 
             }
         });
-        if (Gdx.input.isKeyPressed(Input.Keys.ENTER))
-        {
-            name = text.getText();
-        }
         table.add(endGameButton);
         table.row();
-        table.add(text);
+        table.add(text).padLeft(62);
         stage.addActor(table);
         Gdx.input.setInputProcessor(stage);
 
@@ -78,9 +74,24 @@ public class EndGameScreen extends ScreenAdapter{
 
     @Override
     public void render(float delta) {
+        if (text.getText().length() < 8)
+        {
+            if (Gdx.input.isKeyPressed(Input.Keys.BACKSPACE))
+            {
+                text.setDisabled(true);
+            }
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY))
+        {
+            if (!Gdx.input.isKeyPressed(Input.Keys.BACKSPACE))
+            {
+                text.setDisabled(false);
+            }
+        }
         if (Gdx.input.isKeyPressed(Input.Keys.ENTER))
         {
-            name = text.getMessageText();
+            name = text.getText().substring(7);
+            System.out.println(name);
             addToDatabase(name, this.time);
             System.out.println(name + " added.");
             System.out.println(this.time + " time passed.");

@@ -11,10 +11,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -61,12 +58,9 @@ public class GameOverMenu extends ScreenAdapter {
                 Gdx.input.setInputProcessor(null);
                 game.resetLevels();
                 JohnAnimation.performDeath  = false;
-                game.resetLevels();
                 game.setScreens(HolyDemijohn.FIRST_LEVEL);
-                Gdx.input.setInputProcessor(game.getMainMenu().getStage());
             }
         });
-
         quitButtonTwo.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -80,7 +74,6 @@ public class GameOverMenu extends ScreenAdapter {
         table.add(restartButton).padTop(10);
         table.row();
         table.add(quitButtonTwo).padTop(10);
-        table.row();
 
         stage.addActor(table);
     }
@@ -97,3 +90,4 @@ public class GameOverMenu extends ScreenAdapter {
     @Override
     public void resize(int x, int y){ viewport.update(x,y); }
 }
+

@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.holydemijon.Screens.GameOverMenu;
 import com.holydemijon.Sprites.Animations.JohnAnimation;
 import com.holydemijon.Sprites.John;
 import com.holydemijon.HolyDemijohn;
@@ -73,7 +74,7 @@ public abstract class Level extends ScreenAdapter {
                 @Override
                 public void run() {
                     Gdx.input.setInputProcessor(game.getGameOverMenu().getStage());
-                    game.setScreens(HolyDemijohn.GAME_OVER_MENU);
+                    game.setScreen(new GameOverMenu(game));
                 }
             }, 2);
         }
@@ -91,12 +92,12 @@ public abstract class Level extends ScreenAdapter {
             if (screen == HolyDemijohn.END_GAME_SCREEN) {
                 isOver = true;
                 System.out.println("World timer: " + hud.getWorldTimer());
+                game.getPrefs().putInteger("Level",1);
+                game.getPrefs().flush();
             }
             else {
                 game.getPrefs().putInteger("Level",screen);
-                if (screen != HolyDemijohn.END_GAME_SCREEN) {
-                    game.getPrefs().flush();
-                }
+                game.getPrefs().flush();
                 game.setScreens(screen);
             }
         }

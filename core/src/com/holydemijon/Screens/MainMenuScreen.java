@@ -107,7 +107,7 @@ public class MainMenuScreen extends ScreenAdapter{
             public void changed(ChangeEvent event, Actor actor) {
                 //String x = game.getFile().readString();
                 //game.setScreens(Integer.valueOf(x));
-
+                game.resetLevels();
                 game.setScreens(game.getPrefs().getInteger("Level"));
             }
         });

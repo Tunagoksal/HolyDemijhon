@@ -74,10 +74,6 @@ public class FirstLevel extends Level {
     @Override
     public TiledMap getMap() { return map; }
 
-    public John getPlayer() {
-        return player;
-    }
-
     public void update(float dt){
 
         hud.setLevel(1);

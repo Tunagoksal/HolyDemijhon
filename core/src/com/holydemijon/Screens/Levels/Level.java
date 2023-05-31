@@ -48,6 +48,7 @@ public abstract class Level extends ScreenAdapter {
     public static int level;
     public static int health;
     public static int setHealth = 0;
+    public static boolean isNewGame = false;
     public static Boolean [] powerUps = new Boolean[3];
     public static Boolean [] setPowerUps = new Boolean[3];
 
@@ -105,6 +106,12 @@ public abstract class Level extends ScreenAdapter {
             hud.setWorldTimer(setWorldTimer);
         }
         setWorldTimer = 0;
+        if (isNewGame){
+            hud.setWorldTimer(0);
+            player.setPowerUps(falseArr);
+            player.setJohnHealth(500);
+            isNewGame = false;
+        }
         Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -141,6 +148,7 @@ public abstract class Level extends ScreenAdapter {
     public void setHud(HUD hud) {
         this.hud = hud;
     }
+    public John getPlayer(){ return player; }
     public int getLevel(){
         return level;
     }

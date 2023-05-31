@@ -105,6 +105,8 @@ public class HolyDemijohn extends Game {
 				setScreen(new leaderBoardScreen(this));
 				break;
 			case PAUSE_MENU_SCREEN:
+				this.end = (int) TimeUtils.millis();
+				this.time = (this.end - this.start) / 1000;
 				setScreen(pauseMenuScreen);
 				break;
 			case GAME_OVER_MENU:

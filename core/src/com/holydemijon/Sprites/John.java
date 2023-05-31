@@ -252,7 +252,7 @@ public class John extends Sprite {
             }
 
             else if(luck==2){
-               doubleJumpIsActive=true;
+                doubleJumpIsActive=true;
             }
             else{
                 heavyAttackIsActive=true;

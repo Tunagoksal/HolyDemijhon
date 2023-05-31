@@ -41,6 +41,9 @@ public abstract class Level extends ScreenAdapter {
     protected TiledMap map;
     protected OrthogonalTiledMapRenderer mapRenderer;
     protected boolean isOver;
+    public static int worldTimer;
+    public static int setWorldTimer = 0;
+
     public static int level;
     public static int health;
     public static int setHealth = 0;
@@ -93,6 +96,11 @@ public abstract class Level extends ScreenAdapter {
             powerUps = setPowerUps;
         }
         setPowerUps[0] = null;
+        worldTimer = hud.getWorldTimer();
+        if (setWorldTimer != 0){
+            hud.setWorldTimer(setWorldTimer);
+        }
+        setWorldTimer = 0;
         Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 

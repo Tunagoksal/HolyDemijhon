@@ -103,6 +103,7 @@ public class HUD implements Disposable {
     public int getWorldTimer(){
         return worldTimer;
     }
+    public void setWorldTimer(int worldTimer) { this.worldTimer = worldTimer;}
 
     public void setLevel(int level){
         this.level = level;

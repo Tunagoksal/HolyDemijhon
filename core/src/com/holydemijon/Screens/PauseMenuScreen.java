@@ -75,6 +75,7 @@ public class PauseMenuScreen extends ScreenAdapter{
                 game.getPrefs().putInteger("Level", Level.level);
                 Level.setHealth = Level.health;
                 Level.setPowerUps = Level.powerUps;
+                Level.setWorldTimer = Level.worldTimer;
                 game.setScreens(HolyDemijohn.MAIN_MENU_SCREEN);
                 Gdx.input.setInputProcessor(game.getMainMenu().getStage());
             }

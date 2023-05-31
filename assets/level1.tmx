@@ -4,7 +4,7 @@
   <image source="TileSet.png" width="256" height="256"/>
  </tileset>
  <tileset firstgid="257" name="Clouds V2" tilewidth="16" tileheight="16" tilecount="64" columns="8">
-  <image source="../../Clouds V2.png" width="128" height="128"/>
+  <image source="Clouds_V2.png" width="128" height="128"/>
  </tileset>
  <layer id="10" name="background" width="80" height="40">
   <data encoding="csv">

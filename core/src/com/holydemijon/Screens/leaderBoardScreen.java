@@ -21,6 +21,8 @@ import com.mongodb.client.model.Sorts;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
+import java.util.ArrayList;
+
 public class leaderBoardScreen extends ScreenAdapter{
 
     private Viewport viewport;
@@ -33,6 +35,8 @@ public class leaderBoardScreen extends ScreenAdapter{
     private TextField text2;
     private TextField.TextFieldStyle textstyle;
 
+    private static ArrayList<String> topScores;
+
     public leaderBoardScreen(HolyDemijohn game) {
 
         this.game= game;
@@ -43,6 +47,8 @@ public class leaderBoardScreen extends ScreenAdapter{
         textstyle = new TextField.TextFieldStyle();
         textstyle.font = new BitmapFont();
         textstyle.fontColor = new Color(40,30,150,1);
+
+        topScores = new ArrayList<>();
 
         getTopScores();
         text1 = new TextField("Name",textstyle);
@@ -57,6 +63,12 @@ public class leaderBoardScreen extends ScreenAdapter{
         TextureRegion menuRegion = new TextureRegion(menuTexture);
         TextureRegionDrawable menuDrawable = new TextureRegionDrawable(menuRegion);
         table.setBackground(menuDrawable);
+
+        for (String score : topScores) {
+            TextField textField = new TextField(score, textstyle);
+            textField.setDisabled(true);
+            table.add(textField).padLeft(100).row();
+        }
 
         table.add(text1).padLeft(100);
         table.add(text2);
@@ -75,6 +87,11 @@ public class leaderBoardScreen extends ScreenAdapter{
 
         while(it.hasNext()){
             Document doc = it.next();
+            String name = doc.getString("name");
+            int score = doc.getInteger("score");
+            String scoreText = "Name: " + name + ", Score: " + score;
+            topScores.add(scoreText);
+
             System.out.println("Name: " + doc.getString("name") + ", Score: " + doc.getInteger("score"));
         }
 

@@ -41,6 +41,7 @@ public abstract class Level extends ScreenAdapter {
     protected TiledMap map;
     protected OrthogonalTiledMapRenderer mapRenderer;
     protected boolean isOver;
+    protected Boolean [] falseArr = {false,false,false};
     public static int worldTimer;
     public static int setWorldTimer = 0;
 
@@ -76,6 +77,7 @@ public abstract class Level extends ScreenAdapter {
             game.setScreens(HolyDemijohn.END_GAME_SCREEN);
         }
         if (JohnAnimation.performDeath){
+            player.setPowerUps(falseArr);
             Timer timer = new Timer();
 
             timer.scheduleTask(new Timer.Task() {
@@ -96,6 +98,8 @@ public abstract class Level extends ScreenAdapter {
             powerUps = setPowerUps;
         }
         setPowerUps[0] = null;
+        setPowerUps[1] = null;
+        setPowerUps[2] = null;
         worldTimer = hud.getWorldTimer();
         if (setWorldTimer != 0){
             hud.setWorldTimer(setWorldTimer);

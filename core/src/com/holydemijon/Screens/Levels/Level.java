@@ -43,6 +43,16 @@ public abstract class Level extends ScreenAdapter {
     protected TiledMap map;
     protected OrthogonalTiledMapRenderer mapRenderer;
     protected boolean isOver;
+    protected Boolean [] falseArr = {false,false,false};
+    public static int worldTimer;
+    public static int setWorldTimer = 0;
+
+    public static int level;
+    public static int health;
+    public static int setHealth = 0;
+    public static boolean isNewGame = false;
+    public static Boolean [] powerUps = new Boolean[3];
+    public static Boolean [] setPowerUps = new Boolean[3];
 
     public static boolean isDoorOpened = false;
     public static Screen currentScreen;
@@ -73,6 +83,7 @@ public abstract class Level extends ScreenAdapter {
             game.setScreens(HolyDemijohn.END_GAME_SCREEN);
         }
         if (JohnAnimation.performDeath){
+            player.setPowerUps(falseArr);
             Timer timer = new Timer();
 
             timer.scheduleTask(new Timer.Task() {
@@ -82,6 +93,29 @@ public abstract class Level extends ScreenAdapter {
                     game.setScreen(new GameOverMenu(game));
                 }
             }, 2);
+        }
+        health = player.getJohnHealth();
+        if (setHealth != 0){
+            player.setJohnHealth(setHealth);
+        }
+        setHealth = 0;
+        powerUps = player.getPowerUps();
+        if (setPowerUps[0] != null){
+            powerUps = setPowerUps;
+        }
+        setPowerUps[0] = null;
+        setPowerUps[1] = null;
+        setPowerUps[2] = null;
+        worldTimer = hud.getWorldTimer();
+        if (setWorldTimer != 0){
+            hud.setWorldTimer(setWorldTimer);
+        }
+        setWorldTimer = 0;
+        if (isNewGame){
+            hud.setWorldTimer(0);
+            player.setPowerUps(falseArr);
+            player.setJohnHealth(500);
+            isNewGame = false;
         }
         Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -108,6 +142,10 @@ public abstract class Level extends ScreenAdapter {
         }
     }
 
+    public int getTotalTime(){
+        return hud.getWorldTimer();
+    }
+
     public HUD getHud() {
         return hud;
     }
@@ -115,8 +153,10 @@ public abstract class Level extends ScreenAdapter {
     public void setHud(HUD hud) {
         this.hud = hud;
     }
-
-
+    public John getPlayer(){ return player; }
+    public int getLevel(){
+        return level;
+    }
     public abstract World getWorld();
     public abstract TiledMap getMap();
 

@@ -99,12 +99,17 @@ public class HolyDemijohn extends Game {
 				this.end = (int) TimeUtils.millis();
 				this.time = (this.end - this.start) / 1000;
 				System.out.println("time: " + time);
-				setScreen(new EndGameScreen(this, this.time));
+
+				System.out.println("Level1 total time " + level1.getTotalTime());
+				setScreen(new EndGameScreen(this, level1.getTotalTime()));
+
 				break;
 			case LEADER_BOARD:
 				setScreen(new leaderBoardScreen(this));
 				break;
 			case PAUSE_MENU_SCREEN:
+				this.end = (int) TimeUtils.millis();
+				this.time = (this.end - this.start) / 1000;
 				setScreen(pauseMenuScreen);
 				break;
 			case GAME_OVER_MENU:

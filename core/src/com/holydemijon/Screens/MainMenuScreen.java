@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijohn;
+import com.holydemijon.Screens.Levels.Level;
 
 public class MainMenuScreen extends ScreenAdapter{
 
@@ -98,6 +99,7 @@ public class MainMenuScreen extends ScreenAdapter{
                 //game.setScreen(new LevelScreen(game));
                 Gdx.input.setInputProcessor(null);
                 game.resetLevels();
+                Level.isNewGame = true;
                 game.setScreens(HolyDemijohn.FIRST_LEVEL);
             }
         });

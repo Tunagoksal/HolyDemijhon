@@ -104,6 +104,8 @@ public class ThirdLevel extends Level {
 
         super.render(delta);
 
+        level = 3;
+
         update(delta);
         super.levelOver(HolyDemijohn.END_GAME_SCREEN);
 

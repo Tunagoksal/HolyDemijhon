@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -21,6 +22,8 @@ import com.mongodb.client.model.Sorts;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
+import java.util.ArrayList;
+
 public class leaderBoardScreen extends ScreenAdapter{
 
     private Viewport viewport;
@@ -29,9 +32,22 @@ public class leaderBoardScreen extends ScreenAdapter{
     private OrthographicCamera cam;
     private Table table;
 
-    private TextField text1;
-    private TextField text2;
-    private TextField.TextFieldStyle textstyle;
+    private Label labelName1;
+    private Label labelScore1;
+    private Label labelName2;
+    private Label labelScore2;
+    private Label labelName3;
+    private Label labelScore3;
+    private Label labelName4;
+    private Label labelScore4;
+    private Label labelName5;
+    private Label labelScore5;
+    private Label labelName6;
+    private Label labelScore6;
+
+
+    static ArrayList<String> names;
+    static ArrayList<Integer> scores;
 
     public leaderBoardScreen(HolyDemijohn game) {
 
@@ -40,14 +56,25 @@ public class leaderBoardScreen extends ScreenAdapter{
         viewport = new FitViewport(HolyDemijohn.WIDTH, HolyDemijohn.HEIGHT,cam);
         stage = new Stage(viewport, (game).batch);
 
-        textstyle = new TextField.TextFieldStyle();
-        textstyle.font = new BitmapFont();
-        textstyle.fontColor = new Color(40,30,150,1);
+        Label.LabelStyle style = new Label.LabelStyle(new BitmapFont(),Color.DARK_GRAY);
+
+        names = new ArrayList<>();
+        scores = new ArrayList<>();
 
         getTopScores();
-        text1 = new TextField("Name",textstyle);
-        text2 = new TextField("Name",textstyle);
-        text1.setPosition(200,100);
+        
+        labelName1 = new Label(names.get(0), style);
+        labelScore1 = new Label(""+ scores.get(0), style);
+        labelName2 = new Label("vcvcv", style);
+        labelScore2 = new Label("Name ", style);
+        labelName3 = new Label("Name ", style);
+        labelScore3 = new Label("Name ", style);
+        labelName4 = new Label("Name ", style);
+        labelScore4 = new Label("Name ", style);
+        labelName5 = new Label("Name ", style);
+        labelScore5 = new Label("Name ", style);
+        labelName6 = new Label("Name ", style);
+        labelScore6 = new Label("Name ", style);
 
         table = new Table();
         table.center();
@@ -58,8 +85,25 @@ public class leaderBoardScreen extends ScreenAdapter{
         TextureRegionDrawable menuDrawable = new TextureRegionDrawable(menuRegion);
         table.setBackground(menuDrawable);
 
-        table.add(text1).padLeft(100);
-        table.add(text2);
+        table.add(labelName1).expandX().padLeft(200).padBottom(-20);
+        table.add(labelScore1).expandX().padRight(220).padBottom(-20);
+        table.row();
+        table.add(labelName2).expandX().padLeft(200).padBottom(-25);
+        table.add(labelScore2).expandX().padRight(220).padBottom(-25);
+        table.row();
+        table.add(labelName3).expandX().padLeft(200).padBottom(-20);
+        table.add(labelScore3).expandX().padRight(220).padBottom(-20);
+        table.row();
+        table.add(labelName4).expandX().padLeft(200).padBottom(-15);
+        table.add(labelScore4).expandX().padRight(220).padBottom(-15);
+        table.row();
+        table.add(labelName5).expandX().padLeft(200).padBottom(-10);
+        table.add(labelScore5).expandX().padRight(220).padBottom(-10);
+        table.row();
+        table.add(labelName6).expandX().padLeft(200).padBottom(-5);
+        table.add(labelScore6).expandX().padRight(220).padBottom(-5);
+        table.row();
+
         stage.addActor(table);
     }
 
@@ -70,16 +114,19 @@ public class leaderBoardScreen extends ScreenAdapter{
 
         Bson sort = Sorts.ascending("score");
 
-        FindIterable<Document> iterDoc = collection.find().sort(sort).limit(5);
+        FindIterable<Document> iterDoc = collection.find().sort(sort).limit(6);
         MongoCursor<Document> it = iterDoc.iterator();
 
         while(it.hasNext()){
             Document doc = it.next();
+            names.add(doc.getString("name"));
+            scores.add(doc.getInteger("score"));
             System.out.println("Name: " + doc.getString("name") + ", Score: " + doc.getInteger("score"));
         }
 
         System.out.println("getTopScores working fine pls :)");
     }
+
 
     @Override
     public void render(float delta) {

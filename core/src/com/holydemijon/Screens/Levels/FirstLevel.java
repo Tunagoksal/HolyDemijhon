@@ -69,7 +69,6 @@ public class FirstLevel extends Level {
         zombie3= new Zombie(this, 1130 / HolyDemijohn.PPM, 450 / HolyDemijohn.PPM, 0);
 
         player = new John(world);
-
         world.setContactListener(listener);
     }
     @Override
@@ -81,10 +80,6 @@ public class FirstLevel extends Level {
 
     @Override
     public TiledMap getMap() { return map; }
-
-    public John getPlayer() {
-        return player;
-    }
 
     public void update(float dt){
 
@@ -119,6 +114,7 @@ public class FirstLevel extends Level {
 
         super.render(delta);
 
+        level = 1;
         update(delta);
         levelOver(HolyDemijohn.SECOND_LEVEL);
 

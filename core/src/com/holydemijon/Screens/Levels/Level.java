@@ -103,6 +103,10 @@ public abstract class Level extends ScreenAdapter {
         }
     }
 
+    public int getTotalTime(){
+        return hud.getWorldTimer();
+    }
+
     public HUD getHud() {
         return hud;
     }

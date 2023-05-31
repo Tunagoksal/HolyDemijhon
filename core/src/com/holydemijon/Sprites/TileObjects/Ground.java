@@ -20,6 +20,6 @@ public class Ground extends InteractiveTileObject {
 
     @Override
     public void enemyCollision(Enemy enemy) {
-
+        enemy.enemyTouchingGround=true;
     }
 }

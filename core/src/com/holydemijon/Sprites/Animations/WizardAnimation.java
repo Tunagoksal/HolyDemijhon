@@ -32,7 +32,7 @@ public class WizardAnimation extends Sprite {
         this.wizard = wizard;
 
         stateTimer = 0;
-        runningRight = true;
+        runningRight = false;
 
         performAttack = false;
         performTakingDamage = false;

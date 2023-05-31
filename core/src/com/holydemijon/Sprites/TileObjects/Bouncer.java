@@ -1,26 +1,29 @@
 package com.holydemijon.Sprites.TileObjects;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.Filter;
+import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Screens.Levels.Level;
 import com.holydemijon.Sprites.Enemies.Enemy;
-import com.holydemijon.Sprites.John;
 
-public class Chest extends InteractiveTileObject{
-    public Chest(Level level, Rectangle bounds) {
+public class Bouncer extends InteractiveTileObject {
+
+    public Bouncer(Level level, Rectangle bounds) {
         super(level, bounds);
+
+        Filter filter = new Filter();
+        filter.maskBits = HolyDemijohn.ENEMY_BIT;
         fixture.setUserData(this);
+        fixture.setFilterData(filter);
     }
 
     @Override
     public void johnCollision() {
-        John.openedChest=true;
+
     }
 
     @Override
     public void enemyCollision(Enemy enemy) {
-        enemy.reverseVelocity(true,true);
+        enemy.reverseVelocity(true,false);
     }
 }

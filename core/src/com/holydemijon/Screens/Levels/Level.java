@@ -12,10 +12,12 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.Screens.GameOverMenu;
 import com.holydemijon.Sprites.Animations.JohnAnimation;
+import com.holydemijon.Sprites.Enemies.Fireball;
 import com.holydemijon.Sprites.John;
 import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Scenes.HUD;
@@ -45,12 +47,15 @@ public abstract class Level extends ScreenAdapter {
     public static boolean isDoorOpened = false;
     public static Screen currentScreen;
 
+    public Array<Fireball> fireballs;
+
     public static final float FPS = 1/60f;
     public static final float GRAVITY = -10;
 
     public Level(HolyDemijohn game){
         isOver = false;
         this.game = game;
+        fireballs= new Array<Fireball>();
         hud = new HUD(game.batch);
         listener = new WorldContactListener();
     }

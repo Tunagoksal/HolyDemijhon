@@ -17,9 +17,12 @@ public abstract class Enemy extends Sprite {
     protected Level level;
     protected World world;
     public Body b2dbody;
+    public Vector2 velocity;
 
     public boolean setToDestroy;
     public boolean destroyed;
+
+    public boolean enemyTouchingGround;
 
     public int health;
 
@@ -28,9 +31,10 @@ public abstract class Enemy extends Sprite {
         this.level = level;
         setPosition(x, y);
         defEnemy();
-
+        enemyTouchingGround=true;
         setToDestroy = false;
         destroyed = false;
+        velocity= new Vector2(-0.5f,0);
     }
 
     public abstract void update(float dt);
@@ -39,6 +43,16 @@ public abstract class Enemy extends Sprite {
     public int getHealth() {
         return health;
     }
+    public void reverseVelocity(boolean x, boolean y){
+        if(x){
+            velocity.x=-velocity.x;
+        }
+        if(y){
+            velocity.y=-velocity.y;
+
+        }
+    }
+
     public float getPositionX() { return b2dbody.getPosition().x; }
     public void receiveDamage(int damage) {
         health -= damage;

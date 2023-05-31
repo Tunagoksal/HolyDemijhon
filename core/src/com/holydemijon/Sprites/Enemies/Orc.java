@@ -1,13 +1,13 @@
 package com.holydemijon.Sprites.Enemies;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Screens.Levels.Level;
 import com.holydemijon.Sprites.Animations.OrcAnimation;
-import com.holydemijon.Sprites.Animations.ZombieAnimation;
 
 public class Orc extends Enemy {
 
@@ -31,6 +31,9 @@ public class Orc extends Enemy {
         if (setToDestroy && !destroyed) {
             world.destroyBody(b2dbody);
             destroyed = true;
+        }
+        else if(!destroyed&&enemyTouchingGround){
+            b2dbody.setLinearVelocity(velocity);
         }
         orcAnimation.update(dt);
     }

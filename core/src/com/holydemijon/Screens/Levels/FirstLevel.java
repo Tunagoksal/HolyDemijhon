@@ -62,7 +62,6 @@ public class FirstLevel extends Level {
         zombie3= new Zombie(this, 320 / HolyDemijohn.PPM, 550 / HolyDemijohn.PPM, 0);
 
         player = new John(world);
-
         world.setContactListener(listener);
     }
     @Override
@@ -109,6 +108,7 @@ public class FirstLevel extends Level {
 
         super.render(delta);
 
+        level = 1;
         update(delta);
         levelOver(HolyDemijohn.SECOND_LEVEL);
 

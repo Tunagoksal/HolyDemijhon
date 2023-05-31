@@ -95,6 +95,8 @@ public class SecondLevel extends Level {
 
         super.render(delta);
 
+        level = 2;
+
         update(delta);
         super.levelOver(HolyDemijohn.THIRD_LEVEL);
 

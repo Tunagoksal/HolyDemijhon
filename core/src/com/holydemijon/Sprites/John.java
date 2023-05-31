@@ -59,9 +59,9 @@ public class John extends Sprite {
     public static int remainingJumps;
 
     //PowerUps
-    public static boolean dashIsActive;
-    public static boolean doubleJumpIsActive;
-    public static boolean heavyAttackIsActive;
+    public static boolean dashIsActive = false;
+    public static boolean doubleJumpIsActive = false;
+    public static boolean heavyAttackIsActive = false;
 
     //Interactive Tile Object and Enemy effects
     public static boolean steppedOnSpike;
@@ -92,9 +92,6 @@ public class John extends Sprite {
 
         isTouchingGround = false;
         remainingJumps = 0;
-        dashIsActive = false;
-        doubleJumpIsActive = false;
-        heavyAttackIsActive = false;
         openedChest = false;
         steppedOnSpike = false;
         steppedOnTrampoline = false;
@@ -322,5 +319,16 @@ public class John extends Sprite {
 
     public World getWorld() {
         return world;
+    }
+    public int getJohnHealth(){ return johnHealth; }
+    public void setJohnHealth(int johnHealth){ this.johnHealth = johnHealth; }
+    public Boolean [] getPowerUps(){
+        Boolean [] output = {dashIsActive,doubleJumpIsActive,heavyAttackIsActive};
+        return output;
+    }
+    public void setPowerUps(Boolean [] powerUps){
+        dashIsActive = powerUps[0];
+        doubleJumpIsActive = powerUps[1];
+        heavyAttackIsActive = powerUps[2];
     }
 }

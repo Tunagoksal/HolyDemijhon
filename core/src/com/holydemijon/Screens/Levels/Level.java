@@ -41,6 +41,11 @@ public abstract class Level extends ScreenAdapter {
     protected TiledMap map;
     protected OrthogonalTiledMapRenderer mapRenderer;
     protected boolean isOver;
+    public static int level;
+    public static int health;
+    public static int setHealth = 0;
+    public static Boolean [] powerUps = new Boolean[3];
+    public static Boolean [] setPowerUps = new Boolean[3];
 
     public static boolean isDoorOpened = false;
     public static Screen currentScreen;
@@ -78,6 +83,16 @@ public abstract class Level extends ScreenAdapter {
                 }
             }, 2);
         }
+        health = player.getJohnHealth();
+        if (setHealth != 0){
+            player.setJohnHealth(setHealth);
+        }
+        setHealth = 0;
+        powerUps = player.getPowerUps();
+        if (setPowerUps[0] != null){
+            powerUps = setPowerUps;
+        }
+        setPowerUps[0] = null;
         Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -114,8 +129,9 @@ public abstract class Level extends ScreenAdapter {
     public void setHud(HUD hud) {
         this.hud = hud;
     }
-
-
+    public int getLevel(){
+        return level;
+    }
     public abstract World getWorld();
     public abstract TiledMap getMap();
 

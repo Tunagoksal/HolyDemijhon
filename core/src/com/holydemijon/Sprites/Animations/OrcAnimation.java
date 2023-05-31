@@ -1,10 +1,8 @@
 package com.holydemijon.Sprites.Animations;
-
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Sprites.Enemies.Orc;
-import com.holydemijon.Sprites.Enemies.Zombie;
 
 public class OrcAnimation extends Sprite {
     Body body;

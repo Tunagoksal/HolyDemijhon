@@ -1,10 +1,7 @@
 package com.holydemijon.Tools;
 
 import com.badlogic.gdx.physics.box2d.*;
-import com.holydemijon.Sprites.Enemies.Enemy;
-import com.holydemijon.Sprites.Enemies.Orc;
-import com.holydemijon.Sprites.Enemies.Wizard;
-import com.holydemijon.Sprites.Enemies.Zombie;
+import com.holydemijon.Sprites.Enemies.*;
 import com.holydemijon.Sprites.Items.Border;
 import com.holydemijon.Sprites.Items.Door;
 import com.holydemijon.Sprites.John;
@@ -56,6 +53,9 @@ public class WorldContactListener implements ContactListener {
                 }
                 else if (object.getUserData() instanceof Wizard) {
                     ((John) player.getUserData()).takeDamage(Wizard.WIZARD_DAMAGE);
+                }
+                else if (object.getUserData() instanceof Fireball) {
+                    ((John) player.getUserData()).takeDamage(Fireball.FIREBALL_DAMAGE);
                 }
             }
         }
@@ -111,6 +111,14 @@ public class WorldContactListener implements ContactListener {
             if (object.getUserData() != null && object.getUserData() instanceof InteractiveTileObject) {
                 ((InteractiveTileObject) object.getUserData()).enemyCollision((Enemy) enemy.getUserData());
             }
+        }
+
+        if (fixtureA.getUserData() instanceof Enemy && fixtureB.getUserData() instanceof Enemy) {
+            Fixture enemy1 = fixtureA;
+            Fixture enemy2 = fixtureB;
+
+            ((Enemy)fixtureA.getUserData()).reverseVelocity(true,false);
+            ((Enemy)fixtureB.getUserData()).reverseVelocity(true,false);
         }
 
         if (fixtureA.getUserData().equals("feet") || fixtureB.getUserData().equals("feet")) {

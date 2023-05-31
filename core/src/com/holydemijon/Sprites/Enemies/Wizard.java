@@ -5,10 +5,9 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.holydemijon.HolyDemijohn;
-import com.holydemijon.Screens.Levels.FirstLevel;
 import com.holydemijon.Screens.Levels.Level;
 import com.holydemijon.Sprites.Animations.WizardAnimation;
-import com.holydemijon.Sprites.Animations.ZombieAnimation;
+
 
 public class Wizard extends Enemy {
 

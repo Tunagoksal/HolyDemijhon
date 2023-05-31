@@ -32,7 +32,7 @@ public class John extends Sprite {
 
     public static final int HEAVY_DAMAGE = 200;
 
-    public static final int JOHN_HEALTH = 500;
+    public static final int JOHN_HEALTH = 500000;
     public static final float DASH_POWER = 2;
 
 
@@ -92,9 +92,9 @@ public class John extends Sprite {
 
         isTouchingGround = false;
         remainingJumps = 0;
-        dashIsActive = false;
-        doubleJumpIsActive = false;
-        heavyAttackIsActive = false;
+        dashIsActive = true;
+        doubleJumpIsActive = true;
+        heavyAttackIsActive = true;
         openedChest = false;
         steppedOnSpike = false;
         steppedOnTrampoline = false;
@@ -145,6 +145,8 @@ public class John extends Sprite {
 
         if (attackableEnemy1 != null) {
             attackableEnemy1.receiveDamage(SIMPLE_DAMAGE);
+            attackableEnemy1.reverseVelocity(true,false);
+
         }
 
         if (attackableEnemy2 != null) {

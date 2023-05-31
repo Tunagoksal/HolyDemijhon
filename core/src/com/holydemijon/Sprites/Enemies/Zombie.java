@@ -3,7 +3,6 @@ package com.holydemijon.Sprites.Enemies;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.physics.box2d.*;
 import com.holydemijon.HolyDemijohn;
-import com.holydemijon.Screens.Levels.FirstLevel;
 import com.holydemijon.Screens.Levels.Level;
 import com.holydemijon.Sprites.Animations.ZombieAnimation;
 
@@ -29,6 +28,9 @@ public class Zombie extends Enemy {
         if (setToDestroy && !destroyed) {
             world.destroyBody(b2dbody);
             destroyed = true;
+        }
+        else if(!destroyed){
+            b2dbody.setLinearVelocity(velocity);
         }
         zombieAnimation.update(dt);
     }

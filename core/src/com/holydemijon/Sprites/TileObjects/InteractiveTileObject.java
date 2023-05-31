@@ -41,6 +41,8 @@ public abstract class InteractiveTileObject {
 
     public abstract void johnCollision();
 
-    public abstract void enemyCollision(Enemy enemy);
+    public abstract void enemyCollision(Enemy enemy);{
+
+    }
 }
 

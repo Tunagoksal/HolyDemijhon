@@ -21,6 +21,6 @@ public class Chest extends InteractiveTileObject{
 
     @Override
     public void enemyCollision(Enemy enemy) {
-
+        enemy.reverseVelocity(true,true);
     }
 }

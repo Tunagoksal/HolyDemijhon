@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.holydemijon.HolyDemijohn;
+import com.holydemijon.Sprites.Enemies.Fireball;
 import com.holydemijon.Sprites.Enemies.Orc;
 import com.holydemijon.Sprites.Enemies.Wizard;
 import com.holydemijon.Sprites.Enemies.Zombie;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 
 public class FirstLevel extends Level {
 
+    private Fireball fireball;
     private Zombie zombie1;
     private Zombie zombie2;
     private Zombie zombie3;
@@ -49,6 +51,7 @@ public class FirstLevel extends Level {
         b2dwc.setColliders(2,4,6,3,7,5,1);
         b2dwc.colliderCreation();
 
+        fireball= new Fireball(this,270 / HolyDemijohn.PPM, 250 / HolyDemijohn.PPM);
         orc1 = new Orc(this, 270 / HolyDemijohn.PPM, 350 / HolyDemijohn.PPM, 0);
         wizard1 = new Wizard(this, 540 / HolyDemijohn.PPM, 350 / HolyDemijohn.PPM, 0);
         zombie1 = new Zombie(this, 200 / HolyDemijohn.PPM, 150 / HolyDemijohn.PPM, 0);

@@ -63,7 +63,7 @@ public class FirstLevel extends Level {
         zombie2 = new Zombie(this, 220 / HolyDemijohn.PPM, 540 / HolyDemijohn.PPM, 0);
 
         zombie4 = new Zombie(this, 550 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
-        orc3 = new Orc(this, 670 / HolyDemijohn.PPM, 300 / HolyDemijohn.PPM, 0);
+        orc3 = new Orc(this, 700 / HolyDemijohn.PPM, 500 / HolyDemijohn.PPM, 0);
 
         orc4 = new Orc(this, 1020 / HolyDemijohn.PPM, 250 / HolyDemijohn.PPM, 0);
         zombie3= new Zombie(this, 1130 / HolyDemijohn.PPM, 450 / HolyDemijohn.PPM, 0);
@@ -85,7 +85,6 @@ public class FirstLevel extends Level {
 
         hud.setLevel(1);
         hud.update(dt);
-
         player.update(dt);
         zombie1.update(dt);
         wizard1.update(dt);

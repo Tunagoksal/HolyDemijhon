@@ -45,7 +45,6 @@ public class leaderBoardScreen extends ScreenAdapter{
     private Label labelName6;
     private Label labelScore6;
 
-
     static ArrayList<String> names;
     static ArrayList<Integer> scores;
 
@@ -89,23 +88,23 @@ public class leaderBoardScreen extends ScreenAdapter{
         TextureRegionDrawable menuDrawable = new TextureRegionDrawable(menuRegion);
         table.setBackground(menuDrawable);
 
-        table.add(labelName1).expandX().padLeft(180).padTop(140);
-        table.add(labelScore1).expandX().padRight(200).padTop(140);
+        table.add(labelName1).expandX().padLeft(170).padTop(140);
+        table.add(labelScore1).expandX().padRight(220).padTop(140);
         table.row();
-        table.add(labelName2).expandX().padLeft(180).padTop(15);
-        table.add(labelScore2).expandX().padRight(200).padTop(15);
+        table.add(labelName2).expandX().padLeft(170).padTop(15);
+        table.add(labelScore2).expandX().padRight(220).padTop(15);
         table.row();
-        table.add(labelName3).expandX().padLeft(180).padTop(10);
-        table.add(labelScore3).expandX().padRight(200).padTop(10);
+        table.add(labelName3).expandX().padLeft(170).padTop(10);
+        table.add(labelScore3).expandX().padRight(220).padTop(10);
         table.row();
-        table.add(labelName4).expandX().padLeft(180).padTop(10);
-        table.add(labelScore4).expandX().padRight(200).padTop(10);
+        table.add(labelName4).expandX().padLeft(170).padTop(10);
+        table.add(labelScore4).expandX().padRight(220).padTop(10);
         table.row();
-        table.add(labelName5).expandX().padLeft(180).padTop(15);
-        table.add(labelScore5).expandX().padRight(200).padTop(15);
+        table.add(labelName5).expandX().padLeft(170).padTop(15);
+        table.add(labelScore5).expandX().padRight(220).padTop(15);
         table.row();
-        table.add(labelName6).expandX().padLeft(180).padTop(15);
-        table.add(labelScore6).expandX().padRight(200).padTop(15);
+        table.add(labelName6).expandX().padLeft(170).padTop(15);
+        table.add(labelScore6).expandX().padRight(220).padTop(15);
         table.row();
         
         stage.addActor(table);
@@ -125,10 +124,7 @@ public class leaderBoardScreen extends ScreenAdapter{
             Document doc = it.next();
             names.add(doc.getString("name"));
             scores.add(doc.getInteger("score"));
-            System.out.println("Name: " + doc.getString("name") + ", Score: " + doc.getInteger("score"));
         }
-
-        System.out.println("getTopScores working fine pls :)");
     }
 
 

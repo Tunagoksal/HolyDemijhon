@@ -19,6 +19,7 @@ public class Box2DWorldCreator {
     private int tramboline;
     private int trap;
     private int border;
+    private int bouncer;
 
     private Level level;
     private World world;
@@ -72,9 +73,15 @@ public class Box2DWorldCreator {
 
             new Border(level, rect);
         }
+
+        for (MapObject object : map.getLayers().get(bouncer).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new Bouncer(level, rect);
+        }
     }
 
-    public void setColliders(int ground, int chest, int door, int spike, int tramboline,int trap,int border){
+    public void setColliders(int ground, int chest, int door, int spike, int tramboline,int trap,int border,int bouncer){
         this.ground = ground;
         this.chest = chest;
         this.door = door;
@@ -82,5 +89,6 @@ public class Box2DWorldCreator {
         this.tramboline = tramboline;
         this.trap = trap;
         this.border = border;
+        this.bouncer = bouncer;
     }
 }

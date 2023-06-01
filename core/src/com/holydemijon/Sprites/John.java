@@ -22,7 +22,7 @@ import java.util.Random;
 
 public class John extends Sprite {
 
-    public static final float JUMP_HEIGHT = 4.8f;
+    public static final float JUMP_HEIGHT = 4f;
     public static final float MAX_LINEAR_VELOCITY = 1;
     public static final float PLAYER_ACCELERATION = 0.1f;
 
@@ -110,7 +110,7 @@ public class John extends Sprite {
 
     private void defJohn() {
         bodydef = new BodyDef();
-        bodydef.position.set(100 / HolyDemijohn.PPM, 150 / HolyDemijohn.PPM);
+        bodydef.position.set(100 / HolyDemijohn.PPM, 200 / HolyDemijohn.PPM);
         bodydef.type = BodyDef.BodyType.DynamicBody;
         b2dbody = world.createBody(bodydef);
 
@@ -142,6 +142,8 @@ public class John extends Sprite {
 
         if (attackableEnemy1 != null) {
             attackableEnemy1.receiveDamage(SIMPLE_DAMAGE);
+            attackableEnemy1.reverseVelocity(true,false);
+
         }
 
         if (attackableEnemy2 != null) {

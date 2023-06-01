@@ -1,9 +1,9 @@
 package com.holydemijon.Sprites.Enemies;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.holydemijon.HolyDemijohn;
-import com.holydemijon.Screens.Levels.FirstLevel;
 import com.holydemijon.Screens.Levels.Level;
 import com.holydemijon.Sprites.Animations.ZombieAnimation;
 
@@ -19,7 +19,6 @@ public class Zombie extends Enemy {
     private ZombieAnimation zombieAnimation;
     public Zombie(Level level, float x, float y, int zombieState) {
         super(level, x, y);
-
         atlas = new TextureAtlas("animations/zombie_animations.atlas");
         zombieAnimation = new ZombieAnimation(this, atlas, b2dbody);
         health = ZOMBIE_HEALTH;
@@ -29,6 +28,9 @@ public class Zombie extends Enemy {
         if (setToDestroy && !destroyed) {
             world.destroyBody(b2dbody);
             destroyed = true;
+        }
+        else if(!destroyed){
+            b2dbody.setLinearVelocity(velocity);
         }
         zombieAnimation.update(dt);
     }

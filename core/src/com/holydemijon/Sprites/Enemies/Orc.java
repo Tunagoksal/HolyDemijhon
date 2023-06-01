@@ -14,7 +14,7 @@ public class Orc extends Enemy {
     public static final float ORC_WIDTH = 9;
     public static final float ORC_HEIGHT = 13;
     public static final int ORC_DAMAGE = 50;
-    public static final int ORC_HEALTH = 500;
+    public static final int ORC_HEALTH = 300;
 
 
     TextureAtlas atlas;

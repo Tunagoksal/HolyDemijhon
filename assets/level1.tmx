@@ -94,7 +94,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="2" name="ground">
+ <objectgroup id="2" name="ground" visible="0">
   <object id="5" x="32" y="480" width="128" height="32"/>
   <object id="8" x="224" y="480" width="96" height="32"/>
   <object id="11" x="144" y="512" width="96" height="16"/>
@@ -108,25 +108,25 @@
   <object id="20" x="832" y="288" width="256" height="16"/>
   <object id="21" x="1088" y="224" width="176" height="16"/>
  </objectgroup>
- <objectgroup id="3" name="door">
+ <objectgroup id="3" name="door" visible="0">
   <object id="22" x="1168" y="413.091" width="19.6364" height="34.9091"/>
  </objectgroup>
- <objectgroup id="6" name="chest">
+ <objectgroup id="6" name="chest" visible="0">
   <object id="23" x="435.75" y="94.75" width="24.25" height="16.75"/>
  </objectgroup>
- <objectgroup id="4" name="spike">
+ <objectgroup id="4" name="spike" visible="0">
   <object id="24" x="160" y="504.727" width="63.8182" height="7.27273"/>
   <object id="27" x="851" y="441.125" width="56.75" height="6.75"/>
  </objectgroup>
- <objectgroup id="5" name="trap">
+ <objectgroup id="5" name="trap" visible="0">
   <object id="29" x="527.875" y="108.75" width="15.875" height="2.875"/>
  </objectgroup>
- <objectgroup id="9" name="tramboline">
+ <objectgroup id="9" name="tramboline" visible="0">
   <object id="30" x="80" y="347.091" width="16" height="4.90909"/>
   <object id="31" x="112" y="219.273" width="16" height="4.72727"/>
   <object id="32" x="848" y="283.273" width="16" height="4.72727"/>
  </objectgroup>
- <objectgroup id="7" name="bouncer">
+ <objectgroup id="7" name="bouncer" visible="0">
   <object id="36" x="112" y="337.25" width="15.75" height="14.75"/>
   <object id="37" x="304" y="336" width="16" height="16"/>
   <object id="38" x="512" y="336" width="16" height="16"/>
@@ -140,7 +140,7 @@
   <object id="48" x="160" y="96" width="16" height="16"/>
   <object id="49" x="400" y="96" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="8" name="border">
+ <objectgroup id="8" name="border" visible="0">
   <object id="50" x="0" y="-124" width="1278" height="764"/>
  </objectgroup>
 </map>

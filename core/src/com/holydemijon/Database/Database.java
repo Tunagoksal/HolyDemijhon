@@ -80,4 +80,41 @@ public class Database {
 
         System.out.println("getTopScores working fine pls :)");
     }
+    public static void addToDatabase(String name, int time){
+
+        MongoClient mongoClient = MongoClients.create("mongodb+srv://boraytkn:1234mdb@cluster0.ris0uvf.mongodb.net/?retryWrites=true&w=majority");
+        MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
+        MongoCollection collection = database.getCollection("ScoreCollection");
+
+        Document doc = new Document("name", name);
+
+        doc.append("score", time);
+        collection.insertOne(doc);
+
+
+        System.out.println("addToDatabase working fine pls :)");
+
+    }
+
+    /*public static void getTopScores(){
+
+        MongoClient mongoClient = MongoClients.create("mongodb+srv://boraytkn:1234mdb@cluster0.ris0uvf.mongodb.net/?retryWrites=true&w=majority");
+        MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
+        MongoCollection<Document> collection = database.getCollection("ScoreCollection");
+
+
+        Bson sort = Sorts.ascending("score");
+
+
+        FindIterable<Document> iterDoc = collection.find().sort(sort).limit(6);
+        MongoCursor<Document> it = iterDoc.iterator();
+
+
+        while(it.hasNext()){
+            Document doc = it.next();
+            names.add(doc.getString("name"));
+            scores.add(doc.getInteger("score"));
+
+        }
+    }*/
 }

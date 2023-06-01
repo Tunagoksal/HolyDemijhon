@@ -45,7 +45,6 @@ public class leaderBoardScreen extends ScreenAdapter{
     private Label labelName6;
     private Label labelScore6;
 
-
     static ArrayList<String> names;
     static ArrayList<Integer> scores;
 
@@ -125,10 +124,7 @@ public class leaderBoardScreen extends ScreenAdapter{
             Document doc = it.next();
             names.add(doc.getString("name"));
             scores.add(doc.getInteger("score"));
-            System.out.println("Name: " + doc.getString("name") + ", Score: " + doc.getInteger("score"));
         }
-
-        System.out.println("getTopScores working fine pls :)");
     }
 
 

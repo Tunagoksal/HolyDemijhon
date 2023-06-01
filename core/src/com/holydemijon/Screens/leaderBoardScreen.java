@@ -49,6 +49,8 @@ public class leaderBoardScreen extends ScreenAdapter{
     static ArrayList<String> names;
     static ArrayList<Integer> scores;
 
+    private static ArrayList<String> topScores;
+
     public leaderBoardScreen(HolyDemijohn game) {
 
         this.game= game;
@@ -61,49 +63,51 @@ public class leaderBoardScreen extends ScreenAdapter{
         names = new ArrayList<>();
         scores = new ArrayList<>();
 
+        topScores = new ArrayList<>();
+
         getTopScores();
         
         labelName1 = new Label(names.get(0), style);
-        labelScore1 = new Label(""+ scores.get(0), style);
-        labelName2 = new Label("vcvcv", style);
-        labelScore2 = new Label("Name ", style);
-        labelName3 = new Label("Name ", style);
-        labelScore3 = new Label("Name ", style);
-        labelName4 = new Label("Name ", style);
-        labelScore4 = new Label("Name ", style);
-        labelName5 = new Label("Name ", style);
-        labelScore5 = new Label("Name ", style);
-        labelName6 = new Label("Name ", style);
-        labelScore6 = new Label("Name ", style);
+        labelScore1 = new Label("" + scores.get(0), style);
+        labelName2 = new Label(names.get(1), style);
+        labelScore2 = new Label("" + scores.get(1), style);
+        labelName3 = new Label(names.get(2), style);
+        labelScore3 = new Label("" + scores.get(2), style);
+        labelName4 = new Label(names.get(3), style);
+        labelScore4 = new Label("" + scores.get(3), style);
+        labelName5 = new Label(names.get(4), style);
+        labelScore5 = new Label("" + scores.get(4), style);
+        labelName6 = new Label(names.get(5), style);
+        labelScore6 = new Label("" + scores.get(5), style);
 
         table = new Table();
         table.center();
         table.setFillParent(true);
 
-        Texture menuTexture = new Texture(Gdx.files.internal("menu/HolyLeaderBoard.png"));
+        Texture menuTexture = new Texture(Gdx.files.internal("menu/HolyLeaderboard.png"));
         TextureRegion menuRegion = new TextureRegion(menuTexture);
         TextureRegionDrawable menuDrawable = new TextureRegionDrawable(menuRegion);
         table.setBackground(menuDrawable);
 
-        table.add(labelName1).expandX().padLeft(200).padBottom(-20);
-        table.add(labelScore1).expandX().padRight(220).padBottom(-20);
+        table.add(labelName1).expandX().padLeft(180).padTop(140);
+        table.add(labelScore1).expandX().padRight(200).padTop(140);
         table.row();
-        table.add(labelName2).expandX().padLeft(200).padBottom(-25);
-        table.add(labelScore2).expandX().padRight(220).padBottom(-25);
+        table.add(labelName2).expandX().padLeft(180).padTop(15);
+        table.add(labelScore2).expandX().padRight(200).padTop(15);
         table.row();
-        table.add(labelName3).expandX().padLeft(200).padBottom(-20);
-        table.add(labelScore3).expandX().padRight(220).padBottom(-20);
+        table.add(labelName3).expandX().padLeft(180).padTop(10);
+        table.add(labelScore3).expandX().padRight(200).padTop(10);
         table.row();
-        table.add(labelName4).expandX().padLeft(200).padBottom(-15);
-        table.add(labelScore4).expandX().padRight(220).padBottom(-15);
+        table.add(labelName4).expandX().padLeft(180).padTop(10);
+        table.add(labelScore4).expandX().padRight(200).padTop(10);
         table.row();
-        table.add(labelName5).expandX().padLeft(200).padBottom(-10);
-        table.add(labelScore5).expandX().padRight(220).padBottom(-10);
+        table.add(labelName5).expandX().padLeft(180).padTop(15);
+        table.add(labelScore5).expandX().padRight(200).padTop(15);
         table.row();
-        table.add(labelName6).expandX().padLeft(200).padBottom(-5);
-        table.add(labelScore6).expandX().padRight(220).padBottom(-5);
+        table.add(labelName6).expandX().padLeft(180).padTop(15);
+        table.add(labelScore6).expandX().padRight(200).padTop(15);
         table.row();
-
+        
         stage.addActor(table);
     }
 

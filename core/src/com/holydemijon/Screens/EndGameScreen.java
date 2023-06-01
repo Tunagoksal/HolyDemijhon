@@ -124,40 +124,6 @@ public class EndGameScreen extends ScreenAdapter{
 
     }
 
-    public static void getTopScores(){
-        MongoClient mongoClient = MongoClients.create("mongodb+srv://boraytkn:1234mdb@cluster0.ris0uvf.mongodb.net/?retryWrites=true&w=majority");
-        MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
-        MongoCollection<Document> collection = database.getCollection("ScoreCollection");
 
-        Bson sort = Sorts.ascending("score");
-
-        FindIterable<Document> iterDoc = collection.find().sort(sort).limit(5);
-        MongoCursor<Document> it = iterDoc.iterator();
-
-        while(it.hasNext()){
-            Document doc = it.next();
-            System.out.println("Score: " + doc.getInteger("score"));
-        }
-
-        System.out.println("getTopScores working fine pls :)");
-    }
-
-    public static void getTopNames(){
-        MongoClient mongoClient = MongoClients.create("mongodb+srv://boraytkn:1234mdb@cluster0.ris0uvf.mongodb.net/?retryWrites=true&w=majority");
-        MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
-        MongoCollection<Document> collection = database.getCollection("ScoreCollection");
-
-        Bson sort = Sorts.ascending("score");
-
-        FindIterable<Document> iterDoc = collection.find().sort(sort).limit(5);
-        MongoCursor<Document> it = iterDoc.iterator();
-
-        while(it.hasNext()){
-            Document doc = it.next();
-            System.out.println("Name: " + doc.getString("name"));
-        }
-
-        System.out.println("getTopScores working fine pls :)");
-    }
 
 }

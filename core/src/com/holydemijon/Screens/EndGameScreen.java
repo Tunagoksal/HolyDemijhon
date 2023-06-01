@@ -90,7 +90,12 @@ public class EndGameScreen extends ScreenAdapter{
         }
         if (Gdx.input.isKeyPressed(Input.Keys.ENTER))
         {
-            name = text.getText().substring(7);
+            if (text.getText().length() < 15) {
+                name = text.getText().substring(7);
+            }
+            else {
+                name = text.getText().substring(7,14);
+            }
             System.out.println(name);
             addToDatabase(name, this.time);
             System.out.println(name + " added.");

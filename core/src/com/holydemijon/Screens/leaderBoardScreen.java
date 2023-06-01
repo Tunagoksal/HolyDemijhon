@@ -31,8 +31,23 @@ public class leaderBoardScreen extends ScreenAdapter{
     private HolyDemijohn game;
     private OrthographicCamera cam;
     private Table table;
-    private Label label1;
-    private Label label2;
+
+    private Label labelName1;
+    private Label labelScore1;
+    private Label labelName2;
+    private Label labelScore2;
+    private Label labelName3;
+    private Label labelScore3;
+    private Label labelName4;
+    private Label labelScore4;
+    private Label labelName5;
+    private Label labelScore5;
+    private Label labelName6;
+    private Label labelScore6;
+
+
+    static ArrayList<String> names;
+    static ArrayList<Integer> scores;
 
     private static ArrayList<String> topScores;
 
@@ -44,25 +59,55 @@ public class leaderBoardScreen extends ScreenAdapter{
         stage = new Stage(viewport, (game).batch);
 
         Label.LabelStyle style = new Label.LabelStyle(new BitmapFont(),Color.DARK_GRAY);
-        label1 = new Label("Name ", style);
-        label2 = new Label("Name ", style);
+
+        names = new ArrayList<>();
+        scores = new ArrayList<>();
 
         topScores = new ArrayList<>();
 
         getTopScores();
-
+        
+        labelName1 = new Label(names.get(0), style);
+        labelScore1 = new Label("" + scores.get(0), style);
+        labelName2 = new Label(names.get(1), style);
+        labelScore2 = new Label("" + scores.get(1), style);
+        labelName3 = new Label(names.get(2), style);
+        labelScore3 = new Label("" + scores.get(2), style);
+        labelName4 = new Label(names.get(3), style);
+        labelScore4 = new Label("" + scores.get(3), style);
+        labelName5 = new Label(names.get(4), style);
+        labelScore5 = new Label("" + scores.get(4), style);
+        labelName6 = new Label(names.get(5), style);
+        labelScore6 = new Label("" + scores.get(5), style);
 
         table = new Table();
         table.center();
         table.setFillParent(true);
 
-        Texture menuTexture = new Texture(Gdx.files.internal("menu/HolyLeaderBoard.png"));
+        Texture menuTexture = new Texture(Gdx.files.internal("menu/HolyLeaderboard.png"));
         TextureRegion menuRegion = new TextureRegion(menuTexture);
         TextureRegionDrawable menuDrawable = new TextureRegionDrawable(menuRegion);
         table.setBackground(menuDrawable);
+
+        table.add(labelName1).expandX().padLeft(180).padTop(140);
+        table.add(labelScore1).expandX().padRight(200).padTop(140);
+        table.row();
+        table.add(labelName2).expandX().padLeft(180).padTop(15);
+        table.add(labelScore2).expandX().padRight(200).padTop(15);
+        table.row();
+        table.add(labelName3).expandX().padLeft(180).padTop(10);
+        table.add(labelScore3).expandX().padRight(200).padTop(10);
+        table.row();
+        table.add(labelName4).expandX().padLeft(180).padTop(10);
+        table.add(labelScore4).expandX().padRight(200).padTop(10);
+        table.row();
+        table.add(labelName5).expandX().padLeft(180).padTop(15);
+        table.add(labelScore5).expandX().padRight(200).padTop(15);
+        table.row();
+        table.add(labelName6).expandX().padLeft(180).padTop(15);
+        table.add(labelScore6).expandX().padRight(200).padTop(15);
+        table.row();
         
-        table.add(label1).expandX().padLeft(200).padBottom(20);
-        table.add(label2).expandX().padRight(220).padBottom(20);
         stage.addActor(table);
     }
 
@@ -73,21 +118,19 @@ public class leaderBoardScreen extends ScreenAdapter{
 
         Bson sort = Sorts.ascending("score");
 
-        FindIterable<Document> iterDoc = collection.find().sort(sort).limit(5);
+        FindIterable<Document> iterDoc = collection.find().sort(sort).limit(6);
         MongoCursor<Document> it = iterDoc.iterator();
 
         while(it.hasNext()){
             Document doc = it.next();
-            String name = doc.getString("name");
-            int score = doc.getInteger("score");
-            String scoreText = "Name: " + name + ", Score: " + score;
-            topScores.add(scoreText);
-
+            names.add(doc.getString("name"));
+            scores.add(doc.getInteger("score"));
             System.out.println("Name: " + doc.getString("name") + ", Score: " + doc.getInteger("score"));
         }
 
         System.out.println("getTopScores working fine pls :)");
     }
+
 
     @Override
     public void render(float delta) {

@@ -69,9 +69,9 @@ public class MainMenuScreen extends ScreenAdapter{
         TextureRegion newGameRegion = new TextureRegion(newGameTexture);
         TextureRegionDrawable newGameDrawable = new TextureRegionDrawable(newGameRegion);
 
-        Texture ControlsTexture = new Texture(Gdx.files.internal("Buttons/ControlsButton.png"));
-        TextureRegion ControlsRegion = new TextureRegion(ControlsTexture);
-        TextureRegionDrawable ControlsDrawable = new TextureRegionDrawable(ControlsRegion);
+        //Texture ControlsTexture = new Texture(Gdx.files.internal("Buttons/ControlsButton.png"));
+        //TextureRegion ControlsRegion = new TextureRegion(ControlsTexture);
+        //TextureRegionDrawable ControlsDrawable = new TextureRegionDrawable(ControlsRegion);
 
         Texture leaderBoardTexture = new Texture(Gdx.files.internal("Buttons/LeaderBoard.png"));
         TextureRegion leaderBoardRegion = new TextureRegion(leaderBoardTexture);
@@ -80,7 +80,7 @@ public class MainMenuScreen extends ScreenAdapter{
         ImageButton leaderBoardButton = new ImageButton(leaderBoardDrawable);
         ImageButton continueButton = new ImageButton(continueDrawable);
         ImageButton newGameButton = new ImageButton(newGameDrawable);
-        ImageButton controlsButton = new ImageButton(ControlsDrawable);
+        //ImageButton controlsButton = new ImageButton(ControlsDrawable);
         ImageButton exitGameButton = new ImageButton(exitGameDrawable);
 
         exitGameButton.addListener(new ChangeListener() {
@@ -114,6 +114,7 @@ public class MainMenuScreen extends ScreenAdapter{
             }
         });
 
+
         leaderBoardButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -130,8 +131,8 @@ public class MainMenuScreen extends ScreenAdapter{
         table.row();
         table.add(continueButton);
         table.row();
-        table.add(controlsButton);
-        table.row();
+        //table.add(controlsButton);
+        //table.row();
         table.add(leaderBoardButton);
         table.row();
         table.add(exitGameButton);

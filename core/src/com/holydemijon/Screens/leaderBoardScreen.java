@@ -66,18 +66,18 @@ public class leaderBoardScreen extends ScreenAdapter{
 
         getTopScores();
         
-        labelName1 = new Label(names.get(0), style);
-        labelScore1 = new Label("" + scores.get(0), style);
-        labelName2 = new Label(names.get(1), style);
-        labelScore2 = new Label("" + scores.get(1), style);
-        labelName3 = new Label(names.get(2), style);
-        labelScore3 = new Label("" + scores.get(2), style);
-        labelName4 = new Label(names.get(3), style);
-        labelScore4 = new Label("" + scores.get(3), style);
+        labelName1 = new Label(""+names.get(0), style);
+        labelScore1 = new Label(""+scores.get(0), style);
+        labelName2 = new Label(""+names.get(1), style);
+        labelScore2 = new Label(""+scores.get(1), style);
+        labelName3 = new Label(""+names.get(2), style);
+        labelScore3 = new Label(""+scores.get(2), style);
+        labelName4 = new Label(""+names.get(3), style);
+        labelScore4 = new Label(""+scores.get(3), style);
         labelName5 = new Label(names.get(4), style);
-        labelScore5 = new Label("" + scores.get(4), style);
+        labelScore5 = new Label(""+scores.get(4), style);
         labelName6 = new Label(names.get(5), style);
-        labelScore6 = new Label("" + scores.get(5), style);
+        labelScore6 = new Label(""+scores.get(5), style);
 
         table = new Table();
         table.center();

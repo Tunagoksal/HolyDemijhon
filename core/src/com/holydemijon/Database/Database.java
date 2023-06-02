@@ -1,4 +1,5 @@
 package com.holydemijon.Database;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.mongodb.client.*;
 import com.mongodb.client.model.Sorts;
 import org.bson.Document;
@@ -38,7 +39,7 @@ public class Database {
         collection.insertOne(sampleDoc);
     }
 
-    public static void getTopScores(){
+    /* public static void getTopScores(){
 
 
 
@@ -51,6 +52,8 @@ public class Database {
         FindIterable<Document> iterDoc = collection.find().sort(sort).limit(5);
 
         MongoCursor<Document> it = iterDoc.iterator();
+
+
 
         while(it.hasNext()){
             Document doc = it.next();
@@ -76,9 +79,25 @@ public class Database {
         while(it.hasNext()){
             Document doc = it.next();
             System.out.println("Name: " + doc.getString("name"));
+
+
+            labelName1 = new Label(""+names.get(0), style);
+            labelScore1 = new Label(""+scores.get(0), style);
+            labelName2 = new Label(""+names.get(1), style);
+            labelScore2 = new Label(""+scores.get(1), style);
+            labelName3 = new Label(""+names.get(2), style);
+            labelScore3 = new Label(""+scores.get(2), style);
+            labelName4 = new Label(""+names.get(3), style);
+            labelScore4 = new Label(""+scores.get(3), style);
+            labelName5 = new Label(names.get(4), style);
+            labelScore5 = new Label(""+scores.get(4), style);
+            labelName6 = new Label(names.get(5), style);
+            labelScore6 = new Label(""+scores.get(5), style);
+
+
         }
 
-        System.out.println("getTopScores working fine pls :)");
+        /*System.out.println("getTopScores working fine pls :)");
     }
     public static void addToDatabase(String name, int time){
 
@@ -94,7 +113,7 @@ public class Database {
 
         System.out.println("addToDatabase working fine pls :)");
 
-    }
+    }*/
 
     /*public static void getTopScores(){
 

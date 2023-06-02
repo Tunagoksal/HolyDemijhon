@@ -59,8 +59,9 @@ public class leaderBoardScreen extends ScreenAdapter{
 
         Label.LabelStyle style = new Label.LabelStyle(new BitmapFont(),Color.DARK_GRAY);
 
-        names = new ArrayList<>();
-        scores = new ArrayList<>();
+        names = new ArrayList<>(6);
+        scores = new ArrayList<>(6);
+
 
         topScores = new ArrayList<>();
 

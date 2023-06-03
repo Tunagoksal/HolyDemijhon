@@ -116,7 +116,7 @@ public abstract class Level extends ScreenAdapter {
         if (isNewGame){
             hud.setWorldTimer(0);
             player.setPowerUps(falseArr);
-            player.setJohnHealth(500);
+            player.setJohnHealth(John.JOHN_HEALTH);
             isNewGame = false;
         }
         Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);

@@ -107,8 +107,10 @@ public class PauseMenuScreen extends ScreenAdapter{
 
     @Override
     public void render(float delta) {
-        if (soundSlider.isDragging())
+        if (soundSlider.isDragging()) {
             HolyDemijohn.audioManager.setGameVolume(soundSlider.getValue());
+            game.getMainMenu().getSoundSlider().setValue(AudioManager.volume);
+        }
 
         Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -116,4 +118,8 @@ public class PauseMenuScreen extends ScreenAdapter{
     }
     @Override
     public void resize(int x, int y){ viewport.update(x,y); }
+
+    public Slider getSoundSlider() {
+        return this.soundSlider;
+    }
 }

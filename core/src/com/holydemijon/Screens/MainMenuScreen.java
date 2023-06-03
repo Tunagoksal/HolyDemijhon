@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Screens.Levels.Level;
+import com.holydemijon.Tools.AudioManager;
 
 public class MainMenuScreen extends ScreenAdapter{
 
@@ -60,6 +61,7 @@ public class MainMenuScreen extends ScreenAdapter{
         TextureRegionDrawable knobd = new TextureRegionDrawable(knobr);
         Slider.SliderStyle style = new Slider.SliderStyle(sliderDrawable, knobd);
         soundSlider = new Slider(0,1,0.01f,false,style);
+        soundSlider.setValue(AudioManager.volume);
 
         Texture exitGameTexture = new Texture(Gdx.files.internal("Buttons/exitGame.png"));
         TextureRegion exitGameRegion = new TextureRegion(exitGameTexture);
@@ -160,8 +162,10 @@ public class MainMenuScreen extends ScreenAdapter{
 
     @Override
     public void render(float delta) {
-        if (soundSlider.isDragging())
+        if (soundSlider.isDragging()) {
             HolyDemijohn.audioManager.setGameVolume(soundSlider.getValue());
+            game.getPauseMenuScreen().getSoundSlider().setValue(AudioManager.volume);
+        }
 
         if(Gdx.input.isKeyPressed(Input.Keys.X)){
             game.setScreens(HolyDemijohn.END_GAME_SCREEN);
@@ -173,5 +177,9 @@ public class MainMenuScreen extends ScreenAdapter{
     }
     @Override
     public void resize(int x, int y){ viewport.update(x,y); }
+
+    public Slider getSoundSlider() {
+        return this.soundSlider;
+    }
 
 }

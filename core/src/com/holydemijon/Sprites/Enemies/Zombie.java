@@ -70,6 +70,7 @@ public class Zombie extends Enemy {
         }
         else
             HolyDemijohn.audioManager.playSound(11);
+
     }
 
 }

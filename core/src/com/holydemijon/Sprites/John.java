@@ -48,8 +48,8 @@ public class John extends Sprite {
     private JohnAnimation johnAnimation;
     public static boolean lookingRight;
 
-    public static Enemy attackableEnemy1;
-    public static Enemy attackableEnemy2;
+    public static Enemy attackableEnemy;
+
     public static float johnPositionX;
 
     public static int johnHealth;
@@ -79,8 +79,7 @@ public class John extends Sprite {
         atlas = new TextureAtlas("animations/characterAnimations.atlas");
         atlas2 = new TextureAtlas("animations/player_death.atlas");
         johnAnimation = new JohnAnimation(this, atlas, atlas2);
-        attackableEnemy1 = null;
-        attackableEnemy2 = null;
+        attackableEnemy = null;
         lookingRight = true;
 
         inputs = new KeyboardInputs(this);
@@ -140,25 +139,22 @@ public class John extends Sprite {
 
     public void simpleAttack() {
 
-        if (attackableEnemy1 != null) {
-            attackableEnemy1.receiveDamage(SIMPLE_DAMAGE);
-            attackableEnemy1.reverseVelocity(true,false);
-
+        if (attackableEnemy != null && !attackableEnemy.destroyed) {
+            attackableEnemy.receiveDamage(SIMPLE_DAMAGE);
+            if (attackableEnemy.destroyed) {
+                attackableEnemy = null;
+            }
         }
 
-        if (attackableEnemy2 != null) {
-            attackableEnemy2.receiveDamage(SIMPLE_DAMAGE);
-        }
+        System.out.println(attackableEnemy);
     }
 
     public void heavyAttack() {
-
-        if (attackableEnemy1 != null) {
-            attackableEnemy1.receiveDamage(HEAVY_DAMAGE);
-        }
-
-        if (attackableEnemy2 != null) {
-            attackableEnemy2.receiveDamage(HEAVY_DAMAGE);
+        if (attackableEnemy != null && !attackableEnemy.destroyed) {
+            attackableEnemy.receiveDamage(HEAVY_DAMAGE);
+            if (attackableEnemy.destroyed) {
+                attackableEnemy = null;
+            }
         }
     }
 

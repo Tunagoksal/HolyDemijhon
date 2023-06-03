@@ -73,5 +73,6 @@ public class Orc extends Enemy {
         }
         else
             HolyDemijohn.audioManager.playSound(12);
+
     }
 }

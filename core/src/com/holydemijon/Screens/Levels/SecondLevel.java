@@ -64,7 +64,6 @@ public class SecondLevel extends Level {
 
         orc3 = new Orc(this, 950 / HolyDemijohn.PPM, 550 / HolyDemijohn.PPM, 0);
 
-
         b2dwc.setColliders(2,4,3,5,7,6,9,8);
         b2dwc.colliderCreation();
         player = new John(world);

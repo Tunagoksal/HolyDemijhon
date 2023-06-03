@@ -57,6 +57,7 @@ public abstract class Enemy extends Sprite {
     public void receiveDamage(int damage) {
         health -= damage;
 
+        reverseVelocity(true,false);
         if (John.johnPositionX < b2dbody.getPosition().x) {
             b2dbody.applyLinearImpulse(new Vector2(1f, 2), this.b2dbody.getWorldCenter(), true);
         }

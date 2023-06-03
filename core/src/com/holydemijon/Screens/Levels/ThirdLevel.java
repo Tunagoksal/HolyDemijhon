@@ -68,9 +68,6 @@ public class ThirdLevel extends Level {
         zombie3 = new Zombie(this, 1100 / HolyDemijohn.PPM, 350 / HolyDemijohn.PPM, 0);
         orc3 = new Orc(this, 900 / HolyDemijohn.PPM, 350 / HolyDemijohn.PPM, 0);
 
-
-
-
         world.setContactListener(listener);
     }
 

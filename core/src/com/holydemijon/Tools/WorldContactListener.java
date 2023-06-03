@@ -60,40 +60,24 @@ public class WorldContactListener implements ContactListener {
             }
         }
 
-        if (John.attackableEnemy1 == null) {
-            if ((fixtureA.getUserData().equals("attack range") || fixtureB.getUserData().equals("attack range")) &&
-                    fixtureA.getUserData() instanceof Enemy || fixtureB.getUserData() instanceof Enemy) {
 
-                Fixture enemy = null;
+        if ((fixtureA.getUserData().equals("attack range") || fixtureB.getUserData().equals("attack range")) &&
+                (fixtureA.getUserData() instanceof Enemy || fixtureB.getUserData() instanceof Enemy)) {
 
-                if (fixtureA.getUserData().equals("attack range")) {
-                    enemy = fixtureB;
-                } else {
-                    enemy = fixtureA;
-                }
+            Fixture enemy = null;
 
-                if (enemy.getUserData() != null && enemy.getUserData() instanceof Enemy) {
-                    John.attackableEnemy1 = (Enemy) enemy.getUserData();
-                }
+            if (fixtureA.getUserData().equals("attack range")) {
+                enemy = fixtureB;
             }
-        }
-        else {
-            if ((fixtureA.getUserData().equals("attack range") || fixtureB.getUserData().equals("attack range")) &&
-                    fixtureA.getUserData() instanceof Enemy || fixtureB.getUserData() instanceof Enemy) {
-
-                Fixture enemy = null;
-
-                if (fixtureA.getUserData().equals("attack range")) {
-                    enemy = fixtureB;
-                } else {
-                    enemy = fixtureA;
-                }
-
-                if (enemy.getUserData() != null && enemy.getUserData() instanceof Enemy) {
-                    John.attackableEnemy2 = (Enemy) enemy.getUserData();
-                }
+            else {
+                enemy = fixtureA;
             }
+
+            if (enemy != null && enemy.getUserData() instanceof Enemy && John.attackableEnemy == null)
+                John.attackableEnemy = (Enemy) enemy.getUserData();
+
         }
+
 
         if (fixtureA.getUserData() instanceof Enemy || fixtureB.getUserData() instanceof Enemy) {
             Fixture enemy = null;
@@ -181,10 +165,7 @@ public class WorldContactListener implements ContactListener {
         if ((fixtureA.getUserData().equals("attack range") || fixtureB.getUserData().equals("attack range")) &&
                 (fixtureA.getUserData() instanceof Enemy || fixtureB.getUserData() instanceof Enemy)) {
 
-            if (John.attackableEnemy2 != null)
-                John.attackableEnemy2 = null;
-            else
-                John.attackableEnemy1 = null;
+            John.attackableEnemy = null;
         }
 
         if ((fixtureA.getUserData() instanceof Border || fixtureB.getUserData() instanceof Border) &&

@@ -125,7 +125,7 @@ public class John extends Sprite {
         b2dbody.createFixture(fixDef).setUserData(this);
 
         EdgeShape feet = new EdgeShape();
-        feet.set(new Vector2(-4 / HolyDemijohn.PPM, -8 / HolyDemijohn.PPM), new Vector2(4 / HolyDemijohn.PPM, -8 / HolyDemijohn.PPM));
+        feet.set(new Vector2(-3 / HolyDemijohn.PPM, -8 / HolyDemijohn.PPM), new Vector2(3 / HolyDemijohn.PPM, -8 / HolyDemijohn.PPM));
         fixDef.shape = feet;
         b2dbody.createFixture(fixDef).setUserData("feet");
 

@@ -5,10 +5,13 @@ In the mythical universe of "In Pursuit of The Holy Demijohn", a 2D platform gam
 
 ## 1. How to Play The Game
 1.  Download Java.
-2.  In order to play the game, you have two choice: (i) cloning the git repository or (ii) downloading the .jar file.
-* (i) By writing the following code on your terminal you can clone HolyDemijohn repository:
-*
-* (ii) By just downloading the .jar file on releases page , you should be able to execute the game easily by double clicking.
+2.  In order to play the game you should clone the git repository
+- By writing the following code on your terminal you can clone HolyDemijohn repository:
+```bash
+git clone https://github.com/Tunagoksal/HolyDemijhon.git
+cd HolyDemijhon/
+./gradlew desktop:run
+```
 
 
 ## 2. Creators

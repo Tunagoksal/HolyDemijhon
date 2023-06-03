@@ -1,5 +1,4 @@
 package com.holydemijon.Screens.Levels;
-
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -61,9 +60,7 @@ public class ThirdLevel extends Level {
             fireballs.add(  new Fireball(this,(367-15*i) / HolyDemijohn.PPM, 450 / HolyDemijohn.PPM));
         }
         zombie1 = new Zombie(this, 320 / HolyDemijohn.PPM, 220 / HolyDemijohn.PPM, 0);
-
         orc2 = new Orc(this, 415 / HolyDemijohn.PPM, 550 / HolyDemijohn.PPM, 0);
-
         zombie2 = new Zombie(this, 750 / HolyDemijohn.PPM, 350 / HolyDemijohn.PPM, 0);
         zombie3 = new Zombie(this, 1100 / HolyDemijohn.PPM, 350 / HolyDemijohn.PPM, 0);
         orc3 = new Orc(this, 900 / HolyDemijohn.PPM, 350 / HolyDemijohn.PPM, 0);
@@ -75,7 +72,6 @@ public class ThirdLevel extends Level {
 
         hud.setLevel(3);
         hud.update(dt);
-
         player.update(dt);
         zombie1.update(dt);
         wizard1.update(dt);
@@ -101,17 +97,12 @@ public class ThirdLevel extends Level {
     public void render(float delta) {
 
         super.render(delta);
-
         level = 3;
-
         update(delta);
         super.levelOver(HolyDemijohn.END_GAME_SCREEN, level);
-
         mapRenderer.setView(cam);
         mapRenderer.render();
-
         b2dbr.render(world, cam.combined);
-
         game.batch.setProjectionMatrix(cam.combined);
         game.batch.begin();
         player.getJohnAnimation().draw(game.batch);
@@ -147,6 +138,5 @@ public class ThirdLevel extends Level {
         world.dispose();
         b2dbr.dispose();
         player.getWorld().dispose();
-        //player.getWorld().dispose();
     }
 }

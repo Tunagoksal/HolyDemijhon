@@ -28,7 +28,7 @@ public class Fireball extends Enemy {
 
     @Override
     public void update(float dt) {
-        b2dbody.setLinearVelocity(-0.5F,0);
+        b2dbody.setLinearVelocity(-0.2F,0);
         fireballAnimation.update(dt);
     }
 

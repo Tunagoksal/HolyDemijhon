@@ -132,7 +132,6 @@ public abstract class Level extends ScreenAdapter {
             isDoorOpened = false;
             if (screen == HolyDemijohn.END_GAME_SCREEN) {
                 isOver = true;
-                System.out.println("World timer: " + hud.getWorldTimer());
                 game.getPrefs().putInteger("Level",1);
                 game.getPrefs().flush();
                 HolyDemijohn.audioManager.playMusic(4);

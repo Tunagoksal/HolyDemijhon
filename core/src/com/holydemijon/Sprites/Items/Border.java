@@ -7,11 +7,10 @@ import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Screens.Levels.Level;
 
 public class Border {
-    private Level level;
+
     private World world;
     private Rectangle bounds;
     private Body body;
-    private Fixture fixture;
     private FixtureDef fixtureDef;
 
     public Border(Level level, Rectangle bounds) {
@@ -34,7 +33,4 @@ public class Border {
 
     }
 
-    public void collision() {
-        System.out.println("there is where you are supposed to die");
-    }
 }

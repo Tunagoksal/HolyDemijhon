@@ -1,13 +1,10 @@
 package com.holydemijon.Screens.Levels;
-
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Sprites.Enemies.Fireball;
@@ -17,11 +14,8 @@ import com.holydemijon.Sprites.Enemies.Zombie;
 import com.holydemijon.Sprites.John;
 import com.holydemijon.Tools.Box2DWorldCreator;
 
-import java.util.ArrayList;
-
 public class FirstLevel extends Level {
 
-    private Fireball fireball;
     private Zombie zombie1;
     private Zombie zombie2;
     private Zombie zombie3;

@@ -11,7 +11,7 @@ import com.holydemijon.Sprites.John;
 
 public class BearTrap extends InteractiveTileObject {
 
-    public static final int BEAR_TRAP_DAMAGE = 25;
+    public static final int BEAR_TRAP_DAMAGE = 10;
     public BearTrap(Level level, Rectangle bounds) {
 
         super(level, bounds);

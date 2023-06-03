@@ -11,7 +11,7 @@ public class Zombie extends Enemy {
 
     public static final float ZOMBIE_WIDTH = 8;
     public static final float ZOMBIE_HEIGHT = 11;
-    public static final int ZOMBIE_DAMAGE = 50;
+    public static final int ZOMBIE_DAMAGE = 10;
     public static final int ZOMBIE_HEALTH = 200;
 
 

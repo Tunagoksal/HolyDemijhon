@@ -11,7 +11,7 @@ import com.holydemijon.Sprites.John;
 
 public class Spikes extends InteractiveTileObject {
 
-    public static final int SPIKE_DAMAGE = 50;
+    public static final int SPIKE_DAMAGE = 10;
 
     public Spikes(Level level, Rectangle bounds) {
         super(level, bounds);

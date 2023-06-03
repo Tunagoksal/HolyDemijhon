@@ -14,7 +14,7 @@ public class Wizard extends Enemy {
     public static final float WIZARD_WIDTH = 5;
     public static final float WIZARD_HEIGHT = 8;
     public static final int WIZARD_HEALTH = 200;
-    public static final int WIZARD_DAMAGE = 25;
+    public static final int WIZARD_DAMAGE = 10;
 
 
     TextureAtlas atlas;

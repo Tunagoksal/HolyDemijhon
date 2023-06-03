@@ -1,11 +1,30 @@
-# HolyDemijhon
+# In Pursuit of The Holy Demijohn™
 
-"In Pursuit of The Holy Demijohn" is a game based on a quest for eternal life. Our main character looks for the holy item that grants eternal life called “Holy DemiJohn”. This item is thought to be a holy artifact because of the great warrior and spiritual man John, who dedicated his life to making the world a better and more peaceful place to live. In that journey, unfortunately, John got caught by the supervillains of the era. Those villains not only killed him but also killed every person he risked his life for. They tortured John before his death in every way that a villain can think of. Even though John resisted bravely, he could not escape from those supervillains. In his last breaths, villains let him drink poison as water since he is desperately thirsty. After he drinks that poison from the demijohn it is believed that the soul of John made that poison as an elixir that grants eternal life. Our main character tries to escape from enemies and obstacles in order to reach that holy item.
 
-Dependencies:
-Box2D
-LibGDX
-MongoDB
+In the mythical universe of "In Pursuit of The Holy Demijohn", a 2D platform game, the main character John is on an adventurous quest to locate The Holy Demijohn, a potent magical object that can bestow perpetual life. John tries to escape from enemies and obstacles in order to reach that holy item. The game offers unique mechanics and elements that set it apart from others in its genre, as well as forest and heroic themes.
 
-In Pursuit of The Holy DemiJohn™ Created by Aybars Buğra Aksoy, Bora Yetkin, Halil Avcı, Enes Özdemir and Tuna Göksal.
+## 1. How to Play The Game
+1.  Download Java.
+2.  In order to play the game, you have two choice: (i) cloning the git repository or (ii) downloading the .jar file.
+* (i) By writing the following code on your terminal you can clone HolyDemijohn repository:
+*
+* (ii) By just downloading the .jar file on releases page , you should be able to execute the game easily by double clicking.
+
+
+## 2. Creators
+In Pursuit of The Holy DemiJohn™ Created by 
+- Aybars Buğra Aksoy
+- Bora Yetkin
+- Halil Avcı
+- Enes Özdemir
+- Tuna Göksal
+
+
+## 3. Dependencies
+- Box2D
+- LibGDX
+- MongoDB
+
+
 All rights reserved.
+

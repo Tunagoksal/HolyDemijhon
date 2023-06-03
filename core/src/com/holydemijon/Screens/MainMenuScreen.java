@@ -68,7 +68,7 @@ public class MainMenuScreen extends ScreenAdapter{
         TextureRegion newGameRegion = new TextureRegion(newGameTexture);
         TextureRegionDrawable newGameDrawable = new TextureRegionDrawable(newGameRegion);
 
-        Texture leaderBoardTexture = new Texture(Gdx.files.internal("Buttons/LeaderBoard.png"));
+        Texture leaderBoardTexture = new Texture(Gdx.files.internal("Buttons/leaderboard.png"));
         TextureRegion leaderBoardRegion = new TextureRegion(leaderBoardTexture);
         TextureRegionDrawable leaderBoardDrawable = new TextureRegionDrawable(leaderBoardRegion);
 

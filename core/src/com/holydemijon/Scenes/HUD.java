@@ -54,9 +54,9 @@ public class HUD implements Disposable {
         worldLabel = new Label("LEVEL", style);
         powerLabel = new Label("POWERS",style);
         healthLabel= new Label("HEALTH", style);
-        dashLabel= new Label("Dash: -",style);
-        doubleJumpLabel= new Label("Double Jump: -",style);
-        heavyAttackLabel= new Label("Heavy Attack: -",style);
+        dashLabel= new Label("-",style);
+        doubleJumpLabel= new Label("-",style);
+        heavyAttackLabel= new Label("-",style);
         getHealthLabel= new Label(""+johnHealthForLabel, style);
 
 
@@ -92,14 +92,14 @@ public class HUD implements Disposable {
             johnHealthForLabel=0;
         }
         if(John.dashIsActive){
-            dashLabel.setText("Dash: +");
+            dashLabel.setText("Dash");
         }
         if(John.doubleJumpIsActive){
-            doubleJumpLabel.setText("Double Jump: +");
+            doubleJumpLabel.setText("Double Jump");
         }
 
         if(John.heavyAttackIsActive){
-            heavyAttackLabel.setText("Heavy Attack: +");
+            heavyAttackLabel.setText("Heavy Attack");
         }
         getHealthLabel.setText(""+johnHealthForLabel);
         timeCount += dt;

@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijohn;
 import com.mongodb.client.*;
+import com.mongodb.client.model.Projections;
 import com.mongodb.client.model.Sorts;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -113,23 +114,31 @@ public class leaderBoardScreen extends ScreenAdapter{
         System.out.println("leaderBoardScreen test");
     }
 
-    public static void getTopScores(){
-        MongoClient mongoClient = MongoClients.create("mongodb+srv://boraytkn:1234mdb@cluster0.ris0uvf.mongodb.net/?retryWrites=true&w=majority");
-        MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
-        MongoCollection<Document> collection = database.getCollection("ScoreCollection");
+    public static void getTopScores() {
+        MongoClient mongoClient = null;
+        try {
+            mongoClient = MongoClients.create("mongodb+srv://boraytkn:1234mdb@cluster0.ris0uvf.mongodb.net/?retryWrites=true&w=majority");
+            MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
+            MongoCollection<Document> collection = database.getCollection("ScoreCollection");
 
-        Bson sort = Sorts.ascending("score");
+            Bson sort = Sorts.ascending("score");
+            Bson projection = Projections.include("name", "score");
 
-        FindIterable<Document> iterDoc = collection.find().sort(sort).limit(6);
+            FindIterable<Document> iterDoc = collection.find().projection(projection).sort(sort).limit(6);
 
-        MongoCursor<Document> it = iterDoc.iterator();
+            MongoCursor<Document> it = iterDoc.iterator();
 
-        while(it.hasNext()){
-            Document doc = it.next();
-            names.add(doc.getString("name"));
-            scores.add(doc.getInteger("score"));
+            while (it.hasNext()) {
+                Document doc = it.next();
+                names.add(doc.getString("name"));
+                scores.add(doc.getInteger("score"));
+            }
+            System.out.println("getTopScores test");
+        } finally {
+            if (mongoClient != null) {
+                mongoClient.close();
+            }
         }
-        System.out.println("getTopScores test");
     }
 
 

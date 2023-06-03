@@ -32,9 +32,6 @@ public class Database {
         MongoClient mongoClient = MongoClients.create("mongodb+srv://borayetkin:Bo1234ra@cluster0.p8gn1ac.mongodb.net/?retryWrites=true&w=majority");
         MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
         MongoCollection collection = database.getCollection("gameCollection");
-
-        System.out.println("working fine pls :)");
-
         Document sampleDoc = new Document(db.getName(), db.getScore());
         collection.insertOne(sampleDoc);
     }

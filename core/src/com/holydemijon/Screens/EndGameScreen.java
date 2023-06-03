@@ -121,8 +121,6 @@ public class EndGameScreen extends ScreenAdapter{
         doc.append("score", time);
         collection.insertOne(doc);
 
-        System.out.println("addToDatabase working fine pls :)");
-
     }
 
 

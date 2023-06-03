@@ -1,5 +1,4 @@
 package com.holydemijon.Screens.Levels;
-
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -54,7 +53,7 @@ public class SecondLevel extends Level {
         orc1 = new Orc(this, 500 / HolyDemijohn.PPM, 150 / HolyDemijohn.PPM, 0);
         wizard1 = new Wizard(this, 1100 / HolyDemijohn.PPM, 500 / HolyDemijohn.PPM, 0);
         for(int i=0;i<8;i++){
-            fireballs.add(  new Fireball(this,(1100-100*i) / HolyDemijohn.PPM, 500 / HolyDemijohn.PPM));
+            fireballs.add(  new Fireball(this,(1090-100*i) / HolyDemijohn.PPM, 455 / HolyDemijohn.PPM));
         }
         zombie1 = new Zombie(this, 700 / HolyDemijohn.PPM, 200 / HolyDemijohn.PPM, 0);
 

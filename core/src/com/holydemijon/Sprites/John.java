@@ -8,7 +8,6 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Timer;
 import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Sprites.Animations.JohnAnimation;
-import com.holydemijon.Sprites.Animations.WizardAnimation;
 import com.holydemijon.Sprites.Enemies.Enemy;
 import com.holydemijon.Sprites.Enemies.Orc;
 import com.holydemijon.Sprites.Enemies.Wizard;
@@ -145,8 +144,6 @@ public class John extends Sprite {
                 attackableEnemy = null;
             }
         }
-
-        System.out.println(attackableEnemy);
     }
 
     public void heavyAttack() {
@@ -322,7 +319,7 @@ public class John extends Sprite {
     public World getWorld() {
         return world;
     }
-    public int getJohnHealth(){ return johnHealth; }
+    public static int getJohnHealth(){ return johnHealth; }
     public void setJohnHealth(int johnHealth){ this.johnHealth = johnHealth; }
     public Boolean [] getPowerUps(){
         Boolean [] output = {dashIsActive,doubleJumpIsActive,heavyAttackIsActive};

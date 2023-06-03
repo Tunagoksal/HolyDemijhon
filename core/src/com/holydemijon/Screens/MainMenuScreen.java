@@ -1,7 +1,6 @@
 package com.holydemijon.Screens;
 
 import com.badlogic.gdx.*;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.*;
@@ -40,12 +39,6 @@ public class MainMenuScreen extends ScreenAdapter{
         sliderTable.center();
         sliderTable.setFillParent(true);
 
-        /*
-        Texture menuTexture = new Texture(Gdx.files.internal("Buttons/CSmenuB2.png"));
-        TextureRegion menuRegion = new TextureRegion(menuTexture);
-        TextureRegionDrawable menuDrawable = new TextureRegionDrawable(menuRegion);
-        table.setBackground(menuDrawable);
-        */
 
         Gdx.input.setInputProcessor(stage);
 
@@ -75,10 +68,6 @@ public class MainMenuScreen extends ScreenAdapter{
         TextureRegion newGameRegion = new TextureRegion(newGameTexture);
         TextureRegionDrawable newGameDrawable = new TextureRegionDrawable(newGameRegion);
 
-        //Texture ControlsTexture = new Texture(Gdx.files.internal("Buttons/ControlsButton.png"));
-        //TextureRegion ControlsRegion = new TextureRegion(ControlsTexture);
-        //TextureRegionDrawable ControlsDrawable = new TextureRegionDrawable(ControlsRegion);
-
         Texture leaderBoardTexture = new Texture(Gdx.files.internal("Buttons/LeaderBoard.png"));
         TextureRegion leaderBoardRegion = new TextureRegion(leaderBoardTexture);
         TextureRegionDrawable leaderBoardDrawable = new TextureRegionDrawable(leaderBoardRegion);
@@ -86,7 +75,6 @@ public class MainMenuScreen extends ScreenAdapter{
         ImageButton leaderBoardButton = new ImageButton(leaderBoardDrawable);
         ImageButton continueButton = new ImageButton(continueDrawable);
         ImageButton newGameButton = new ImageButton(newGameDrawable);
-        //ImageButton controlsButton = new ImageButton(ControlsDrawable);
         ImageButton exitGameButton = new ImageButton(exitGameDrawable);
 
         exitGameButton.addListener(new ChangeListener() {
@@ -97,11 +85,8 @@ public class MainMenuScreen extends ScreenAdapter{
             }
         });
         newGameButton.addListener(new ChangeListener() {
-            int x =0;
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println(x++);
-                //game.setScreen(new LevelScreen(game));
                 Gdx.input.setInputProcessor(null);
                 game.resetLevels();
                 Level.isNewGame = true;
@@ -114,8 +99,6 @@ public class MainMenuScreen extends ScreenAdapter{
         continueButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                //String x = game.getFile().readString();
-                //game.setScreens(Integer.valueOf(x));
                 game.resetLevels();
                 game.setScreens(game.getPrefs().getInteger("Level"));
                 HolyDemijohn.audioManager.playMusic(1);
@@ -141,8 +124,6 @@ public class MainMenuScreen extends ScreenAdapter{
         table.row();
         table.add(continueButton);
         table.row();
-        //table.add(controlsButton);
-        //table.row();
         table.add(leaderBoardButton);
         table.row();
         table.add(exitGameButton);

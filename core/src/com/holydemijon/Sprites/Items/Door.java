@@ -1,7 +1,5 @@
 package com.holydemijon.Sprites.Items;
 
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Timer;
@@ -11,7 +9,6 @@ import com.holydemijon.Screens.Levels.Level;
 
 public class Door {
 
-    private Level level;
     private World world;
     private Rectangle bounds;
     private Body body;

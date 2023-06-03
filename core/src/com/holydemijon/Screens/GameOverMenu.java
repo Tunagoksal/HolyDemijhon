@@ -66,7 +66,6 @@ public class GameOverMenu extends ScreenAdapter {
         quitButtonTwo.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println("in exit button");
                 Gdx.app.exit();
                 System.exit(0);
                 HolyDemijohn.audioManager.playMusic(0);

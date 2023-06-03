@@ -86,24 +86,17 @@ public class HolyDemijohn extends Game {
 				break;
 			case FIRST_LEVEL:
 				setScreen(level1);
-				System.out.println("Start of game.");
-				System.out.println("At level 1");
 				this.start = (int) TimeUtils.millis();
 				break;
 			case SECOND_LEVEL:
 				setScreen(level2);
-				System.out.println("At level 2");
 				break;
 			case THIRD_LEVEL:
 				setScreen(level3);
-				System.out.println("At level 3");
 				break;
 			case END_GAME_SCREEN:
 				this.end = (int) TimeUtils.millis();
 				this.time = (this.end - this.start) / 1000;
-				System.out.println("time: " + time);
-
-				System.out.println("Level1 total time " + level1.getTotalTime());
 				setScreen(new EndGameScreen(this, level1.getTotalTime()));
 
 				break;

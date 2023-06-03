@@ -50,6 +50,7 @@ public class PauseMenuScreen extends ScreenAdapter{
         TextureRegionDrawable knobd = new TextureRegionDrawable(knobr);
         Slider.SliderStyle style = new Slider.SliderStyle(sliderDrawable,knobd);
         soundSlider = new Slider(0,1,0.01f,false,style);
+        soundSlider.setValue(AudioManager.volume);
 
         Texture resumeButtonTexture = new Texture(Gdx.files.internal("Buttons/resumeButton.jpg"));
         TextureRegion resumeButtonRegion = new TextureRegion(resumeButtonTexture);

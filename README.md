@@ -12,9 +12,8 @@ git clone https://github.com/Tunagoksal/HolyDemijhon.git
 cd HolyDemijhon/
 ./gradlew desktop:run
 ```
-- Or you can just download the .jar file on releases page, you should be able to execute the game easily by double clicking.
-
-* [HolyDemijohn V1.0](https://github.com/Tunagoksal/HolyDemijhon/releases/tag/HolyDemijohn)
+- Or you can just download the .jar file from the following link, you should be able to execute the game easily by double clicking.
+   - [HolyDemijohn V1.0](https://github.com/Tunagoksal/HolyDemijhon/releases/tag/HolyDemijohn)
 
 
 

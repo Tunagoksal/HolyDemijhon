@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -30,6 +31,7 @@ public abstract class Level extends ScreenAdapter {
     protected John player;
     protected HolyDemijohn game;
     protected HUD hud;
+    protected Music music;
 
     protected WorldContactListener listener;
     protected OrthographicCamera cam;
@@ -125,7 +127,7 @@ public abstract class Level extends ScreenAdapter {
     }
 
 
-    public void levelOver(int screen){
+    public void levelOver(int screen, int currentLevel){
         if(isDoorOpened){
             isDoorOpened = false;
             if (screen == HolyDemijohn.END_GAME_SCREEN) {
@@ -133,12 +135,15 @@ public abstract class Level extends ScreenAdapter {
                 System.out.println("World timer: " + hud.getWorldTimer());
                 game.getPrefs().putInteger("Level",1);
                 game.getPrefs().flush();
+                HolyDemijohn.audioManager.playMusic(4);
             }
             else {
                 game.getPrefs().putInteger("Level",screen);
                 game.getPrefs().flush();
                 game.setScreens(screen);
             }
+
+            HolyDemijohn.audioManager.playMusic(currentLevel + 1);
         }
     }
 

@@ -61,11 +61,14 @@ public class Wizard extends Enemy {
     @Override
     public void receiveDamage(int damage) {
         super.receiveDamage(damage);
+        HolyDemijohn.audioManager.playSound(12);
         wizardAnimation.performAction(ENEMY_PERFORM_TAKING_DAMAGE);
 
         if (health <= 0) {
             wizardAnimation.performAction(ENEMY_PERFORM_DEATH);
             setToDestroy = true;
         }
+        else
+            HolyDemijohn.audioManager.playSound(12);
     }
 }

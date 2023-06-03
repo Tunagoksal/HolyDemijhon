@@ -1,6 +1,7 @@
 package com.holydemijon.Screens;
 
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.*;
@@ -19,6 +20,7 @@ public class MainMenuScreen extends ScreenAdapter{
     private Stage stage;
     private HolyDemijohn game;
     private OrthographicCamera cam;
+    private Slider soundSlider;
 
     public MainMenuScreen(final HolyDemijohn game){
 
@@ -26,6 +28,8 @@ public class MainMenuScreen extends ScreenAdapter{
         cam = new OrthographicCamera();
         viewport = new FitViewport(HolyDemijohn.WIDTH, HolyDemijohn.HEIGHT,cam);
         stage = new Stage(viewport);
+
+        HolyDemijohn.audioManager.playMusic(0);
 
         Table table = new Table();
         table.center();
@@ -54,8 +58,8 @@ public class MainMenuScreen extends ScreenAdapter{
         Texture knob = new Texture(Gdx.files.internal("Buttons/knob.png"));
         TextureRegion knobr = new TextureRegion(knob);
         TextureRegionDrawable knobd = new TextureRegionDrawable(knobr);
-        Slider.SliderStyle style = new Slider.SliderStyle(sliderDrawable,knobd);
-        Slider soundSlider = new Slider(0,100,10,false,style);
+        Slider.SliderStyle style = new Slider.SliderStyle(sliderDrawable, knobd);
+        soundSlider = new Slider(0,1,0.01f,false,style);
 
         Texture exitGameTexture = new Texture(Gdx.files.internal("Buttons/exitGame.png"));
         TextureRegion exitGameRegion = new TextureRegion(exitGameTexture);
@@ -86,7 +90,6 @@ public class MainMenuScreen extends ScreenAdapter{
         exitGameButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println("in exit button");
                 Gdx.app.exit();
                 System.exit(0);
             }
@@ -101,6 +104,8 @@ public class MainMenuScreen extends ScreenAdapter{
                 game.resetLevels();
                 Level.isNewGame = true;
                 game.setScreens(HolyDemijohn.FIRST_LEVEL);
+                HolyDemijohn.audioManager.playMusic(1);
+                HolyDemijohn.audioManager.playSound(0);
             }
         });
 
@@ -111,6 +116,8 @@ public class MainMenuScreen extends ScreenAdapter{
                 //game.setScreens(Integer.valueOf(x));
                 game.resetLevels();
                 game.setScreens(game.getPrefs().getInteger("Level"));
+                HolyDemijohn.audioManager.playMusic(1);
+                HolyDemijohn.audioManager.playSound(0);
             }
         });
 
@@ -120,6 +127,7 @@ public class MainMenuScreen extends ScreenAdapter{
             public void changed(ChangeEvent event, Actor actor) {
                 Gdx.input.setInputProcessor(null);
                 game.setScreens(HolyDemijohn.LEADER_BOARD);
+                HolyDemijohn.audioManager.playSound(0);
             }
         });
 
@@ -152,6 +160,8 @@ public class MainMenuScreen extends ScreenAdapter{
 
     @Override
     public void render(float delta) {
+        if (soundSlider.isDragging())
+            HolyDemijohn.audioManager.setGameVolume(soundSlider.getValue());
 
         if(Gdx.input.isKeyPressed(Input.Keys.X)){
             game.setScreens(HolyDemijohn.END_GAME_SCREEN);

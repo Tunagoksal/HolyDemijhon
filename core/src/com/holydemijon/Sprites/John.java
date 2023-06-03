@@ -59,9 +59,9 @@ public class John extends Sprite {
     public static int remainingJumps;
 
     //PowerUps
-    public static boolean dashIsActive = false;
-    public static boolean doubleJumpIsActive = false;
-    public static boolean heavyAttackIsActive = false;
+    public static boolean dashIsActive = true;
+    public static boolean doubleJumpIsActive = true;
+    public static boolean heavyAttackIsActive = true;
 
     //Interactive Tile Object and Enemy effects
     public static boolean steppedOnSpike;
@@ -214,7 +214,11 @@ public class John extends Sprite {
         if (johnHealth <= 0) {
             JohnAnimation.performDeath = true;
             johnIsDead = true;
+
+            HolyDemijohn.audioManager.playSound(10);
         }
+        else
+            HolyDemijohn.audioManager.playSound(9);
     }
 
     public void didStepOnObject() {

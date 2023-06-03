@@ -59,6 +59,8 @@ public class GameOverMenu extends ScreenAdapter {
                 game.resetLevels();
                 JohnAnimation.performDeath  = false;
                 game.setScreens(HolyDemijohn.FIRST_LEVEL);
+                HolyDemijohn.audioManager.playMusic(1);
+                HolyDemijohn.audioManager.playSound(0);
             }
         });
         quitButtonTwo.addListener(new ChangeListener() {
@@ -67,6 +69,8 @@ public class GameOverMenu extends ScreenAdapter {
                 System.out.println("in exit button");
                 Gdx.app.exit();
                 System.exit(0);
+                HolyDemijohn.audioManager.playMusic(0);
+                HolyDemijohn.audioManager.playSound(0);
             }
         });
         table.add(youDied);

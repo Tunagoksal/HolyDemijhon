@@ -7,6 +7,7 @@ import com.holydemijon.Screens.*;
 import com.holydemijon.Screens.Levels.SecondLevel;
 import com.holydemijon.Screens.Levels.ThirdLevel;
 import com.holydemijon.Screens.Levels.FirstLevel;
+import com.holydemijon.Tools.AudioManager;
 
 
 public class HolyDemijohn extends Game {
@@ -29,6 +30,7 @@ public class HolyDemijohn extends Game {
 	public static final short ENEMY_BIT = 4;
 
 	public SpriteBatch batch;
+	public static AudioManager audioManager;
 
 	private Preferences prefs;
 
@@ -49,6 +51,7 @@ public class HolyDemijohn extends Game {
 		prefs = Gdx.app.getPreferences("savePreference");
 
 		batch = new SpriteBatch();
+		audioManager = new AudioManager();
 
 		mainMenu = new MainMenuScreen(this);
 		level1 = new FirstLevel(this);
@@ -121,6 +124,7 @@ public class HolyDemijohn extends Game {
 	@Override
 	public void render () {
 		super.render();
+		audioManager.update();
 	}
 
 	@Override

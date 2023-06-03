@@ -101,6 +101,7 @@ public class EndGameScreen extends ScreenAdapter{
             System.out.println(name + " added.");
             System.out.println(this.time + " time passed.");
             game.setScreens(HolyDemijohn.LEADER_BOARD);
+            HolyDemijohn.audioManager.playSound(0);
         }
         Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

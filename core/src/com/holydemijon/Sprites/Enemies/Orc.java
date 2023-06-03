@@ -71,5 +71,7 @@ public class Orc extends Enemy {
             orcAnimation.performAction(ENEMY_PERFORM_DEATH);
             setToDestroy = true;
         }
+        else
+            HolyDemijohn.audioManager.playSound(12);
     }
 }

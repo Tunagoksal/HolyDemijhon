@@ -48,6 +48,7 @@ public class SecondLevel extends Level {
 
         world = new World(new Vector2(0, GRAVITY), true);
         b2dbr = new Box2DDebugRenderer();
+        b2dbr.setDrawBodies(false);
         b2dwc = new Box2DWorldCreator(this);
 
         orc1 = new Orc(this, 500 / HolyDemijohn.PPM, 150 / HolyDemijohn.PPM, 0);
@@ -104,7 +105,7 @@ public class SecondLevel extends Level {
         level = 2;
 
         update(delta);
-        super.levelOver(HolyDemijohn.THIRD_LEVEL);
+        super.levelOver(HolyDemijohn.THIRD_LEVEL, level);
 
         mapRenderer.setView(cam);
         mapRenderer.render();

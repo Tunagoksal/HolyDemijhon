@@ -68,6 +68,8 @@ public class Zombie extends Enemy {
             zombieAnimation.performAction(ENEMY_PERFORM_DEATH);
             setToDestroy = true;
         }
+        else
+            HolyDemijohn.audioManager.playSound(11);
     }
 
 }

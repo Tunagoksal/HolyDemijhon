@@ -1,5 +1,6 @@
 package com.holydemijon.Screens.Levels;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -47,6 +48,7 @@ public class FirstLevel extends Level {
 
         world = new World(new Vector2(0, GRAVITY), true);
         b2dbr = new Box2DDebugRenderer();
+        b2dbr.setDrawBodies(false);
         b2dwc = new Box2DWorldCreator(this);
 
         b2dwc.setColliders(2,4,3,5,7,6,9,8);
@@ -115,7 +117,7 @@ public class FirstLevel extends Level {
 
         level = 1;
         update(delta);
-        levelOver(HolyDemijohn.SECOND_LEVEL);
+        levelOver(HolyDemijohn.SECOND_LEVEL, level);
 
         mapRenderer.setView(cam);
         mapRenderer.render();

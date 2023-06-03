@@ -20,6 +20,7 @@ public class BearTrap extends InteractiveTileObject {
 
     @Override
     public void johnCollision() {
+        HolyDemijohn.audioManager.playSound(7);
         John.steppedOnTrap = true;
     }
 

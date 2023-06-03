@@ -26,9 +26,11 @@ public class KeyboardInputs implements InputProcessor {
                     JohnAnimation.performDash = true;
                     player.jump(John.JUMP_HEIGHT / 1.5f);
                     John.remainingJumps = 0;
+                    HolyDemijohn.audioManager.playSound(4);
                 } else {
                     player.jump(John.JUMP_HEIGHT);
                     John.remainingJumps -= 1;
+                    HolyDemijohn.audioManager.playSound(4);
                 }
             }
 
@@ -42,6 +44,7 @@ public class KeyboardInputs implements InputProcessor {
 
             if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
                 JohnAnimation.performSimpleAttack = true;
+                HolyDemijohn.audioManager.playSound(2);
                 Timer timer = new Timer();
                 timer.scheduleTask(new Timer.Task() {
                     @Override
@@ -52,6 +55,7 @@ public class KeyboardInputs implements InputProcessor {
             }
             if (Gdx.input.isKeyJustPressed(Input.Keys.E) && John.heavyAttackIsActive) {
                 JohnAnimation.performHeavyAttack = true;
+                HolyDemijohn.audioManager.playSound(3);
                 Timer timer = new Timer();
                 timer.scheduleTask(new Timer.Task() {
                     @Override
@@ -68,6 +72,7 @@ public class KeyboardInputs implements InputProcessor {
                     player.johnDash(-1);
                     John.dashUsed();
                 }
+                HolyDemijohn.audioManager.playSound(1);
             }
         }
     }

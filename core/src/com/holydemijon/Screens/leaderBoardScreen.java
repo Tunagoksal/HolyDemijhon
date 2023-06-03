@@ -135,6 +135,8 @@ public class leaderBoardScreen extends ScreenAdapter{
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
             Gdx.input.setInputProcessor(game.getMainMenu().getStage());
             game.setScreens(HolyDemijohn.MAIN_MENU_SCREEN);
+            HolyDemijohn.audioManager.playMusic(0);
+            HolyDemijohn.audioManager.playSound(0);
         }
 
         Gdx.gl.glClearColor(0,0,0,1);

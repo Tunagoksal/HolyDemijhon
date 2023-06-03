@@ -14,12 +14,14 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.holydemijon.HolyDemijohn;
 import com.holydemijon.Screens.Levels.Level;
+import com.holydemijon.Tools.AudioManager;
 
 public class PauseMenuScreen extends ScreenAdapter{
     private HolyDemijohn game;
     private Viewport viewport;
     private Stage stage;
     private OrthographicCamera cam;
+    private Slider soundSlider;
     public PauseMenuScreen(final HolyDemijohn game){
         this.game = game;
         cam = new OrthographicCamera();
@@ -47,7 +49,7 @@ public class PauseMenuScreen extends ScreenAdapter{
         TextureRegion knobr = new TextureRegion(knob);
         TextureRegionDrawable knobd = new TextureRegionDrawable(knobr);
         Slider.SliderStyle style = new Slider.SliderStyle(sliderDrawable,knobd);
-        Slider soundSlider = new Slider(0,100,10,false,style);
+        soundSlider = new Slider(0,1,0.01f,false,style);
 
         Texture resumeButtonTexture = new Texture(Gdx.files.internal("Buttons/resumeButton.jpg"));
         TextureRegion resumeButtonRegion = new TextureRegion(resumeButtonTexture);
@@ -65,6 +67,7 @@ public class PauseMenuScreen extends ScreenAdapter{
             public void changed(ChangeEvent event, Actor actor) {
                 Gdx.input.setInputProcessor(null);
                 game.setScreen(Level.currentScreen);
+                HolyDemijohn.audioManager.playSound(0);
             }
         });
 
@@ -78,6 +81,8 @@ public class PauseMenuScreen extends ScreenAdapter{
                 Level.setWorldTimer = Level.worldTimer;
                 game.setScreens(HolyDemijohn.MAIN_MENU_SCREEN);
                 Gdx.input.setInputProcessor(game.getMainMenu().getStage());
+                HolyDemijohn.audioManager.playMusic(0);
+                HolyDemijohn.audioManager.playSound(0);
             }
         });
 
@@ -102,6 +107,9 @@ public class PauseMenuScreen extends ScreenAdapter{
 
     @Override
     public void render(float delta) {
+        if (soundSlider.isDragging())
+            HolyDemijohn.audioManager.setGameVolume(soundSlider.getValue());
+
         Gdx.gl.glClearColor(155/255f,173/255f,183/255f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.draw();

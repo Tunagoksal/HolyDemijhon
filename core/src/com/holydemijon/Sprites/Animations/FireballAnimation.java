@@ -30,7 +30,10 @@ public class FireballAnimation extends Sprite {
     public void update(float dt) {
         stateTimer += dt;
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
+        if (runningRight)
+            fireballRun.getKeyFrame(dt).flip(true, false);
         setRegion(fireballRun.getKeyFrame(dt));
+        runningRight = false;
     }
 
     public void draw(Batch batch) {

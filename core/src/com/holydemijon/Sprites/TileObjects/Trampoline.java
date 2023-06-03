@@ -19,6 +19,7 @@ public class Trampoline extends InteractiveTileObject {
 
     @Override
     public void johnCollision() {
+        HolyDemijohn.audioManager.playSound(6);
         John.steppedOnTrampoline = true;
     }
 

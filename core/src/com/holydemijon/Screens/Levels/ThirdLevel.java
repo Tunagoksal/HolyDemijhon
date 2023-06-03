@@ -48,6 +48,7 @@ public class ThirdLevel extends Level {
 
         world = new World(new Vector2(0, GRAVITY), true);
         b2dbr = new Box2DDebugRenderer();
+        b2dbr.setDrawBodies(false);
         b2dwc = new Box2DWorldCreator(this);
 
         b2dwc.setColliders(2,4,3,5,7,6,9,8);
@@ -107,7 +108,7 @@ public class ThirdLevel extends Level {
         level = 3;
 
         update(delta);
-        super.levelOver(HolyDemijohn.END_GAME_SCREEN);
+        super.levelOver(HolyDemijohn.END_GAME_SCREEN, level);
 
         mapRenderer.setView(cam);
         mapRenderer.render();

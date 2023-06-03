@@ -135,5 +135,34 @@ public class Database {
             scores.add(doc.getInteger("score"));
 
         }
+
+        public static void getTopScores() {
+    MongoClient mongoClient = null;
+    try {
+        mongoClient = MongoClients.create("mongodb+srv://boraytkn:1234mdb@cluster0.ris0uvf.mongodb.net/?retryWrites=true&w=majority");
+        MongoDatabase database = mongoClient.getDatabase("HolyDemijohnDB");
+        MongoCollection<Document> collection = database.getCollection("ScoreCollection");
+
+        Bson sort = Sorts.ascending("score");
+        Bson projection = Projections.include("name", "score");
+
+        FindIterable<Document> iterDoc = collection.find().projection(projection).sort(sort).limit(6);
+
+        MongoCursor<Document> it = iterDoc.iterator();
+
+        while (it.hasNext()) {
+            Document doc = it.next();
+            names.add(doc.getString("name"));
+            scores.add(doc.getInteger("score"));
+        }
+        System.out.println("getTopScores test");
+    } finally {
+        if (mongoClient != null) {
+            mongoClient.close();
+        }
+    }
+}
+
+
     }*/
 }

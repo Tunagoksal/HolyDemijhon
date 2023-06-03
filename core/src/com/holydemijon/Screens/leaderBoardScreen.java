@@ -109,6 +109,8 @@ public class leaderBoardScreen extends ScreenAdapter{
         table.row();
         
         stage.addActor(table);
+
+        System.out.println("leaderBoardScreen test");
     }
 
     public static void getTopScores(){
@@ -119,6 +121,7 @@ public class leaderBoardScreen extends ScreenAdapter{
         Bson sort = Sorts.ascending("score");
 
         FindIterable<Document> iterDoc = collection.find().sort(sort).limit(6);
+
         MongoCursor<Document> it = iterDoc.iterator();
 
         while(it.hasNext()){
@@ -126,6 +129,7 @@ public class leaderBoardScreen extends ScreenAdapter{
             names.add(doc.getString("name"));
             scores.add(doc.getInteger("score"));
         }
+        System.out.println("getTopScores test");
     }
 
 

@@ -1,6 +1,6 @@
 # In Pursuit of The Holy Demijohn™
 
-## 1. The Game
+## 1. Storyline and The Game Features
 In the mythical universe of "In Pursuit of The Holy Demijohn", a 2D platformer game, the main character John is on an adventurous quest to locate The Holy Demijohn, a potent magical object that can bestow perpetual life. John tries to escape from enemies and obstacles in order to reach that holy item. The game offers unique mechanics and elements that set it apart from others in its genre, as well as forest and heroic themes.
 
 ## 2. How to Play The Game

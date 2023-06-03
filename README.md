@@ -20,8 +20,8 @@ cd HolyDemijhon/
 In Pursuit of The Holy DemiJohn™ Created by 
 - Aybars Buğra Aksoy
 - Bora Yetkin
-- Halil Avcı
 - Enes Özdemir
+- Halil Avcı
 - Tuna Göksal
 
 

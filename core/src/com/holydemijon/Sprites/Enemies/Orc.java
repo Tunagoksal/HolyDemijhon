@@ -66,13 +66,11 @@ public class Orc extends Enemy {
     public void receiveDamage(int damage) {
         super.receiveDamage(damage);
         orcAnimation.performAction(ENEMY_PERFORM_TAKING_DAMAGE);
+        HolyDemijohn.audioManager.playSound(12);
 
         if (health <= 0) {
             orcAnimation.performAction(ENEMY_PERFORM_DEATH);
             setToDestroy = true;
         }
-        else
-            HolyDemijohn.audioManager.playSound(12);
-
     }
 }

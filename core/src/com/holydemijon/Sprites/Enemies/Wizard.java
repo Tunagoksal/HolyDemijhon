@@ -68,7 +68,5 @@ public class Wizard extends Enemy {
             wizardAnimation.performAction(ENEMY_PERFORM_DEATH);
             setToDestroy = true;
         }
-        else
-            HolyDemijohn.audioManager.playSound(12);
     }
 }

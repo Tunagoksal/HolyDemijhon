@@ -63,14 +63,12 @@ public class Zombie extends Enemy {
     public void receiveDamage(int damage) {
         super.receiveDamage(damage);
         zombieAnimation.performAction(ENEMY_PERFORM_TAKING_DAMAGE);
+        HolyDemijohn.audioManager.playSound(11);
 
         if (health <= 0) {
             zombieAnimation.performAction(ENEMY_PERFORM_DEATH);
             setToDestroy = true;
         }
-        else
-            HolyDemijohn.audioManager.playSound(11);
-
     }
 
 }

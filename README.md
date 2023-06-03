@@ -14,6 +14,9 @@ cd HolyDemijhon/
 ```
 - Or you can just download the .jar file on releases page, you should be able to execute the game easily by double clicking.
 
+* [HolyDemijohn V1.0](https://github.com/Tunagoksal/HolyDemijhon/releases/tag/HolyDemijohn)
+
+
 
 
 ## 2. Creators

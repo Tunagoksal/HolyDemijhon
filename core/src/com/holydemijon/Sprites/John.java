@@ -3,6 +3,7 @@ package com.holydemijon.Sprites;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Timer;
@@ -16,8 +17,6 @@ import com.holydemijon.Sprites.TileObjects.BearTrap;
 import com.holydemijon.Sprites.TileObjects.Spikes;
 import com.holydemijon.Sprites.TileObjects.Trampoline;
 import com.holydemijon.Tools.KeyboardInputs;
-
-import java.util.Random;
 
 public class John extends Sprite {
 
@@ -243,8 +242,7 @@ public class John extends Sprite {
 
         if(openedChest){
             openedChest=false;
-            Random rand= new Random();
-            int luck= rand.nextInt(1,4);
+            int luck= MathUtils.random(1,3);
 
             if(luck==1){
                 dashIsActive=true;
